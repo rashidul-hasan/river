@@ -1,0 +1,62 @@
+{
+    "name": "rashidul/river",
+    "description": "Application framework",
+    "keywords": [
+        "rashidul",
+        "laravel",
+        "river"
+    ],
+    "homepage": "https://github.com/rashidul/river",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "rashidul",
+            "email": "rashidul69@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "spatie/laravel-package-tools": "^1.9.2",
+        "illuminate/contracts": "^9.0"
+    },
+    "require-dev": {
+        "nunomaduro/collision": "^6.0",
+        "orchestra/testbench": "^7.0",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.1",
+        "phpunit/phpunit": "^9.5",
+        "spatie/laravel-ray": "^1.26"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rashidul\\River\\": "src",
+            "Rashidul\\River\\Database\\Factories\\": "database/factories"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rashidul\\River\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rashidul\\River\\RiverServiceProvider"
+            ],
+            "aliases": {
+                "River": "Rashidul\\River\\Facades\\River"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
