@@ -2,8 +2,8 @@
     <div class="nav-list">
         <div class="pcoded-inner-navbar main-menu">
             <ul class="pcoded-item pcoded-left-item">
-                <li class="{{\Request::route()->getName() == 'admin.dashboard' ? 'active' : ''}}">
-                    <a href="{{ route('admin.dashboard') }}" class="waves-effect waves-dark">
+                <li class="{{\Request::route()->getName() == 'river.admin.dashboard' ? 'active' : ''}}">
+                    <a href="{{ route('river.admin.dashboard') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon">
                             <i class="feather icon-home"></i>
                         </span>

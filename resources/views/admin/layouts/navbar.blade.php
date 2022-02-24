@@ -1,7 +1,7 @@
 <nav class="navbar header-navbar pcoded-header">
     <div class="navbar-wrapper">
         <div class="navbar-logo">
-            <a href="{{ route('admin.dashboard') }}">
+            <a href="{{ route('river.admin.dashboard') }}">
                 <img class="img-fluid" src="" alt="Theme-Logo" width="140" height="28"/>
             </a>
             <a class="mobile-menu" id="mobile-collapse" href="#!">
@@ -39,7 +39,7 @@
                                     <i class="feather icon-log-out"></i> Logout
                                 </a>
                             </li>
-                            <form id="logout-form" action="" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{route('river.admin.logout')}}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
                         </ul>

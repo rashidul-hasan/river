@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace Rashidul\River\Http\Controllers\Admin\Auth;
 
-use App\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
+use Rashidul\River\Constants;
 
 class LoginController extends Controller
 {
@@ -38,7 +37,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('river.guest:'.Constants::AUTH_GUARD_ADMINS)->except('logout');
     }
 
     /**
@@ -50,31 +49,19 @@ class LoginController extends Controller
     {
 //        session()->put('previousUrl', url()->previous());
 
-        return view('admin.auth.login');
+        return view('river::admin.auth.login');
     }
 
     public function login(Request $request)
     {
         $this->validateLogin($request);
-        $user = User::where('email', $request->email)->first();
+        $credentials = $request->only('email', 'password');
 
-        if (!$user)
-        {
-          return redirect()->back()->with('error','User not found!');
-        }
-
-        if ($user->role_id === 1)
-        {
-            $credentials = $request->only('email', 'password');
-
-            if (Auth::attempt($credentials)) {
-                // Authentication passed...
-                return redirect()->to('admin/home');
-            }else{
-                return redirect()->back()->with('error','Credentials dose not match!');
-            }
+        if ($this->guard()->attempt($credentials)) {
+            // Authentication passed...
+            return redirect()->to(route('river.admin.dashboard'));
         }else{
-            return redirect()->back()->with('error','User not access this!');
+            return redirect()->back()->with('error','Credentials does not match!');
         }
 
     }
@@ -112,12 +99,17 @@ class LoginController extends Controller
 
         return $request->wantsJson()
             ? new Response('', 204)
-            : redirect(route('admin.login'));
+            : redirect(route('river.admin.login'));
 
     }
 
     public function redirectTo()
     {
         return str_replace(url('/'), '', session()->get('previousUrl', '/'));
+    }
+
+    protected function guard()
+    {
+        return Auth::guard(Constants::AUTH_GUARD_ADMINS);
     }
 }

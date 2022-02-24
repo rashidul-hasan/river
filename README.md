@@ -70,3 +70,9 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+
+# TODO
+
+1. custom auth guard for customers
+2. use the default auth guard for admin
