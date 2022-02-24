@@ -22,9 +22,9 @@ $(document).ready(function() {
     $('.theme-loader').animate({
         'opacity': '0',
     }, 1200);
-    setTimeout(function() {
+    /*setTimeout(function() {
         $('.theme-loader').remove();
-    }, 2000);
+    }, 2000);*/
     // $('.pcoded').addClass('loaded');
     $('.form-control').on('blur', function() {
         if ($(this).val().length > 0) {

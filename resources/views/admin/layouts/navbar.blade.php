@@ -29,7 +29,7 @@
 
                     <div class="dropdown-primary dropdown">
                         <div class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{ Auth::user() && Auth::user()->image ? url(Auth::user()->image) : url('/admin/assets/images/avatar-4.jpg') }}" class="img-radius" alt="User-Profile-Image">
+                            <img src="{{ Auth::user() && Auth::user()->image ? url(Auth::user()->image) : url('/river/admin/assets/images/avatar.png') }}" class="img-radius" alt="User-Profile-Image">
                             <span>{{Auth::user() ? Auth::user()->name : ''}}</span>
                             <i class="feather icon-chevron-down"></i>
                         </div>

@@ -18,7 +18,8 @@
     "require": {
         "php": "^8.0",
         "illuminate/contracts": "^9.0",
-        "laravel/ui": "^3.4"
+        "laravel/ui": "^3.4",
+        "tightenco/ziggy": "^0.9.4"
     },
     "require-dev": {
         "nunomaduro/collision": "^6.0",
