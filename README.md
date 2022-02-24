@@ -21,7 +21,7 @@ php artisan migrate
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="river-config"
+php artisan vendor:publish --tag="river-assets"
 ```
 
 This is the contents of the published config file:

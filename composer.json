@@ -17,8 +17,8 @@
     ],
     "require": {
         "php": "^8.0",
-        "spatie/laravel-package-tools": "^1.9.2",
-        "illuminate/contracts": "^9.0"
+        "illuminate/contracts": "^9.0",
+        "laravel/ui": "^3.4"
     },
     "require-dev": {
         "nunomaduro/collision": "^6.0",
@@ -32,7 +32,10 @@
         "psr-4": {
             "Rashidul\\River\\": "src",
             "Rashidul\\River\\Database\\Factories\\": "database/factories"
-        }
+        },
+        "files": [
+            "src/helper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
