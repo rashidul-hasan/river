@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Rashidul\River\Http\Controllers\Admin\Settings;
 
 use App\Http\Controllers\Controller;
-use App\Services\SettingsService;
-use App\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
+use Rashidul\River\Services\SettingsService;
 
 class SettingsController extends Controller
 {
@@ -74,7 +73,7 @@ class SettingsController extends Controller
             if ($request->has($item)) {
                 SettingsService::set($item, '1');
             } else {
-                SettingsService::set($item, '2');
+                SettingsService::set($item, '0');
             }
         }
 
@@ -92,7 +91,7 @@ class SettingsController extends Controller
         }
         //reset cache
         Cache::forget(SettingsService::CACHE_KEY_SETTINGS);
-        Artisan::call('cms:cache-nav');
+//        Artisan::call('cms:cache-nav');
 
         return redirect()->back()->with('success', 'Settings Updated Successfully!');
     }

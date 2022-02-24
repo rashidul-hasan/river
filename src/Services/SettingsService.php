@@ -1,8 +1,8 @@
 <?php
 namespace Rashidul\River\Services;
 
-use App\Settings;
 use Illuminate\Support\Facades\Cache;
+use Rashidul\River\Models\Settings;
 
 class SettingsService
 {

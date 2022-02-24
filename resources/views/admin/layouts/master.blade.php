@@ -2,8 +2,8 @@
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
-{{--    <title>@if(isset($title)){{ $title }} - @endif{{ \App\Services\SettingsService::get(\App\Services\SettingsService::SETTINGS_SITE_NAME, '') }}</title>--}}
-{{--    <link rel="icon" type="image/png" href="{{ \App\Services\SettingsService::get(\App\Services\SettingsService::SETTINGS_FAVICON, '') }}" />--}}
+    <title>@if(isset($title)){{ $title }} - @endif {{river_settings('name')}}</title>
+    <link rel="icon" type="image/png" href="{{river_settings('favicon')}}" />
 
     @include('river::admin.layouts.head')
 
@@ -35,7 +35,7 @@
 
     </div>
 </div>
-
+<input type="hidden" name="current_route_name" value="{{\Request::route()->getName()}}">
 @include('river::admin.layouts.bottom')
 
 @stack('scripts')

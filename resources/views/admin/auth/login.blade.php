@@ -10,23 +10,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-{{--    <link rel="icon" type="image/png" href="{{ \App\Services\SettingsService::get(\App\Services\SettingsService::SETTINGS_FAVICON, '') }}" />--}}
-    <!-- Google font-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
-    <!-- Required Fremwork -->
+    <link rel="icon" type="image/png" href="{{river_settings('favicon')}}" />
     <link rel="stylesheet" type="text/css" href="/river/admin/bower_components/bootstrap/css/bootstrap.min.css">
-    <!-- waves.css -->
     <link rel="stylesheet" href="/river/admin/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
-    <!-- feather icon -->
-    <link rel="stylesheet" type="text/css" href="/river/admin/assets/icon/feather/css/feather.css">
-    <!-- themify-icons line icon -->
-    <link rel="stylesheet" type="text/css" href="/river/admin/assets/icon/themify-icons/themify-icons.css">
-    <!-- ico font -->
     <link rel="stylesheet" type="text/css" href="/river/admin/assets/icon/icofont/css/icofont.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" type="text/css" href="/river/admin/assets/icon/font-awesome/css/font-awesome.min.css">
-    <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="/river/admin/assets/css/style.css"><link rel="stylesheet" type="text/css" href="/river/admin/assets/css/pages.css">
+    <link rel="stylesheet" type="text/css" href="/river/admin/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/river/admin/assets/css/pages.css">
 </head>
 
 <body themebg-pattern="theme1">
@@ -85,16 +74,14 @@
 </div>
 <!-- Pre-loader end -->
 <section class="login-block">
-    @php
-        $settingsArr = [];
-    @endphp
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
                 <form class="md-float-material form-material" action="{{ route('river.admin.login.post') }}" method="POST">
                     @csrf
                     <div class="text-center">
-                        <img src="{{asset( $settingsArr['header_logo'] ?? '/demo/no-img.jpg' )}}" alt="logo.png" width="180" height="80">
+                        <img src="{{river_settings('header_logo')}}" alt="logo.png" width="180" height="80">
                     </div>
                     <div class="auth-box card">
                         <div class="card-block">

@@ -2,7 +2,7 @@
     <div class="navbar-wrapper">
         <div class="navbar-logo">
             <a href="{{ route('river.admin.dashboard') }}">
-                <img class="img-fluid" src="" alt="Theme-Logo" width="140" height="28"/>
+                <img class="img-fluid" src="{{river_settings('header_logo')}}" alt="Theme-Logo" width="140" height="28"/>
             </a>
             <a class="mobile-menu" id="mobile-collapse" href="#!">
                 <i class="feather icon-menu icon-toggle-right"></i>
