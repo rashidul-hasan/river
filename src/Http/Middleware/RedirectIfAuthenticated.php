@@ -28,6 +28,9 @@ class RedirectIfAuthenticated
                 if ($guard == Constants::AUTH_GUARD_ADMINS) {
                     return redirect(route('river.admin.dashboard'));
                 }
+                if ($guard == Constants::AUTH_GUARD_CUSTOMERS) {
+                    return redirect('/');
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
         }
