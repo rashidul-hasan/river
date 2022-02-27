@@ -24,10 +24,16 @@ Route::group([
 //    Route::get('payment-method', 'Admin\PaymentController@index')->name('payment.index');
 
     //settings route:
-    Route::get('settings', 'Admin\SettingsController@showSettings')->name('settings.index');
+//    Route::get('settings', 'Admin\SettingsController@showSettings')->name('settings.index');
     Route::get('storefront', 'Admin\Settings\AppearanceController@storeFront')->name('store.front');
     Route::post('update/settings', 'Admin\Settings\SettingsController@updateSettings')->name('store-settings');
     Route::resource('sliders', 'Admin\Settings\SliderController');
     Route::resource('banners', 'Admin\SliderController');
+
+    //template manager
+    Route::resource('template-pages', 'Admin\TemplatePageController')->except(['create', 'store', 'show']);
+    Route::get('assets', 'Admin\TemplatePageController@assets')->name('templates.assets');
+//    Route::get('pages/{id}', 'Admin\TemplatePageController@editPage')->name('templates.pages.edit');
+
 
 });

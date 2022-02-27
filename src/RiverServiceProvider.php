@@ -4,6 +4,7 @@ namespace Rashidul\River;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Rashidul\River\Commands\CacheViewFilesCommand;
 use Rashidul\River\Http\Middleware\Authenticate;
 use Rashidul\River\Http\Middleware\RedirectIfAuthenticated;
 use Rashidul\River\Models\Admin;
@@ -30,6 +31,7 @@ class RiverServiceProvider extends ServiceProvider
         //viewcomposers
         View::composer('river::admin.layouts.sidebar', AdminSidebarViewComposer::class);
 
+        $this->configureCommands();
     }
 
     private function configureAuthGuards(): void
@@ -62,5 +64,14 @@ class RiverServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__ . '/../routes/admin.php');
         $this->loadRoutesFrom(__DIR__ . '/../routes/site.php');
+    }
+
+    private function configureCommands(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                CacheViewFilesCommand::class,
+            ]);
+        }
     }
 }

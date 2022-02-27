@@ -57,6 +57,20 @@ class AdminSidebarViewComposer
                     ]
                 ]
             ],
+            [
+                'label' => 'Template manager',
+                'icon' => 'fas fa-tv',
+                'children' => [
+                    /*[
+                        'label' => 'Pages',
+                        'route' => 'river.templates.pages',
+                    ],*/
+                    [
+                        'label' => 'Pages',
+                        'route' => 'river.template-pages.index',
+                    ]
+                ]
+            ],
         ];
         $view->with('menus', $menus);
     }
