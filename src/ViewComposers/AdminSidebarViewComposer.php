@@ -71,6 +71,16 @@ class AdminSidebarViewComposer
                     ]
                 ]
             ],
+            [
+                'label' => 'Data Types',
+                'icon' => 'fas fa-tv',
+                'children' => [
+                    [
+                        'label' => 'All types',
+                        'route' => 'river.datatypes.index',
+                    ]
+                ]
+            ],
         ];
         $view->with('menus', $menus);
     }

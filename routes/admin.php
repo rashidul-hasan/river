@@ -35,5 +35,8 @@ Route::group([
     Route::get('assets', 'Admin\TemplatePageController@assets')->name('templates.assets');
 //    Route::get('pages/{id}', 'Admin\TemplatePageController@editPage')->name('templates.pages.edit');
 
+    Route::post('datatypes/store-fields', 'Admin\DataTypeController@storeFields')->name('datatypes.store-fields');
+    Route::put('datatypes/update-fields', 'Admin\DataTypeController@updateFields')->name('datatypes.update-fields');
+    Route::resource('datatypes', 'Admin\DataTypeController');
 
 });
