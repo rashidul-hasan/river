@@ -22,6 +22,7 @@
                 <input type="text" class="form-control" name="filename" value="{{$file->filename}}">
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-danger btn-delete">Delete</button>
         </div>
         <div class="col-md-10">
             @csrf
@@ -51,6 +52,14 @@
             lineNumbers: true,
             mode: "php",
             theme: 'monokai'
+        });
+
+        $('.btn-delete').click(function () {
+            if(window.confirm('Delete this file?')) {
+                DynamicForm.create(route('river.template-pages.destroy', "{{$file->id}}"), 'DELETE')
+                .addCsrf()
+                .submit();
+            }
         });
     </script>
 @endpush

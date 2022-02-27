@@ -100,4 +100,15 @@ class TemplatePageController extends Controller
         return redirect()->back()->with('success', 'Updated');
     }
 
+    public function destroy($id)
+    {
+        $file = TemplatePage::find($id);
+        $file->delete();
+
+        //reset cache
+        Artisan::call('river:cache-views');
+        return redirect(route('river.template-pages.index'))
+            ->with('success', 'Deleted!');
+    }
+
 }

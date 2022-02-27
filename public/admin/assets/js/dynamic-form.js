@@ -1,7 +1,7 @@
 function DynamicForm(action, method) {
     this.method = method;
     this.form = document.createElement("form");
-    this.form.setAttribute("method", method);
+    this.form.setAttribute("method", method == 'GET' ? method : "POST");
     this.form.setAttribute("action", action);
 }
 
