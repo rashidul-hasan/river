@@ -37,6 +37,7 @@
 {{--<script src="/river/admin/assets/js/bootstrap-show-modal.js"></script>--}}
 <script src="/river/admin/assets/js/form-builder.js"></script>
 <script src="/river/admin/assets/js/modal-utility.js"></script>
+<script src="/river/admin/assets/js/dynamic-form.js"></script>
 
 <script>
     toastr.options = {

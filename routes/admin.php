@@ -31,7 +31,7 @@ Route::group([
     Route::resource('banners', 'Admin\SliderController');
 
     //template manager
-    Route::resource('template-pages', 'Admin\TemplatePageController')->except(['create', 'store', 'show']);
+    Route::resource('template-pages', 'Admin\TemplatePageController')->except(['create', 'show']);
     Route::get('assets', 'Admin\TemplatePageController@assets')->name('templates.assets');
 //    Route::get('pages/{id}', 'Admin\TemplatePageController@editPage')->name('templates.pages.edit');
 

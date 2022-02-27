@@ -11,13 +11,13 @@ class CacheViewFilesCommand extends Command
 
     public $description = 'My command';
 
-    const VIEW_DIR = 'resources/views/_cache';
+    const VIEW_DIR = 'resources/views/_cache/';
 
     public function handle()
     {
         $this->ensureViewDirExists();
 
-        $this->writeLayoutFiles();
+        $this->writeFiles();
 
     }
 
@@ -27,16 +27,15 @@ class CacheViewFilesCommand extends Command
         if (!file_exists($dir)) {
             mkdir($dir, 0777, true); //TODO refcator to proper permissions
         }
-        $dir = base_path(self::VIEW_DIR . '/layouts');
+        /*$dir = base_path(self::VIEW_DIR . '/layouts');
         if (!file_exists($dir)) {
             mkdir($dir, 0777, true); //TODO refcator to proper permissions
-        }
+        }*/
     }
 
-    private function writeLayoutFiles()
+    private function writeFiles()
     {
-        $files = TemplatePage::type(TemplatePage::TYPE_LAYOUT)
-            ->get();
+        $files = TemplatePage::all();
         foreach ($files as $file) {
             $filename = self::VIEW_DIR . $file->filename;
             file_put_contents(base_path($filename), $file->code);

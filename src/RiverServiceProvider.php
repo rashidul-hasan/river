@@ -68,10 +68,8 @@ class RiverServiceProvider extends ServiceProvider
 
     private function configureCommands(): void
     {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                CacheViewFilesCommand::class,
-            ]);
-        }
+        $this->commands([
+            CacheViewFilesCommand::class,
+        ]);
     }
 }

@@ -4,6 +4,7 @@ namespace Rashidul\River\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Rashidul\River\Models\TemplatePage;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -44,12 +45,30 @@ class TemplatePageController extends Controller
     public function index()
     {
         $files = TemplatePage::all();
+        $buttons = [
+            ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
+        ];
         $data = [
             'title' => 'Template pages (location: resources/views/_cache)',
-            'pages' => $files
+            'pages' => $files,
+            '_top_buttons' => $buttons
         ];
 
         return view('river::admin.templates.pages', $data);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'filename' => 'required', //TODO no space, valid blade file name
+        ]);
+
+        $file = TemplatePage::create([
+            'filename' => $request->get('filename')
+        ]);
+
+        return redirect(route('river.template-pages.edit', $file->id))
+            ->with('success', 'Created new file!');
     }
 
     public function edit($id)
@@ -74,6 +93,9 @@ class TemplatePageController extends Controller
         $file->filename = $request->get('filename');
         $file->code = $request->get('code');
         $file->save();
+
+        //reset cache
+        Artisan::call('river:cache-views');
 
         return redirect()->back()->with('success', 'Updated');
     }

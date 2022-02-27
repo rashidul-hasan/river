@@ -36,13 +36,20 @@
                                     <div class="d-inline">
                                         <h5>{{ $title ?? '' }}</h5>
                                     </div>
+                                    @isset($_top_buttons)
+                                        @foreach($_top_buttons as $button)
+                                            <a href="{{$button[1]}}"
+                                               class="{{$button[2] ?? 'btn btn-primary'}}"
+                                               id="{{$button[3] ?? ''}}" id>{{$button[0]}}</a>
+                                        @endforeach
+                                    @endisset
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="page-header-breadcrumb">
                                     <ul class=" breadcrumb breadcrumb-title">
                                         <li class="breadcrumb-item">
-                                            <a href="https://demo.dashboardpack.com/admindek-html/index.html"><i class="feather icon-home"></i></a>
+                                            <a href="{{route('river.admin.dashboard')}}"><i class="feather icon-home"></i></a>
                                         </li>
                                         <li class="breadcrumb-item">
                                             <a href="{{route('river.admin.dashboard')}}">Dashboard</a>

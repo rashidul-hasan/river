@@ -9,6 +9,8 @@ class TemplatePage extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     const TYPE_LAYOUT = 1;
     const TYPE_SIMPLE = 2;
 
