@@ -25,38 +25,17 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group row">
+                                    <label class="col-md-4">Name</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="name"
+                                               value="{{ $type->name }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-md-4">Slug</label>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control" name="slug"
                                                value="{{ $type->slug }}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-4">Singular</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" name="singular"
-                                               value="{{ $type->singular }}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-4">Plural</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" name="plural"
-                                               value="{{ $type->plural }}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-4">Icon</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" name="icon"
-                                               value="{{ $type->icon }}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-{{--                                    <label class="col-md-4">Show on menu</label>--}}
-                                    <div class="col-md-8">
-                                        <input type="checkbox" class="form-control" name="show_on_menu"
-                                               @if($type->show_on_menu) checked @endif>Show on menu
                                     </div>
                                 </div>
 

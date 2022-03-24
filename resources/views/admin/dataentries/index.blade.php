@@ -10,7 +10,7 @@
         <div class="col-md-5">
             <div class="list-group">
                 @foreach($all as $a)
-                <a class="list-group-item" href="{{route('river.datatypes.edit', $a->id)}}">{{$a->singular}}</a>
+                <a class="list-group-item" href="{{route('river.datatypes.edit', $a->id)}}">{{$a->name}}</a>
                 @endforeach
             </div>
         </div>

@@ -15,4 +15,9 @@ class DataType extends Model
     {
         return $this->hasMany(DataFields::class, 'data_type_id');
     }
+
+    public function scopeSlug($q, $slug)
+    {
+        return $q->where('slug', $slug);
+    }
 }

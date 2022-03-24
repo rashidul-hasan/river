@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('data_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('slug');
             $table->string('singular')->nullable();
             $table->string('plural')->nullable();
             $table->string('icon')->nullable();
+            $table->boolean('show_on_menu')->default(1);
             $table->timestamps();
         });
     }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigInteger('data_type_id');
             $table->bigInteger('data_entry_id');
             $table->bigInteger('data_field_id');
+            $table->string('data_field_slug');
             $table->text('value')->nullable();
         });
     }

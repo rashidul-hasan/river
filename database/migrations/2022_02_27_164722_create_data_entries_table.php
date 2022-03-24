@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('data_entries', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('data_type_id');
+            $table->string('data_type_slug');
             $table->string('title')->nullable();
             $table->string('name')->nullable();
             $table->text('description')->nullable();

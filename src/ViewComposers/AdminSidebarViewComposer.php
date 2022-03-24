@@ -4,6 +4,8 @@ namespace Rashidul\River\ViewComposers;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
+use Rashidul\River\Constants;
+use Rashidul\River\Models\DataType;
 
 class AdminSidebarViewComposer
 {
@@ -33,12 +35,19 @@ class AdminSidebarViewComposer
      */
     public function compose(View $view)
     {
-        $menus = [
-            [
-                'label' => 'Dashboard',
-                'route' => 'river.admin.dashboard',
-                'icon' => 'feather icon-home'
-            ],
+        $datatypes = $this->getDataTypeMenus();
+
+        $menus[] = [
+            'label' => 'Dashboard',
+            'route' => 'river.admin.dashboard',
+            'icon' => 'feather icon-home'
+        ];
+
+        if (count($datatypes)) {
+            $menus = array_merge($menus, $datatypes);
+        }
+
+        $system_menus = [
             [
                 'label' => 'Website Settings',
                 'icon' => 'fas fa-tv',
@@ -59,7 +68,6 @@ class AdminSidebarViewComposer
             ],
             [
                 'label' => 'Template manager',
-                'icon' => 'fas fa-tv',
                 'children' => [
                     /*[
                         'label' => 'Pages',
@@ -73,15 +81,50 @@ class AdminSidebarViewComposer
             ],
             [
                 'label' => 'Data Types',
-                'icon' => 'fas fa-tv',
+                'icon' => 'fas fa-tv', //feather icon-box
                 'children' => [
                     [
                         'label' => 'All types',
                         'route' => 'river.datatypes.index',
                     ]
                 ]
-            ],
+            ]
         ];
+        $menus = array_merge($menus, $system_menus);
+
         $view->with('menus', $menus);
+    }
+
+    private function getDataTypeMenus()
+    {
+        $types = Cache::rememberForever(Constants::CACHE_KEY_DATATYPES, function () {
+            return DataType::all();
+        });
+
+        $menu = [];
+        foreach ($types as $type) {
+            if ($type->show_on_menu) {
+                $m = [
+                    'label' => $type->plural,
+                    'children' => [
+                        [
+                            'label' => 'All ' . $type->plural,
+                            'url' => route('river.data-entries.index', $type->slug),
+                        ],
+                        [
+                            'label' => 'Add ' . $type->singular,
+                            'url' => route('river.data-entries.create', $type->slug),
+                        ]
+                    ],
+                ];
+                if ($type->icon) {
+                    $m['icon'] = $type->icon;
+                }
+                $menu[] = $m;
+            }
+        }
+
+
+        return $menu;
     }
 }

@@ -4,19 +4,33 @@ namespace Rashidul\River\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
-use Rashidul\River\Constants;
 use Rashidul\River\Models\DataEntry;
 use Rashidul\River\Models\DataFields;
 use Rashidul\River\Models\DataType;
 use Rashidul\River\Models\TemplatePage;
+use Rashidul\River\Services\DataTypeService;
 use Rashidul\River\Utility\FormBuilder;
 
-class DataTypeController
+class DataEntryController
 {
-    public function index()
+    public function index(FormBuilder $formBuilder, DataTypeService $dataTypeService, $slug)
     {
+//        dd($slug);
+        //TODO validate slug
+        $d = DataType::slug($slug)->first();
+        $f = $dataTypeService->getFields($slug);
+
+        $form = $formBuilder->start('river.datatypes.store', 'POST')
+//            ->actionIsUrl()
+            ->addFields($f)
+            /*->fieldValues([
+                'email' => 'kutta@bilai.com',
+                'name' => 'kuku',
+                'published' => 1,
+                'address' => 'hghgdfhdf hgdfd',
+            ])*/
+            ->render();
         /*$type = DataType::slug('student')
             ->first();
 
@@ -29,7 +43,7 @@ class DataTypeController
             ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
         ];
         $data = [
-            'title' => 'Data types',
+            'title' => $d->plural ? $d->plural : $d->name,
             'all' => $all,
             '_top_buttons' => $buttons
         ];
@@ -37,19 +51,53 @@ class DataTypeController
         return view('river::admin.datatypes.index', $data);
     }
 
-    public function store(Request $request)
+    public function create(FormBuilder $formBuilder, DataTypeService $dataTypeService, $slug)
     {
-        $request->validate([
-            'name' => 'required', //TODO no space, valid blade file name
+        $f = $dataTypeService->getFields($slug);
+        $d = DataType::slug($slug)->first();
+
+        $form = $formBuilder->start(route('river.data-entries.store', $slug), 'POST')
+            ->actionIsUrl()
+            ->addFields($f)
+            /*->fieldValues([
+                'email' => 'kutta@bilai.com',
+                'name' => 'kuku',
+                'published' => 1,
+                'address' => 'hghgdfhdf hgdfd',
+            ])*/
+            ->render();
+
+        $all = DataType::all();
+        $buttons = [
+            ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
+        ];
+        $data = [
+            'title' => 'Add ' . $d->singular ? $d->singular : $d->name,
+            'all' => $all,
+            '_top_buttons' => $buttons,
+            'form' => $form
+        ];
+
+        return view('river::admin.dataentries.create', $data);
+    }
+
+    public function store(Request $request, $slug, DataTypeService $dataTypeService)
+    {
+//        dd($request->all());
+//        $request->validate([
+//            'name' => 'required', //TODO no space, valid blade file name
+//        ]);
+
+        //TODO validation
+        $d = DataType::slug($slug)->first();
+
+        $entry = DataEntry::create([
+            'data_type_id' => $d->id,
+            'data_type_slug' => $slug,
         ]);
 
-        $file = DataType::create([
-            'singular' => $request->get('name'),
-            'plural' => Str::plural($request->get('name')),
-            'slug' => Str::slug($request->get('name')),
-        ]);
-        Cache::forget(Constants::CACHE_KEY_DATATYPES);
-        return redirect(route('river.datatypes.edit', $file->id))
+        $dataTypeService->insertMeta($request, $slug, $entry->id);
+        return redirect(route('river.data-entries.index', $slug))
             ->with('success', 'Created!');
     }
 
@@ -67,19 +115,15 @@ class DataTypeController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'singular' => 'required',
+            'name' => 'required',
             'slug' => 'required',
         ]);
 
         $file = DataType::find($id);
-        $file->singular = $request->get('singular');
-        $file->plural = $request->get('plural');
+        $file->name = $request->get('name');
         $file->slug = $request->get('slug');
-        $file->icon = $request->get('icon');
-        $file->show_on_menu = $request->has('show_on_menu') ? 1 : 0;
         $file->save();
 
-        Cache::forget(Constants::CACHE_KEY_DATATYPES);
         return redirect()->back()->with('success', 'Updated');
     }
 
@@ -94,7 +138,7 @@ class DataTypeController
         foreach ($names as $name) {
             DataFields::create([
                 'slug' => $name,
-                'label' => ucwords(str_replace('_', ' ', $name)),
+                'label' => $name,
                 'type' => DataFields::TYPE_TEXT,
                 'data_type_id' => $request->get('type_id'),
             ]);

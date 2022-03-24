@@ -6,7 +6,7 @@
                 <li class="{{array_key_exists('children', $menu) ? 'pcoded-hasmenu' : ''}}">
                     <a href="{{array_key_exists('route', $menu) ? route($menu['route']) : 'javascript:void(0)'}}" class="waves-effect waves-dark">
                         <span class="pcoded-micon">
-                            <i class="{{$menu['icon']}}"></i>
+                            <i class="{{array_key_exists('icon', $menu) ? $menu['icon'] : 'feather icon-box'}}"></i>
                         </span>
                         <span class="pcoded-mtext">{{$menu['label']}}</span>
                     </a>
@@ -14,7 +14,7 @@
                         <ul class="pcoded-submenu">
                             @foreach($menu['children'] as $child)
                             <li class="submenu-li" data-active-routes="river.sliders.index|river.sliders.edit">
-                                <a href="{{ route($child['route']) }}" class="waves-effect waves-dark">
+                                <a href="{{ array_key_exists('route', $child) ? route($child['route']) : $child['url'] }}" class="waves-effect waves-dark">
                                     <span class="pcoded-mtext">{{$child['label']}}</span>
                                 </a>
                             </li>

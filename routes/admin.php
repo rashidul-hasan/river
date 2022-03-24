@@ -39,4 +39,19 @@ Route::group([
     Route::put('datatypes/update-fields', 'Admin\DataTypeController@updateFields')->name('datatypes.update-fields');
     Route::resource('datatypes', 'Admin\DataTypeController');
 
+    //data entry routes
+    Route::get('data-entries/{slug}', 'Admin\DataEntryController@index')->name('data-entries.index');
+    Route::get('data-entries/{slug}/create', 'Admin\DataEntryController@create')->name('data-entries.create');
+    Route::post('data-entries/{slug}', 'Admin\DataEntryController@store')->name('data-entries.store');
+    Route::get('data-entries/{slug}/show/{id}', 'Admin\DataEntryController@show')->name('data-entries.show');
+    Route::get('data-entries/{slug}/edit/{id}', 'Admin\DataEntryController@show')->name('data-entries.edit');
+    Route::get('data-entries/{slug}/destroy/{id}', 'Admin\DataEntryController@show')->name('data-entries.destroy');
+
+
+    Route::view('file-manager', 'river::admin.filemanager');
+    /*Route::get('file-manager', function () {
+//      return response()->file(public_path('river/tinyfilemanager.php'));
+      require(public_path('river/tinyfilemanager.php'));
+    });*/
+
 });
