@@ -23,10 +23,12 @@
             e.preventDefault();
             var filename = window.prompt('Enter name');
 
-            DynamicForm.create(route('river.datatypes.store'), "POST")
-                .addField("name", filename)
-                .addCsrf()
-                .submit();
+            if (filename) {
+                DynamicForm.create(route('river.datatypes.store'), "POST")
+                    .addField("name", filename)
+                    .addCsrf()
+                    .submit();
+            }
         })
     </script>
 @endpush

@@ -7,22 +7,30 @@
 <table class="table">
     <thead>
     <tr>
-        <th scope="col">Label</th>
-        <th scope="col">Slug</th>
-        <th scope="col">Type</th>
-        <th scope="col">Required</th>
+        <th scope="col" style="width: 5%;color: red;">Delete</th>
+        <th scope="col" style="width: 10%">Slug</th>
+        <th scope="col" style="width: 10%">Label</th>
+        <th scope="col" style="width: 10%">Type</th>
+        <th scope="col" style="width: 5%">Required</th>
+        <th scope="col" style="width: 5%">Nullable</th>
+        <th scope="col" style="width: 10%">Default</th>
+        <th scope="col" style="width: 5%"></th>
     </tr>
     </thead>
     <tbody>
     @foreach($type->fields as $field)
     <tr>
         <td>
-            <input type="text" class="form-control" value="{{$field->label}}"
-                   name="field[{{$field->id}}][label]">
+            <input type="checkbox" class="form-control"
+                   name="field[{{$field->id}}][delete_field]">
         </td>
         <td>
             <input type="text" class="form-control" value="{{$field->slug}}"
                    name="field[{{$field->id}}][slug]">
+        </td>
+        <td>
+            <input type="text" class="form-control" value="{{$field->label}}"
+                   name="field[{{$field->id}}][label]">
         </td>
         <td>
             <select name="field[{{$field->id}}][type]" class="form-control">
@@ -37,6 +45,21 @@
             <input type="checkbox" class="form-control"
                    @if($field->is_required == '1') checked @endif
                    name="field[{{$field->id}}][is_required]">
+        </td>
+        <td>
+            <input type="checkbox" class="form-control"
+                   @if($field->is_nullable == '1') checked @endif
+                   name="field[{{$field->id}}][is_nullable]">
+        </td>
+        <td>
+            <input type="text" class="form-control"
+                   value="{{$field->default}}"
+                   name="field[{{$field->id}}][default]">
+        </td>
+        <td>
+            <button type="button" class="btn btn-info">
+                <i class="fa fa-eye"></i>
+            </button>
         </td>
     </tr>
     @endforeach
@@ -62,12 +85,13 @@
         $('.btn-add-fields').click(function (e) {
             e.preventDefault();
             var filename = window.prompt('Enter name(s)');
-
-            DynamicForm.create(route('river.datatypes.store-fields'), "POST")
-                .addField("name", filename)
-                .addField("type_id", "{{$type->id}}")
-                .addCsrf()
-                .submit();
+            if (filename) {
+                DynamicForm.create(route('river.datatypes.store-fields'), "POST")
+                    .addField("name", filename)
+                    .addField("type_id", "{{$type->id}}")
+                    .addCsrf()
+                    .submit();
+            }
         })
     </script>
 @endpush

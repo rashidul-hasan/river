@@ -70,7 +70,7 @@
                             </form>
 
                         </div>
-                        <div class="tab-pane fade p-5" id="fields" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="tab-pane fade pt-2" id="fields" role="tabpanel" aria-labelledby="profile-tab">
                             @include('river::admin.datatypes.fields', ['type' => $type])
                         </div>
                     </div>

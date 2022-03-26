@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('singular')->nullable();
             $table->string('plural')->nullable();
             $table->string('icon')->nullable();
-            $table->boolean('show_on_menu')->default(1);
+            $table->boolean('show_on_menu')->default(0);
             $table->timestamps();
         });
     }

@@ -43,11 +43,17 @@ class DataTypeController
             'name' => 'required', //TODO no space, valid blade file name
         ]);
 
-        $file = DataType::create([
-            'singular' => $request->get('name'),
-            'plural' => Str::plural($request->get('name')),
-            'slug' => Str::slug($request->get('name')),
-        ]);
+        $names = $request->get('name');
+        $names = explode(",", $names);
+        $file = null;
+        foreach ($names as $name) {
+            $file = DataType::create([
+                'singular' => $name,
+                'plural' => Str::plural($name),
+                'slug' => Str::slug($name),
+            ]);
+        }
+
         Cache::forget(Constants::CACHE_KEY_DATATYPES);
         return redirect(route('river.datatypes.edit', $file->id))
             ->with('success', 'Created!');
@@ -111,11 +117,20 @@ class DataTypeController
         $fields = $request->get('field');
         foreach ($fields as $fieldid => $values) {
             $f = DataFields::find($fieldid);
+            if (array_key_exists('delete_field', $values)
+                && $values['delete_field'] == 'on') {
+                //delete this field
+                $f->delete();
+                continue;
+            }
+
             $f->fill([
                 'slug' => $values['slug'],
                 'label' => $values['label'],
                 'type' => $values['type'],
+                'default' => $values['default'],
                 'is_required' => array_key_exists('is_required', $values) ? 1 : 0,
+                'is_nullable' => array_key_exists('is_nullable', $values) ? 1 : 0,
             ]);
             $f->save();
         }

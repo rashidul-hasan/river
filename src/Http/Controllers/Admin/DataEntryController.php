@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Rashidul\River\Models\DataEntry;
 use Rashidul\River\Models\DataFields;
 use Rashidul\River\Models\DataType;
+use Rashidul\River\Models\FieldValue;
 use Rashidul\River\Models\TemplatePage;
 use Rashidul\River\Services\DataTypeService;
 use Rashidul\River\Utility\FormBuilder;
@@ -20,24 +21,13 @@ class DataEntryController
         //TODO validate slug
         $d = DataType::slug($slug)->first();
         $f = $dataTypeService->getFields($slug);
+//        dd($f);
 
-        $form = $formBuilder->start('river.datatypes.store', 'POST')
-//            ->actionIsUrl()
-            ->addFields($f)
-            /*->fieldValues([
-                'email' => 'kutta@bilai.com',
-                'name' => 'kuku',
-                'published' => 1,
-                'address' => 'hghgdfhdf hgdfd',
-            ])*/
-            ->render();
-        /*$type = DataType::slug('student')
-            ->first();
+        $fields = FieldValue::where('data_type_id', $d->id)
+            ->get();
+        $fields = $fields->groupBy('data_entry_id');
 
-        $fields = $type->fields;
-
-
-        dd($fields);*/
+//        dd($fields);
         $all = DataType::all();
         $buttons = [
             ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
@@ -48,7 +38,7 @@ class DataEntryController
             '_top_buttons' => $buttons
         ];
 
-        return view('river::admin.datatypes.index', $data);
+        return view('river::admin.dataentries.index', $data);
     }
 
     public function create(FormBuilder $formBuilder, DataTypeService $dataTypeService, $slug)
