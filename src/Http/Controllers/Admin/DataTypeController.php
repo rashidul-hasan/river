@@ -131,6 +131,7 @@ class DataTypeController
                 'default' => $values['default'],
                 'is_required' => array_key_exists('is_required', $values) ? 1 : 0,
                 'is_nullable' => array_key_exists('is_nullable', $values) ? 1 : 0,
+                'show_on_list' => array_key_exists('show_on_list', $values) ? 1 : 0,
             ]);
             $f->save();
         }

@@ -4,6 +4,7 @@ namespace Rashidul\River\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Rashidul\River\Models\DataEntry;
 use Rashidul\River\Models\DataFields;
@@ -28,13 +29,39 @@ class DataEntryController
         $fields = $fields->groupBy('data_entry_id');
 
 //        dd($fields);
-        $all = DataType::all();
+//        $all = DataType::all();
+
+        $sql = "SELECT data_entries.*, field_values.* FROM data_entries
+
+LEFT JOIN
+
+field_values
+
+ON data_entries.id = field_values.data_entry_id
+AND data_entries.data_type_id = {$d->id}";
+
+        $v = DB::select(DB::raw($sql));
+//        dd();
+
+        $grouped = collect($v)->groupBy('data_entry_id');
+//        dd($grouped);
+        $all_data = [];
+        foreach ($grouped as $id => $item) {
+            $single['id'] = $id;
+            foreach ($item as $field_val) {
+                $single[$field_val->data_field_slug] = $field_val->value;
+            }
+            $all_data[] = $single;
+        }
+
+//        dd($all_data);
         $buttons = [
             ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
         ];
         $data = [
             'title' => $d->plural ? $d->plural : $d->name,
-            'all' => $all,
+            'data' => $all_data,
+            'fields' => $f,
             '_top_buttons' => $buttons
         ];
 

@@ -4,6 +4,8 @@ namespace Rashidul\River\Services;
 
 use Illuminate\Support\Facades\DB;
 use Rashidul\River\Models\DataType;
+use Rashidul\River\Utility\Field;
+use Rashidul\River\Utility\FieldCollection;
 
 class DataTypeService
 {

@@ -14,6 +14,7 @@
         <th scope="col" style="width: 5%">Required</th>
         <th scope="col" style="width: 5%">Nullable</th>
         <th scope="col" style="width: 10%">Default</th>
+        <th scope="col" style="width: 5%">Listing</th>
         <th scope="col" style="width: 5%"></th>
     </tr>
     </thead>
@@ -55,6 +56,11 @@
             <input type="text" class="form-control"
                    value="{{$field->default}}"
                    name="field[{{$field->id}}][default]">
+        </td>
+        <td>
+            <input type="checkbox" class="form-control"
+                   @if($field->show_on_list == '1') checked @endif
+                   name="field[{{$field->id}}][show_on_list]">
         </td>
         <td>
             <button type="button" class="btn btn-info">
