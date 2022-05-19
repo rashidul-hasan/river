@@ -32,6 +32,29 @@ class DataTypeService
         return $arr;
     }
 
+    /*
+     * get array of field slugs which can be shown on data grid
+     * */
+    public function getIndexFields($type_slug)
+    {
+        $d = DataType::slug($type_slug)
+            ->with('fields')
+            ->first(); //TODO load from cache
+
+        $arr = [];
+
+        foreach ($d->fields as $field) {
+            if ($field->show_on_list) {
+                $arr[$field->slug] = [
+                    'type' => $this->getTypeText($field->type),
+                    'label' => $field->label,
+                ];
+            }
+        }
+
+        return $arr;
+    }
+
     public function insertMeta($request, $type_slug, $entry_id)
     {
         $d = DataType::slug($type_slug)
