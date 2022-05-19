@@ -11,4 +11,9 @@ class FieldValue extends Model
 
     protected $guarded = ['id'];
 
+    public function scopeId($q, $dataEntryId)
+    {
+        return $q->where('data_entry_id', $dataEntryId);
+    }
+
 }

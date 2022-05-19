@@ -11,6 +11,12 @@ class DataEntry extends Model
 
     protected $guarded = ['id'];
 
+    //scopes
+    public function scopeSlug($q, $slug)
+    {
+        return $q->where('data_type_slug', $slug);
+    }
+
     public function values()
     {
         return $this->hasMany(DataFields::class, 'data_type_id');

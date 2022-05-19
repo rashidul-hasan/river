@@ -44,7 +44,8 @@ class DataEntryController
             'data' => $all_data,
             'fields' => $f,
             '_top_buttons' => $buttons,
-            'headers' => $headers
+            'headers' => $headers,
+            'data_slug' => $slug
         ];
 
 //        dd($data);
@@ -169,14 +170,23 @@ class DataEntryController
 
     }
 
-    public function destroy($id)
+    public function destroy($slug, $id)
     {
-        $file = TemplatePage::find($id);
-        $file->delete();
+        $entry = DataEntry::slug($slug)
+            ->where('id', $id)
+            ->first();
+        if ($entry == null) {
+            return redirect()->back()
+                ->with('error', 'Data not found!');
+        }
 
-        //reset cache
-        Artisan::call('river:cache-views');
-        return redirect(route('river.template-pages.index'))
+        //delete all field values
+        FieldValue::id($id)
+            ->delete();
+        $entry->delete();
+
+        //TODO reset cache
+        return redirect()->back()
             ->with('success', 'Deleted!');
     }
 }

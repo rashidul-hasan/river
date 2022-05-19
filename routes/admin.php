@@ -45,7 +45,7 @@ Route::group([
     Route::post('data-entries/{slug}', 'Admin\DataEntryController@store')->name('data-entries.store');
     Route::get('data-entries/{slug}/show/{id}', 'Admin\DataEntryController@show')->name('data-entries.show');
     Route::get('data-entries/{slug}/edit/{id}', 'Admin\DataEntryController@show')->name('data-entries.edit');
-    Route::get('data-entries/{slug}/destroy/{id}', 'Admin\DataEntryController@show')->name('data-entries.destroy');
+    Route::get('data-entries/{slug}/destroy/{id}', 'Admin\DataEntryController@destroy')->name('data-entries.destroy');
 
 
     Route::view('file-manager', 'river::admin.filemanager');

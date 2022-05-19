@@ -34,7 +34,12 @@
                                     @endif
                                 @endforeach
                                 <td>
-                                    actions
+                                    <a href="{{ route('river.data-entries.edit', ['slug' => $data_slug, 'id' => $row['id']]) }}">
+                                        <i class="icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green"></i>
+                                    </a>
+                                    <a href="#" class="confirm-delete" data-href="{{ route('river.data-entries.destroy', ['slug' => $data_slug, 'id' => $row['id']]) }}">
+                                        <i class="feather icon-trash-2 f-w-600 f-16 text-c-red"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -49,5 +54,12 @@
 @push('scripts')
     <script>
 
+        $('.confirm-delete').click(function (e) {
+            var $this = $(this);
+            e.preventDefault();
+            if (confirm('Are you sure you want to delete this item?')) {
+                window.location = $this.data('href');
+            }
+        });
     </script>
 @endpush
