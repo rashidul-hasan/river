@@ -3,14 +3,11 @@
 namespace Rashidul\River\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Rashidul\River\Models\DataEntry;
 use Rashidul\River\Models\DataFields;
 use Rashidul\River\Models\DataType;
 use Rashidul\River\Models\FieldValue;
-use Rashidul\River\Models\TemplatePage;
+use Rashidul\River\Services\DataEntryService;
 use Rashidul\River\Services\DataTypeService;
 use Rashidul\River\Utility\FormBuilder;
 
@@ -82,6 +79,39 @@ class DataEntryController
         return view('river::admin.dataentries.create', $data);
     }
 
+    public function edit(FormBuilder $formBuilder,
+                         DataTypeService $dataTypeService,
+                         DataEntryService $dataEntryService,
+                         $slug, $id)
+    {
+        $entryAsArray = $dataEntryService->find($slug, $id);
+        if (count($entryAsArray) == 0) {
+            return redirect()->back()
+                ->with('error', 'Data not found!');
+        }
+
+        $f = $dataTypeService->getFields($slug);
+        $d = DataType::slug($slug)->first();
+
+        $form = $formBuilder->start(route('river.data-entries.update', ['slug' => $slug, 'id' => $id]), 'PUT')
+            ->actionIsUrl()
+            ->addFields($f)
+            ->fieldValues($entryAsArray)
+            ->render();
+
+        $buttons = [
+            ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
+        ];
+        $data = [
+            'title' => 'Edit ' . ($d->singular ? $d->singular : $d->name),
+            '_top_buttons' => $buttons,
+            'form' => $form,
+            'data' => $entryAsArray
+        ];
+
+        return view('river::admin.dataentries.edit', $data);
+    }
+
     public function store(Request $request, $slug, DataTypeService $dataTypeService)
     {
 //        dd($request->all());
@@ -102,30 +132,19 @@ class DataEntryController
             ->with('success', 'Created!');
     }
 
-    public function edit($id)
+    public function update(Request $request,
+                           DataEntryService $dataEntryService,
+                           $slug,
+                           $id)
     {
-        $file = DataType::find($id);
-        $data = [
-            'title' => 'Edit: ' . $file->name,
-            'type' => $file
-        ];
+//        dd($request->all());
 
-        return view('river::admin.datatypes.edit', $data);
-    }
+        //TODO handle validation
+        $input = $request->except(['_token', '_method']);
+        $dataEntryService->update($slug, $id, $input);
 
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required',
-            'slug' => 'required',
-        ]);
-
-        $file = DataType::find($id);
-        $file->name = $request->get('name');
-        $file->slug = $request->get('slug');
-        $file->save();
-
-        return redirect()->back()->with('success', 'Updated');
+        return redirect(route('river.data-entries.index', $slug))
+            ->with('success', 'Updated');
     }
 
     public function storeFields(Request $request)

@@ -19,6 +19,6 @@ class DataEntry extends Model
 
     public function values()
     {
-        return $this->hasMany(DataFields::class, 'data_type_id');
+        return $this->hasMany(FieldValue::class, 'data_entry_id');
     }
 }
