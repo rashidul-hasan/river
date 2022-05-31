@@ -9,6 +9,8 @@ class TemplatePage extends Model
 {
     use HasFactory;
 
+    public $table = 'river_template_pages';
+
     protected $guarded = ['id'];
 
     const TYPE_LAYOUT = 1;

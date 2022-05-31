@@ -9,7 +9,7 @@ class CacheViewFilesCommand extends Command
 {
     public $signature = 'river:cache-views';
 
-    public $description = 'My command';
+    public $description = 'Cache blade view files';
 
     const VIEW_DIR = 'resources/views/_cache/';
 

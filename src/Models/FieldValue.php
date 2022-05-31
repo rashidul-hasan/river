@@ -11,6 +11,8 @@ class FieldValue extends Model
 
     public $timestamps = false;
 
+    public $table = 'river_field_values';
+
     protected $guarded = ['id'];
 
     public function scopeId($q, $dataEntryId)

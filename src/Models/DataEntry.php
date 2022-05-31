@@ -9,6 +9,8 @@ class DataEntry extends Model
 {
     use HasFactory;
 
+    public $table = 'river_data_entries';
+
     protected $guarded = ['id'];
 
     //scopes

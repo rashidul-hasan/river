@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('field_values', function (Blueprint $table) {
+        Schema::create('river_field_values', function (Blueprint $table) {
             $table->bigInteger('data_type_id');
             $table->bigInteger('data_entry_id');
             $table->bigInteger('data_field_id');

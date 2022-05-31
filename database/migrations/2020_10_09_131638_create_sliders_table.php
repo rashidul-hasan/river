@@ -13,7 +13,7 @@ class CreateSlidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('sliders', function (Blueprint $table) {
+        Schema::create('river_sliders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('image_url')->nullable();
             $table->string('image')->nullable();

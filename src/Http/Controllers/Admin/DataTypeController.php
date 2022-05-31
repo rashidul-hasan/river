@@ -3,27 +3,16 @@
 namespace Rashidul\River\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Rashidul\River\Constants;
-use Rashidul\River\Models\DataEntry;
 use Rashidul\River\Models\DataFields;
 use Rashidul\River\Models\DataType;
-use Rashidul\River\Models\TemplatePage;
-use Rashidul\River\Utility\FormBuilder;
 
 class DataTypeController
 {
     public function index()
     {
-        /*$type = DataType::slug('student')
-            ->first();
-
-        $fields = $type->fields;
-
-
-        dd($fields);*/
         $all = DataType::all();
         $buttons = [
             ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
@@ -63,7 +52,7 @@ class DataTypeController
     {
         $file = DataType::find($id);
         $data = [
-            'title' => 'Edit: ' . $file->name,
+            'title' => 'Edit DataType: ' . $file->singular,
             'type' => $file
         ];
 
@@ -143,12 +132,10 @@ class DataTypeController
 
     public function destroy($id)
     {
-        $file = TemplatePage::find($id);
+        $file = DataType::find($id);
         $file->delete();
 
-        //reset cache
-        Artisan::call('river:cache-views');
-        return redirect(route('river.template-pages.index'))
+        return redirect(route('river.datatypes.index'))
             ->with('success', 'Deleted!');
     }
 }

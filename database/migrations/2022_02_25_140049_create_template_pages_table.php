@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('template_pages', function (Blueprint $table) {
+        Schema::create('river_template_pages', function (Blueprint $table) {
             $table->id();
             $table->string('filename');
             $table->longText('code')->nullable();

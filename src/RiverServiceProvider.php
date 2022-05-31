@@ -5,6 +5,7 @@ namespace Rashidul\River;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Rashidul\River\Commands\CacheViewFilesCommand;
+use Rashidul\River\Commands\DatabaseSeederCommand;
 use Rashidul\River\Http\Middleware\Authenticate;
 use Rashidul\River\Http\Middleware\RedirectIfAuthenticated;
 use Rashidul\River\Models\Admin;
@@ -70,6 +71,7 @@ class RiverServiceProvider extends ServiceProvider
     {
         $this->commands([
             CacheViewFilesCommand::class,
+            DatabaseSeederCommand::class,
         ]);
     }
 }

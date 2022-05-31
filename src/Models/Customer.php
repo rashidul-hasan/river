@@ -10,6 +10,8 @@ class Customer extends Authenticatable
 {
     use Notifiable;
 
+    public $table = 'river_customers';
+
     /**
      * The attributes that are mass assignable.
      *

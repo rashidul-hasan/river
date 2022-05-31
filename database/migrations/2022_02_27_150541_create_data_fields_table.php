@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('data_fields', function (Blueprint $table) {
+        Schema::create('river_data_fields', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('data_type_id');
             $table->string('label');

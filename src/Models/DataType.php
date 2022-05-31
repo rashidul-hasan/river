@@ -9,6 +9,8 @@ class DataType extends Model
 {
     use HasFactory;
 
+    public $table = 'river_data_types';
+
     protected $guarded = ['id'];
 
     public function fields()

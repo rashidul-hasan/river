@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('data_types', function (Blueprint $table) {
+        Schema::create('river_data_types', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
             $table->string('singular')->nullable();
