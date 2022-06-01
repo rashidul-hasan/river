@@ -35,11 +35,62 @@
         </td>
         <td>
             <select name="field[{{$field->id}}][type]" class="form-control">
-                <option value="1" @if($field->type == '1') selected @endif>Text</option>
-                <option value="2" @if($field->type == '2') selected @endif>Email</option>
-                <option value="3" @if($field->type == '3') selected @endif>Password</option>
-                <option value="4" @if($field->type == '4') selected @endif>Image</option>
-                <option value="5" @if($field->type == '5') selected @endif>Checkbox</option>
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_TEXT}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_TEXT) selected @endif>
+                    Text
+                </option>
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_TEXTAREA}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_TEXTAREA) selected @endif>
+                    Textarea
+                </option>
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_EMAIL}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_EMAIL) selected @endif>
+                    Email
+                </option>
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_PHONE}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_PHONE) selected @endif>
+                    Phone
+                </option>
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_PASSWORD}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_PASSWORD) selected @endif>
+                    Password
+                </option>
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_IMAGE}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_IMAGE) selected @endif>
+                    Image
+                </option>
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_CHECKBOX}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_CHECKBOX) selected @endif>
+                    Checkbox
+                </option>
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_RADIO}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_RADIO) selected @endif>
+                    Radio
+                </option>
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_DROPDOWN}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_DROPDOWN) selected @endif>
+                    Dropdown
+                </option>
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_TEXT}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_TEXT) selected @endif>
+                    Text
+                </option>
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_DATE}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_DATE) selected @endif>
+                    Date
+                </option>
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_DATETIME}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_DATETIME) selected @endif>
+                    Date time
+                </option>
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_RICHTEXT}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_RICHTEXT) selected @endif>
+                    Richtext
+                </option>
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_FOREIGNKEY}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_FOREIGNKEY) selected @endif>
+                    Foreign key
+                </option>
             </select>
         </td>
         <td>

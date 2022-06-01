@@ -496,10 +496,8 @@ class FormBuilder
 //            dd($name);
         }
 
-//        dd($fields);
 
         return $fields;
-
     }
 
     private function getFieldValue($fieldName)

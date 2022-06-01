@@ -114,11 +114,6 @@ class DataEntryController
 
     public function store(Request $request, $slug, DataTypeService $dataTypeService)
     {
-//        dd($request->all());
-//        $request->validate([
-//            'name' => 'required', //TODO no space, valid blade file name
-//        ]);
-
         //TODO validation
         $d = DataType::slug($slug)->first();
 

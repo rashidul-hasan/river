@@ -18,6 +18,32 @@
             </div>
         @endif
 
+        @if($field['type'] == \Rashidul\River\Constants::FIELD_TYPE_PHONE)
+            {{--TODO add formatting option for phn number--}}
+            <div class="form-group row">
+                <label class="col-md-4">{{$field['label']}}</label>
+                <div class="col-md-8">
+                    <input type="text"
+                           class="form-control"
+                           value="{{$field['value']}}"
+                           name="{{$field['name']}}" />
+                </div>
+            </div>
+        @endif
+
+        @if($field['type'] == \Rashidul\River\Constants::FIELD_TYPE_DATE)
+            {{--TODO add a good date picker--}}
+            <div class="form-group row">
+                <label class="col-md-4">{{$field['label']}}</label>
+                <div class="col-md-8">
+                    <input type="date"
+                           class="form-control"
+                           value="{{$field['value']}}"
+                           name="{{$field['name']}}" />
+                </div>
+            </div>
+        @endif
+
         @if($field['type'] == 'textarea')
             <div class="form-group row">
                 <label class="col-md-4">{{$field['label']}}</label>

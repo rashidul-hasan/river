@@ -2,10 +2,8 @@
 
 namespace Rashidul\River\Services;
 
-use Illuminate\Support\Facades\DB;
 use Rashidul\River\Models\DataType;
-use Rashidul\River\Utility\Field;
-use Rashidul\River\Utility\FieldCollection;
+use Rashidul\River\Models\FieldValue;
 
 class DataTypeService
 {
@@ -24,7 +22,7 @@ class DataTypeService
 
         foreach ($d->fields as $field) {
             $arr[$field->slug] = [
-                'type' => $this->getTypeText($field->type),
+                'type' => $field->type,
                 'label' => $field->label,
             ];
         }
@@ -61,8 +59,7 @@ class DataTypeService
             ->with('fields')
             ->first(); //TODO load from cache
         foreach ($d->fields as $field) {
-            DB::table('field_values')
-                ->insert([
+            FieldValue::create([
                     'data_type_id' => $d->id,
                     'data_entry_id' => $entry_id,
                     'data_field_id' => $field->id,
