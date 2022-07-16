@@ -19,3 +19,18 @@ Route::group([
 
 
 });
+
+
+//dd(config('river.enable_ecommerce'));
+// E-commerce related routes
+if(config('river.enable_ecommerce')) {
+    Route::group([
+        'prefix' => '',
+        /*'middleware' => ['web', 'river.auth:admins'],*/
+        'namespace' => 'Rashidul\River\Http\Controllers',
+        'as' => 'river.site.'
+    ], function () {
+        Route::get('shop', 'Admin\DataEntryController@index')->name('shop');
+        Route::get('checkout', 'Admin\DataEntryController@index')->name('checkout');
+    });
+}

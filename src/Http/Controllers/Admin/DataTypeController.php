@@ -90,7 +90,7 @@ class DataTypeController
             DataFields::create([
                 'slug' => $name,
                 'label' => ucwords(str_replace('_', ' ', $name)),
-                'type' => DataFields::TYPE_TEXT,
+                'type' => $this->deductFieldTypeFromName($name),
                 'data_type_id' => $request->get('type_id'),
             ]);
         }
@@ -137,5 +137,24 @@ class DataTypeController
 
         return redirect(route('river.datatypes.index'))
             ->with('success', 'Deleted!');
+    }
+
+    private function deductFieldTypeFromName($name)
+    {
+        $type = Constants::FIELD_TYPE_TEXT;
+        if ($name == 'phone' || $name == 'phone_number' ) {
+            return Constants::FIELD_TYPE_PHONE;
+        } elseif ($name == 'email') {
+            return Constants::FIELD_TYPE_EMAIL;
+        } elseif ($name == 'dob' || $name == 'birthdate' || $name == 'birth_date' || $name == 'date_of_birth') {
+            return Constants::FIELD_TYPE_DATE;
+        } elseif (str_ends_with($name, '_at')) {
+            return Constants::FIELD_TYPE_DATE;//anything ends with _at
+        } elseif (str_starts_with($name, 'is_')) {
+            return Constants::FIELD_TYPE_CHECKBOX;//anything starts with is_
+        }
+
+
+        return $type;
     }
 }

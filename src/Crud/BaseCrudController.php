@@ -58,7 +58,7 @@ abstract class BaseCrudController
     {
         $this->dataTable = app(Datatables::class);
         $this->responseBuilder = new ResponseBuilder();
-        $this->model = new $this->modelClass;
+        /*$this->model = new $this->modelClass;*/
         $this->crudAction = new CrudAction($this->model);
         $this->container = Container::getInstance();
 
@@ -70,13 +70,13 @@ abstract class BaseCrudController
             }
         }
 
-        $this->middleware(function ($request, $next) {
+        /*$this->middleware(function ($request, $next) {
             $this->request = $request;
 
             $this->callHookMethod('setup');
 
             return $next($request);
-        });
+        });*/
     }
 
     protected function callHookMethod($name)
