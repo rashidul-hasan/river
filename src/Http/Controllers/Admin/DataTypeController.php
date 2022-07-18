@@ -16,6 +16,7 @@ class DataTypeController
         $all = DataType::all();
         $buttons = [
             ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
+            ['Export', route('river.datatypes.export'), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
         ];
         $data = [
             'title' => 'Data types',
@@ -137,6 +138,21 @@ class DataTypeController
 
         return redirect(route('river.datatypes.index'))
             ->with('success', 'Deleted!');
+    }
+
+    public function export()
+    {
+        $test['token'] = time();
+        $fileName = $test['token']. '_export.json';
+
+        //prepare
+        $types = DataType::with('fields')
+            ->get();
+        $contents = json_encode($types->toArray());
+
+        return response()->streamDownload(function () use ($contents) {
+            echo $contents;
+        }, $fileName);
     }
 
     private function deductFieldTypeFromName($name)
