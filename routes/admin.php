@@ -38,6 +38,8 @@ Route::group([
     Route::post('datatypes/store-fields', 'Admin\DataTypeController@storeFields')->name('datatypes.store-fields');
     Route::put('datatypes/update-fields', 'Admin\DataTypeController@updateFields')->name('datatypes.update-fields');
     Route::get('datatypes/export', 'Admin\DataTypeController@export')->name('datatypes.export');
+    Route::get('datatypes/import', 'Admin\DataTypeController@import')->name('datatypes.import');
+    Route::post('datatypes/import', 'Admin\DataTypeController@importPost')->name('datatypes.postimport');
     Route::resource('datatypes', 'Admin\DataTypeController');
 
     //data entry routes
