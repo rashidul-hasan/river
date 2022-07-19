@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Rashidul\River\Commands\CacheViewFilesCommand;
 use Rashidul\River\Commands\DatabaseSeederCommand;
 use Rashidul\River\Commands\Generators\MakeMigrationCommand;
+use Rashidul\River\Commands\Generators\MakeViewFilesCommand;
 use Rashidul\River\Http\Middleware\Authenticate;
 use Rashidul\River\Http\Middleware\RedirectIfAuthenticated;
 use Rashidul\River\Models\Admin;
@@ -73,7 +74,8 @@ class RiverServiceProvider extends ServiceProvider
         $this->commands([
             CacheViewFilesCommand::class,
             DatabaseSeederCommand::class,
-            MakeMigrationCommand::class
+            MakeMigrationCommand::class,
+            MakeViewFilesCommand::class
         ]);
     }
 }

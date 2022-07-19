@@ -221,7 +221,7 @@ class DataTypeController
         $type = Constants::FIELD_TYPE_TEXT;
         if ($name == 'phone' || $name == 'phone_number' ) {
             return Constants::FIELD_TYPE_PHONE;
-        } elseif ($name == 'email') {
+        } elseif ($name == 'email' || $name == 'mail') {
             return Constants::FIELD_TYPE_EMAIL;
         } elseif ($name == 'dob' || $name == 'birthdate' || $name == 'birth_date' || $name == 'date_of_birth') {
             return Constants::FIELD_TYPE_DATE;

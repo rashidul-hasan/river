@@ -95,6 +95,12 @@ class FormBuilder
     protected $csrfField = true;
 
     /**
+     * Should skip the form tag, just generate the fields
+     * @var bool
+     */
+    protected $skipFormTag = false;
+
+    /**
      * @var array
      */
     protected $sections = [];
@@ -143,6 +149,12 @@ class FormBuilder
     public function actionIsUrl()
     {
         $this->actionIsUrl = true;
+        return $this;
+    }
+
+    public function skipFormTag()
+    {
+        $this->skipFormTag = true;
         return $this;
     }
 
@@ -442,9 +454,12 @@ class FormBuilder
         $fields = $this->expandFields();
 
         $data = [
-            'action' => $this->actionIsUrl ? $this->action : route($this->action),
+            'action' => $this->skipFormTag
+                ? ''
+                : ($this->actionIsUrl ? $this->action : route($this->action)),
             'method' => $this->method,
             'fields' => $fields,
+            'skip_form_tag' => $this->skipFormTag,
             'submit' => $this->submitButton,
         ];
 

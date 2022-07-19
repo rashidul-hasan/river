@@ -6,6 +6,7 @@ use File;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
 use Nwidart\Modules\Facades\Module;
+use Rashidul\River\Services\DataTypeService;
 
 class ScaffoldCommand extends Command
 {
@@ -64,6 +65,15 @@ class ScaffoldCommand extends Command
      */
     public function handle()
     {
+        $slug = $this->argument('name');
+        $viewDir = $slug;
+        $dataTypeService = new DataTypeService();
+        $fields = $dataTypeService->getFields($slug);
+
+
+
+        return;
+
         $entity = $this->argument('entity');
         $tableName = ($this->option('table')) ? $this->option('table') : str_plural(snake_case($entity));
         $this->routeName = ($this->option('route')) ? $this->option('route') : $tableName;

@@ -1,5 +1,7 @@
-<form class="custom-validation" action="{{$action}}"
-      method="{{$method == 'GET' ? 'GET' : 'POST'}}">
+@if(!$skip_form_tag)
+    <form class="custom-validation" action="{{$action}}"
+          method="{{$method == 'GET' ? 'GET' : 'POST'}}">
+@endif
     @if($method != 'GET')
         @csrf
         @method($method)
@@ -78,5 +80,7 @@
             </button>
         </div>
     </div>
+@if(!$skip_form_tag)
 </form>
+@endif
 
