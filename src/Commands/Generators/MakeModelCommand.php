@@ -34,11 +34,6 @@ class MakeModelCommand extends GeneratorCommand
      */
     protected $casts = [];
 
-    /**
-     * A handy helper class to make some stuffs easy
-     * @var Helper
-     */
-    protected $helper;
 
     /**
      * Get the stub file for the generator.
@@ -77,32 +72,5 @@ class MakeModelCommand extends GeneratorCommand
         $ret = $this->replaceNamespace($stub, $entity);
 
         return $ret->replaceClass($stub, $entity);
-    }
-
-    /**
-     * Replace the table for the given stub.
-     *
-     * @param  string  $stub
-     * @param  string  $table
-     *
-     * @return $this
-     */
-    protected function replaceTable(&$stub, $table)
-    {
-        $stub = str_replace(
-            '{{table}}', $table, $stub
-        );
-
-        return $this;
-    }
-
-    protected function replaceFields(&$stub, $fields)
-    {
-       // $file = file_put_contents(__DIR__ . '/../stubs/fields.stub', var_export($fields, true));
-//        $fields = file_get_contents(__DIR__ . '/../stubs/fields.stub');
-        $helper =  new Helper();
-        $fields = $helper->arrayAsString($fields);
-        $stub = str_replace('{{fields}}', $fields, $stub);
-        return $this;
     }
 }

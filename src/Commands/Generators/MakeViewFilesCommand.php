@@ -45,6 +45,8 @@ class MakeViewFilesCommand extends Command
         $file = base_path($this->viewBase . $viewDir . '/datagrid.blade.php');
         file_put_contents($file, $dataGridContent);
 
+        $this->info('View files generated!');
+
     }
 
     private function getCreateFileContent(array $fieldsArr, array|string|null $slug)
