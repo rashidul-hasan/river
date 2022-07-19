@@ -18,32 +18,15 @@ trait Edit
     public function edit($id)
     {
 
-        $this->crudAction->failIfNotPermitted('edit');
-
-        try
-        {
-            $this->model = $this->model->findOrFail($id);
-        }
-        catch (\Exception $e)
-        {
-            $data['success'] = false;
-            $data['message'] = $e->getMessage();
-            return $this->responseBuilder->send($this->request, $data);
-        }
-
-        $form = FormBuilder::build( $this->model );
-        $buttons = $this->crudAction->renderActions('edit', $this->model);
-
+        $this->viewFile = $this->viewPrefix . '.form';
+        $model = $this->model::findOrFail($id);
         $this->viewData = [
-            'title' => 'Edit ' . $this->model->getEntityName(),
-            'model' => $this->model,
-            'buttons' => $buttons,
-            'form' => $form,
-            'view' => $this->editView,
+            'action' => route($this->routePrefix . '.update', $id),
+            'method' => 'PUT',
+            'title' => 'Edit ' . $this->modelName,
+            'model' => $model,
         ];
-
         $this->callHookMethod('editing');
-
-        return $this->responseBuilder->send($this->request, $this->viewData);
+        return view($this->viewFile, $this->viewData);
     }
 }

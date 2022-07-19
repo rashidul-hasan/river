@@ -6,8 +6,11 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Rashidul\River\Commands\CacheViewFilesCommand;
 use Rashidul\River\Commands\DatabaseSeederCommand;
+use Rashidul\River\Commands\Generators\MakeControllerCommand;
 use Rashidul\River\Commands\Generators\MakeMigrationCommand;
+use Rashidul\River\Commands\Generators\MakeModelCommand;
 use Rashidul\River\Commands\Generators\MakeViewFilesCommand;
+use Rashidul\River\Commands\Generators\ScaffoldCommand;
 use Rashidul\River\Http\Middleware\Authenticate;
 use Rashidul\River\Http\Middleware\RedirectIfAuthenticated;
 use Rashidul\River\Models\Admin;
@@ -75,7 +78,10 @@ class RiverServiceProvider extends ServiceProvider
             CacheViewFilesCommand::class,
             DatabaseSeederCommand::class,
             MakeMigrationCommand::class,
-            MakeViewFilesCommand::class
+            MakeViewFilesCommand::class,
+            ScaffoldCommand::class,
+            MakeControllerCommand::class,
+            MakeModelCommand::class
         ]);
     }
 }

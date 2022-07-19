@@ -15,22 +15,13 @@ trait Create
      */
     public function create()
     {
-        $this->crudAction->failIfNotPermitted('add');
-
-        $form = FormBuilder::build($this->model);
-        $buttons = $this->crudAction->renderActions('create', $this->model);
-
         $this->viewData = [
-            'title' => 'Add New ' . $this->model->getEntityName(),
-            'form' => $form,
-            'buttons' => $buttons,
-            'model' => $this->model,
-            'view' => $this->createView,
-            'success' => true
+            'action' => route($this->routePrefix . '.store'),
+            'method' => 'POST',
+            'title' => 'Add ' . $this->modelName,
+            'model' => new $this->model,
         ];
-
         $this->callHookMethod('creating');
-
-        return $this->responseBuilder->send($this->request, $this->viewData);
+        return view($this->viewPrefix . '.form', $this->viewData);
     }
 }

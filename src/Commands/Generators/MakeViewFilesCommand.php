@@ -35,12 +35,15 @@ class MakeViewFilesCommand extends Command
         $fields = $dataTypeService->getFields($slug);
 
         $createFileContent = $this->getCreateFileContent($fields, $slug);
+        $dataGridContent = $this->getDataGridContent($fields, $slug);
 
 
         $this->makeViewDirectory($viewDir);
 
         $file = base_path($this->viewBase . $viewDir . '/create.blade.php');
         file_put_contents($file, $createFileContent);
+        $file = base_path($this->viewBase . $viewDir . '/datagrid.blade.php');
+        file_put_contents($file, $dataGridContent);
 
     }
 
@@ -55,6 +58,21 @@ class MakeViewFilesCommand extends Command
         $stub = file_get_contents(__DIR__ .'/stubs/create.blade.stub');
         $stub = str_replace('{{action}}', "{{route('{$slug}.store')}}", $stub);
         $stub = str_replace('{{fields}}', $fields, $stub);
+
+        return $stub;
+    }
+
+    private function getDataGridContent(array $fieldsArr, array|string|null $slug)
+    {
+        $service = new FormBuilder();
+        /*$fields = $service->start('', '')
+            ->skipFormTag()
+            ->addFields($fieldsArr)
+            ->render();*/
+
+        $stub = file_get_contents(__DIR__ .'/stubs/datagrid.blade.stub');
+        /*$stub = str_replace('{{action}}', "{{route('{$slug}.store')}}", $stub);
+        $stub = str_replace('{{fields}}', $fields, $stub);*/
 
         return $stub;
     }

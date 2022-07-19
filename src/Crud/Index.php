@@ -3,7 +3,9 @@
 namespace Rashidul\River\Crud;
 
 
-use Rashidul\RainDrops\Facades\DataTable;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
 
 trait Index
 {
@@ -13,29 +15,31 @@ trait Index
      * @return Response
      * @internal param Request $request
      */
-    public function index()
+    public function index(Request $request)
     {
+        $this->viewFile = $this->viewPrefix . '.datagrid';
 
-        $this->crudAction->failIfNotPermitted('index');
-
-        /*$table = DataTable::of(new $this->modelClass)
-            ->setUrl($this->model->getDataUrl());*/
-
-        // action buttons
-        $buttons = $this->crudAction->renderIndexActions();
-
+        if ($request->ajax()) {
+            $this->dataTableQuery = $this->model::select();
+            $this->callHookMethod('querying');
+            return Datatables::of($this->dataTableQuery)
+                ->addIndexColumn()
+                /*->addColumn('action', function ($row) {
+                    return $this->getActionsHtml($row);
+                })*/
+                ->rawColumns(['action'])
+                ->make(true);
+        }
         $this->viewData = [
-            'title' => $this->model->getEntityNamePlural(),
-            'model' => $this->model,
-//            'table' => $table,
-            'buttons' => $buttons,
-            'view' => $this->indexView,
+            'url_index' => route($this->routePrefix . '.index'),
+            'url_create' => route($this->routePrefix . '.create'),
+            'title' => Str::plural($this->modelName),
         ];
 
         $this->callHookMethod('indexing');
 
-        return $this->responseBuilder->send($this->request, $this->viewData);
-
+        return view($this->viewFile, $this->viewData);
     }
+
 
 }

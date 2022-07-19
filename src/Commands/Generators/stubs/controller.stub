@@ -1,0 +1,20 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Models\{{modelName}};
+use Rashidul\River\Crud\BaseCrudController;
+
+class DummyClass extends BaseCrudController
+{
+
+    protected $model = {{modelName}}::class;
+    protected $routePrefix = '{{slug}}';
+    protected $viewPrefix = '{{slug}}';
+    protected $modelName = '{{modelName}}';
+
+}
+
+
+
+

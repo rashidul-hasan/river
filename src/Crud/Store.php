@@ -4,6 +4,7 @@ namespace Rashidul\River\Crud;
 
 
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 use Rashidul\RainDrops\Model\ModelHelper;
 
 trait Store
@@ -15,39 +16,23 @@ trait Store
      * @internal param Request $request
      * @internal param Request $request
      */
-    public function store()
+    public function store(Request $request)
     {
 
-        $this->validate($this->request, $this->model->getvalidationRules(), [], $this->model->getFieldsWithLabels());
+        $this->validateRequest($request);
 
-        $this->model = ModelHelper::fillWithRequestData($this->model, $this->request);
+        $this->modelObj = new $this->model;
+        $this->modelObj->fill($request->except(['_method', '_token']));
+
+        $this->modelObj = $this->uploadImages($request, $this->modelObj);
+        $this->modelObj = $this->handleCheckboxes($request, $this->modelObj);
 
         $this->callHookMethod('storing');
+        $this->modelObj->save();
+        $this->callHookMethod('stored');
 
-        try{
-            if ($this->model->save()){
-                $this->viewData['success'] = true;
-                $this->viewData['message'] = $this->model->getEntityName() . ' Created!';
-                $this->viewData['item'] = $this->model;
-
-                // many to many
-                ModelHelper::updateManyToManyRelations($this->model, $this->request);
-
-                $this->callHookMethod('stored');
-
-            } else {
-                $this->viewData['success'] = false;
-                $this->viewData['message'] = 'Something went wrong';
-            }
-        } catch (QueryException $e){
-            $this->viewData['message'] = $e->getMessage();
-            $this->viewData['success'] = false;
-        }
-
-        // set redirect url
-        $this->setRedirectUrl();
-
-        return $this->responseBuilder->send($this->request, $this->viewData);
+        return redirect(route($this->routePrefix . '.index'))
+            ->with('success', 'Created!');
 
     }
 

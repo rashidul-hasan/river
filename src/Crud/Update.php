@@ -21,48 +21,19 @@ trait Update
     public function update(Request $request, $id)
     {
 
-        $this->crudAction->failIfNotPermitted('edit');
+        $this->validateRequest($request);
 
-        try
-        {
-            $this->model = $this->model->findOrFail($id);
-        }
-        catch (\Exception $e)
-        {
-            $data['success'] = false;
-            $data['message'] = $e->getMessage();
-            return $this->responseBuilder->send($this->request, $data);
-        }
+        $this->modelObj = $this->model::findOrFail($id);
+        $this->modelObj->fill($request->except(['_method', '_token']));
+        //handle images
+        $this->modelObj = $this->uploadImages($request, $this->modelObj);
+        $this->modelObj = $this->handleCheckboxes($request, $this->modelObj);
+        $this->modelObj->save();
 
-        $this->validate($request, $this->model->getValidationRules(), [], $this->model->getFieldsWithLabels());
+        $this->callHookMethod('updated');
 
-        $this->model = ModelHelper::fillWithRequestData($this->model, $this->request);
-
-        $this->callHookMethod('updating');
-
-        try{
-            if ($this->model->update()){
-                $this->viewData['success'] = true;
-                $this->viewData['message'] = $this->model->getEntityName() . ' Updated!';
-                $this->viewData['item'] = $this->model;
-
-                // many to many
-                ModelHelper::updateManyToManyRelations($this->model, $this->request);
-
-                $this->callHookMethod('updated');
-
-            } else {
-                $this->viewData['success'] = false;
-                $this->viewData['message'] = 'Something went wrong';
-            }
-        } catch (QueryException $e){
-            $this->viewData['message'] = $e->getMessage();
-            $this->viewData['success'] = false;
-        }
-
-        $this->setRedirectUrl();
-
-        return $this->responseBuilder->send($this->request, $this->viewData);
+        return redirect(route($this->routePrefix . '.index'))
+            ->with('success', 'Updated!');
 
     }
 

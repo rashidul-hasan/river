@@ -1,8 +1,9 @@
 <?php
 
-namespace Rashidul\RainDrops\Generator\Command;
+namespace Rashidul\River\Commands\Generators;
 
 use Illuminate\Console\GeneratorCommand;
+use Rashidul\River\Models\DataType;
 
 class MakeControllerCommand extends GeneratorCommand
 {
@@ -11,18 +12,9 @@ class MakeControllerCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'raindrops:controller
+    protected $signature = 'river:make-controller
                             {name : The name of the controller.}
-                            {--crud-name= : The name of the Crud.}
-                            {--model-name= : The name of the Model.}
-                            {--model-namespace= : The namespace of the Model.}
-                            {--controller-namespace= : Namespace of the controller.}
-                            {--view-path= : The name of the view path.}
-                            {--fields= : Fields name for the form & migration.}
-                            {--validations= : Validation details for the fields.}
-                            {--route-group= : Prefix of the route group.}
-                            {--pagination=25 : The amount of models per page for index pages.}
-                            {--force : Overwrite already existing controller.}';
+                            {--slug= : slug of type}';
 
     /**
      * The console command description.
@@ -47,7 +39,7 @@ class MakeControllerCommand extends GeneratorCommand
     {
         return config('raindrops.crud.generator.custom_template')
             ? config('raindrops.crud.generator.stubs') . '/controller.stub'
-            : __DIR__ . '/../stubs/controller.stub';
+            : __DIR__ . './stubs/controller.stub';
     }
 
     /**
@@ -59,7 +51,7 @@ class MakeControllerCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\\' . ($this->option('controller-namespace') ? $this->option('controller-namespace') : 'Http\Controllers');
+        return $rootNamespace . '\\' . 'Http\Controllers';
     }
 
     /**
@@ -70,10 +62,11 @@ class MakeControllerCommand extends GeneratorCommand
      */
     protected function alreadyExists($rawName)
     {
-        if ($this->option('force')) {
+        /*if ($this->option('force')) {
             return false;
         }
-        return parent::alreadyExists($rawName);
+        return parent::alreadyExists($rawName);*/
+        return false; //TODO maybe later
     }
 
     /**
@@ -85,83 +78,23 @@ class MakeControllerCommand extends GeneratorCommand
      */
     protected function buildClass($name)
     {
+        $slug = $this->option('slug');
+        $type = DataType::slug($slug)
+            ->first();
+        if ($type === null) {
+            $this->warn('Type not found');
+            return;
+        }
         $stub = $this->files->get($this->getStub());
 
-        $viewPath = $this->option('view-path') ? $this->option('view-path') . '.' : '';
-        $crudName = strtolower($this->option('crud-name'));
-        $crudNameSingular = str_singular($crudName);
-        $modelName = $this->option('model-name');
-        $modelNamespace = $this->option('model-namespace');
-        $routeGroup = ($this->option('route-group')) ? $this->option('route-group') . '/' : '';
-        $routePrefix = ($this->option('route-group')) ? $this->option('route-group') : '';
-        $routePrefixCap = ucfirst($routePrefix);
-        $perPage = intval($this->option('pagination'));
-        $viewName = snake_case($this->option('crud-name'), '-');
-        $fields = $this->option('fields');
-        $validations = rtrim($this->option('validations'), ';');
-
-        $validationRules = '';
-        if (trim($validations) != '') {
-            $validationRules = "\$this->validate(\$request, [";
-
-            $rules = explode(';', $validations);
-            foreach ($rules as $v) {
-                if (trim($v) == '') {
-                    continue;
-                }
-
-                // extract field name and args
-                $parts = explode('#', $v);
-                $fieldName = trim($parts[0]);
-                $rules = trim($parts[1]);
-                $validationRules .= "\n\t\t\t'$fieldName' => '$rules',";
-            }
-
-            $validationRules = substr($validationRules, 0, -1); // lose the last comma
-            $validationRules .= "\n\t\t]);";
-        }
-
-        $snippet = <<<EOD
-        if (\$request->hasFile('{{fieldName}}')) {
-            foreach(\$request['{{fieldName}}'] as \$file){
-                \$uploadPath = public_path('/uploads/{{fieldName}}');
-
-                \$extension = \$file->getClientOriginalExtension();
-                \$fileName = rand(11111, 99999) . '.' . \$extension;
-
-                \$file->move(\$uploadPath, \$fileName);
-                \$requestData['{{fieldName}}'] = \$fileName;
-            }
-        }
-EOD;
-
-        $fieldsArray = explode(';', $fields);
-        $fileSnippet = '';
-        $whereSnippet = '';
-
-        if ($fields) {
-            $x = 0;
-            foreach ($fieldsArray as $index => $item) {
-                $itemArray = explode('#', $item);
-
-                if (trim($itemArray[1]) == 'file') {
-                    $fileSnippet .= "\n\n" . str_replace('{{fieldName}}', trim($itemArray[0]), $snippet) . "\n";
-                }
-
-                $fieldName = trim($itemArray[0]);
-
-                $whereSnippet .= ($index == 0) ? "where('$fieldName', 'LIKE', \"%\$keyword%\")" . "\n\t\t\t\t" : "->orWhere('$fieldName', 'LIKE', \"%\$keyword%\")" . "\n\t\t\t\t";
-            }
-
-            $whereSnippet .= "->";
-        }
-
         return $this->replaceNamespace($stub, $name)
-            ->replaceViewPath($stub, $viewPath)
+            ->replaceModelName($stub, $type->singular)
+            ->replaceSlug($stub, $slug)
+
+            /*->replaceViewPath($stub, $viewPath)
             ->replaceViewName($stub, $viewName)
             ->replaceCrudName($stub, $crudName)
             ->replaceCrudNameSingular($stub, $crudNameSingular)
-            ->replaceModelName($stub, $modelName)
             ->replaceModelNamespace($stub, $modelNamespace)
             ->replaceModelNamespaceSegments($stub, $modelNamespace)
             ->replaceRouteGroup($stub, $routeGroup)
@@ -170,7 +103,7 @@ EOD;
             ->replaceValidationRules($stub, $validationRules)
             ->replacePaginationNumber($stub, $perPage)
             ->replaceFileSnippet($stub, $fileSnippet)
-            ->replaceWhereSnippet($stub, $whereSnippet)
+            ->replaceWhereSnippet($stub, $whereSnippet)*/
             ->replaceClass($stub, $name);
     }
 
@@ -254,6 +187,15 @@ EOD;
     {
         $stub = str_replace(
             '{{modelName}}', $modelName, $stub
+        );
+
+        return $this;
+    }
+
+    protected function replaceSlug(&$stub, $slug)
+    {
+        $stub = str_replace(
+            '{{slug}}', $slug, $stub
         );
 
         return $this;

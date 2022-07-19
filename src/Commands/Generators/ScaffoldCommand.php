@@ -1,11 +1,11 @@
 <?php
 
-namespace Rashidul\RainDrops\Generator\Command;
+namespace Rashidul\River\Commands\Generators;
 
 use File;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
-use Nwidart\Modules\Facades\Module;
+use Rashidul\River\Models\DataType;
 use Rashidul\River\Services\DataTypeService;
 
 class ScaffoldCommand extends Command
@@ -15,25 +15,8 @@ class ScaffoldCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'raindrops:scaffold
-                            {entity : The name of the Crud.}
-                            {--table= : Fields name for the form & migration.}
-                            {--route= : Base route, default is table name.}
-                            {--fields_from_file= : Fields from a json file.}
-                            {--validations= : Validation details for the fields.}
-                            {--controller-namespace= : Namespace of the controller.}
-                            {--model-namespace= : Namespace of the model inside "app" dir.}
-                            {--pk=id : The name of the primary key.}
-                            {--pagination=25 : The amount of models per page for index pages.}
-                            {--indexes= : The fields to add an index to.}
-                            {--foreign-keys= : The foreign keys for the table.}
-                            {--relationships= : The relationships for the model.}
-                            {--module= : Specify which module this crud belongs to.}
-                            {--route-group= : Prefix of the route group.}
-                            {--view-path= : The name of the view path.}
-                            {--localize=no : Allow to localize? yes|no.}
-                            {--locales=en : Locales language type.}
-                            {--fields= : Fields for the tables.}';
+    protected $signature = 'river:crud
+                            {name : Slug of the data type.}';
 
     /**
      * The console command description.
@@ -66,127 +49,51 @@ class ScaffoldCommand extends Command
     public function handle()
     {
         $slug = $this->argument('name');
+        $type = DataType::slug($slug)
+            ->first();
+        if ($type === null) {
+            $this->warn('Type not found');
+            return;
+        }
+
+        $entitySingular = $type->singular;
         $viewDir = $slug;
         $dataTypeService = new DataTypeService();
         $fields = $dataTypeService->getFields($slug);
 
 
+        $this->appendRoute($slug, $entitySingular);
 
-        return;
+        $this->call('river:make-view', ['name' => $slug]);
+        $this->call('river:make-controller', ['name' => "{$entitySingular}Controller", '--slug' => $slug]);
+        $this->call('river:make-model', ['name' => "{$entitySingular}"]);
 
-        $entity = $this->argument('entity');
-        $tableName = ($this->option('table')) ? $this->option('table') : str_plural(snake_case($entity));
-        $this->routeName = ($this->option('route')) ? $this->option('route') : $tableName;
-        $fields = rtrim($this->option('fields'), ';');
-        $migrationName = $tableName;
-
-        $controllerNamespace = '';
-        $modelNamespace = 'App\\';
-        $migrationDirectory = '';
-
-        // location of the routes file
-        $routeFile = app_path('Http/routes.php');
-
-        if (\App::VERSION() >= '5.3') {
-            $routeFile = base_path('routes/web.php');
-        }
-
-        //$controllerNamespace = ($this->option('controller-namespace')) ? $this->option('controller-namespace') . '\\' : '';
-        //$modelNamespace = ($this->option('model-namespace')) ? trim($this->option('model-namespace')) . '\\' : '';
-
-        // if module option is provided, resolve the namespace for controllers, models
-        // migration files and route file
-        if ($this->option('module'))
-        {
-            // if nwidart/laravel-modules package is installed
-            if (Config::has('modules')) {
-
-                // get module instance by name
-                $moduleName = null;
-                try
-                {
-                    $moduleName = Module::find($this->option('module'));
-                    if ($moduleName != null)
-                    {
-                        $moduleName = $moduleName->getStudlyName();
-                    }
-                    else
-                    {
-                        $this->error('Specified module not found!');
-                        $this->error('Aborting...');
-                        dd();
-                    }
-                }
-                catch(\Exception $e)
-                {
-                    $this->error($e->getMessage());
-                    $this->error('Aborting...');
-                    dd();
-                }
-                $moduleConfigs = Config::get('modules');
-
-                // controller namepsace
-                $controllerNamespace = $moduleConfigs['namespace'] . '\\' . $moduleName . '\\'
-                    . str_replace('/', '\\', $moduleConfigs['paths']['generator']['controller'])
-                    . '\\';
-
-                // model namespace
-                $modelNamespace = $moduleConfigs['namespace'] . '\\' . $moduleName . '\\'
-                    . str_replace('/', '\\', $moduleConfigs['paths']['generator']['model'])
-                    . '\\';
-
-                // migration directory
-                $migrationDirectory = Module::find($this->option('module'))->getExtraPath($moduleConfigs['paths']['generator']['migration']);
-                $migrationDirectory = str_replace('/', '\\', $migrationDirectory);
-                // route file
-                $routeFile = Module::find($this->option('module'))->getExtraPath('Http') . '/routes.php';
-            }
-            else
-            {
-                $this->error('Modules package isn\'t found!');
-                $this->error('Aborting...');
-                dd();
-            }
-        }
-
-        $this->call('raindrops:controller', ['name' => $controllerNamespace . $entity . 'Controller', '--model-name' => $entity, '--model-namespace' => $modelNamespace]);
-        $this->call('raindrops:model', ['name' => $modelNamespace . $entity, '--table' => $tableName, '--route' => $this->routeName, '--fields' => $fields]);
-        $this->call('raindrops:migration', ['name' => $migrationName, '--schema' => $fields, '--path' => $migrationDirectory    /*, '--pk' => $primaryKey, '--indexes' => $indexes, '--foreign-keys' => $foreignKeys*/]);
-
-
-        // For optimizing the class loader
-        //$this->info('Optimizing class loader...');
-        //$this->callSilent('optimize');
-
-        // Updating the Http/routes.php file
-
-
-        if (file_exists($routeFile)) {
-            //$this->controller = ($controllerNamespace != '') ? $controllerNamespace . '\\' . $entity . 'Controller' : $entity . 'Controller';
-            $this->controller = $entity . 'Controller';
-
-            $isAdded = File::append($routeFile, "\n" . implode("\n", $this->addRoutes()));
-
-            if ($isAdded) {
-                $this->info('Crud/Resource route added to ' . $routeFile);
-            } else {
-                $this->info('Unable to add the route to ' . $routeFile);
-            }
-        }
 
         $this->info('You\'re Done! Yeee!');
 
 
     }
 
-    /**
-     * Add routes.
-     *
-     * @return  array
-     */
-    protected function addRoutes()
+    protected function appendRoute($slug, $entitySingular)
     {
-        return ["Route::resource('" . $this->routeName . "', '" . $this->controller . "');"];
+        // location of the routes file
+        $routeFile = app_path('Http/routes.php');
+
+        if (\App::VERSION() >= '5.3') {
+            $routeFile = base_path('routes/web.php');
+        }
+        if (file_exists($routeFile)) {
+            //$this->controller = ($controllerNamespace != '') ? $controllerNamespace . '\\' . $entity . 'Controller' : $entity . 'Controller';
+            $this->controller = $entitySingular . 'Controller';
+
+            $isAdded = File::append($routeFile, "\nRoute::resource('{$slug}', '{$entitySingular}Controller');" );
+
+            /*if ($isAdded) {
+                $this->info('Crud/Resource route added to ' . $routeFile);
+            } else {
+                $this->info('Unable to add the route to ' . $routeFile);
+            }*/
+        }
     }
 
     /**
