@@ -12,6 +12,7 @@ use Rashidul\River\Commands\Generators\MakeModelCommand;
 use Rashidul\River\Commands\Generators\MakeViewFilesCommand;
 use Rashidul\River\Commands\Generators\ScaffoldCommand;
 use Rashidul\River\Http\Middleware\Authenticate;
+use Rashidul\River\Http\Middleware\CheckRole;
 use Rashidul\River\Http\Middleware\RedirectIfAuthenticated;
 use Rashidul\River\Models\Admin;
 use Rashidul\River\Models\Customer;
@@ -64,6 +65,7 @@ class RiverServiceProvider extends ServiceProvider
     {
         $this->app['router']->aliasMiddleware('river.auth', Authenticate::class);
         $this->app['router']->aliasMiddleware('river.guest', RedirectIfAuthenticated::class);
+        $this->app['router']->aliasMiddleware('river.checkrole', CheckRole::class);
     }
 
     private function configureRoutes(): void

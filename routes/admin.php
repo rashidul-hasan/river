@@ -13,7 +13,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'admin',
-    'middleware' => ['web', 'river.auth:admins'],
+    'middleware' => ['web', 'river.auth:admins', 'river.checkrole'],
     'namespace' => 'Rashidul\River\Http\Controllers',
     'as' => 'river.'
 ], function () {

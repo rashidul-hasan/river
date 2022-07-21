@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_type_data_field');
+        Schema::dropIfExists('river_field_values');
     }
 };

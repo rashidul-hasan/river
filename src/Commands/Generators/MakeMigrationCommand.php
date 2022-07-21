@@ -12,7 +12,7 @@ class MakeMigrationCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'river:migration
+    protected $signature = 'river:make-migration
                             {name : Slug of the data type.}';
 
     /**

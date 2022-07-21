@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 use Rashidul\River\Constants;
 use Rashidul\River\Models\DataType;
+use Rashidul\River\Utility\RolesCache;
 
 class AdminSidebarViewComposer
 {
@@ -90,7 +91,9 @@ class AdminSidebarViewComposer
                 ]
             ]
         ];
-        $menus = array_merge($menus, $system_menus);
+        if (RolesCache::isDeveloper()) {
+            $menus = array_merge($menus, $system_menus);
+        }
 
         $view->with('menus', $menus);
     }

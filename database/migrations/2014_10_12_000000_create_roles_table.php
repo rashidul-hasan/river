@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('river_data_types', function (Blueprint $table) {
+        Schema::create('river_roles', function (Blueprint $table) {
             $table->id();
-            $table->string('slug');
-            $table->string('singular')->nullable();
-            $table->string('plural')->nullable();
-            $table->string('icon')->nullable();
-            $table->boolean('show_on_menu')->default(0);
+            $table->string('name');
+            $table->boolean('is_developer')->default(0);
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('river_data_types');
+        Schema::dropIfExists('river_roles');
     }
 };

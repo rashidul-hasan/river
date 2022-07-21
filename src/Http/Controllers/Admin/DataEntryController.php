@@ -7,14 +7,20 @@ use Rashidul\River\Models\DataEntry;
 use Rashidul\River\Models\DataFields;
 use Rashidul\River\Models\DataType;
 use Rashidul\River\Models\FieldValue;
+use Rashidul\River\Models\RolePermission;
 use Rashidul\River\Services\DataEntryService;
 use Rashidul\River\Services\DataTypeService;
 use Rashidul\River\Utility\FormBuilder;
+use Rashidul\River\Utility\RolesCache;
 
 class DataEntryController
 {
     public function index(FormBuilder $formBuilder, DataTypeService $dataTypeService, $slug)
     {
+        if (!RolesCache::hasPermission($slug . '.index',
+            RolePermission::TYPE_CUSTOMTYPE)) {
+            abort(503);
+        }
         //TODO validate slug
         $d = DataType::slug($slug)->first();
         $f = $dataTypeService->getFields($slug);
@@ -33,7 +39,7 @@ class DataEntryController
         }
 
         $buttons = [
-            ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
+            ['Add', route('river.data-entries.create', $slug), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
         ];
         $headers = $dataTypeService->getIndexFields($slug);
         $data = [
@@ -45,12 +51,16 @@ class DataEntryController
             'data_slug' => $slug
         ];
 
-//        dd($data);
         return view('river::admin.dataentries.index', $data);
     }
 
     public function create(FormBuilder $formBuilder, DataTypeService $dataTypeService, $slug)
     {
+        if (!RolesCache::hasPermission($slug . '.create',
+            RolePermission::TYPE_CUSTOMTYPE)) {
+            abort(503);
+        }
+
         $f = $dataTypeService->getFields($slug);
         $d = DataType::slug($slug)->first();
 
@@ -67,7 +77,7 @@ class DataEntryController
 
         $all = DataType::all();
         $buttons = [
-            ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
+            ['Add', route('river.data-entries.create', $slug), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
         ];
         $data = [
             'title' => 'Add ' . $d->singular ? $d->singular : $d->name,
@@ -84,6 +94,11 @@ class DataEntryController
                          DataEntryService $dataEntryService,
                          $slug, $id)
     {
+        if (!RolesCache::hasPermission($slug . '.update',
+            RolePermission::TYPE_CUSTOMTYPE)) {
+            abort(503);
+        }
+
         $entryAsArray = $dataEntryService->find($slug, $id);
         if (count($entryAsArray) == 0) {
             return redirect()->back()
@@ -114,6 +129,11 @@ class DataEntryController
 
     public function store(Request $request, $slug, DataTypeService $dataTypeService)
     {
+        if (!RolesCache::hasPermission($slug . '.create',
+            RolePermission::TYPE_CUSTOMTYPE)) {
+            abort(503);
+        }
+
         //TODO validation
         $d = DataType::slug($slug)->first();
 
@@ -132,7 +152,10 @@ class DataEntryController
                            $slug,
                            $id)
     {
-//        dd($request->all());
+        if (!RolesCache::hasPermission($slug . '.update',
+            RolePermission::TYPE_CUSTOMTYPE)) {
+            abort(503);
+        }
 
         //TODO handle validation
         $input = $request->except(['_token', '_method']);
@@ -186,6 +209,11 @@ class DataEntryController
 
     public function destroy($slug, $id)
     {
+        if (!RolesCache::hasPermission($slug . '.delete',
+            RolePermission::TYPE_CUSTOMTYPE)) {
+            abort(503);
+        }
+
         $entry = DataEntry::slug($slug)
             ->where('id', $id)
             ->first();

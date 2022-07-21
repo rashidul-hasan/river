@@ -66,6 +66,7 @@ class ScaffoldCommand extends Command
         $this->call('river:make-model', ['name' => "{$entitySingular}"]);
         $this->call('river:make-view', ['name' => $slug]);
         $this->call('river:make-controller', ['name' => "{$entitySingular}Controller", '--slug' => $slug]);
+        $this->call('river:make-migration', ['name' => $slug]);
 
 
         $this->info('CRUD generated!');

@@ -40,7 +40,7 @@ class MakeViewFilesCommand extends Command
 
         $this->makeViewDirectory($viewDir);
 
-        $file = base_path($this->viewBase . $viewDir . '/create.blade.php');
+        $file = base_path($this->viewBase . $viewDir . '/form.blade.php');
         file_put_contents($file, $createFileContent);
         $file = base_path($this->viewBase . $viewDir . '/datagrid.blade.php');
         file_put_contents($file, $dataGridContent);

@@ -3,11 +3,13 @@
 namespace Rashidul\River\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+//        dd(Route::getRoutes());
         $data = [
           'title' => 'Dashboard',
         ];
