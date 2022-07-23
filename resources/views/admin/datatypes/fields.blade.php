@@ -87,9 +87,9 @@
                         @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_RICHTEXT) selected @endif>
                     Richtext
                 </option>
-                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_FOREIGNKEY}}"
-                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_FOREIGNKEY) selected @endif>
-                    Foreign key
+                <option value="{{\Rashidul\River\Constants::FIELD_TYPE_BELONGSTO}}"
+                        @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_BELONGSTO) selected @endif>
+                    Belongs To
                 </option>
             </select>
         </td>

@@ -16,6 +16,7 @@ class DataTypeService
     {
         $d = DataType::slug($type_slug)
             ->with('fields')
+            ->with('fields.metas')
             ->first(); //TODO load from cache
 
         $arr = [];
@@ -24,6 +25,7 @@ class DataTypeService
             $arr[$field->slug] = [
                 'type' => $field->type,
                 'label' => $field->label,
+                'metas' => $field->metas->toArray(),
             ];
         }
 

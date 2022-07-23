@@ -71,6 +71,33 @@
             </div>
         @endif
 
+        @if($field['type'] == \Rashidul\River\Constants::FIELD_TYPE_BELONGSTO)
+            <div class="form-group row">
+                <label class="col-md-4">{{$field['label']}}</label>
+                @php
+                $metas = $field['metas'];
+
+                $type = collect($metas)->first(function ($item) {
+                    return $item['name'] == \Rashidul\River\Models\DataFieldMeta::NAME_RELATED_TYPE;
+                });
+                   $column = collect($metas)->first(function ($item) {
+                    return $item['name'] == \Rashidul\River\Models\DataFieldMeta::NAME_RELATED_TYPE_LABEL_COLUMN;
+                });
+
+                $data = river_find($type['value']);
+                @endphp
+                <div class="col-md-8">
+                    <div class="form-check form-check-inline">
+                        <select name="{{$field['name']}}" id="" class="form-control">
+                            @foreach($data as $datum)
+                            <option value="{{$datum['id']}}">{{$datum[$column['value']]}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+        @endif
+
     @endforeach
 
     <div class="form-group row mb-0 float-right">

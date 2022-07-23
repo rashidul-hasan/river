@@ -26,4 +26,7 @@ class Constants
     const FIELD_TYPE_DATETIME = 'datetime';
     const FIELD_TYPE_RICHTEXT = 'richtext';
     const FIELD_TYPE_FOREIGNKEY = 'foreign_key';
+    const FIELD_TYPE_BELONGSTO = 'belongsto'; //will hold another type's primary key as foreign key
+    const FIELD_TYPE_HASMANY = 'hasmany'; // pseudo column, will pull the related types by using belongsto
+
 }

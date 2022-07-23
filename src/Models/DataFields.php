@@ -11,13 +11,10 @@ class DataFields extends Model
 
     public $table = 'river_data_fields';
 
-
-    const TYPE_TEXT = 1;
-    const TYPE_EMAIL = 2;
-    const TYPE_PASSWORD = 3;
-    const TYPE_IMAGE = 4;
-    const TYPE_CHECKBOX = 5;
-
     protected $guarded = ['id'];
 
+    public function metas()
+    {
+        return $this->hasMany(DataFieldMeta::class, 'data_field_id');
+    }
 }
