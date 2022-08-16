@@ -1,51 +1,25 @@
-<nav class="navbar header-navbar pcoded-header">
-    <div class="navbar-wrapper">
-        <div class="navbar-logo">
-            <a href="{{ route('river.admin.dashboard') }}">
-                <img class="img-fluid" src="{{river_settings('header_logo')}}" alt="Theme-Logo" width="140" height="28"/>
-            </a>
-            <a class="mobile-menu" id="mobile-collapse" href="#!">
-                <i class="feather icon-menu icon-toggle-right"></i>
-            </a>
-            <a class="mobile-options waves-effect waves-light">
-                <i class="feather icon-more-horizontal"></i>
-            </a>
-        </div>
-        <div class="navbar-container container-fluid">
-            <ul class="nav-left">
-                <li>
-                    <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
-                        <i class="full-screen feather icon-maximize"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{url('/')}}" target="_blank" class="waves-effect waves-light" title="Visit Website">
-                        <i class="fa fa-eye"></i>
-                    </a>
-                </li>
-            </ul>
-            <ul class="nav-right">
-                <li class="user-profile header-notification">
-
-                    <div class="dropdown-primary dropdown">
-                        <div class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{ Auth::user() && Auth::user()->image ? url(Auth::user()->image) : url('/river/admin/assets/images/avatar.png') }}" class="img-radius" alt="User-Profile-Image">
-                            <span>{{Auth::user() ? Auth::user()->name : ''}}</span>
-                            <i class="feather icon-chevron-down"></i>
-                        </div>
-                        <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                            <li>
-                                <a href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <i class="feather icon-log-out"></i> Logout
-                                </a>
-                            </li>
-                            <form id="logout-form" action="{{route('river.admin.logout')}}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </ul>
+<header class="navbar navbar-expand-md navbar-light d-none d-lg-flex d-print-none">
+    <div class="container-xl">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-nav flex-row order-md-last">
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+                    <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)"></span>
+                    <div class="d-none d-xl-block ps-2">
+                        <div>{{Auth::user() ? Auth::user()->name : ''}}</div>
+                        <div class="mt-1 small text-muted">Developer</div>
                     </div>
-                </li>
-            </ul>
+                    <form id="logout-form" action="{{route('river.admin.logout')}}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <a href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a>
+                </div>
+            </div>
         </div>
+        <div class="collapse navbar-collapse" id="navbar-menu"></div>
     </div>
-</nav>
+</header>

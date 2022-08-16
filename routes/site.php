@@ -8,6 +8,9 @@ Route::group([
     ], function () {
     Route::get('login', 'Customer\Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Customer\Auth\LoginController@login')->name('login.post');
+    Route::get('/', function () {
+        return view('welcome');
+    });
 });
 
 Route::group([

@@ -6,12 +6,15 @@
 @stop
 
 @section('content')
-    <div class="row">
-        <div class="col-md-5">
-            <div class="list-group">
-                @foreach($pages as $file)
-                <a class="list-group-item" href="{{route('river.template-pages.edit', $file->id)}}">{{$file->filename}}</a>
-                @endforeach
+
+    <div class="container-xl">
+        <div class="row row-cards">
+            <div class="col-md-5">
+                <div class="list-group">
+                    @foreach($pages as $file)
+                        <a class="list-group-item" href="{{route('river.template-pages.edit', $file->id)}}">{{$file->filename}}</a>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

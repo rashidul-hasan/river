@@ -1,57 +1,61 @@
-<nav class="pcoded-navbar">
-    <div class="nav-list">
-        <div class="pcoded-inner-navbar main-menu">
-            <ul class="pcoded-item pcoded-left-item">
+<aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <h1 class="navbar-brand navbar-brand-autodark">
+            <a href="{{ route('river.admin.dashboard') }}">
+                <img src="{{river_settings('header_logo')}}" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+            </a>
+        </h1>
+
+        <div class="navbar-nav flex-row d-lg-none">
+            <div class="nav-item dropdown">
+                <a href="{{url('/')}}" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+                    <span class="avatar avatar-sm"></span>
+                    <div class="d-none d-xl-block ps-2">
+                        <div>{{Auth::user() ? Auth::user()->name : ''}}</div>
+                        <div class="mt-1 small text-muted">Developer</div>
+                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <a href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a>
+                </div>
+                <form id="logout-form" action="{{route('river.admin.logout')}}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+            </div>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-menu">
+            <ul class="navbar-nav pt-lg-3">
+
                 @foreach($menus as $menu)
-                <li class="{{array_key_exists('children', $menu) ? 'pcoded-hasmenu' : ''}}">
-                    <a href="{{array_key_exists('route', $menu) ? route($menu['route']) : 'javascript:void(0)'}}" class="waves-effect waves-dark">
-                        <span class="pcoded-micon">
-                            <i class="{{array_key_exists('icon', $menu) ? $menu['icon'] : 'feather icon-box'}}"></i>
-                        </span>
-                        <span class="pcoded-mtext">{{$menu['label']}}</span>
-                    </a>
-                    @if(array_key_exists('children', $menu))
-                        <ul class="pcoded-submenu">
-                            @foreach($menu['children'] as $child)
-                            <li class="submenu-li" data-active-routes="river.sliders.index|river.sliders.edit">
-                                <a href="{{ array_key_exists('route', $child) ? route($child['route']) : $child['url'] }}" class="waves-effect waves-dark">
-                                    <span class="pcoded-mtext">{{$child['label']}}</span>
-                                </a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    @endif
-                </li>
+                    <li class="nav-item {{array_key_exists('children', $menu) ? 'dropdown' : ''}}">
+                        <a class="nav-link {{array_key_exists('children', $menu) ? ' dropdown-toggle' : ''}}"
+                           href="{{array_key_exists('route', $menu) ? route($menu['route']) : 'javascript:void(0)'}}"
+                           data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                      <span class="nav-link-icon d-md-none d-lg-inline-block" >
+                          <i class="{{array_key_exists('icon', $menu) ? $menu['icon'] : 'fas fa-folder'}}"></i>
+                      </span>
+                            <span class="nav-link-title">{{$menu['label']}}</span>
+                        </a>
+                        @if(array_key_exists('children', $menu))
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+                                        @foreach($menu['children'] as $child)
+                                            <a class="dropdown-item" href="{{ array_key_exists('route', $child) ? route($child['route']) : $child['url'] }}">{{$child['label']}}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    </li>
                 @endforeach
-
-                {{--<li class="pcoded-hasmenu @yield('website_setup')">
-                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                        <span class="pcoded-micon">
-                           <i class="fas fa-tv"></i>
-                        </span>
-                        <i class="fa fa-television"></i>
-                        <span class="pcoded-mtext">Website Setup</span>
-                    </a>
-                    <ul class="pcoded-submenu">
-                        <li class="submenu-li" data-active-routes="river.sliders.index|river.sliders.edit">
-                            <a href="{{ route('river.sliders.index') }}" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Sliders</span>
-                            </a>
-                        </li>
-                        --}}{{--<li class="{{\Request::route()->getName() == 'banners.index' || \Request::route()->getName() == 'banners.edit' ? 'active' : ''}}">
-                            <a href="{{ route('banners.index') }}" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Banners</span>
-                            </a>
-                        </li>--}}{{--
-                        <li class="submenu-li" data-active-routes="store.front">
-                            <a href="{{ route('river.store.front') }}" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Appearance</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>--}}
-
             </ul>
         </div>
     </div>
-</nav>
+</aside>
+
+

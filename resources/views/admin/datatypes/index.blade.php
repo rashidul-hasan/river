@@ -6,39 +6,42 @@
 @stop
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Slug</th>
-                            <th scope="col" style="width: 5%"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($all as $a)
+    <div class="container-xl">
+        <div class="row row-cards">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
                             <tr>
-                                <td>
-                                    {{$a->singular}}
-                                </td>
-                                <td>
-                                    {{$a->slug}}
-                                </td>
-                                <td>
-                                    <a href="{{route('river.datatypes.edit', $a->id)}}">
-                                        <i class="icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green"></i>
-                                    </a>
-                                    <a href="{{ route('river.datatypes.destroy', $a->id) }}" class="confirm-delete" data-href="{{ route('river.datatypes.destroy', $a->id) }}">
-                                        <i class="feather icon-trash-2 f-w-600 f-16 text-c-red"></i>
-                                    </a>
-                                </td>
+                                <th>Type</th>
+                                <th>Slug</th>
+                                <th scope="col" style="width: 5%"></th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach($all as $a)
+                                <tr>
+                                    <td>
+                                        {{$a->singular}}
+                                    </td>
+                                    <td>
+                                        {{$a->slug}}
+                                    </td>
+                                    <td>
+                                        <a href="{{route('river.datatypes.edit', $a->id)}}">
+                                            <i class="icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green"></i>
+                                        </a>
+                                        <a href="{{ route('river.datatypes.destroy', $a->id) }}"
+                                           class="confirm-delete" data-href="{{ route('river.datatypes.destroy', $a->id) }}">
+                                            <i class="feather icon-trash-2 f-w-600 f-16 text-c-red"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

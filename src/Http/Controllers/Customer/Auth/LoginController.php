@@ -47,6 +47,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
+        dd('ok');
         session()->put('previousUrl', url()->previous());
 
         return view('site.auth.login', ['title' => 'Login']);
