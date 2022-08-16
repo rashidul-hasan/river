@@ -7,6 +7,8 @@
 
 `php artisan river:seed`
 
+`php artisan river:cache-views`
+
 To publish the assets(css, js files) into the public
 directory, run:
 

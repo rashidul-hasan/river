@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>@if(isset($title)){{ $title }} - @endif {{river_settings('name')}}</title>
 
+    <link rel="icon" type="image/png" href="{{river_settings('favicon')}}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- CSS files -->
     <link rel="stylesheet" type="text/css" href="/river/admin/assets/css/toastr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
@@ -15,6 +18,7 @@
     <link href="/river/admin/assets/css/tabler-payments.min.css" rel="stylesheet"/>
     <link href="/river/admin/assets/css/tabler-vendors.min.css" rel="stylesheet"/>
     <link href="/river/admin/assets/css/demo.min.css" rel="stylesheet"/>
+    <link href="/river/admin/assets/css/toastr.min.css" rel="stylesheet"/>
 
     @routes
 
@@ -62,6 +66,8 @@
 <script src="/river/admin/assets/libs/jsvectormap/dist/maps/world.js" defer></script>
 <script src="/river/admin/assets/libs/jsvectormap/dist/maps/world-merc.js" defer></script>
 <script src="/river/admin/assets/js/toastr.min.js"></script>
+<script src="/river/admin/dynamic-form.js" defer></script>
+
 <!-- Tabler Core -->
 <script src="/river/admin/assets/js/tabler.min.js" defer></script>
 <script src="/river/admin/assets/js/demo.min.js" defer></script>
