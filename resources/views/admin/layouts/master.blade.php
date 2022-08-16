@@ -7,14 +7,14 @@
     <title>@if(isset($title)){{ $title }} - @endif {{river_settings('name')}}</title>
 
     <!-- CSS files -->
-    <link rel="stylesheet" type="text/css" href="/river/admin/dist/css/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="/river/admin/assets/css/toastr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
-    <link href="/river/admin/dist/css/tabler.min.css" rel="stylesheet"/>
-    <link href="/river/admin/dist/css/tabler-flags.min.css" rel="stylesheet"/>
-    <link href="/river/admin/dist/css/tabler-payments.min.css" rel="stylesheet"/>
-    <link href="/river/admin/dist/css/tabler-vendors.min.css" rel="stylesheet"/>
-    <link href="/river/admin/dist/css/demo.min.css" rel="stylesheet"/>
+    <link href="/river/admin/assets/css/tabler.min.css" rel="stylesheet"/>
+    <link href="/river/admin/assets/css/tabler-flags.min.css" rel="stylesheet"/>
+    <link href="/river/admin/assets/css/tabler-payments.min.css" rel="stylesheet"/>
+    <link href="/river/admin/assets/css/tabler-vendors.min.css" rel="stylesheet"/>
+    <link href="/river/admin/assets/css/demo.min.css" rel="stylesheet"/>
 
     @routes
 
@@ -57,14 +57,14 @@
 
 <!-- Libs JS -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
-<script src="/river/admin/dist/libs/apexcharts/dist/apexcharts.min.js" defer></script>
-<script src="/river/admin/dist/libs/jsvectormap/dist/js/jsvectormap.min.js" defer></script>
-<script src="/river/admin/dist/libs/jsvectormap/dist/maps/world.js" defer></script>
-<script src="/river/admin/dist/libs/jsvectormap/dist/maps/world-merc.js" defer></script>
-<script src="/river/admin/dist/js/toastr.min.js"></script>
+<script src="/river/admin/assets/libs/apexcharts/dist/apexcharts.min.js" defer></script>
+<script src="/river/admin/assets/libs/jsvectormap/dist/js/jsvectormap.min.js" defer></script>
+<script src="/river/admin/assets/libs/jsvectormap/dist/maps/world.js" defer></script>
+<script src="/river/admin/assets/libs/jsvectormap/dist/maps/world-merc.js" defer></script>
+<script src="/river/admin/assets/js/toastr.min.js"></script>
 <!-- Tabler Core -->
-<script src="/river/admin/dist/js/tabler.min.js" defer></script>
-<script src="/river/admin/dist/js/demo.min.js" defer></script>
+<script src="/river/admin/assets/js/tabler.min.js" defer></script>
+<script src="/river/admin/assets/js/demo.min.js" defer></script>
 
 @stack('scripts')
 
