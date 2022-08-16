@@ -24,6 +24,14 @@ class RolePermission extends Model
     role can access that route. show a list of route names on admin panel. exclude system routes
     and routes provided by other packages. this check will be handled by the CheckRole middleware
 
+    get list of routes of our project
+
+    $routeCollection = Illuminate\Support\Facades\Route::getRoutes();
+
+    foreach ($routeCollection as $value) {
+        echo $value->getName();
+        echo '<br>';
+    }
 
     type based route are for handling custom types stored in river_types table.
     show list of types with their operations(view list, create, edit, delete)

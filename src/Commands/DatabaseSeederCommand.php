@@ -5,6 +5,7 @@ namespace Rashidul\River\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Rashidul\River\Models\TemplatePage;
 
 class DatabaseSeederCommand extends Command
 {
@@ -16,6 +17,8 @@ class DatabaseSeederCommand extends Command
     public function handle()
     {
         $this->seedAdminUsers();
+
+        $this->seedTemplateFiles();
 
         $this->info('Done!');
     }
@@ -40,6 +43,20 @@ class DatabaseSeederCommand extends Command
             'role_id' => 1,
             'permission' => 'GOD'
         ]);*/
+    }
+
+    private function seedTemplateFiles()
+    {
+        $path    = __DIR__ . '/templates';
+        $files = array_diff(scandir($path), array('.', '..'));
+
+        foreach ($files as $file) {
+            $content = file_get_contents($path . '/' . $file);
+            TemplatePage::create([
+                'filename' => $file,
+                'code' => $content
+            ]);
+        }
     }
 
 }
