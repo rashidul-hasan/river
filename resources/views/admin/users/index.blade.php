@@ -48,6 +48,7 @@
                                         <a href="{{route('river.users.edit',$item->id)}}" class="btn btn-sm btn-info">
                                             Edit
                                         </a>
+
                                         <a class="btn btn-sm btn-danger confirm-delete" href="javascript:void(0);" onclick="deleteTable({{$item->id}})">
                                             Delete
                                         </a>

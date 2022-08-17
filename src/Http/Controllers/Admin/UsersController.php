@@ -4,10 +4,9 @@ namespace Rashidul\River\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Image;
+use Rashidul\River\Models\Admin;
 
 class UsersController extends Controller
 {
@@ -18,7 +17,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = Admin::all();
         $buttons = [
             ['Add New',route('river.users.create'), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
         ];
@@ -62,7 +61,7 @@ class UsersController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
         ]);
-        $user = new User();
+        $user = new Admin();
         $user->name = $request->name;
         $user->email = $request->email;
 //        $user->role = $request->role;
@@ -83,7 +82,7 @@ class UsersController extends Controller
         $buttons = [
             ['Back',route('river.users.index'), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
         ];
-        $user = User::findOrFail($id);
+        $user = Admin::findOrFail($id);
         $data = [
             'title' => 'Edit User',
             '_top_buttons' => $buttons,
@@ -107,7 +106,7 @@ class UsersController extends Controller
             'password' => 'string|min:6',
         ]);
 
-        $user = User::FindOrFail($id);
+        $user = Admin::FindOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
 //        $user->role = $request->role;
@@ -125,7 +124,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
+        $user = Admin::findOrFail($id);
         $user->delete();
         return redirect()->back()->with('success', 'Successfully Deleted done!');
     }

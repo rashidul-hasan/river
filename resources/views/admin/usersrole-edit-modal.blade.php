@@ -23,6 +23,12 @@
                         <span class="form-check-label">Active</span>
                     </label>
                 </div>
+                <div class="form-group mb-3 ">
+                    <label class="form-check">
+                        <input class="form-check-input" type="checkbox" name="is_developer" {{$item->is_developer == 1 ? 'checked' : ''}}>
+                        <span class="form-check-label">Developer</span>
+                    </label>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>

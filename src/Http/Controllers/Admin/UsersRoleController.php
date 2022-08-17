@@ -54,6 +54,9 @@ class UsersRoleController extends Controller
         if (isset($request->is_active)) {
             $role->is_active = true;
         }
+        if (isset($request->is_developer)) {
+            $role->is_developer = true;
+        }
         $role->save();
         Session::flash('success', 'Blog created successfully');
 
@@ -98,6 +101,9 @@ class UsersRoleController extends Controller
         $role->name = $request->name;
         if (isset($request->is_active)) {
             $role->is_active = true;
+        }
+        if (isset($request->is_developer)) {
+            $role->is_developer = true;
         }
         $role->save();
         Session::flash('success', 'Blog Updated successfully');

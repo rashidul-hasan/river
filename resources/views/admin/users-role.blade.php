@@ -22,6 +22,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Status</th>
+                                <th>Is Developer</th>
                                 <th class="w-1"></th>
                             </tr>
                             </thead>
@@ -44,6 +45,15 @@
                                         @endif
                                     </div>
                                 </td>
+                                    <td data-label="Title">
+                                        <div>
+                                            @if($item->is_developer == 1)
+                                                <span class="text-success">Yes</span>
+                                            @else
+                                                <span class="text-danger">No</span>
+                                            @endif
+                                        </div>
+                                    </td>
                                 <td>
                                     <div class="btn-list flex-nowrap">
                                         <a href="#" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#editModal{{$item->id}}">
@@ -83,6 +93,12 @@
                                 <label class="form-check">
                                     <input class="form-check-input" type="checkbox" name="is_active">
                                     <span class="form-check-label">Active</span>
+                                </label>
+                            </div>
+                            <div class="form-group mb-3 ">
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="is_developer">
+                                    <span class="form-check-label">Developer</span>
                                 </label>
                             </div>
                             <div class="form-footer">
