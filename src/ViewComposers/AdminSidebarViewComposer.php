@@ -89,6 +89,16 @@ class AdminSidebarViewComposer
                         'route' => 'river.datatypes.index',
                     ]
                 ]
+            ],
+            [
+                'label' => 'Users',
+                'icon' => 'fas fa-user', //feather icon-box
+                'route' => 'river.users.index',
+            ],
+            [
+                'label' => 'User Role',
+                'icon' => 'fas fa-user', //feather icon-box
+                'route' => 'river.users-role.index',
             ]
         ];
         if (RolesCache::isDeveloper()) {

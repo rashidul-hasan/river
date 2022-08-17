@@ -34,7 +34,8 @@
                     <li class="nav-item {{array_key_exists('children', $menu) ? 'dropdown' : ''}}">
                         <a class="nav-link {{array_key_exists('children', $menu) ? ' dropdown-toggle' : ''}}"
                            href="{{array_key_exists('route', $menu) ? route($menu['route']) : 'javascript:void(0)'}}"
-                           data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                           data-bs-toggle="{{array_key_exists('children', $menu) ? 'dropdown' : ''}}"
+                           data-bs-auto-close="false" role="button" aria-expanded="false">
                       <span class="nav-link-icon d-md-none d-lg-inline-block" >
                           <i class="{{array_key_exists('icon', $menu) ? $menu['icon'] : 'fas fa-folder'}}"></i>
                       </span>

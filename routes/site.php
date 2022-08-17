@@ -8,9 +8,7 @@ Route::group([
     ], function () {
     Route::get('login', 'Customer\Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Customer\Auth\LoginController@login')->name('login.post');
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', 'Site\HomeController@index')->name('homepage');
 });
 
 Route::group([
@@ -22,7 +20,6 @@ Route::group([
 
 
 });
-
 
 //dd(config('river.enable_ecommerce'));
 // E-commerce related routes

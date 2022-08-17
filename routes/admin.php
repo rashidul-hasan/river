@@ -18,6 +18,11 @@ Route::group([
     'as' => 'river.'
 ], function () {
 
+    //users crud
+    Route::resource('users', 'Admin\UsersController');
+
+    Route::resource('users-role', 'Admin\UsersRoleController');
+
     Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
     Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('is_developer')->default(0);
+            $table->boolean('is_active')->default(0);
             $table->timestamps();
         });
     }
