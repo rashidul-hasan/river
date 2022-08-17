@@ -47,6 +47,7 @@ class TemplatePageController extends Controller
         $files = TemplatePage::all();
         $buttons = [
             ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
+            ['Cache View',route('river.CacheView'), 'btn btn-info', '' /*label,link,class,id*/],
         ];
         $data = [
             'title' => 'Template pages (location: resources/views/_cache)',
@@ -109,6 +110,12 @@ class TemplatePageController extends Controller
         Artisan::call('river:cache-views');
         return redirect(route('river.template-pages.index'))
             ->with('success', 'Deleted!');
+    }
+
+    public function CacheView()
+    {
+        Artisan::call('river:cache-views');
+        return redirect()->back()->with('success', 'Successfully');
     }
 
 }

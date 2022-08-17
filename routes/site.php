@@ -8,18 +8,24 @@ Route::group([
     ], function () {
     Route::get('login', 'Customer\Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Customer\Auth\LoginController@login')->name('login.post');
-    Route::get('/', 'Site\HomeController@index')->name('homepage');
+    Route::get('register', 'Customer\Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'Customer\Auth\RegisterController@registerCustomer')->name('register');
 });
 
 Route::group([
-    'prefix' => 'admin',
-    'middleware' => ['web', 'river.auth:admins'],
-    'namespace' => 'Rashidul\River\Http\Controllers',
-    'as' => 'river.'
+    'middleware' => ['web', 'river.auth:customers'], 'namespace' => 'Rashidul\River\Http\Controllers', 'as' => 'riversite.'
 ], function () {
-
-
+    Route::get('user-dashboard', 'Customer\UserDashboardController@showDashboard')->name('customer.dashboard');
 });
+
+Route::group([
+    'namespace' => 'Rashidul\River\Http\Controllers',
+    'as' => 'riversite.'
+], function () {
+    Route::get('/', 'Site\HomeController@index')->name('homepage');
+});
+
+
 
 //dd(config('river.enable_ecommerce'));
 // E-commerce related routes

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Rashidul\River\Constants;
 
 class LoginController extends Controller
 {
@@ -36,8 +37,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('guest')->except('logout');
-        $this->middleware('guest:customer')->except('logout');
+        $this->middleware('river.guest:'.Constants::AUTH_GUARD_CUSTOMERS)->except('logout');
     }
 
     /**
@@ -47,15 +47,14 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        dd('ok');
         session()->put('previousUrl', url()->previous());
 
-        return view('site.auth.login', ['title' => 'Login']);
+        return view('_cache.login', ['title' => 'Login']);
     }
 
     public function customerLogin(Request $request)
     {
-        if(Auth::guard('customer')->attempt($request->only('email','password'),$request->filled('remember'))){
+        if(Auth::guard('customers')->attempt($request->only('email','password'),$request->filled('remember'))){
             //Authentication passed...
             return redirect()->intended('/');
         }else{
@@ -71,7 +70,7 @@ class LoginController extends Controller
     {
         $cart = collect(session()->get('cart'));
 
-        $destination = \Auth::guard('customer')->logout();
+        $destination = \Auth::guard('customers')->logout();
 
         if (!config('cart.destroy_on_logout')) {
             $cart->each(function ($rows, $identifier) {

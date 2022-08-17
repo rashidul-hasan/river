@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Customer;
+namespace Rashidul\River\Http\Controllers\Customer;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +10,7 @@ class UserDashboardController
 {
     public function showDashboard()
     {
-        return view('site.user-dashboard.dashboard', []);
+        return view('_cache.user-dashboard');
     }
 
 

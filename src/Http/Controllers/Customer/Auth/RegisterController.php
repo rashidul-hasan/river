@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Customer\Auth;
+namespace Rashidul\River\Http\Controllers\Customer\Auth;
 
-use App\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Rashidul\River\Constants;
+use Rashidul\River\Models\Customer;
 
 class RegisterController extends Controller
 {
@@ -40,7 +41,7 @@ class RegisterController extends Controller
     public function __construct()
     {
        // $this->middleware('guest');
-        $this->middleware('guest:customer');
+        $this->middleware('river.guest:'.Constants::AUTH_GUARD_CUSTOMERS)->except('logout');
     }
 
     /**
@@ -50,7 +51,8 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('site.auth.register', ['title' => 'Register']);
+
+        return view('_cache.register', ['title' => 'Login']);
     }
 
     /**
@@ -63,7 +65,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:100',
-            'email' => 'required|string|email|max:255|unique:customers',
+            'email' => 'required|string|email|max:255|unique:river_customers',
             'password' => 'required|string|min:6',
         ]);
     }
@@ -85,7 +87,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        Auth::guard('customer')->login($customer);
+        Auth::guard('customers')->login($customer);
 
         return redirect()->intended(route('customer.dashboard'));
     }

@@ -13,6 +13,6 @@ class HomeController extends Controller
           'title' => 'Homepage',
         ];
 
-//        return view('river::Commands.templates.home', $data);
+        return view('_cache.home', $data);
     }
 }
