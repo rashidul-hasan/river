@@ -14,7 +14,7 @@
                     {{ session()->get('message') }}
                 </div>
             @endif
-            <div class="col-8">
+            <div class="col-12">
                 <div class="card">
                     <div class="table-responsive">
                         <table class="table table-vcenter table-mobile-md card-table">
@@ -74,37 +74,6 @@
                             @endforeach
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <form action="{{route('river.users-role.store')}}" method="POST">
-                            @csrf
-                            <div class="form-group mb-3 ">
-                                <label class="form-label required">Name</label>
-                                <div>
-                                    <input type="text" class="form-control" placeholder="Enter Name" name="name">
-                                </div>
-                            </div>
-                            <div class="form-group mb-3 ">
-                                <label class="form-label required">Status</label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="is_active">
-                                    <span class="form-check-label">Active</span>
-                                </label>
-                            </div>
-                            <div class="form-group mb-3 ">
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="is_developer">
-                                    <span class="form-check-label">Developer</span>
-                                </label>
-                            </div>
-                            <div class="form-footer">
-                                <button type="submit" class="btn btn-success">Save</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>

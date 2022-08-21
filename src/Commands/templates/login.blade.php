@@ -27,10 +27,10 @@
                             @endif
                             <div class="form-group mt-3">
                                 <label for="name">Email</label>
-                                <input type="text" class="form-control" name="email" required>
+                                <input type="email" class="form-control" name="email" required>
                             </div>
                             <div class="form-group mt-3">
-                                <label for="name">Password</label>
+                                <label for="password">Password</label>
                                 <input type="password" class="form-control" name="password" required>
                             </div>
                             <div class="mt-3">

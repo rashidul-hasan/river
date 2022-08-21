@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
+use Rashidul\River\Models\DataType;
 use Rashidul\River\Models\Role;
+use Rashidul\River\Models\RolePermission;
 use Session;
 
 class UsersRoleController extends Controller
@@ -20,9 +23,14 @@ class UsersRoleController extends Controller
     {
         $roles = Role::all();
 
+        $buttons = [
+            ['Add New',route('river.users-role.create'), 'btn btn-primary', 'btn-add-new'],
+        ];
+
         $data = [
             'roles' => $roles,
             'title' => 'User Roles',
+            '_top_buttons' => $buttons,
         ];
 
         return view('river::admin.users-role', $data);
@@ -35,7 +43,21 @@ class UsersRoleController extends Controller
      */
     public function create()
     {
+        $buttons = [
+            ['Back', route('river.users-role.index'), 'btn btn-info', 'btn-add-new'],
+        ];
 
+        $routes = Route::getRoutes();
+        $types = DataType::all();
+
+        $data = [
+            'title' => 'Create User Role',
+            '_top_buttons' => $buttons,
+            'routes' => $routes,
+            'types' => $types,
+        ];
+
+        return view('river::admin.users-role-create', $data);
     }
 
     /**
@@ -49,6 +71,7 @@ class UsersRoleController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:100',
         ]);
+
         $role = new Role();
         $role->name = $request->name;
         if (isset($request->is_active)) {
@@ -57,12 +80,33 @@ class UsersRoleController extends Controller
         if (isset($request->is_developer)) {
             $role->is_developer = true;
         }
-        $role->save();
-        Session::flash('success', 'Blog created successfully');
+
+        if ($role->save()){
+            if ($request->route_names){
+                foreach ($request->route_names as $route_name){
+                    RolePermission::create([
+                        'role_id' => $role->id,
+                        'permission' => $route_name,
+                        'type' => RolePermission::TYPE_ROUTE,
+                    ]);
+                }
+            }
+
+            if ($request->data_types){
+                foreach ($request->data_types as $data_type){
+                    RolePermission::create([
+                        'role_id' => $role->id,
+                        'permission' => $data_type,
+                        'type' => RolePermission::TYPE_CUSTOMTYPE,
+                    ]);
+                }
+            }
+
+            Session::flash('success', 'Created successfully');
+        }
 
         return redirect()->back();
 
-//        return redirect()->route('river.users.index')->with('success', 'Successfully Created done!');
     }
 
     /**

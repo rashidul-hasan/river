@@ -89,7 +89,7 @@ class RegisterController extends Controller
 
         Auth::guard('customers')->login($customer);
 
-        return redirect()->intended(route('customer.dashboard'));
+        return redirect()->intended(route('riversite.customer.dashboard'));
     }
 
 }

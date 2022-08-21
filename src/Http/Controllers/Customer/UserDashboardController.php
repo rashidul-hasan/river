@@ -22,25 +22,21 @@ class UserDashboardController
      */
     public function profile()
     {
-        $user = auth()->user();
-
+        $user = auth('customers')->user();
         $data = [
           'user' => $user,
         ];
 
-        return view('site.user-dashboard.profile', $data);
+        return view('_cache.edit-profile', $data);
     }
 
     public function editProfile()
     {
-        $user = auth('customer')->user();
-
+        $user = auth('customers')->user();
         $data = [
-          'user' => $user,
+            'user' => $user,
         ];
-
-
-        return view('site.user-dashboard.edit-profile', $data);
+        return view('_cache.edit-profile', $data);
     }
 
     /**
@@ -49,35 +45,35 @@ class UserDashboardController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function updateProfile(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
         ]);
-
-        $user = auth()->user();
+        $user = auth('customers')->user();
         $user->name = $request->name;
         $user->phone = $request->phone;
         $user->email = $request->email;
+        $user->address = $request->address;
         $user->save();
 
         return back()->with('success', 'Profile updated successfully!');
     }
 
-    public function showChangePasswordPage()
+    public function updatePasswordPage()
     {
-        return view('site.user-dashboard.change-password', []);
+        return view('_cache.update-password');
     }
 
-    public function changePassword(Request $request)
+    public function updatePassword(Request $request)
     {
         $request->validate([
             'old_password' => 'required',
             'new_password' => 'required|min:6|confirmed|different:old_password',
         ]);
 
-        $user = Auth::user();
+        $user = auth('customers')->user();
 
         if (Hash::check($request->old_password, $user->password)) {
             $user->fill([
