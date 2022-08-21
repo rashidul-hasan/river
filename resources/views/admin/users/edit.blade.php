@@ -46,18 +46,16 @@
                                 <label class="form-label required">Password</label>
                                 <div>
                                     <input type="password" class="form-control" placeholder="Password" name="password">
-                                    <small class="form-hint">
-                                        Your password must be 8-20 characters long, contain letters and numbers, and must not contain
-                                        spaces, special characters, or emoji.
-                                    </small>
                                 </div>
                             </div>
                             <div class="form-group mb-3 ">
                                 <label class="form-label">Role</label>
                                 <div>
-                                    <select class="form-select">
-                                        <option>Option 3</option>
-                                        <option>Option 4</option>
+                                    <select class="form-select" name="role_id">
+                                        <option value="" selected disabled>Select</option>
+                                        @foreach($roles as $role)
+                                            <option value="{{$role->id}}" {{$user->role_id == $role->id ? 'selected' : ''}}>{{$role->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

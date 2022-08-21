@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Rashidul\River\Models\Admin;
+use Rashidul\River\Models\Role;
 
 class UsersController extends Controller
 {
@@ -40,9 +41,11 @@ class UsersController extends Controller
         $buttons = [
             ['Back',route('river.users.index'), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
         ];
+        $roles = Role::where('is_active', true)->get();
         $data = [
             'title' => 'Add User',
-            '_top_buttons' => $buttons
+            '_top_buttons' => $buttons,
+            'roles' => $roles
         ];
 
         return view('river::admin.users.create', $data);
@@ -83,10 +86,12 @@ class UsersController extends Controller
             ['Back',route('river.users.index'), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
         ];
         $user = Admin::findOrFail($id);
+        $roles = Role::where('is_active', true)->get();
         $data = [
             'title' => 'Edit User',
             '_top_buttons' => $buttons,
-            'user' => $user
+            'user' => $user,
+            'roles' => $roles
         ];
         return view('river::admin.users.edit', $data);
     }
