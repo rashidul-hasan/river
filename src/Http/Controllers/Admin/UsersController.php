@@ -5,7 +5,9 @@ namespace Rashidul\River\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Rashidul\River\Constants;
 use Rashidul\River\Models\Admin;
 use Rashidul\River\Models\Role;
 
@@ -18,9 +20,10 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = Admin::all();
+        $users = Admin::where('id' ,'!=',Auth::guard(Constants::AUTH_GUARD_ADMINS)->id())->get();
+
         $buttons = [
-            ['Add New',route('river.users.create'), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
+            ['Add New',route('river.users.create'), 'btn btn-primary', 'btn-add-new'],
         ];
         $data = [
             'users' => $users,
