@@ -33,7 +33,8 @@ Route::group([
     Route::get('storefront', 'Admin\Settings\AppearanceController@storeFront')->name('store.front');
     Route::post('update/settings', 'Admin\Settings\SettingsController@updateSettings')->name('store-settings');
     Route::resource('sliders', 'Admin\Settings\SliderController');
-    Route::resource('banners', 'Admin\SliderController');
+
+    Route::resource('banners', 'Admin\Settings\BannersController');
 
     //template manager
     Route::resource('template-pages', 'Admin\TemplatePageController')->except(['create', 'show']);

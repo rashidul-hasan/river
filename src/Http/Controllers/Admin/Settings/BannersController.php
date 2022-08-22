@@ -2,10 +2,11 @@
 
 namespace Rashidul\River\Http\Controllers\Admin\Settings;
 
-use App\Banner;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Image;
+use Illuminate\Support\Str;
+use Rashidul\River\Models\Banner;
+use Rashidul\River\Services\ImageUploadService;
 
 class BannersController extends Controller
 {
@@ -19,10 +20,10 @@ class BannersController extends Controller
         $banners = Banner::all();
         $data = [
             'banners' => $banners,
-            'title' => 'All Banners'
+            'title' => 'Banners'
         ];
 
-        return view('admin.banners.index',$data);
+        return view('river::admin.settings.banners.index', $data);
     }
 
     /**
@@ -46,35 +47,24 @@ class BannersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, ImageUploadService $imageUploadService)
     {
         $this->validate($request, [
             'image' => 'required',
-            'orders' => 'unique:banners',
+            'slug' => 'unique:river_banners'
         ]);
 
-        $slider = new Banner();
-        $slider->image_url = $request->image_url;
-        $slider->orders = $request->orders;
-        $slider->position = $request->position;
-        if ($request->file('image')){
-            $file = $request->file('image');
-            $filename = date('Y-m-d').'-'.uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('uploads/banners/'),$filename);
-            $slider->image = 'uploads/banners/'.$filename;
-        }
-        if (isset($request->status)) {
-            $slider->status = true;
-        } else {
-            $slider->status = false;
-        }
-        if (isset($request->open_new_tab)) {
-            $slider->open_new_tab = '_blank';
+        $banner = new Banner();
+
+        if ($request->hasFile('image')){
+            $banner->image = $imageUploadService->upload($request->file('image'),Banner::BASE_PATH);
         }
 
-        $slider->save();
+        $banner->alt_text = $request->alt_text;
+        $banner->slug = Str::slug(date('Ymd') . uniqid());
 
-        return redirect()->route('banners.index')->with('success', 'Successfully Created done!');
+        $banner->save();
+        return redirect()->route('river.banners.index')->with('success', 'Successfully Created Done!');
     }
 
 
@@ -86,13 +76,17 @@ class BannersController extends Controller
      */
     public function edit($id)
     {
-        $banner = Banner::findorFail($id);
+        $banner = Banner::findOrFail($id);
+        $buttons = [
+            ['Back',route('river.banners.index'), 'btn btn-primary', 'btn-add-new'],
+        ];
         $data = [
             'banner' => $banner,
-            'title' => 'Edit Banner',
+            'title' => 'Banner Edit',
+            '_top_buttons' => $buttons,
         ];
 
-        return view('admin.banners.edit',$data);
+        return view('river::admin.settings.banners.edit', $data);
     }
 
     /**
@@ -102,38 +96,20 @@ class BannersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,ImageUploadService $imageUploadService, $id)
     {
         $this->validate($request, [
-            'orders' => 'unique:banners,orders,'.$id,
+            'slug' => 'unique:river_banners'.$id,
         ]);
 
-        $banner = Banner::findOrFail($id);
+        $banner = Banner::find($id);
 
-        if ($request->file('image')){
-            $file = $request->file('image');
-            @unlink(public_path($banner->image));
-            $filename = date('Y-m-d').'-'.uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('uploads/banners/'),$filename);
-            $banner->image = 'uploads/banners/'.$filename;
+        if ($request->hasFile('image')){
+            $banner->image = $imageUploadService->upload($request->file('image'),Banner::BASE_PATH);
         }
-        $banner->image_url = $request->image_url;
-        $banner->orders = $request->orders;
-        $banner->position = $request->position;
-        if (isset($request->status)) {
-            $banner->status = true;
-        } else {
-            $banner->status = false;
-        }
-        if (isset($request->open_new_tab)) {
-            $banner->open_new_tab = '_blank';
-        }else {
-            $banner->open_new_tab = null;
-        }
-
+        $banner->alt_text = $request->alt_text;
         $banner->save();
-
-        return redirect()->route('banners.index')->with('success', 'Successfully Updated done!');
+        return redirect()->route('river.banners.index')->with('success', 'Successfully Created Done!');
     }
 
     /**
@@ -160,14 +136,4 @@ class BannersController extends Controller
         }
     }
 
-    public function bannerStatus($id, $status)
-    {
-        $data = Banner::findOrfail($id);
-        $data->status = $status;
-        $data->save();
-        return response()->json([
-            'success' => true,
-            'message' => 'Status Updated successfully!',
-        ], 200);
-    }
 }
