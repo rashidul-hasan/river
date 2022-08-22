@@ -1,4 +1,4 @@
-@extends('river::admin.layouts.master')
+ @extends('river::admin.layouts.master')
 
 @section('website_setup') active pcoded-trigger @stop
 
@@ -22,24 +22,22 @@
                                 <tbody>
                                 @foreach($sliders as $slider)
                                     <tr>
-                                        <td><img src="{{asset($slider->image)}}" width="100px" height="50px"></td>
+                                        <td><img src="{{asset($slider->image)}}" width="50px" height="50px"></td>
                                         <td>{{$slider->orders}}</td>
                                         <td>{{$slider->image_url}}</td>
                                         <td>
                                             <input type="checkbox" class="js-switch" id="statusChange" data-id="{{$slider->id}}" {{$slider->status === 1 ? 'checked' : ''}}/>
                                         </td>
-                                        <td class="d-flex">
-                                            <a class="mr-3" href="{{ route('river.sliders.edit', $slider->id) }}">
-                                                <i class="icon feather icon-edit f-w-600 f-16 text-c-green"></i>
-                                            </a>
-                                            <form id="delete-form-{{$slider->id}}"
-                                                  action="{{ route('river.sliders.destroy', $slider->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
-                                            <a class="text-danger" href="javascript:void(0);" onclick="deleteTable({{$slider->id}})">
-                                                <i class="feather icon-trash-2 f-w-600 f-16 text-c-red"></i>
-                                            </a>
+                                        <td class="">
+                                            <div class="btn-list flex-nowrap">
+                                                <a class="mr-3 btn btn-sm btn-warning" href="{{ route('river.sliders.edit', $slider->id) }}">
+                                                    Edit
+                                                </a>
+                                                <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.sliders.destroy', $slider->id) }}"
+                                                   data-href="{{ route('river.sliders.destroy', $slider->id) }}">
+                                                    Delete
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -54,45 +52,45 @@
                     <div class="card-body">
                         <form action="{{ route('river.sliders.store') }}" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
-                                <label for="title">Url</label>
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="title">Url</div>
                                 <input type="text" class="form-control" id="image_url" name="image_url" value="{{ old('image_url') }}"/>
 
                             </div>
-                            <div class="form-group">
-                                <label for="orders">Order By</label>
-                                <input type="number" class="form-control @error('orders') is-invalid @enderror"
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="orders">Order By</div>
+                                <input type="number" class="form-control "
                                        id="orders" name="orders" value="{{ old('orders') }}"/>
                             </div>
-                            <div class="form-group mb-1">
-                                <label for="image">Slider image<span class="text-danger">*</span> <small class=""> (940 x 509)</small></label>
-                                <div class="file-input">
-                                    <input type="file" name="image" id="image" class="file-input__input" onchange="singleImagePreview(event,'ImgPreview1')"/>
-                                    <label class="file-input__label" for="image">
-                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="upload" class="svg-inline--fa fa-upload fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                            <path fill="currentColor" d="M296 384h-80c-13.3 0-24-10.7-24-24V192h-87.7c-17.8 0-26.7-21.5-14.1-34.1L242.3 5.7c7.5-7.5 19.8-7.5 27.3 0l152.2 152.2c12.6 12.6 3.7 34.1-14.1 34.1H320v168c0 13.3-10.7 24-24 24zm216-8v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h136v8c0 30.9 25.1 56 56 56h80c30.9 0 56-25.1 56-56v-8h136c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"></path>
-                                        </svg>
-                                        <span>Upload file</span>
-                                    </label>
-                                </div>
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="group">Group</div>
+                                <input type="text" class="form-control" id="group" name="group" value="{{ old('group') }}"/>
                             </div>
-                            <div class="form-group">
+                            <div class="mb-3">
+                                <div class="form-label required">Image</div>
+                                <input type="file" class="form-control" name="image" id="image" onchange="singleImagePreview(event,'ImgPreview1')">
+                            </div>
+                            <div class="form-group mb-3">
                                 <div class="d-flex align-items-center flex-wrap">
-                                                    <span class="pip d-none">
-                                                        <img class="imageThumb" id="ImgPreview1" src="">
-                                                        <span class="remove" id="removeImage1" onclick="removeSingleImage('ImgPreview1','image')">
-                                                            Remove
-                                                        </span>
-                                                    </span>
+                                    <span class="pip d-none">
+                                        <img class="imageThumb" id="ImgPreview1" src="" style="height: 200px;">
+                                        <span class="remove btn btn-sm btn-danger" id="removeImage1" onclick="removeSingleImage('ImgPreview1','image')">
+                                            Remove
+                                        </span>
+                                    </span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="form-label d-block">Active</label>
-                                <input type="checkbox" class="form-control" name="status"/>
+                            <div class="form-group mb-3">
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="status">
+                                    <span class="form-check-label">Active</span>
+                                </label>
                             </div>
-                            <div class="form-group">
-                                <label class="form-label d-block">Open New Tab</label>
-                                <input type="checkbox" class="form-control" name="open_new_tab"/>
+                            <div class="form-group mb-3">
+                                <label class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="open_new_tab">
+                                    <span class="form-check-label">Open New Tab</span>
+                                </label>
                             </div>
                             <button type="submit" class="btn btn-success">Save</button>
                         </form>
@@ -104,12 +102,7 @@
 @stop
 
 @push('scripts')
-<script src="/admin/assets/js/pages/form-wizard.init.js"></script>
 <script>
-    $(document).ready(function(){
-        $('.dropify').dropify();
-    });
-
     $('body').on('change',"#statusChange",function () {
         var id = $(this).attr('data-id');
 
@@ -131,27 +124,15 @@
 </script>
 
 <script>
-    function deleteTable(id){
-
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    document.getElementById('delete-form-'+id).submit(),
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
-            }
-        })
-    }
+    $('.confirm-delete').click(function (e) {
+        var $this = $(this);
+        e.preventDefault();
+        if (confirm('Are you sure you want to delete this item?')) {
+            DynamicForm.create($this.attr('href'), "DELETE")
+                .addCsrf()
+                .submit();
+        }
+    });
 
 </script>
 

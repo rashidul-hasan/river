@@ -17,6 +17,7 @@ class CreateSlidersTable extends Migration
             $table->bigIncrements('id');
             $table->string('image_url')->nullable();
             $table->string('image')->nullable();
+            $table->string('group')->nullable();
             $table->boolean('status')->nullable();
             $table->string('open_new_tab')->nullable();
             $table->integer('orders')->nullable();

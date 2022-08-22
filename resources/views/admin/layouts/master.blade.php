@@ -75,6 +75,29 @@
 @stack('scripts')
 
 <script>
+    //single image preview
+    function readURL(input, imgControlName) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $(imgControlName).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function singleImagePreview(e, preview) {
+        $('#' + preview).closest('.pip').removeClass('d-none');
+        var imgControlName = "#" + preview;
+        readURL(e.target, imgControlName);
+    }
+    function removeSingleImage(ImgPreview,image) {
+        $("#" + image).val("");
+        $("#" + ImgPreview).attr("src", "");
+        $('#' + ImgPreview).closest('.pip').addClass('d-none');
+    }
+</script>
+
+<script>
     toastr.options = {
         "closeButton": true,
         "debug": false,

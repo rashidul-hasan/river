@@ -19,7 +19,7 @@ class SliderController extends Controller
         $sliders = Slider::all();
         $data = [
             'sliders' => $sliders,
-            'title' => 'Sliders & Banners',
+            'title' => 'Sliders',
         ];
 
         return view('river::admin.settings.sliders.index', $data);
@@ -44,6 +44,7 @@ class SliderController extends Controller
         }
 
         $slider->image_url = $request->image_url;
+        $slider->group = $request->group;
         $slider->orders = $request->orders;
         $slider->status = $request->has('status') ? true : false;
         $slider->open_new_tab = $request->has('open_new_tab') ? '_blank' : '';
@@ -61,7 +62,16 @@ class SliderController extends Controller
     public function edit($id)
     {
         $slider = Slider::findOrFail($id);
-        return view('river::admin.settings.sliders.edit', compact('slider'));
+        $buttons = [
+            ['Back',route('river.sliders.index'), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
+        ];
+        $data = [
+            'slider' => $slider,
+            'title' => 'Slider Edit',
+            '_top_buttons' => $buttons,
+        ];
+
+        return view('river::admin.settings.sliders.edit', $data);
     }
 
     /**
@@ -71,15 +81,17 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,ImageUploadService $imageUploadService, $id )
     {
         $slider = Slider::findOrFail($id);
 
-        if ($request->file('image')){
-            $slider->image = image_upload($request->file('image'),'/uploads/sliders/', $slider->image);
+
+        if ($request->hasFile('image')){
+            $slider->image = $imageUploadService->upload($request->file('image'),Slider::BASE_PATH);
         }
 
         $slider->image_url = $request->image_url;
+        $slider->group = $request->group;
         $slider->orders = $request->orders;
         if (isset($request->status)) {
             $slider->status = true;
@@ -94,7 +106,7 @@ class SliderController extends Controller
 
         $slider->save();
 
-        return redirect()->route('sliders.index')->with('success', 'Successfully Updated done!');
+        return redirect()->route('river.sliders.index')->with('success', 'Successfully Updated done!');
     }
 
     /**

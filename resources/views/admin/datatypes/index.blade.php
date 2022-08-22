@@ -29,13 +29,15 @@
                                         {{$a->slug}}
                                     </td>
                                     <td>
-                                        <a href="{{route('river.datatypes.edit', $a->id)}}">
-                                            <i class="icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green"></i>
-                                        </a>
-                                        <a href="{{ route('river.datatypes.destroy', $a->id) }}"
-                                           class="confirm-delete" data-href="{{ route('river.datatypes.destroy', $a->id) }}">
-                                            <i class="feather icon-trash-2 f-w-600 f-16 text-c-red"></i>
-                                        </a>
+                                        <div class="btn-list flex-nowrap">
+                                            <a href="{{route('river.datatypes.edit', $a->id)}}" class="btn btn-sm btn-info">
+                                                Edit
+                                            </a>
+                                            <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.datatypes.destroy', $a->id) }}"
+                                               data-href="{{ route('river.datatypes.destroy', $a->id) }}">
+                                                Delete
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
