@@ -69,7 +69,6 @@
                                         </form>
                                     </div>
                                 </td>
-                                @include('river::admin.usersrole-edit-modal')
                             </tr>
                             @endforeach
                             </tbody>

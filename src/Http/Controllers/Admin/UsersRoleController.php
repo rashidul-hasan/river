@@ -48,12 +48,29 @@ class UsersRoleController extends Controller
         ];
 
         $routes = Route::getRoutes();
+
+        $remove_routes = ['fm.initialize','fm.content','fm.tree','fm.select-disk','fm.upload','fm.delete','fm.paste','fm.rename','fm.download','fm.thumbnails','fm.preview',
+                            'fm.url','fm.create-directory','fm.create-file','fm.update-file','fm.stream-file','fm.zip','fm.unzip','fm.ckeditor','fm.tinymce','fm.tinymce5','fm.summernote',
+                            'fm.fm-button','debugbar.openhandler','debugbar.clockwork','debugbar.assets.css','debugbar.assets.js','debugbar.cache.delete','river.','riversite.login','riversite.login.post',
+                            'riversite.register','riversite.register','riversite.customer.dashboard','riversite.customer.editProfile','riversite.update.profile','riversite.update.passwordPage',
+                            'riversite.update.password','riversite.logout','riversite.homepage','ignition.healthCheck','ignition.executeSolution','ignition.updateConfig'
+                        ];
+        $route_name = [];
+
+        foreach (Route::getRoutes() as $route) {
+            if ($route->getName()){
+                $route_name[] = $route->getName();
+            }
+        }
+
         $types = DataType::all();
 
         $data = [
             'title' => 'Create User Role',
             '_top_buttons' => $buttons,
             'routes' => $routes,
+            'route_name' => $route_name,
+            'remove_routes' => $remove_routes,
             'types' => $types,
         ];
 
@@ -118,11 +135,11 @@ class UsersRoleController extends Controller
     public function edit($id)
     {
         $buttons = [
-            ['Back',route('river.users.index'), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
+            ['Back',route('river.users.index'), 'btn btn-primary', 'btn-add-new'],
         ];
-        $user = User::findOrFail($id);
+        $user = Role::findOrFail($id);
         $data = [
-            'title' => 'Edit User',
+            'title' => 'Edit Role',
             '_top_buttons' => $buttons,
             'user' => $user
         ];
