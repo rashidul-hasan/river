@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use Rashidul\River\Models\DataType;
 use Rashidul\River\Models\Role;
 use Rashidul\River\Models\RolePermission;
+use Rashidul\River\Utility\RolesCache;
 use Session;
 
 class UsersRoleController extends Controller
@@ -88,9 +89,10 @@ class UsersRoleController extends Controller
                     ]);
                 }
             }
-
+            RolesCache::forgetCache();
             return redirect()->route('river.users-role.index')->with('success', 'Updated Successfully..!');
         }
+        RolesCache::forgetCache();
         return redirect()->back();
     }
 
@@ -162,8 +164,10 @@ class UsersRoleController extends Controller
                     ]);
                 }
             }
+            RolesCache::forgetCache();
             return redirect()->route('river.users-role.index')->with('success', 'Updated Successfully..!');
         }
+        RolesCache::forgetCache();
         return redirect()->back();
     }
 
@@ -179,6 +183,7 @@ class UsersRoleController extends Controller
         if ($data->delete()){
             RolePermission::where('role_id', $id)->delete();
         }
+        RolesCache::forgetCache();
         return redirect()->route('river.users-role.index')->with('success', 'Successfully Deleted done!');
     }
 

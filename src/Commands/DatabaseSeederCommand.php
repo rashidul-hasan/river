@@ -30,19 +30,14 @@ class DatabaseSeederCommand extends Command
             'role_id' => 1,
             'name' => 'Admin',
             'email'=>'admin@gmail.com',
-            'password' => Hash::make('1234')
+            'password' => Hash::make('1234'),
+            'is_developer' => 1
         ]);
 
         DB::table('river_roles')->insert([
             'id' => 1,
-            'name' => 'Developer',
-            'is_developer' => 1
+            'name' => 'Developer'
         ]);
-
-        /*DB::table('river_role_permission')->insert([
-            'role_id' => 1,
-            'permission' => 'GOD'
-        ]);*/
     }
 
     private function seedTemplateFiles()
