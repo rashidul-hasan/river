@@ -135,15 +135,46 @@ class UsersRoleController extends Controller
     public function edit($id)
     {
         $buttons = [
-            ['Back',route('river.users.index'), 'btn btn-primary', 'btn-add-new'],
+            ['Back', route('river.users-role.index'), 'btn btn-info', 'btn-add-new'],
         ];
-        $user = Role::findOrFail($id);
+
+        $routes = Route::getRoutes();
+        $types = DataType::all();
+        $role = Role::findOrFail($id);
+
+        $remove_routes = ['fm.initialize','fm.content','fm.tree','fm.select-disk','fm.upload','fm.delete','fm.paste','fm.rename','fm.download','fm.thumbnails','fm.preview',
+            'fm.url','fm.create-directory','fm.create-file','fm.update-file','fm.stream-file','fm.zip','fm.unzip','fm.ckeditor','fm.tinymce','fm.tinymce5','fm.summernote',
+            'fm.fm-button','debugbar.openhandler','debugbar.clockwork','debugbar.assets.css','debugbar.assets.js','debugbar.cache.delete','river.','riversite.login','riversite.login.post',
+            'riversite.register','riversite.register','riversite.customer.dashboard','riversite.customer.editProfile','riversite.update.profile','riversite.update.passwordPage',
+            'riversite.update.password','riversite.logout','riversite.homepage','ignition.healthCheck','ignition.executeSolution','ignition.updateConfig'
+        ];
+
+        $route_name = [];
+
+        foreach (Route::getRoutes() as $route) {
+            if ($route->getName()){
+                $route_name[] = $route->getName();
+            }
+        }
+
+        $userCustomType = RolePermission::where('role_id', $id)->where('type', RolePermission::TYPE_CUSTOMTYPE)->get()->toArray();
+
+        foreach ($userCustomType as $row){
+            $userCustomType = $row;
+        }
+
         $data = [
-            'title' => 'Edit Role',
+            'title' => 'Edit User Role',
             '_top_buttons' => $buttons,
-            'user' => $user
+            'routes' => $routes,
+            'route_name' => $route_name,
+            'remove_routes' => $remove_routes,
+            'types' => $types,
+            'role' => $role,
+            'userCustomType' => $userCustomType,
         ];
-        return view('river::admin.users.edit', $data);
+
+        return view('river::admin.users-role-edit', $data);
     }
 
     /**
@@ -181,7 +212,9 @@ class UsersRoleController extends Controller
     public function destroy($id)
     {
         $data = Role::findOrFail($id);
-        $data->delete();
+        if ($data->delete()){
+            RolePermission::where('role_id', $id)->delete();
+        }
         return redirect()->back()->with('success', 'Successfully Deleted done!');
     }
 }

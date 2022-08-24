@@ -22,7 +22,6 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Status</th>
-                                <th>Is Developer</th>
                                 <th class="w-1"></th>
                             </tr>
                             </thead>
@@ -45,18 +44,9 @@
                                         @endif
                                     </div>
                                 </td>
-                                    <td data-label="Title">
-                                        <div>
-                                            @if($item->is_developer == 1)
-                                                <span class="text-success">Yes</span>
-                                            @else
-                                                <span class="text-danger">No</span>
-                                            @endif
-                                        </div>
-                                    </td>
                                 <td>
                                     <div class="btn-list flex-nowrap">
-                                        <a href="#" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#editModal{{$item->id}}">
+                                        <a href="{{route('river.users-role.edit',$item->id)}}" class="btn btn-sm btn-info">
                                            Edit
                                         </a>
                                         <a class="btn btn-sm btn-danger confirm-delete" href="javascript:void(0);" onclick="deleteTable({{$item->id}})">

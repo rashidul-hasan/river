@@ -23,6 +23,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
+                                <th>Developer</th>
                                 <th class="w-1"></th>
                             </tr>
                             </thead>
@@ -42,6 +43,13 @@
                                 </td>
                                 <td class="text-muted" data-label="Role">
                                     {{$item->role ?? '-'}}
+                                </td>
+                                <td class="text-muted" data-label="Role">
+                                    @if($item->is_developer == 1)
+                                        <span class="text-success">Yes</span>
+                                    @else
+                                        <span class="text-danger">No</span>
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="btn-list flex-nowrap">
