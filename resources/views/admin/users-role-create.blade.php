@@ -33,12 +33,6 @@
                                         <span class="form-check-label">Active</span>
                                     </label>
                                 </div>
-                                <div class="form-group mb-3 ">
-                                    <label class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="is_developer">
-                                        <span class="form-check-label">Developer</span>
-                                    </label>
-                                </div>
                                 <div class="form-group mb-3 row">
                                     <label class="form-label required">Data Types</label>
                                     @foreach($types as $data)
@@ -73,12 +67,20 @@
                                 </div>
                                 <div class="form-group mb-3 ">
                                     <label class="form-label required">All Routes</label>
-                                    @foreach($routes as $route)
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input cursor-pointer" type="checkbox" id="{{$route->getName()}}" value="{{$route->getName()}}" name="route_names[]">
-                                            <label class="form-check-label" for="{{$route->getName()}}">{{$route->getName()}}</label>
-                                        </div>
-                                    @endforeach
+                                    <div class="row">
+                                        @foreach(array_chunk($route_name, count($route_name)/4) as $chunk)
+                                            <div class="col-md-3">
+                                                @foreach($chunk as $route)
+                                                    @if(!in_array($route, $remove_routes))
+                                                        <div class="form-check mb-2">
+                                                            <input class="form-check-input cursor-pointer" type="checkbox" id="{{$route}}" value="{{$route}}" name="route_names[]">
+                                                            <label class="form-check-label" for="{{$route}}">{{$route}}</label>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
 
                                 <div class="form-footer">
