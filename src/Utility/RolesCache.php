@@ -13,9 +13,10 @@ class RolesCache
     public static function hasPermission($permission, $type)
     {
         $role = self::getAuthRole();
+        $user = Auth::guard('admins')->user();
 
         if ($role == null) return false;
-        if ($role->is_developer) return true;
+        if ($user->is_developer) return true;
 
         $check = $role->permissions->first(function ($value, $key) use($permission, $type){
             return (($value->permission == $permission)
@@ -29,10 +30,8 @@ class RolesCache
 
     public static function isDeveloper()
     {
-        $role = self::getAuthRole();
-
-        if ($role == null) return false;
-        return (bool)$role->is_developer;
+        $user = Auth::guard('admins')->user();
+        return (bool)$user->is_developer;
     }
 
     public static function getAuthRole()
@@ -44,5 +43,10 @@ class RolesCache
                 ->where('id', $role_id)
                 ->first();
         });
+    }
+
+    public static function forgetCache()
+    {
+        Cache::forget('_permissions');
     }
 }
