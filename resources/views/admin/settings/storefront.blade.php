@@ -60,6 +60,34 @@
                                        value="{{ river_settings('open_hour') }}">
                             </div>
                         </div>
+                        <div class="form-group row mb-3">
+                            <label class="col-md-4">FB Client Id</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="facebook_client_id"
+                                       value="{{ river_settings('facebook_client_id') }}">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <label class="col-md-4">FB Client Secrete</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="facebook_client_secret"
+                                       value="{{ river_settings('facebook_client_secret') }}">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <label class="col-md-4">Google Client Id</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="google_client_id"
+                                       value="{{ river_settings('google_client_id') }}">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <label class="col-md-4">Google Client Secrete</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="google_client_secret"
+                                       value="{{ river_settings('google_client_secret') }}">
+                            </div>
+                        </div>
                         <div class="form-group row mb-0 float-right">
                             <div class="col-md-8">
                                 <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
@@ -179,10 +207,10 @@
                     <form class="custom-validation" action="{{route('river.store-settings')}}" method="POST">
                         @csrf
                         <div class="form-group row mb-3">
-                            <label class="col-md-4">Youtube</label>
+                            <label class="col-md-4">Instagram</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="youtube"
-                                       value="{{river_settings('youtube')}}">
+                                <input type="text" class="form-control" name="Instagram"
+                                       value="{{river_settings('Instagram')}}">
                             </div>
                         </div>
                         <div class="form-group row mb-3">
@@ -197,6 +225,13 @@
                             <div class="col-md-8">
                                 <input type="text" class="form-control" name="twitter"
                                        value="{{river_settings('twitter')}}">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <label class="col-md-4">LinkedIn</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="LinkedIn"
+                                       value="{{river_settings('LinkedIn')}}">
                             </div>
                         </div>
                         <div class="form-group row mb-3">

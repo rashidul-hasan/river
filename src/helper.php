@@ -12,8 +12,8 @@ if (! function_exists('river_settings')) {
     }
 }
 
-if (! function_exists('show_banner_image')) {
-    function show_banner_image($slug, $default = '')
+if (! function_exists('river_banner')) {
+    function river_banner($slug, $default = '')
     {
         $banner = \Rashidul\River\Models\Banner::where('slug', $slug)->first();
         if ($banner){

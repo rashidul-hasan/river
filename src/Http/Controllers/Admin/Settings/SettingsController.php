@@ -12,26 +12,15 @@ class SettingsController extends Controller
 {
 
     protected $settings = [
-        'name', 'phone', 'email', 'address', 'header_text', 'facebook', 'twitter', 'youtube', 'about',
-        'footertext', 'feature_title_1', 'feature_subt_1', 'feature_title_2', 'feature_subt_2',
-        'feature_title_3', 'feature_subt_3', 'feature_title_4', 'feature_subt_4',
-        'free_ship_min_amount','inside_ship_amount','outside_ship_amount','map_code','cod_title','cod_desc',
-        'bkash_title','bkash_desc','rocket_title','rocket_desc','nagad_title','nagad_desc','imo_whatsup','meta_title',
-        'meta_description','meta_keywords','site_moto', 'theme_color', 'open_hour','notice'
+        'name', 'phone', 'email', 'address', 'header_text', 'facebook', 'twitter', 'Instagram', 'about',
+        'footertext','map_code','imo_whatsup','meta_title','theme_color', 'open_hour','notice','facebook_client_id','facebook_client_secret',
+        'google_client_id','google_client_secret','LinkedIn'
     ];
 
     protected $settingsImages = [
         'header_logo',
         'footer_logo',
         'favicon',
-        'pay_method_img',
-        'meta_img',
-        'feature_icon_1',
-        'feature_icon_2',
-        'feature_icon_3',
-        'feature_icon_4',
-
-
     ];
 
     protected $settingsCheck = [

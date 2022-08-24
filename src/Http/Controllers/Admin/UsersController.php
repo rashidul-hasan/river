@@ -73,7 +73,6 @@ class UsersController extends Controller
         $user->role_id = $request->role_id;
         $user->password = Hash::make($request->password);
         $user->is_developer = isset($request->is_developer) ? true : false;
-
         $user->save();
 
         return redirect()->route('river.users.index')->with('success', 'Successfully Created done!');
@@ -113,7 +112,6 @@ class UsersController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:100',
             'email'  =>  'required|email|max:255||unique:users,id,'.$id,
-            'password' => 'string|min:6',
         ]);
 
         $user = Admin::FindOrFail($id);

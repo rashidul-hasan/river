@@ -22,7 +22,7 @@
     @foreach($type->fields as $field)
     <tr>
         <td>
-            <input type="checkbox" class="form-control"
+            <input type="checkbox" class="form-check-input"
                    name="field[{{$field->id}}][delete_field]">
         </td>
         <td>
@@ -94,12 +94,12 @@
             </select>
         </td>
         <td>
-            <input type="checkbox" class="form-control"
+            <input type="checkbox" class="form-check-input"
                    @if($field->is_required == '1') checked @endif
                    name="field[{{$field->id}}][is_required]">
         </td>
         <td>
-            <input type="checkbox" class="form-control"
+            <input type="checkbox" class="form-check-input"
                    @if($field->is_nullable == '1') checked @endif
                    name="field[{{$field->id}}][is_nullable]">
         </td>
@@ -109,7 +109,7 @@
                    name="field[{{$field->id}}][default]">
         </td>
         <td>
-            <input type="checkbox" class="form-control"
+            <input type="checkbox" class="form-check-input"
                    @if($field->show_on_list == '1') checked @endif
                    name="field[{{$field->id}}][show_on_list]">
         </td>
