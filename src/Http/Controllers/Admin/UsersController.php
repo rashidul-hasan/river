@@ -70,11 +70,10 @@ class UsersController extends Controller
         $user = new Admin();
         $user->name = $request->name;
         $user->email = $request->email;
-//        $user->role = $request->role;
+        $user->role_id = $request->role_id;
         $user->password = Hash::make($request->password);
-        if (isset($request->is_developer)) {
-            $user->is_developer = true;
-        }
+        $user->is_developer = isset($request->is_developer) ? true : false;
+
         $user->save();
 
         return redirect()->route('river.users.index')->with('success', 'Successfully Created done!');
@@ -120,9 +119,8 @@ class UsersController extends Controller
         $user = Admin::FindOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        if (isset($request->is_developer)) {
-            $user->is_developer = true;
-        }
+        $user->role_id = $request->role_id;
+        $user->is_developer = isset($request->is_developer) ? true : false;
         $user->password = Hash::make($request->password);
         $user->save();
 

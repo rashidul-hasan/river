@@ -22,17 +22,14 @@ class UsersRoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-
         $buttons = [
-            ['Add New',route('river.users-role.create'), 'btn btn-primary', 'btn-add-new'],
+            ['Add New Role',route('river.users-role.create'), 'btn btn-primary', 'btn-add-new'],
         ];
-
         $data = [
             'roles' => $roles,
             'title' => 'Roles',
             '_top_buttons' => $buttons,
         ];
-
         return view('river::admin.users-role', $data);
     }
 
@@ -70,13 +67,7 @@ class UsersRoleController extends Controller
 
         $role = new Role();
         $role->name = $request->name;
-        if (isset($request->is_active)) {
-            $role->is_active = true;
-        }
-        if (isset($request->is_developer)) {
-            $role->is_developer = true;
-        }
-
+        $role->is_active = isset($request->is_active) ? true : false;
         if ($role->save()){
             if ($request->route_names){
                 foreach ($request->route_names as $route_name){
@@ -100,9 +91,7 @@ class UsersRoleController extends Controller
 
             return redirect()->route('river.users-role.index')->with('success', 'Updated Successfully..!');
         }
-
         return redirect()->back();
-
     }
 
     /**
@@ -119,7 +108,6 @@ class UsersRoleController extends Controller
 
         $types = DataType::all();
         $role = Role::findOrFail($id);
-
         $permissions = RolePermission::where('role_id', $id)->get();
         $userRouets = $permissions->where('type', RolePermission::TYPE_ROUTE)->pluck('permission')->toArray();
         $userRoleTypes = $permissions->where('type', RolePermission::TYPE_CUSTOMTYPE)->pluck('permission')->toArray();
@@ -150,12 +138,9 @@ class UsersRoleController extends Controller
             'name' => 'required|string|max:100',
         ]);
 
-
         $role = Role::findOrFail($id);
         $role->name = $request->name;
-        if (isset($request->is_active)) {
-            $role->is_active = true;
-        }
+        $role->is_active = isset($request->is_active) ? true : false;
         if ($role->save()){
             if ($request->route_names){
                 RolePermission::where('role_id', $id)->where('type', RolePermission::TYPE_ROUTE)->delete();
@@ -167,7 +152,6 @@ class UsersRoleController extends Controller
                     ]);
                 }
             }
-
             if ($request->data_types){
                 RolePermission::where('role_id', $id)->where('type', RolePermission::TYPE_CUSTOMTYPE)->delete();
                 foreach ($request->data_types as $data_type){
@@ -178,10 +162,8 @@ class UsersRoleController extends Controller
                     ]);
                 }
             }
-
             return redirect()->route('river.users-role.index')->with('success', 'Updated Successfully..!');
         }
-
         return redirect()->back();
     }
 
