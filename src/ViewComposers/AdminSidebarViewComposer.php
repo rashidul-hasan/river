@@ -99,6 +99,11 @@ class AdminSidebarViewComposer
                 'label' => 'User Role',
                 'icon' => 'fas fa-user', //feather icon-box
                 'route' => 'river.users-role.index',
+            ],
+            [
+                'label' => 'Visit Site',
+                'icon' => 'fas fa-eye',
+                'route' => 'riversite.homepage',
             ]
         ];
         if (RolesCache::isDeveloper()) {

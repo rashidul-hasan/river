@@ -17,10 +17,11 @@
     ],
     "require": {
         "php": "^8.1",
+        "alexusmai/laravel-file-manager": "^3.0",
         "illuminate/contracts": "^9.0",
+        "laravel/socialite": "^5.5",
         "laravel/ui": "^3.4",
         "tightenco/ziggy": "^0.9.4",
-        "alexusmai/laravel-file-manager": "^3.0",
         "yajra/laravel-datatables-oracle": "^9.10"
     },
     "require-dev": {
@@ -51,7 +52,10 @@
         "test-coverage": "vendor/bin/pest --coverage"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "extra": {
         "laravel": {

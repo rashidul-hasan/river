@@ -10,6 +10,13 @@ Route::group([
     Route::post('login', 'Customer\Auth\LoginController@customerLogin')->name('login.post');
     Route::get('register', 'Customer\Auth\RegisterController@showRegistrationForm')->name('register');
     Route::post('register', 'Customer\Auth\RegisterController@registerCustomer')->name('register');
+    //facebook login
+    Route::get('login/facebook', 'Customer\Auth\FacebookController@redirectToProvider');
+    Route::get('login/facebook/callback', 'Customer\Auth\FacebookController@handleProviderCallback');
+
+    //Google login
+    Route::get('login/google', 'Customer\Auth\GoogleController@redirectToProvider');
+    Route::get('login/google/callback', 'Customer\Auth\GoogleController@handleProviderCallback');
 });
 
 Route::group([

@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Customer\Auth;
+namespace Rashidul\River\Http\Controllers\Customer\Auth;
 
-use App\Customer;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Rashidul\River\Models\Customer;
 use Socialite;
 
 class GoogleController extends Controller
@@ -34,12 +33,11 @@ class GoogleController extends Controller
 
         if ($findOldUser){
 
-            Auth::guard('customer')->login($findOldUser);
+            Auth::guard('customers')->login($findOldUser);
 
-            return redirect('/shop');
+            return redirect('/');
 
         }else{
-
             $customer = new Customer();
             $customer->name = $socialUser->name;
             $customer->email = $socialUser->email;
@@ -48,10 +46,8 @@ class GoogleController extends Controller
             $customer->avatar = $socialUser->avatar;
             $customer->password = Hash::make('1234');
             $customer->save();
-
-            Auth::guard('customer')->login($customer);
-
-            return redirect('/shop');
+            Auth::guard('customers')->login($customer);
+            return redirect('/');
         }
     }
 }

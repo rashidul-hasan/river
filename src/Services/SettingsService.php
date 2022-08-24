@@ -26,8 +26,10 @@ class SettingsService
     }
 
     public static function set($key, $value) {
-        if (!$value) return;
-
+        if (!$value) {
+            Settings::where('key', $key)->delete();
+            return;
+        }
         $setting = Settings::where('key', $key)->first();
         if ($setting === null){
             $setting = new Settings();

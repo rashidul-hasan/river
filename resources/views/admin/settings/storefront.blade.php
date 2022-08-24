@@ -72,47 +72,21 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Global SEO</h4>
                     <form action="{{route('river.store-settings')}}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group row mb-3">
-                            <label class="col-md-4">Meta Title</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="meta_title"
-                                       value="{{river_settings('meta_title') ?? ''}}">
-                            </div>
-                        </div>
-                        <div class="form-group row mb-3">
-                            <label class="col-md-4">Meta description</label>
-                            <div class="col-md-8">
-                                <textarea rows="2" class="form-control" id="example-text-input"
-                                          name="meta_description">{{river_settings('meta_description') ?? ''}}</textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-3">
-                            <label class="col-md-4">Keywords</label>
-                            <div class="col-md-8">
-                                <textarea rows="2" class="form-control" id="example-text-input" name="meta_keywords"
-                                          placeholder="keyword,keyword">{{river_settings('meta_keywords') ?? ''}}</textarea>
-                                <small class="text-muted">Separate with coma</small>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-4">Meta Image</label>
-                            <div class="col-md-8">
-                                <div class="file-input">
-                                    <input type="file" name="meta_img" id="meta_img" class="file-input__input"/>
-                                </div>
-                                <div class="d-flex align-items-center flex-wrap">
-                                    <span class="pip">
-                                        <img class="imageThumb" id="ImgPreview1"
-                                             src="{{ asset( river_settings('meta_img')) }}">
-                                    </span>
+                        <div class="row my-4">
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <div class="form-label">Social Login</div>
+                                    <div>
+                                        <label class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="social_login"  {{river_settings('social_login') == true ? 'checked' : ''}}>
+                                            <span class="form-check-label">Active</span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group row mb-0 float-right">
                             <div class="col-md-8">
                                 <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">

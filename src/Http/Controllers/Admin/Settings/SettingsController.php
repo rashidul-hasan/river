@@ -35,13 +35,7 @@ class SettingsController extends Controller
     ];
 
     protected $settingsCheck = [
-        'free_ship_status',
-        'inside_ship_status',
-        'Outside_ship_status',
-        'nagad_status',
-        'rocket_status',
-        'cod_status',
-        'bkash_status',
+        'social_login',
     ];
 
     public function showSettings()

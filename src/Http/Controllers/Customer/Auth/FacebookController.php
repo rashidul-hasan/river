@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Customer\Auth;
+namespace Rashidul\River\Http\Controllers\Customer\Auth;
 
 use App\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Socialite;
 
 class FacebookController extends Controller
 {
