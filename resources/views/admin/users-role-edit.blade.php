@@ -18,8 +18,9 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-md-12">
-                            <form action="{{route('river.users-role.store')}}" method="POST">
+                            <form action="{{route('river.users-role.update', $role->id)}}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-group mb-3 ">
                                     <label class="form-label required">Name</label>
                                     <div>
@@ -39,25 +40,29 @@
                                         <div class="form-group mb-3 col-3">
                                             <label class="form-label ">{{$data->slug}}</label>
                                             <div class="form-check">
-                                                <input class="form-check-input cursor-pointer" type="checkbox" value="{{$data->slug}}.create" id="{{$data->slug}}.create" name="data_types[]">
+                                                <input class="form-check-input cursor-pointer" type="checkbox" value="{{$data->slug}}.create" id="{{$data->slug}}.create" name="data_types[]"
+                                                       @if(in_array($data->slug.'.create', $userRoleTypes)) checked @endif >
                                                 <label class="form-check-label" for="{{$data->slug}}.create">
                                                     Create
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input cursor-pointer" type="checkbox" value="{{$data->slug}}.edit" id="{{$data->slug}}.edit" name="data_types[]">
+                                                <input class="form-check-input cursor-pointer" type="checkbox" value="{{$data->slug}}.edit" id="{{$data->slug}}.edit" name="data_types[]"
+                                                       @if(in_array($data->slug.'.edit', $userRoleTypes)) checked @endif>
                                                 <label class="form-check-label" for="{{$data->slug}}.edit">
                                                     Edit
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input cursor-pointer" type="checkbox" value="{{$data->slug}}.update" id="{{$data->slug}}.update" name="data_types[]">
+                                                <input class="form-check-input cursor-pointer" type="checkbox" value="{{$data->slug}}.update" id="{{$data->slug}}.update" name="data_types[]"
+                                                       @if(in_array($data->slug.'.update', $userRoleTypes)) checked @endif>
                                                 <label class="form-check-label" for="{{$data->slug}}.update">
                                                     Update
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input cursor-pointer" type="checkbox" value="{{$data->slug}}.destroy" id="{{$data->slug}}.destroy" name="data_types[]">
+                                                <input class="form-check-input cursor-pointer" type="checkbox" value="{{$data->slug}}.destroy" id="{{$data->slug}}.destroy" name="data_types[]"
+                                                       @if(in_array($data->slug.'.destroy', $userRoleTypes)) checked @endif>
                                                 <label class="form-check-label" for="{{$data->slug}}.destroy">
                                                     Delete
                                                 </label>
@@ -71,12 +76,10 @@
                                         @foreach(array_chunk($route_name, count($route_name)/4) as $chunk)
                                             <div class="col-md-3">
                                                 @foreach($chunk as $route)
-                                                    @if(!in_array($route, $remove_routes))
-                                                        <div class="form-check mb-2">
-                                                            <input class="form-check-input cursor-pointer" type="checkbox" id="{{$route}}" value="{{$route}}" name="route_names[]">
-                                                            <label class="form-check-label" for="{{$route}}">{{$route}}</label>
-                                                        </div>
-                                                    @endif
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input cursor-pointer" type="checkbox" id="{{$route}}" value="{{$route}}" name="route_names[]" @if(in_array($route, $userRouets)) checked @endif >
+                                                        <label class="form-check-label" for="{{$route}}">{{$route}}</label>
+                                                    </div>
                                                 @endforeach
                                             </div>
                                         @endforeach

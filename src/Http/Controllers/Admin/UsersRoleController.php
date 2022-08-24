@@ -29,7 +29,7 @@ class UsersRoleController extends Controller
 
         $data = [
             'roles' => $roles,
-            'title' => 'User Roles',
+            'title' => 'Roles',
             '_top_buttons' => $buttons,
         ];
 
@@ -46,34 +46,13 @@ class UsersRoleController extends Controller
         $buttons = [
             ['Back', route('river.users-role.index'), 'btn btn-info', 'btn-add-new'],
         ];
-
-        $routes = Route::getRoutes();
-
-        $remove_routes = ['fm.initialize','fm.content','fm.tree','fm.select-disk','fm.upload','fm.delete','fm.paste','fm.rename','fm.download','fm.thumbnails','fm.preview',
-                            'fm.url','fm.create-directory','fm.create-file','fm.update-file','fm.stream-file','fm.zip','fm.unzip','fm.ckeditor','fm.tinymce','fm.tinymce5','fm.summernote',
-                            'fm.fm-button','debugbar.openhandler','debugbar.clockwork','debugbar.assets.css','debugbar.assets.js','debugbar.cache.delete','river.','riversite.login','riversite.login.post',
-                            'riversite.register','riversite.register','riversite.customer.dashboard','riversite.customer.editProfile','riversite.update.profile','riversite.update.passwordPage',
-                            'riversite.update.password','riversite.logout','riversite.homepage','ignition.healthCheck','ignition.executeSolution','ignition.updateConfig'
-                        ];
-        $route_name = [];
-
-        foreach (Route::getRoutes() as $route) {
-            if ($route->getName()){
-                $route_name[] = $route->getName();
-            }
-        }
-
         $types = DataType::all();
-
         $data = [
-            'title' => 'Create User Role',
+            'title' => 'Create Role',
             '_top_buttons' => $buttons,
-            'routes' => $routes,
-            'route_name' => $route_name,
-            'remove_routes' => $remove_routes,
+            'route_name' => $this->getRouteListArray(Route::getRoutes()),
             'types' => $types,
         ];
-
         return view('river::admin.users-role-create', $data);
     }
 
@@ -119,7 +98,7 @@ class UsersRoleController extends Controller
                 }
             }
 
-            Session::flash('success', 'Created successfully');
+            return redirect()->route('river.users-role.index')->with('success', 'Updated Successfully..!');
         }
 
         return redirect()->back();
@@ -138,40 +117,21 @@ class UsersRoleController extends Controller
             ['Back', route('river.users-role.index'), 'btn btn-info', 'btn-add-new'],
         ];
 
-        $routes = Route::getRoutes();
         $types = DataType::all();
         $role = Role::findOrFail($id);
 
-        $remove_routes = ['fm.initialize','fm.content','fm.tree','fm.select-disk','fm.upload','fm.delete','fm.paste','fm.rename','fm.download','fm.thumbnails','fm.preview',
-            'fm.url','fm.create-directory','fm.create-file','fm.update-file','fm.stream-file','fm.zip','fm.unzip','fm.ckeditor','fm.tinymce','fm.tinymce5','fm.summernote',
-            'fm.fm-button','debugbar.openhandler','debugbar.clockwork','debugbar.assets.css','debugbar.assets.js','debugbar.cache.delete','river.','riversite.login','riversite.login.post',
-            'riversite.register','riversite.register','riversite.customer.dashboard','riversite.customer.editProfile','riversite.update.profile','riversite.update.passwordPage',
-            'riversite.update.password','riversite.logout','riversite.homepage','ignition.healthCheck','ignition.executeSolution','ignition.updateConfig'
-        ];
-
-        $route_name = [];
-
-        foreach (Route::getRoutes() as $route) {
-            if ($route->getName()){
-                $route_name[] = $route->getName();
-            }
-        }
-
-        $userCustomType = RolePermission::where('role_id', $id)->where('type', RolePermission::TYPE_CUSTOMTYPE)->get()->toArray();
-
-        foreach ($userCustomType as $row){
-            $userCustomType = $row;
-        }
+        $permissions = RolePermission::where('role_id', $id)->get();
+        $userRouets = $permissions->where('type', RolePermission::TYPE_ROUTE)->pluck('permission')->toArray();
+        $userRoleTypes = $permissions->where('type', RolePermission::TYPE_CUSTOMTYPE)->pluck('permission')->toArray();
 
         $data = [
-            'title' => 'Edit User Role',
+            'title' => 'Edit Role',
             '_top_buttons' => $buttons,
-            'routes' => $routes,
-            'route_name' => $route_name,
-            'remove_routes' => $remove_routes,
+            'route_name' => $this->getRouteListArray(Route::getRoutes()),
             'types' => $types,
             'role' => $role,
-            'userCustomType' => $userCustomType,
+            'userRouets' => $userRouets,
+            'userRoleTypes' => $userRoleTypes,
         ];
 
         return view('river::admin.users-role-edit', $data);
@@ -189,16 +149,38 @@ class UsersRoleController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:100',
         ]);
+
+
         $role = Role::findOrFail($id);
         $role->name = $request->name;
         if (isset($request->is_active)) {
             $role->is_active = true;
         }
-        if (isset($request->is_developer)) {
-            $role->is_developer = true;
+        if ($role->save()){
+            if ($request->route_names){
+                RolePermission::where('role_id', $id)->where('type', RolePermission::TYPE_ROUTE)->delete();
+                foreach ($request->route_names as $route_name){
+                    RolePermission::create([
+                        'role_id' => $role->id,
+                        'permission' => $route_name,
+                        'type' => RolePermission::TYPE_ROUTE,
+                    ]);
+                }
+            }
+
+            if ($request->data_types){
+                RolePermission::where('role_id', $id)->where('type', RolePermission::TYPE_CUSTOMTYPE)->delete();
+                foreach ($request->data_types as $data_type){
+                    RolePermission::create([
+                        'role_id' => $role->id,
+                        'permission' => $data_type,
+                        'type' => RolePermission::TYPE_CUSTOMTYPE,
+                    ]);
+                }
+            }
+
+            return redirect()->route('river.users-role.index')->with('success', 'Updated Successfully..!');
         }
-        $role->save();
-        Session::flash('success', 'Blog Updated successfully');
 
         return redirect()->back();
     }
@@ -215,6 +197,28 @@ class UsersRoleController extends Controller
         if ($data->delete()){
             RolePermission::where('role_id', $id)->delete();
         }
-        return redirect()->back()->with('success', 'Successfully Deleted done!');
+        return redirect()->route('river.users-role.index')->with('success', 'Successfully Deleted done!');
+    }
+
+    public function getRouteListArray($routes)
+    {
+        $remove_routes = ['fm.initialize','fm.content','fm.tree','fm.select-disk','fm.upload','fm.delete','fm.paste','fm.rename','fm.download','fm.thumbnails','fm.preview',
+            'fm.url','fm.create-directory','fm.create-file','fm.update-file','fm.stream-file','fm.zip','fm.unzip','fm.ckeditor','fm.tinymce','fm.tinymce5','fm.summernote',
+            'fm.fm-button','debugbar.openhandler','debugbar.clockwork','debugbar.assets.css','debugbar.assets.js','debugbar.cache.delete','river.','riversite.login','riversite.login.post',
+            'riversite.register','riversite.register','riversite.customer.dashboard','riversite.customer.editProfile','riversite.update.profile','riversite.update.passwordPage',
+            'riversite.update.password','riversite.logout','riversite.homepage','ignition.healthCheck','ignition.executeSolution','ignition.updateConfig'
+        ];
+
+        $route_name = [];
+
+        foreach ($routes as $route) {
+            if ($route->getName()) {
+                if (!in_array($route->getName(),$remove_routes)){
+                    array_push($route_name,$route->getName());
+                }
+            }
+        }
+
+        return $route_name;
     }
 }

@@ -71,12 +71,10 @@
                                         @foreach(array_chunk($route_name, count($route_name)/4) as $chunk)
                                             <div class="col-md-3">
                                                 @foreach($chunk as $route)
-                                                    @if(!in_array($route, $remove_routes))
-                                                        <div class="form-check mb-2">
-                                                            <input class="form-check-input cursor-pointer" type="checkbox" id="{{$route}}" value="{{$route}}" name="route_names[]">
-                                                            <label class="form-check-label" for="{{$route}}">{{$route}}</label>
-                                                        </div>
-                                                    @endif
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input cursor-pointer" type="checkbox" id="{{$route}}" value="{{$route}}" name="route_names[]">
+                                                        <label class="form-check-label" for="{{$route}}">{{$route}}</label>
+                                                    </div>
                                                 @endforeach
                                             </div>
                                         @endforeach
