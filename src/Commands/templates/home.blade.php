@@ -14,38 +14,17 @@
 
             <div class="carousel-inner" role="listbox">
 
-                <!-- Slide 1 -->
-                <div class="carousel-item active" style="background-image: url(/river/site/assets/img/slide/slide-1.jpg)">
-                    <div class="carousel-container">
-                        <div class="container">
-                            <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Green</span></h2>
-                            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                            <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                @foreach($sliders as $item)
+                    <div class="carousel-item active" style="background-image: url({{$item->image}})">
+                        <div class="carousel-container">
+                            <div class="container">
+{{--                                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Green</span></h2>--}}
+{{--                                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>--}}
+{{--                                <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>--}}
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Slide 2 -->
-                <div class="carousel-item" style="background-image: url(/river/site/assets/img/slide/slide-2.jpg)">
-                    <div class="carousel-container">
-                        <div class="container">
-                            <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
-                            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                            <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="carousel-item" style="background-image: url(/river/site/assets/img/slide/slide-3.jpg)">
-                    <div class="carousel-container">
-                        <div class="container">
-                            <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
-                            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                            <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
 
@@ -64,31 +43,15 @@
             <div class="container">
 
                 <div class="row no-gutters">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-laptop"></i></div>
-                            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-                        </div>
+                    @foreach($banners as $item)
+                    <div class="col-lg-6 col-md-6">
+                        <img src="{{river_banner($item['slug'])}}" alt="" class="img-fluid">
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-briefcase"></i></div>
-                            <h4 class="title"><a href="">Dolor Sitema</a></h4>
-                            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-calendar4-week"></i></div>
-                            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur trade stravi</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
             </div>
-        </section><!-- End Featured Services Section -->
+        </section>
 
         <!-- ======= About Us Section ======= -->
         <section id="about" class="about">
@@ -124,54 +87,6 @@
 
             </div>
         </section><!-- End About Us Section -->
-
-        <!-- ======= Why Us Section ======= -->
-        <section id="why-us" class="why-us">
-            <div class="container">
-
-                <div class="row no-gutters">
-
-                    <div class="col-lg-4 col-md-6 content-item">
-                        <span>01</span>
-                        <h4>Lorem Ipsum</h4>
-                        <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 content-item">
-                        <span>02</span>
-                        <h4>Repellat Nihil</h4>
-                        <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 content-item">
-                        <span>03</span>
-                        <h4> Ad ad velit qui</h4>
-                        <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 content-item">
-                        <span>04</span>
-                        <h4>Repellendus molestiae</h4>
-                        <p>Inventore quo sint a sint rerum. Distinctio blanditiis deserunt quod soluta quod nam mider lando casa</p>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 content-item">
-                        <span>05</span>
-                        <h4>Sapiente Magnam</h4>
-                        <p>Vitae dolorem in deleniti ipsum omnis tempore voluptatem. Qui possimus est repellendus est quibusdam</p>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 content-item">
-                        <span>06</span>
-                        <h4>Facilis Impedit</h4>
-                        <p>Quis eum numquam veniam ea voluptatibus voluptas. Excepturi aut nostrum repudiandae voluptatibus corporis sequi</p>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Why Us Section -->
-
         <!-- ======= Our Clients Section ======= -->
         <section id="clients" class="clients">
             <div class="container">
@@ -543,22 +458,21 @@
                             <div class="address">
                                 <i class="bi bi-geo-alt"></i>
                                 <h4>Location:</h4>
-                                <p>A108 Adam Street, New York, NY 535022</p>
+                                <p>{{river_settings('address')}}</p>
                             </div>
 
                             <div class="email">
                                 <i class="bi bi-envelope"></i>
                                 <h4>Email:</h4>
-                                <p>info@example.com</p>
+                                <p>{{river_settings('email')}}</p>
                             </div>
 
                             <div class="phone">
                                 <i class="bi bi-phone"></i>
                                 <h4>Call:</h4>
-                                <p>+1 5589 55488 55s</p>
+                                <p>{{river_settings('phone')}}</p>
                             </div>
-
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+                            {!!  river_settings('map_code') !!}
                         </div>
 
                     </div>

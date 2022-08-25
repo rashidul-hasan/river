@@ -33,10 +33,17 @@
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" name="password" required>
                             </div>
-                            <div class="mt-3">
+                            <div class="mt-3 text-center">
                                 <button type="submit">Login</button>
                                 or <a href="{{route('riversite.register')}}"> New Register </a>
                             </div>
+                            <hr>
+                            @if(river_settings('social_login') == 1)
+                                <div class="text-center">
+                                    <a href="{{url('login/facebook')}}" class="btn btn-sm btn-info">Fb Login</a>
+                                    <a href="{{url('login/google')}}" class="btn btn-sm btn-primary">Google Login</a>
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </div>

@@ -19,7 +19,7 @@ Route::group([
         Route::get('login/google', 'Customer\Auth\GoogleController@redirectToProvider');
         Route::get('login/google/callback', 'Customer\Auth\GoogleController@handleProviderCallback');
     }
-    
+
 });
 
 Route::group([
@@ -39,6 +39,7 @@ Route::group([
     'as' => 'riversite.'
 ], function () {
     Route::get('/', 'Site\HomeController@index')->name('homepage');
+    Route::get('/page/{slug}', 'Site\PageController@pageShow')->name('page.show');
 });
 
 
