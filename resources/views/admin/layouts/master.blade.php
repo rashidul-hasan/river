@@ -67,7 +67,7 @@
 <script src="/river/admin/assets/libs/jsvectormap/dist/maps/world-merc.js" defer></script>
 <script src="/river/admin/assets/js/toastr.min.js"></script>
 <script src="/river/admin/dynamic-form.js" defer></script>
-
+<script src="https://cdn.tiny.cloud/1/49zw3h254k19bwnkh8tl02reg0pb5t75ndy9nm01w6afbql3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <!-- Tabler Core -->
 <script src="/river/admin/assets/js/tabler.min.js" defer></script>
 <script src="/river/admin/assets/js/demo.min.js" defer></script>
@@ -96,7 +96,6 @@
         $('#' + ImgPreview).closest('.pip').addClass('d-none');
     }
 </script>
-
 <script>
     toastr.options = {
         "closeButton": true,

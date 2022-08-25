@@ -101,6 +101,11 @@ class AdminSidebarViewComposer
                 'route' => 'river.users-role.index',
             ],
             [
+                'label' => 'Pages',
+                'icon' => 'fas fa-folder',
+                'route' => 'river.pages.index',
+            ],
+            [
                 'label' => 'Visit Site',
                 'icon' => 'fas fa-eye',
                 'route' => 'riversite.homepage',

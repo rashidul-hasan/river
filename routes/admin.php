@@ -22,6 +22,7 @@ Route::group([
     Route::resource('users', 'Admin\UsersController');
 
     Route::resource('users-role', 'Admin\UsersRoleController');
+    Route::resource('pages', 'Admin\RiverPagesController');
 
     Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
     Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
