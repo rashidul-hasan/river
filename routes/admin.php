@@ -60,6 +60,9 @@ Route::group([
     Route::put('data-entries/{slug}/update/{id}', 'Admin\DataEntryController@update')->name('data-entries.update');
 
 
+    Route::get('file', 'Admin\CodeGeneratorController@index');
+
+
     Route::view('file-manager', 'river::admin.filemanager');
     /*Route::get('file-manager', function () {
 //      return response()->file(public_path('river/tinyfilemanager.php'));
