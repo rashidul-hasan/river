@@ -18,6 +18,7 @@ class DataTypeController
             ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
             ['Export', route('river.datatypes.export'), 'btn btn-primary', '' /*label,link,class,id*/],
             ['Import', route('river.datatypes.import'), 'btn btn-primary', '' /*label,link,class,id*/],
+            ['Download File', route('river.download.page'), 'btn btn-warning', '' /*label,link,class,id*/],
         ];
         $data = [
             'title' => 'Data types',
@@ -139,6 +140,37 @@ class DataTypeController
 
         return redirect(route('river.datatypes.index'))
             ->with('success', 'Deleted!');
+    }
+
+    public function download()
+    {
+        $all = DataType::all();
+        $buttons = [
+            ['Back',route('river.datatypes.index'),'btn btn-info', '' /*label,link,class,id*/],
+        ];
+        $data = [
+            'title' => 'Data types',
+            'all' => $all,
+            '_top_buttons' => $buttons
+        ];
+
+        return view('river::admin.datatypes.download-page', $data);
+    }
+
+    public function downloadItem($id, $fileName)
+    {
+
+        if ($fileName = 'controller')
+        {
+            $dataType = DataType::where('id', $id)->first();
+//            dd($dataType);
+            $file = file_get_contents(base_path('_packages/rashidul/river/resources/views/admin/datatypes/download/demoController.php'), true);
+            $contents = $file;
+            $filename = 'DemoController.php';
+            return response()->streamDownload(function () use ($contents) {
+                echo $contents;
+            }, $filename);
+        }
     }
 
     public function export()
