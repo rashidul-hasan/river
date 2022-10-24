@@ -45,7 +45,10 @@ Route::group([
 
     Route::post('datatypes/store-fields', 'Admin\DataTypeController@storeFields')->name('datatypes.store-fields');
     Route::put('datatypes/update-fields', 'Admin\DataTypeController@updateFields')->name('datatypes.update-fields');
+    Route::post('datatypes/field-meta', 'Admin\DataTypeController@fieldMeta')->name('datatypes.field-meta');
     Route::get('datatypes/export', 'Admin\DataTypeController@export')->name('datatypes.export');
+    Route::get('download', 'Admin\DataTypeController@download')->name('download.page');
+    Route::get('download-item/{id}/{file}', 'Admin\DataTypeController@downloadItem')->name('download.item');
     Route::get('datatypes/import', 'Admin\DataTypeController@import')->name('datatypes.import');
     Route::post('datatypes/import', 'Admin\DataTypeController@importPost')->name('datatypes.postimport');
     Route::resource('datatypes', 'Admin\DataTypeController');
