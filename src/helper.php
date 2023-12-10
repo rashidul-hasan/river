@@ -8,7 +8,13 @@ if (! function_exists('river_settings')) {
     function river_settings($key, $default = '')
     {
         //TODO use cache
-        return SettingsService::get($key, $default);
+        //for the first time, there will be no tables in the db so this function will throw exception
+        //Base table or view not found: 1146
+        try {
+            return SettingsService::get($key, $default);
+        } catch (Exception $e) {
+            return $default;
+        }
     }
 }
 

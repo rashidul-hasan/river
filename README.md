@@ -5,6 +5,8 @@
 
 `composer require rashidul/river`
 
+`php artisan migrate`
+
 `php artisan river:seed`
 
 `php artisan river:cache-views`
