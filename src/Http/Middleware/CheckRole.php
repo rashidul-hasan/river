@@ -17,13 +17,16 @@ class CheckRole
         $route = $request->route()->getName();
         // need to skip this check for data entry routes, those will be handled
         // on the controller level
-        if (in_array($route, ['river.data-entries.index',
+        if (in_array($route, [
+            'river.data-entries.index',
             'river.data-entries.store',
             'river.data-entries.create',
             'river.data-entries.edit',
             'river.data-entries.destroy',
             'river.data-entries.update',
-            'river.data-entries.show'])) {
+            'river.data-entries.show',
+            'river.contact_form.store'
+        ])) {
             return $next($request);
         }
 
@@ -32,7 +35,6 @@ class CheckRole
         }
 
         abort(503);
-
     }
 
     private function roleHasPermission($role_id, $permission)
@@ -44,20 +46,20 @@ class CheckRole
 
             return in_array($permission, $role_permissions[$role_id]);
         }
-//        dd($role_permissions);
+        //        dd($role_permissions);
         return false;
     }
 
     private function getRolewisePermissions()
     {
         $data = Cache::rememberForever('_roles', function () {
-           $all = Role::with('permissions')
-           ->get();
-           $arr = [];
+            $all = Role::with('permissions')
+                ->get();
+            $arr = [];
             foreach ($all as $item) {
                 $arr[$item->id] = $item->permissions->pluck('permission')
                     ->toArray();
-           }
+            }
 
             return $arr;
         });

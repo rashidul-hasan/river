@@ -28,10 +28,10 @@ class RiverServiceProvider extends ServiceProvider
 
         $this->configureRoutes();
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'river');
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'river');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         $this->publishes([
-            __DIR__.'/../public' => public_path('river'),
+            __DIR__ . '/../public' => public_path('river'),
         ], 'river-assets');
 
 

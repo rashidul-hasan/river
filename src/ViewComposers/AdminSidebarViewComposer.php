@@ -106,6 +106,11 @@ class AdminSidebarViewComposer
                 'route' => 'river.pages.index',
             ],
             [
+                'label' => 'Contact Form',
+                'icon' => 'fas fa-file-contract',
+                'route' => 'river.contact_form',
+            ],
+            [
                 'label' => 'Visit Site',
                 'icon' => 'fas fa-eye',
                 'route' => 'riversite.homepage',
