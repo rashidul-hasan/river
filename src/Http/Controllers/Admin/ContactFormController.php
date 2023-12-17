@@ -20,7 +20,7 @@ class ContactFormController extends Controller
 
         $value = ContactForm::all();
 
-        return view('river::admin.dashboard.index', $data, compact('value'));
+        return view('river::admin.dashboard.index_c', $data, compact('value'));
     }
 
     public function store(Request $request)
