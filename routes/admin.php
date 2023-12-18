@@ -82,4 +82,7 @@ Route::group([
     // Route::post('contact-form-field/store', 'Admin\ContactFormFieldController@store')->name('Contact-Form-Field.store');
 
     Route::resource('contact-form', 'Admin\ContactFormController');
+    Route::post('contact-form/store-fields', 'Admin\ContactFormController@storeFields')->name('contact-form.store-fields');
+    Route::put('contact-form/update-fields', 'Admin\ContactFormController@updateFields')->name('contact-form.update-fields');
+    Route::post('contact-form/field-meta', 'Admin\ContactFormController@fieldMeta')->name('contact-form.field-meta');
 });

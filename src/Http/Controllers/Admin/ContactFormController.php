@@ -10,6 +10,7 @@ use Rashidul\River\Models\DataFields;
 use Rashidul\River\Models\DataType;
 
 use Rashidul\River\Models\ContactForm;
+use Rashidul\River\Models\ContactFormField;
 
 class ContactFormController
 {
@@ -88,6 +89,7 @@ class ContactFormController
 
     public function storeFields(Request $request)
     {
+        dd( $request->all());
         $request->validate([
             'name' => 'required',
         ]);
@@ -95,25 +97,30 @@ class ContactFormController
         $id = $request->get('type_id');
         $names = explode(",", $names);
         foreach ($names as $name) {
-            DataFields::create([
-                'slug' => $name,
-                'label' => ucwords(str_replace('_', ' ', $name)),
+            ContactFormField::create([
+                'name' => $name,
+                'slug' => Str::plural(Str::slug($name)),
+                //'label' => ucwords(str_replace('_', ' ', $name)),
                 'type' => $this->deductFieldTypeFromName($name),
-                'data_type_id' => $request->get('type_id'),
+                'is_required' => $request->get('is_required'),
+                'contactform_id' => $request->get('type_id'),
             ]);
         }
 
-        return redirect(route('river.datatypes.edit', [$id, 'tab' => 'fields']))
+        return redirect(route('river.contact-form.edit', [$id, 'tab' => 'fields']))
             ->with('success', 'Created');
 
     }
 
     public function updateFields(Request $request)
     {
+        dd( $request->all());
+
+
         $id = $request->get('type_id');
         $fields = $request->get('field');
         foreach ($fields as $fieldid => $values) {
-            $f = DataFields::find($fieldid);
+            $f = ContactFormField::find($fieldid);
             if (array_key_exists('delete_field', $values)
                 && $values['delete_field'] == 'on') {
                 //delete this field
@@ -122,6 +129,7 @@ class ContactFormController
             }
 
             $f->fill([
+                
                 'slug' => $values['slug'],
                 'label' => $values['label'],
                 'type' => $values['type'],
@@ -133,7 +141,7 @@ class ContactFormController
             $f->save();
         }
 
-        return redirect(route('river.datatypes.edit', [$id, 'tab' => 'fields']))
+        return redirect(route('river.contact-form.edit', [$id, 'tab' => 'fields']))
             ->with('success', 'Updated');
 
     }

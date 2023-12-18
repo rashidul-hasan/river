@@ -24,8 +24,7 @@ class CheckRole
             'river.data-entries.edit',
             'river.data-entries.destroy',
             'river.data-entries.update',
-            'river.data-entries.show',
-            'river.contact_form.store'
+            'river.data-entries.show'
         ])) {
             return $next($request);
         }

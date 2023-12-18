@@ -1,38 +1,44 @@
 <a href="#" class="btn btn-primary btn-add-fields mb-2">Add Fields</a>
 
-<form class="custom-validation" action="{{route('river.datatypes.update-fields')}}" method="POST">
+<form class="custom-validation" action="{{ route('river.contact-form.update-fields') }}" method="POST">
     <input type="hidden" name="type_id" value="{{$type->id}}">
     @csrf
     @method('PUT')
+    
     <table class="table">
         <thead>
         <tr>
             <th scope="col" style="width: 5%;color: red;">Delete</th>
+            <th scope="col" style="width: 10%">Name</th>
             <th scope="col" style="width: 10%">Slug</th>
-            <th scope="col" style="width: 10%">Label</th>
             <th scope="col" style="width: 10%">Type</th>
-            <th scope="col" style="width: 5%">Required</th>
-            <th scope="col" style="width: 5%">Nullable</th>
-            <th scope="col" style="width: 10%">Default</th>
-            <th scope="col" style="width: 5%">Listing</th>
+            <th scope="col" style="width: 5%">Is required</th>
+            {{-- <th scope="col" style="width: 5%">Nullable</th> --}}
+            {{-- <th scope="col" style="width: 10%">Default</th> --}}
+            {{-- <th scope="col" style="width: 5%">Listing</th> --}}
             <th scope="col" style="width: 5%"></th>
         </tr>
         </thead>
         <tbody>
         @foreach($type->contactformfield as $field)
+
             <tr>
                 <td>
                     <input type="checkbox" class="form-check-input"
                            name="field[{{$field->id}}][delete_field]">
                 </td>
                 <td>
+                    <input type="text" class="form-control" value="{{$field->name}}"
+                           name="namefield[{{$field->id}}][name]">
+                </td>
+                <td>
                     <input type="text" class="form-control" value="{{$field->slug}}"
                            name="field[{{$field->id}}][slug]">
                 </td>
-                <td>
+                {{-- <td>
                     <input type="text" class="form-control" value="{{$field->label}}"
                            name="field[{{$field->id}}][label]">
-                </td>
+                </td> --}}
                 <td>
                     <select name="field[{{$field->id}}][type]" class="form-control">
                         <option value="{{\Rashidul\River\Constants::FIELD_TYPE_TEXT}}"
@@ -105,8 +111,8 @@
                     <input type="checkbox" class="form-check-input"
                            @if($field->is_required == '1') checked @endif
                            name="field[{{$field->id}}][is_required]">
-                </td>
-                <td>
+                 </td>
+                {{-- <td>
                     <input type="checkbox" class="form-check-input"
                            @if($field->is_nullable == '1') checked @endif
                            name="field[{{$field->id}}][is_nullable]">
@@ -120,13 +126,13 @@
                     <input type="checkbox" class="form-check-input"
                            @if($field->show_on_list == '1') checked @endif
                            name="field[{{$field->id}}][show_on_list]">
-                </td>
+                </td> --}}
                 <td>
                     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#field_meta_{{$field->id}}">
                         <i class="fa fa-eye"></i>
                     </button>
-                    @include('river::admin.datatypes.field_meta_modal',['field' => $field])
-                </td>
+                    @include('river::admin.contact_form.field_meta_modal',['field' => $field])
+                </td> 
             </tr>
         @endforeach
         </tbody>
@@ -152,7 +158,7 @@
             e.preventDefault();
             var filename = window.prompt('Enter name(s)');
             if (filename) {
-                DynamicForm.create(route('river.datatypes.store-fields'), "POST")
+                DynamicForm.create(route('river.contact-form.store-fields'), "POST")
                     .addField("name", filename)
                     .addField("type_id", "{{$type->id}}")
                     .addCsrf()
