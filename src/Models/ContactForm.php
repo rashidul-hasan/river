@@ -18,4 +18,8 @@ class ContactForm extends Model
     {
         return $q->where('slug', $slug);
     }
+
+    public function contactformfield(){
+        return $this->HasMany(ContactFormField::class, 'contactform_id');
+    }
 }

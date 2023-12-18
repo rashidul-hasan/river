@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->nullable();
+            $table->string('email')->nullable();
             $table->boolean('is_active')->default(0)->nullable();
+            $table->boolean('show_on_menu')->default(0)->nullable();
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@
 <div class="container-xl">
     <div class="row row-deck row-cards">
 
+        
 
         <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -27,6 +28,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <td>SL</td>
                             <td> Contact Form Id</td>
                             <td> Name</td>
                             <td> Slug</td>
@@ -39,28 +41,30 @@
                         <form>
                             <tr>
                                 <td> 1</td>
-                                <td> <input type="text" class="form-control" /></td>
-                                <td> <input type="text" class="form-control" /></td>
-                                <td> <select class="form-select" aria-label="Default select example">
-                                        <option selected>Text</option>
-                                        <option value="1">Textarea</option>
-                                        <option value="2">Email</option>
-                                        <option value="3">Phone</option>
-                                        <option value="3">Password</option>
-                                        <option value="3">Image</option>
-                                        <option value="3">Checkbox</option>
-                                        <option value="3">select</option>
-                                        <option value="3">Phone</option>
-                                        <option value="3">Radio</option>
-                                        <option value="3">Dropdown</option>
-                                        <option value="3">Number</option>
-                                        <option value="3">Date</option>
-                                        <option value="3">Date time</option>
-                                        <option value="3">Phone</option>
-                                        <option value="3">Rich text</option>
-                                        <option value="3">Belogs to</option>
+                                <td> <input type="text" name="contactform_id" class="form-control" /></td>
+                                <td> <input type="text" name="name" class="form-control" /></td>
+                                <td> <input type="text" name="slug" class="form-control" /></td>
+                                <td> <select class="form-select" name="type" aria-label="Default select example">
+                                        <option value="Text" selected >Text</option>
+                                        <option value="Textarea">Textarea</option>
+                                        <option value="Email">Email</option>
+                                        <option value="Phone">Phone</option>
+                                        <option value="Password">Password</option>
+                                        <option value="Image">Image</option>
+                                        <option value="Checkbox">Checkbox</option>
+                                        <option value="select">select</option>
+                                        <option value="Phone">Phone</option>
+                                        <option value="Radio">Radio</option>
+                                        <option value="Dropdown">Dropdown</option>
+                                        <option value="Number">Number</option>
+                                        <option value="Date">Date</option>
+                                        <option value="Date time">Date time</option>
+                                        <option value="Phone">Phone</option>
+                                        <option value="Rich text">Rich text</option>
+                                        <option value="Belogs to">Belogs to</option>
 
-                                    </select></td>
+                                    </select>
+                                </td>
                                 <td> <input class="form-check-input" type="checkbox" name="is_required" value="1"></td>
                                 <td>
                                     <form>
@@ -86,12 +90,18 @@
                     <div class="modal-content">
                         <div class="modal-body">
 
-                            <form method="POST" action="">
+                            <form method="POST" action="{{ route('river.Contact-Form-Field.store') }}">
                                 @csrf
                                 <div>
                                     <label class="form-label">Name</label>
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}" />
                                 </div>
+
+                                <div>""
+                                    <input type="hidden" name="contactform_id" value="" />
+                                </div>
+
+
 
                                 <div>
                                     <div class="modal-footer">
@@ -104,7 +114,6 @@
                                     </div>
                                 </div>
                             </form>
-
 
                         </div>
 

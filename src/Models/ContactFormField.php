@@ -18,6 +18,6 @@ class ContactFormField extends Model
 
     public function contactform()
     {
-        return $this->belongsTo(ContactForm::class, 'contactformfield_id');
+        return $this->belongsTo(ContactForm::class, 'contactform_id');
     }
 }

@@ -4,6 +4,7 @@ namespace Rashidul\River\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Rashidul\River\Constants;
 use Rashidul\River\Models\DataFields;
@@ -27,7 +28,21 @@ class ContactFormFieldController
 
     public function store(Request $request)
     {
-        //
+
+        $validator = $request->validate([
+            'name' => 'string|required',
+        ]);
+
+
+        ContactFormField::create([
+            'name' => $request->name,
+            'contactform_id'=> 1,
+            'slug' => Str::slug($request->name, '_'),
+            'type' => "Text",
+            'is_required' => $request->is_required
+        ]);
+
+        return redirect()->back()->with('success', 'Added!');
     }
 
     public function edit($id)

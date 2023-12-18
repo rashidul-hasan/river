@@ -108,7 +108,7 @@ class AdminSidebarViewComposer
             [
                 'label' => 'Contact Form',
                 'icon' => 'fas fa-file-contract',
-                'route' => 'river.contact_form',
+                'route' => 'river.contact-form.index',
             ],
             [
                 'label' => 'Visit Site',

@@ -72,11 +72,14 @@ Route::group([
       require(public_path('river/tinyfilemanager.php'));
     });*/
 
-    Route::get('contact-form', 'Admin\ContactFormController@index')->name('contact_form');
-    Route::post('contact-form/store', 'Admin\ContactFormController@store')->name('contact-form.store');
-    Route::delete('contact-form/destroy/{id}', 'Admin\ContactFormController@destroy')->name('contact-form.destroy');
-    Route::get('contact-form/update/{id}', 'Admin\ContactFormController@update')->name('contact-form.update');
-    Route::put('contact-form/update-store/{id}', 'Admin\ContactFormController@update_store')->name('contact-form.update-store');
+    // Route::get('contact-form', 'Admin\ContactFormController@index')->name('contact_form');
+    // Route::post('contact-form/store', 'Admin\ContactFormController@store')->name('contact-form.store');
+    // Route::delete('contact-form/destroy/{id}', 'Admin\ContactFormController@destroy')->name('contact-form.destroy');
+    // Route::get('contact-form/update/{id}', 'Admin\ContactFormController@update')->name('contact-form.update');
+    // Route::put('contact-form/update-store/{id}', 'Admin\ContactFormController@update_store')->name('contact-form.update-store');
 
-    Route::get('Contact-Form-Field', 'Admin\ContactFormFieldController@index')->name('Contact-Form-Field');
+    // Route::get('contact-form-field', 'Admin\ContactFormFieldController@index')->name('Contact-Form-Field');
+    // Route::post('contact-form-field/store', 'Admin\ContactFormFieldController@store')->name('Contact-Form-Field.store');
+
+    Route::resource('contact-form', 'Admin\ContactFormController');
 });
