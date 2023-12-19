@@ -77,6 +77,10 @@ class AdminSidebarViewComposer
                     [
                         'label' => 'Pages',
                         'route' => 'river.template-pages.index',
+                    ],
+                    [
+                        'label' => 'Assets',
+                        'route' => 'river.template-assets.index',
                     ]
                 ]
             ],

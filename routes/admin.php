@@ -11,6 +11,8 @@ Route::group([
     Route::post('login', 'Admin\Auth\LoginController@login')->name('admin.login.post');
 });
 
+ 
+
 Route::group([
     'prefix' => 'admin',
     'middleware' => ['web', 'river.auth:admins', 'river.checkrole'],
@@ -41,6 +43,10 @@ Route::group([
     Route::resource('template-pages', 'Admin\TemplatePageController')->except(['create', 'show']);
     Route::get('assets', 'Admin\TemplatePageController@assets')->name('templates.assets');
     Route::get('CacheView', 'Admin\TemplatePageController@CacheView')->name('CacheView');
+
+    //template Assets
+    Route::resource('template-assets', 'Admin\TemplateAssetsController')->except(['create', 'show']);
+
     //    Route::get('pages/{id}', 'Admin\TemplatePageController@editPage')->name('templates.pages.edit');
 
     Route::post('datatypes/store-fields', 'Admin\DataTypeController@storeFields')->name('datatypes.store-fields');
