@@ -6,10 +6,12 @@ Route::group([
     'middleware' => ['web', 'river.guest:admins'],
     'namespace' => 'Rashidul\River\Http\Controllers',
     'as' => 'river.'
-    ], function () {
+], function () {
     Route::get('login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
     Route::post('login', 'Admin\Auth\LoginController@login')->name('admin.login.post');
 });
+
+ 
 
 Route::group([
     'prefix' => 'admin',
@@ -27,10 +29,10 @@ Route::group([
     Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
     Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
 
-//    Route::get('payment-method', 'Admin\PaymentController@index')->name('payment.index');
+    //    Route::get('payment-method', 'Admin\PaymentController@index')->name('payment.index');
 
     //settings route:
-//    Route::get('settings', 'Admin\SettingsController@showSettings')->name('settings.index');
+    //    Route::get('settings', 'Admin\SettingsController@showSettings')->name('settings.index');
     Route::get('storefront', 'Admin\Settings\AppearanceController@storeFront')->name('store.front');
     Route::post('update/settings', 'Admin\Settings\SettingsController@updateSettings')->name('store-settings');
     Route::resource('sliders', 'Admin\Settings\SliderController');
@@ -41,7 +43,11 @@ Route::group([
     Route::resource('template-pages', 'Admin\TemplatePageController')->except(['create', 'show']);
     Route::get('assets', 'Admin\TemplatePageController@assets')->name('templates.assets');
     Route::get('CacheView', 'Admin\TemplatePageController@CacheView')->name('CacheView');
-//    Route::get('pages/{id}', 'Admin\TemplatePageController@editPage')->name('templates.pages.edit');
+
+    //template Assets
+    Route::resource('template-assets', 'Admin\TemplateAssetsController')->except(['create', 'show']);
+
+    //    Route::get('pages/{id}', 'Admin\TemplatePageController@editPage')->name('templates.pages.edit');
 
     Route::post('datatypes/store-fields', 'Admin\DataTypeController@storeFields')->name('datatypes.store-fields');
     Route::put('datatypes/update-fields', 'Admin\DataTypeController@updateFields')->name('datatypes.update-fields');
@@ -72,4 +78,17 @@ Route::group([
       require(public_path('river/tinyfilemanager.php'));
     });*/
 
+    // Route::get('contact-form', 'Admin\ContactFormController@index')->name('contact_form');
+    // Route::post('contact-form/store', 'Admin\ContactFormController@store')->name('contact-form.store');
+    // Route::delete('contact-form/destroy/{id}', 'Admin\ContactFormController@destroy')->name('contact-form.destroy');
+    // Route::get('contact-form/update/{id}', 'Admin\ContactFormController@update')->name('contact-form.update');
+    // Route::put('contact-form/update-store/{id}', 'Admin\ContactFormController@update_store')->name('contact-form.update-store');
+
+    // Route::get('contact-form-field', 'Admin\ContactFormFieldController@index')->name('Contact-Form-Field');
+    // Route::post('contact-form-field/store', 'Admin\ContactFormFieldController@store')->name('Contact-Form-Field.store');
+
+    Route::resource('contact-form', 'Admin\ContactFormController');
+    Route::post('contact-form/store-fields', 'Admin\ContactFormController@storeFields')->name('contact-form.store-fields');
+    Route::put('contact-form/update-fields', 'Admin\ContactFormController@updateFields')->name('contact-form.update-fields');
+    Route::post('contact-form/field-meta', 'Admin\ContactFormController@fieldMeta')->name('contact-form.field-meta');
 });

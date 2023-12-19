@@ -17,8 +17,10 @@ class DataEntryController
 {
     public function index(FormBuilder $formBuilder, DataTypeService $dataTypeService, $slug)
     {
-        if (!RolesCache::hasPermission($slug . '.index',
-            RolePermission::TYPE_CUSTOMTYPE)) {
+        if (!RolesCache::hasPermission(
+            $slug . '.index',
+            RolePermission::TYPE_CUSTOMTYPE
+        )) {
             abort(503);
         }
         //TODO validate slug
@@ -56,8 +58,10 @@ class DataEntryController
 
     public function create(FormBuilder $formBuilder, DataTypeService $dataTypeService, $slug)
     {
-        if (!RolesCache::hasPermission($slug . '.create',
-            RolePermission::TYPE_CUSTOMTYPE)) {
+        if (!RolesCache::hasPermission(
+            $slug . '.create',
+            RolePermission::TYPE_CUSTOMTYPE
+        )) {
             abort(503);
         }
 
@@ -89,13 +93,17 @@ class DataEntryController
         return view('river::admin.dataentries.create', $data);
     }
 
-    public function edit(FormBuilder $formBuilder,
-                         DataTypeService $dataTypeService,
-                         DataEntryService $dataEntryService,
-                         $slug, $id)
-    {
-        if (!RolesCache::hasPermission($slug . '.update',
-            RolePermission::TYPE_CUSTOMTYPE)) {
+    public function edit(
+        FormBuilder $formBuilder,
+        DataTypeService $dataTypeService,
+        DataEntryService $dataEntryService,
+        $slug,
+        $id
+    ) {
+        if (!RolesCache::hasPermission(
+            $slug . '.update',
+            RolePermission::TYPE_CUSTOMTYPE
+        )) {
             abort(503);
         }
 
@@ -129,8 +137,10 @@ class DataEntryController
 
     public function store(Request $request, $slug, DataTypeService $dataTypeService)
     {
-        if (!RolesCache::hasPermission($slug . '.create',
-            RolePermission::TYPE_CUSTOMTYPE)) {
+        if (!RolesCache::hasPermission(
+            $slug . '.create',
+            RolePermission::TYPE_CUSTOMTYPE
+        )) {
             abort(503);
         }
 
@@ -147,13 +157,16 @@ class DataEntryController
             ->with('success', 'Created!');
     }
 
-    public function update(Request $request,
-                           DataEntryService $dataEntryService,
-                           $slug,
-                           $id)
-    {
-        if (!RolesCache::hasPermission($slug . '.update',
-            RolePermission::TYPE_CUSTOMTYPE)) {
+    public function update(
+        Request $request,
+        DataEntryService $dataEntryService,
+        $slug,
+        $id
+    ) {
+        if (!RolesCache::hasPermission(
+            $slug . '.update',
+            RolePermission::TYPE_CUSTOMTYPE
+        )) {
             abort(503);
         }
 
@@ -184,7 +197,6 @@ class DataEntryController
 
         return redirect(route('river.datatypes.edit', [$id, 'tab' => 'fields']))
             ->with('success', 'Created');
-
     }
 
     public function updateFields(Request $request)
@@ -204,13 +216,14 @@ class DataEntryController
 
         return redirect(route('river.datatypes.edit', [$id, 'tab' => 'fields']))
             ->with('success', 'Updated');
-
     }
 
     public function destroy($slug, $id)
     {
-        if (!RolesCache::hasPermission($slug . '.delete',
-            RolePermission::TYPE_CUSTOMTYPE)) {
+        if (!RolesCache::hasPermission(
+            $slug . '.delete',
+            RolePermission::TYPE_CUSTOMTYPE
+        )) {
             abort(503);
         }
 

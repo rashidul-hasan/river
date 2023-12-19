@@ -1,6 +1,5 @@
 # River - Application framework for Laravel
 
-
 ## Install;
 
 `composer require rashidul/river:dev-master`
@@ -15,6 +14,7 @@ To publish the assets(css, js files) into the public
 directory, run:
 
 `php artisan vendor:publish --tag=river-assets --force`
+
 
 Run the project: `php artisan serve`
 

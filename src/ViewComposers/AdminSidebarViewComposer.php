@@ -77,6 +77,10 @@ class AdminSidebarViewComposer
                     [
                         'label' => 'Pages',
                         'route' => 'river.template-pages.index',
+                    ],
+                    [
+                        'label' => 'Assets',
+                        'route' => 'river.template-assets.index',
                     ]
                 ]
             ],
@@ -104,6 +108,11 @@ class AdminSidebarViewComposer
                 'label' => 'Pages',
                 'icon' => 'fas fa-folder',
                 'route' => 'river.pages.index',
+            ],
+            [
+                'label' => 'Contact Form',
+                'icon' => 'fas fa-file-contract',
+                'route' => 'river.contact-form.index',
             ],
             [
                 'label' => 'Visit Site',
