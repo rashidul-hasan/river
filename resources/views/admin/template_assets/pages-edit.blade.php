@@ -35,13 +35,6 @@
                                    
                                 </div>
                             </div>
-
-                            <div class="card-body">
-                                <h3 class="card-title">Content</h3>
-                                <div class="input-icon">
-                                    <input type="text" class="form-control" name="content" value="{{$file->content}}">
-                                </div>
-                            </div>
                             
                             <div class="card-footer">
                                 <div class="row align-items-center">

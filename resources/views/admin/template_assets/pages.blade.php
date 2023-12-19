@@ -11,8 +11,20 @@
         <div class="row row-cards">
             <div class="col-md-5">
                 <div class="list-group">
+                    <h3> Css Files</h3>
                     @foreach($pages as $file)
-                        <a class="list-group-item" href="{{route('river.template-assets.edit', $file->id)}}">{{$file->filename}}</a>
+                      @if($file->type==1)
+                      <a class="list-group-item" href="{{route('river.template-assets.edit', $file->id)}}">{{$file->filename}}</a>
+                      @endif
+                        
+                    @endforeach
+                </div>
+                <div class="list-group mt-3">
+                    <h3> Js Files</h3>
+                    @foreach($pages as $file)
+                    @if($file->type==2)
+                      <a class="list-group-item" href="{{route('river.template-assets.edit', $file->id)}}">{{$file->filename}}</a>
+                      @endif
                     @endforeach
                 </div>
             </div>

@@ -64,6 +64,14 @@ class AdminSidebarViewComposer
                     [
                         'label' => 'Appearance',
                         'route' => 'river.store.front',
+                    ],
+                    [
+                        'label' => 'Social Links',
+                        'route' => 'river.store-social-links'
+                    ],
+                    [
+                        'label' => 'Email settings',
+                        'route' => 'river.store-social-links'
                     ]
                 ]
             ],
@@ -118,6 +126,11 @@ class AdminSidebarViewComposer
                 'label' => 'Visit Site',
                 'icon' => 'fas fa-eye',
                 'route' => 'riversite.homepage',
+            ],
+            [
+                'label' => 'Newsletter Submissions',
+                'icon' =>  'fa-solid fa-envelope',
+                'route' => 'river.newslatter-submissions.index'
             ]
         ];
         if (RolesCache::isDeveloper()) {

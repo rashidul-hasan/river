@@ -11,7 +11,7 @@ Route::group([
     Route::post('login', 'Admin\Auth\LoginController@login')->name('admin.login.post');
 });
 
- 
+
 
 Route::group([
     'prefix' => 'admin',
@@ -34,10 +34,14 @@ Route::group([
     //settings route:
     //    Route::get('settings', 'Admin\SettingsController@showSettings')->name('settings.index');
     Route::get('storefront', 'Admin\Settings\AppearanceController@storeFront')->name('store.front');
+    Route::get('store-social-links', 'Admin\Settings\AppearanceController@storeSocialLinks')->name('store-social-links');
     Route::post('update/settings', 'Admin\Settings\SettingsController@updateSettings')->name('store-settings');
     Route::resource('sliders', 'Admin\Settings\SliderController');
 
     Route::resource('banners', 'Admin\Settings\BannersController');
+
+    //Newsletter Submissions
+    Route::resource('newslatter-submissions', 'Admin\NewsletterSubmissionsController');
 
     //template manager
     Route::resource('template-pages', 'Admin\TemplatePageController')->except(['create', 'show']);
@@ -46,6 +50,9 @@ Route::group([
 
     //template Assets
     Route::resource('template-assets', 'Admin\TemplateAssetsController')->except(['create', 'show']);
+    Route::get('assets-CacheView', 'Admin\TemplateAssetsController@CacheView')->name('assets-cache-view');
+
+
 
     //    Route::get('pages/{id}', 'Admin\TemplatePageController@editPage')->name('templates.pages.edit');
 

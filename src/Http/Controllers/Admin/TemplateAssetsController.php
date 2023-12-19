@@ -48,7 +48,7 @@ class TemplateAssetsController extends Controller
         $files = TemplateAssets::all();
         $buttons = [
             ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
-            ['Cache View',route('river.CacheView'), 'btn btn-info', '' /*label,link,class,id*/],
+            ['Cache View',route('river.assets-cache-view'), 'btn btn-info', '' /*label,link,class,id*/],
         ];
         $data = [
             'title' => 'Template Assets pages (location: resources/views/_cache)',
@@ -96,7 +96,6 @@ class TemplateAssetsController extends Controller
         $file->filename = $request->get('filename');
         $file->code = $request->get('code');
         $file->type = $request->get('type');
-        $file->content = $request->get('content');
         $file->save();
 
         //reset cache
@@ -118,8 +117,9 @@ class TemplateAssetsController extends Controller
 
     public function CacheView()
     {
-        Artisan::call('river:cache-views');
-        return redirect()->back()->with('success', 'Successfully');
+        echo "CacheView function in TemplateAssetsController";
+        // Artisan::call('river:cache-views');
+        // return redirect()->back()->with('success', 'Successfully');
     }
 
 }

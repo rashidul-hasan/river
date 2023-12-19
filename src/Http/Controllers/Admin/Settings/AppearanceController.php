@@ -16,4 +16,11 @@ class AppearanceController extends Controller
         return view('river::admin.settings.storefront', $data);
     }
 
+    public function storeSocialLinks(){
+        $data = [
+            'settings' => SettingsService::getSettingsArray(),
+        ];
+        return view('river::admin.settings.store-social-links', $data);
+    }
+
 }

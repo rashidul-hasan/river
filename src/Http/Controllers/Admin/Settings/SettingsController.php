@@ -12,9 +12,9 @@ class SettingsController extends Controller
 {
 
     protected $settings = [
-        'name', 'phone', 'email', 'address', 'header_text', 'facebook', 'twitter', 'Instagram', 'about',
+        'name', 'phone', 'email', 'address', 'header_text', 'facebook', 'twitter', 'instagram', 'about',
         'footertext','map_code','imo_whatsup','meta_title','theme_color', 'open_hour','notice','facebook_client_id','facebook_client_secret',
-        'google_client_id','google_client_secret','LinkedIn'
+        'google_client_id','google_client_secret','LinkedIn','google_map_lat','google_map_lon'
     ];
 
     protected $settingsImages = [
@@ -46,6 +46,7 @@ class SettingsController extends Controller
 
     public function updateSettings(Request $request)
     {
+
         foreach ($this->settings as $setting) {
             if ($request->has($setting)) {
                 SettingsService::set($setting, $request->get($setting));
