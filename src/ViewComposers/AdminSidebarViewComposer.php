@@ -71,7 +71,7 @@ class AdminSidebarViewComposer
                     ],
                     [
                         'label' => 'Email settings',
-                        'route' => 'river.store-social-links'
+                        'route' => 'river.store-email-setting'
                     ]
                 ]
             ],
@@ -131,6 +131,11 @@ class AdminSidebarViewComposer
                 'label' => 'Newsletter Submissions',
                 'icon' =>  'fa-solid fa-envelope',
                 'route' => 'river.newslatter-submissions.index'
+            ],
+            [
+                'label' => 'FAQ',
+                'icon' => 'fas fa-comments',
+                'route' => 'river.faq.index'
             ]
         ];
         if (RolesCache::isDeveloper()) {

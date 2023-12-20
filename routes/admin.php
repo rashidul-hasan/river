@@ -35,6 +35,9 @@ Route::group([
     //    Route::get('settings', 'Admin\SettingsController@showSettings')->name('settings.index');
     Route::get('storefront', 'Admin\Settings\AppearanceController@storeFront')->name('store.front');
     Route::get('store-social-links', 'Admin\Settings\AppearanceController@storeSocialLinks')->name('store-social-links');
+
+    Route::get('store-email-setting', 'Admin\Settings\AppearanceController@storeEmailSettings')->name('store-email-setting');
+
     Route::post('update/settings', 'Admin\Settings\SettingsController@updateSettings')->name('store-settings');
     Route::resource('sliders', 'Admin\Settings\SliderController');
 
@@ -98,4 +101,6 @@ Route::group([
     Route::post('contact-form/store-fields', 'Admin\ContactFormController@storeFields')->name('contact-form.store-fields');
     Route::put('contact-form/update-fields', 'Admin\ContactFormController@updateFields')->name('contact-form.update-fields');
     Route::post('contact-form/field-meta', 'Admin\ContactFormController@fieldMeta')->name('contact-form.field-meta');
+
+    Route::resource('faq', 'Admin\FaqController');
 });

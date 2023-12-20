@@ -45,7 +45,7 @@
                             <label class="col-md-4">Google Map lat</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" name="google_map_lat"
-                                       value="{{ river_settings('google_client_id') }}">
+                                       value="{{ river_settings('google_map_lat') }}">
                             </div>
                         </div>
                         <div class="form-group row mb-3">
