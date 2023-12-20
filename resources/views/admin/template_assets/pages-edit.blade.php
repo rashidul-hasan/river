@@ -5,6 +5,7 @@
 @section('css')
     <link rel="stylesheet" href="/river/admin/codemirror-5.65.2/lib/codemirror.css" />
     <link rel="stylesheet" href="/river/admin/codemirror-5.65.2/theme/monokai.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
     <style>
         .CodeMirror {
             height: 400px;
@@ -15,47 +16,20 @@
 @section('content')
     <div class="container-xl">
         <div class="row row-cards">
-            <form action="{{route('river.template-assets.update', $file->id)}}" method="POST">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="card-title">Filename</h3>
-                                <div class="input-icon">
-                                    <input type="text" class="form-control" name="filename" value="{{$file->filename}}">
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <h3 class="card-title">Type</h3>
-                                <div class="input-icon">
-                                    <select class="form-control" name="type">
-                                        <option value="1" @if($file->type==1) selected @endif>CSS</option>
-                                        <option value="2" @if($file->type==2) selected @endif>Js</option>
-                                    </select>
-                                   
-                                </div>
-                            </div>
-                            
-                            <div class="card-footer">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                        <button type="button" class="btn btn-danger btn-delete">Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                        @csrf
-                        @method('PUT')
-                        <div class="form-group">
-                            <label>Code</label>
-                            <textarea name="code" id="code" cols="30" rows="30" class="form-control">{{$file->code}}</textarea>
-                        </div>
-                    </div>
-                </div>
-            </form>
+
+            <form action="{{ route('river.file-upload') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                  <div class="form-group">
+                      <label for="document">Css, js, jpg, png  </label>
+                      <div class="needsclick dropzone" id="document-dropzone">
+                  </div>
+                  
+              </form>
+
+
+
+
+            
         </div>
     </div>
 
@@ -63,26 +37,44 @@
 
 @push('scripts')
 
-    <script src="/river/admin/codemirror-5.65.2/lib/codemirror.js"></script>
-    <script src="/river/admin/codemirror-5.65.2/mode/htmlmixed/htmlmixed.js"></script>
-    <script src="/river/admin/codemirror-5.65.2/mode/xml/xml.js"></script>
-    <script src="/river/admin/codemirror-5.65.2/mode/javascript/javascript.js"></script>
-    <script src="/river/admin/codemirror-5.65.2/mode/css/css.js"></script>
-    <script src="/river/admin/codemirror-5.65.2/mode/clike/clike.js"></script>
-    <script src="/river/admin/codemirror-5.65.2/mode/php/php.js"></script>
-    <script>
-        var code = CodeMirror.fromTextArea(document.getElementById("code"), {
-            lineNumbers: true,
-            mode: "php",
-            theme: 'monokai'
-        });
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
 
-        $('.btn-delete').click(function () {
-            if(window.confirm('Delete this file?')) {
-                DynamicForm.create(route('river.template-assets.destroy', "{{$file->id}}"), 'DELETE')
-                .addCsrf()
-                .submit();
-            }
-        });
-    </script>
+<script>
+    var uploadedDocumentMap = {}
+    Dropzone.options.documentDropzone = {
+      url: "{{ route('river.file-upload') }}",
+      maxFilesize: 2, // MB
+      addRemoveLinks: true,
+      headers: {
+        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+      },
+      success: function (file, response) {
+        $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
+        uploadedDocumentMap[file.name] = response.name
+      },
+      removedfile: function (file) {
+        file.previewElement.remove()
+        var name = ''
+        if (typeof file.file_name !== 'undefined') {
+          name = file.file_name
+        } else {
+          name = uploadedDocumentMap[file.name]
+        }
+        $('form').find('input[name="document[]"][value="' + name + '"]').remove()
+      },
+      init: function () {
+        @if(isset($project) && $project->document)
+          var files =
+            {!! json_encode($project->document) !!}
+          for (var i in files) {
+            var file = files[i]
+            this.options.addedfile.call(this, file)
+            file.previewElement.classList.add('dz-complete')
+            $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
+          }
+        @endif
+      }
+    }
+  </script>
 @endpush

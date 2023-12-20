@@ -14,11 +14,11 @@ class NewsletterSubmissionsController extends Controller
     {
         $value= NewsletterSubmissions::all();
         $data = [
-            'title' => 'News Latter Submissions',
+            'title' => 'Newsletter Submissions',
             'value' => $value
         ];
 
-         return view('river::admin.Newslatter_Submitions.index', $data);
+         return view('river::admin.Newsletter_Submitions.index', $data);
     }
 
     public function store(Request $request){

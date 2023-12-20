@@ -9,7 +9,7 @@
 
     <div class="container-xl">
         <div class="row row-cards">
-            <h3> Newslatter Emails:</h3>
+            <h3> Newsletter Emails:</h3>
             @foreach($value as $key=>$file)
 
             <table class="table">

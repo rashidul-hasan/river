@@ -1,5 +1,5 @@
 <?php
-
+use Rashidul\River\Http\Controllers\Admin\FileUploadController;
 //auth
 Route::group([
     'prefix' => 'admin',
@@ -20,7 +20,7 @@ Route::group([
     'as' => 'river.'
 ], function () {
 
-    //users crud
+    //users crudF
     Route::resource('users', 'Admin\UsersController');
 
     Route::resource('users-role', 'Admin\UsersRoleController');
@@ -52,7 +52,7 @@ Route::group([
     Route::get('CacheView', 'Admin\TemplatePageController@CacheView')->name('CacheView');
 
     //template Assets
-    Route::resource('template-assets', 'Admin\TemplateAssetsController')->except(['create', 'show']);
+    Route::resource('template-assets', 'Admin\TemplateAssetsController')->except(['show']);
     Route::get('assets-CacheView', 'Admin\TemplateAssetsController@CacheView')->name('assets-cache-view');
 
 
@@ -103,4 +103,6 @@ Route::group([
     Route::post('contact-form/field-meta', 'Admin\ContactFormController@fieldMeta')->name('contact-form.field-meta');
 
     Route::resource('faq', 'Admin\FaqController');
+
+    Route::post('uploads', [FileUploadController::class,'file_upload'])->name('file-upload');
 });

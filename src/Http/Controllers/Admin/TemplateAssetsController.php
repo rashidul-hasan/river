@@ -9,6 +9,7 @@ use Rashidul\River\Models\TemplatePage;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use Rashidul\River\Models\TemplateAssets;
+use Illuminate\Support\Facades\File;
 
 class TemplateAssetsController extends Controller
 {
@@ -45,14 +46,49 @@ class TemplateAssetsController extends Controller
 
     public function index()
     {
-        $files = TemplateAssets::all();
+        $js_file_name = [];
+        $css_file_name = [];
+        $image_file_name = [];
+
+    $publicPath = public_path();
+    $directory = 'river/assets';
+    $targetDirectory = $publicPath . '/' . $directory;
+
+    if(File::isDirectory($targetDirectory)) {
+        // Get the list of files in the directory
+        $files = File::files($targetDirectory); 
+        
+
+        foreach ($files as $file) {
+
+            $filename=  $file->getFilename();
+            $ex_name = pathinfo($filename, PATHINFO_EXTENSION);
+
+            if($ex_name=='js'){
+                $js_file_name[] = $filename ;
+            } else if($ex_name=='css'){
+                $css_file_name[] = $filename;
+            } else if ($ex_name=='jpg'|| $ex_name=='png' ){
+                $image_file_name[] = $filename;
+            }
+
+            // $ext = pathinfo($filename, PATHINFO_EXTENSION);
+            // echo $ext;
+        }
+
+    }
+
+        // $files = TemplateAssets::all();
         $buttons = [
-            ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
+            ['Add', route('river.template-assets.create'), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
             ['Cache View',route('river.assets-cache-view'), 'btn btn-info', '' /*label,link,class,id*/],
         ];
         $data = [
             'title' => 'Template Assets pages (location: resources/views/_cache)',
             'pages' => $files,
+            'js_file_name' => $js_file_name,
+            'css_file_name' => $css_file_name,
+            'image_file_name' => $image_file_name,
             '_top_buttons' => $buttons
         ];
 
@@ -74,12 +110,12 @@ class TemplateAssetsController extends Controller
             ->with('success', 'Created new file!');
     }
 
-    public function edit($id)
+    public function create()
     {
-        $file = TemplateAssets::find($id);
+    
         $data = [
-            'title' => 'Edit: ' . $file->filename,
-            'file' => $file
+            'title' => 'Upload Files',
+           
         ];
 
         return view('river::admin.template_assets.pages-edit', $data);
