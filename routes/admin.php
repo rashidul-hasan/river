@@ -1,5 +1,5 @@
 <?php
-
+use Rashidul\River\Http\Controllers\Admin\FileUploadController;
 //auth
 Route::group([
     'prefix' => 'admin',
@@ -11,7 +11,7 @@ Route::group([
     Route::post('login', 'Admin\Auth\LoginController@login')->name('admin.login.post');
 });
 
- 
+
 
 Route::group([
     'prefix' => 'admin',
@@ -20,7 +20,7 @@ Route::group([
     'as' => 'river.'
 ], function () {
 
-    //users crud
+    //users crudF
     Route::resource('users', 'Admin\UsersController');
 
     Route::resource('users-role', 'Admin\UsersRoleController');
@@ -34,10 +34,17 @@ Route::group([
     //settings route:
     //    Route::get('settings', 'Admin\SettingsController@showSettings')->name('settings.index');
     Route::get('storefront', 'Admin\Settings\AppearanceController@storeFront')->name('store.front');
+    Route::get('store-social-links', 'Admin\Settings\AppearanceController@storeSocialLinks')->name('store-social-links');
+
+    Route::get('store-email-setting', 'Admin\Settings\AppearanceController@storeEmailSettings')->name('store-email-setting');
+
     Route::post('update/settings', 'Admin\Settings\SettingsController@updateSettings')->name('store-settings');
     Route::resource('sliders', 'Admin\Settings\SliderController');
 
     Route::resource('banners', 'Admin\Settings\BannersController');
+
+    //Newsletter Submissions
+    Route::resource('newslatter-submissions', 'Admin\NewsletterSubmissionsController');
 
     //template manager
     Route::resource('template-pages', 'Admin\TemplatePageController')->except(['create', 'show']);
@@ -45,7 +52,10 @@ Route::group([
     Route::get('CacheView', 'Admin\TemplatePageController@CacheView')->name('CacheView');
 
     //template Assets
-    Route::resource('template-assets', 'Admin\TemplateAssetsController')->except(['create', 'show']);
+    Route::resource('template-assets', 'Admin\TemplateAssetsController')->except(['show']);
+    Route::get('assets-CacheView', 'Admin\TemplateAssetsController@CacheView')->name('assets-cache-view');
+
+
 
     //    Route::get('pages/{id}', 'Admin\TemplatePageController@editPage')->name('templates.pages.edit');
 
@@ -91,4 +101,8 @@ Route::group([
     Route::post('contact-form/store-fields', 'Admin\ContactFormController@storeFields')->name('contact-form.store-fields');
     Route::put('contact-form/update-fields', 'Admin\ContactFormController@updateFields')->name('contact-form.update-fields');
     Route::post('contact-form/field-meta', 'Admin\ContactFormController@fieldMeta')->name('contact-form.field-meta');
+
+    Route::resource('faq', 'Admin\FaqController');
+
+    Route::post('uploads', [FileUploadController::class,'file_upload'])->name('file-upload');
 });
