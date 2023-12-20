@@ -17,7 +17,46 @@
         <div class="row row-cards">
             <form action="{{route('river.template-pages.update', $file->id)}}" method="POST">
                 <div class="row">
-                    <div class="col-md-3">
+
+                        <div class="col-md-3"> 
+                                <div class="input-icon">
+                                    <input type="text" class="form-control" name="filename" value="{{$file->filename}}">
+                                </div>
+                            
+                        </div>
+
+                        <div class="col-md-3">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="button" class="btn btn-danger btn-delete">Delete</button>
+                                        <button type="button" class="btn btn-primary" >Back</button>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    tamplate Pages
+                                </button>
+                                <ul class="dropdown-menu">
+                                    @foreach($pages as $f)
+                                   <li><a class="dropdown-item  @if($file->id == $f->id) active @endif " href="{{route('river.template-pages.edit', $f->id)}}"  >{{$f->filename}}</a></li>
+                                @endforeach
+                                  
+                                </ul>
+                              </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    {{-- <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title">Filename</h3>
@@ -34,8 +73,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-9">
+                    </div> --}}
+                    <div class="col-md-12 my-3">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
