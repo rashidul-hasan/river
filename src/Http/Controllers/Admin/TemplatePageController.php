@@ -74,10 +74,11 @@ class TemplatePageController extends Controller
 
     public function edit($id)
     {
+        $pages = TemplatePage::all();
         $file = TemplatePage::find($id);
         $data = [
-            'title' => 'Edit: ' . $file->filename,
-            'file' => $file
+            'file' => $file,
+            'pages' => $pages
         ];
 
         return view('river::admin.templates.pages-edit', $data);

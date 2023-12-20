@@ -85,7 +85,6 @@ class TemplateAssetsController extends Controller
         ];
         $data = [
             'title' => 'Template Assets pages (location: resources/views/_cache)',
-            'pages' => $files,
             'js_file_name' => $js_file_name,
             'css_file_name' => $css_file_name,
             'image_file_name' => $image_file_name,
