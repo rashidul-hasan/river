@@ -50,14 +50,12 @@ class TemplateAssetsController extends Controller
         $css_file_name = [];
         $image_file_name = [];
 
-    $publicPath = public_path();
-    $directory = 'river/assets';
-    $targetDirectory = $publicPath . '/' . $directory;
+        $publicPath = public_path();
+        $directory = 'river/assets';
+        $targetDirectory = $publicPath . '/' . $directory;
 
     if(File::isDirectory($targetDirectory)) {
-        // Get the list of files in the directory
-        $files = File::files($targetDirectory); 
-        
+        $files = File::files($targetDirectory);
 
         foreach ($files as $file) {
 
@@ -68,24 +66,18 @@ class TemplateAssetsController extends Controller
                 $js_file_name[] = $filename ;
             } else if($ex_name=='css'){
                 $css_file_name[] = $filename;
-            } else if ($ex_name=='jpg'|| $ex_name=='png' ){
+            } else if ($ex_name=='jpg'|| $ex_name=='png' || $ex_name=='jpeg' ){
                 $image_file_name[] = $filename;
             }
-
-            // $ext = pathinfo($filename, PATHINFO_EXTENSION);
-            // echo $ext;
         }
 
     }
 
-        // $files = TemplateAssets::all();
         $buttons = [
-            ['Add', route('river.template-assets.create'), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
-            ['Cache View',route('river.assets-cache-view'), 'btn btn-info', '' /*label,link,class,id*/],
+            ['Add files', route('river.template-assets.create'), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/]
         ];
         $data = [
-            'title' => 'Template Assets pages (location: resources/views/_cache)',
-            'pages' => $files,
+            'title' => 'Template Assets pages (location: public/river/assets)',
             'js_file_name' => $js_file_name,
             'css_file_name' => $css_file_name,
             'image_file_name' => $image_file_name,
@@ -112,10 +104,10 @@ class TemplateAssetsController extends Controller
 
     public function create()
     {
-    
+
         $data = [
             'title' => 'Upload Files',
-           
+
         ];
 
         return view('river::admin.template_assets.pages-edit', $data);
