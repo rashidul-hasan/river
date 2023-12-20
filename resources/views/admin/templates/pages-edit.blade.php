@@ -7,7 +7,22 @@
     <link rel="stylesheet" href="/river/admin/codemirror-5.65.2/theme/monokai.css" />
     <style>
         .CodeMirror {
-            height: 400px;
+            height: 600px;
+        }
+
+        /* Show both horizontal and vertical scrollbars */
+        .CodeMirror-scroll {
+            overflow: scroll !important;
+        }
+
+        /* Alternatively, you can use the following to show only vertical scrollbar */
+        .CodeMirror-vscrollbar {
+            overflow-y: scroll !important;
+        }
+
+        /* Or show only horizontal scrollbar */
+        .CodeMirror-hscrollbar {
+            overflow-x: scroll !important;
         }
     </style>
 @endsection
@@ -18,11 +33,11 @@
             <form action="{{route('river.template-pages.update', $file->id)}}" method="POST">
                 <div class="row">
 
-                        <div class="col-md-3"> 
+                        <div class="col-md-3">
                                 <div class="input-icon">
                                     <input type="text" class="form-control" name="filename" value="{{$file->filename}}">
                                 </div>
-                            
+
                         </div>
 
                         <div class="col-md-3">
@@ -39,13 +54,13 @@
 
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    tamplate Pages
+                                    Select page
                                 </button>
                                 <ul class="dropdown-menu">
                                     @foreach($pages as $f)
                                    <li><a class="dropdown-item  @if($file->id == $f->id) active @endif " href="{{route('river.template-pages.edit', $f->id)}}"  >{{$f->filename}}</a></li>
                                 @endforeach
-                                  
+
                                 </ul>
                               </div>
 
@@ -79,7 +94,7 @@
                         @method('PUT')
                         <div class="form-group">
                             <label>Code</label>
-                            <textarea name="code" id="code" cols="30" rows="30" class="form-control">{{$file->code}}</textarea>
+                            <textarea name="code" id="code" cols="30" rows="50" class="form-control">{{$file->code}}</textarea>
                         </div>
                     </div>
                 </div>
