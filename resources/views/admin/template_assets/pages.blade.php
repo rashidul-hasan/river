@@ -8,42 +8,97 @@
 @section('content')
 
     <div class="container-xl">
-        <div class="row row-cards">
-
-            <div class="col-md-5 justify-content-between">
-                
-
-                <div class="list-group">
-                    <h3> css Files</h3>
-                    @foreach($css_file_name as $key=>$file)
-                    <div class="d-flex list-group-item">
-                        <p class="mx-2">{{ ++$key .'.' }}</p> <p class="" > {{$file}}</p>
-                    </div>
-                    @endforeach
-                </div>
-
-
-                <div class="list-group mt-3">
-                    <h3> Js Files</h3>
-                    @foreach($js_file_name as $key=>$file)
-                    <div class="d-flex list-group-item">
-                        <p class="mx-2">{{ ++$key .'.' }}</p> <p class="" > {{$file}}</p>
-                    </div>
-                    @endforeach
-                </div>
-
-                <div class="list-group mt-3">
-                    <h3> Image Files</h3>
-                    @foreach($image_file_name as $key=>$file)
-                    <div class="d-flex list-group-item">
-                        <p class="mx-2">{{ ++$key .'.' }}</p> <p class="" > {{$file}}</p>
-                    </div>
-                    @endforeach
-                </div>
-
+        <div class="row card row-cards">
+            <h3>Css Files</h3>
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-vcenter">
+                      <thead>
+                        <tr>
+                          <th>File Name</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($css_file_name as $key=>$file)
+                        <tr>
+                            <td>{{$file}}</td>
+                            <td class="text-secondary">
+                              Delete
+                            </td>
+                          </tr>
+                        @endforeach
+              
+                      </tbody>
+                    </table>
+                  </div>
+                  
             </div>
             
         </div>
+
+        <div class="row card row-cards mt-5">
+
+            <h3>JS Files</h3>
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-vcenter">
+                      <thead>
+                        <tr>
+                          <th>File Name</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($js_file_name as $key=>$file)
+                        <tr>
+                            <td>{{$file}}</td>
+                            <td class="text-secondary">
+                              Delete
+                            </td>
+                          </tr>
+                        @endforeach
+              
+                      </tbody>
+                    </table>
+                  </div>
+                  
+            </div>
+            
+        </div>
+
+        <div class="row card row-cards mt-5">
+
+            <h3>Image Files</h3>
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-vcenter">
+                      <thead>
+                        <tr>
+                          <th>File Name</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($image_file_name as $key=>$file)
+                        <tr>
+                            <td > <img style="width:100px" src="/river/assets/{{ $file }}" /> {{$file}}</td>
+                            <td class="text-secondary">
+                              Delete
+                            </td>
+                          </tr>
+                        @endforeach
+              
+                      </tbody>
+                    </table>
+                  </div>
+                  
+            </div>
+            
+        </div>
+
+
+
     </div>
 @stop
 
