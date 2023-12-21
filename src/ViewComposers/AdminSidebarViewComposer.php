@@ -140,6 +140,11 @@ class AdminSidebarViewComposer
                 'label' => 'FAQ',
                 'icon' => 'fas fa-comments',
                 'route' => 'river.faq.index'
+            ],
+            [
+                'label' =>' Menu',
+                'icon' => 'fas fa-bars',
+                'route' => 'river.menu.index'
             ]
         ];
         if (RolesCache::isDeveloper()) {

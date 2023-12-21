@@ -21,7 +21,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <form action="{{route('river.pages.update', $riverPage->id)}}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -35,6 +35,12 @@
                                     <label class="form-label required">Menu Title</label>
                                     <div>
                                         <input type="text" class="form-control"  name="menu_title" value="{{$riverPage->menu_title}}">
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3 ">
+                                    <label class="form-label required">Meta Description</label>
+                                    <div>
+                                        <input type="text" class="form-control"  name="meta_description" value=" {{$riverPage->meta_description}}">
                                     </div>
                                 </div>
                                 <div class="form-group mb-3 ">

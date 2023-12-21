@@ -62,6 +62,8 @@ class RiverPagesController extends Controller
      */
     public function store(Request $request)
     {
+
+        
         $this->validate($request, [
             'title' => 'required',
         ]);
@@ -70,6 +72,7 @@ class RiverPagesController extends Controller
         $page->title = $request->title;
         $page->slug = Str::slug($request->title);
         $page->menu_title = $request->menu_title;
+        $page->meta_description = $request->meta_description;
         $page->content_type = $request->content_type;
         $page->content = isset($request->page_content1) ? $request->page_content1 : $request->page_content2;
         $page->is_published = isset($request->is_published) ? true : false;
@@ -92,7 +95,7 @@ class RiverPagesController extends Controller
 
         $riverPage = RiverPage::findOrFail($id);
         $data = [
-            'title' => 'Edit Role',
+            'title' => 'Edit page',
             '_top_buttons' => $buttons,
             'riverPage' => $riverPage,
         ];
@@ -116,6 +119,7 @@ class RiverPagesController extends Controller
         $page->title = $request->title;
         $page->slug = Str::slug($request->title);
         $page->menu_title = $request->menu_title;
+        $page->meta_description = $request->meta_description;
         $page->content_type = $request->content_type;
         $page->content = isset($request->page_content1) ? $request->page_content1 : $request->page_content2;
         $page->is_published = isset($request->is_published) ? true : false;

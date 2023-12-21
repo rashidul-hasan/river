@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('river_pages', function (Blueprint $table) {
+        Schema::create('river_menu', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('menu_title')->nullable();
+            $table->string('name');
             $table->string('slug')->nullable();
-            $table->string('meta_description')->nullable();
-            $table->boolean('is_published')->nullable();
-            $table->longText('content')->nullable();
-            $table->string('content_type')->nullable();
+            $table->boolean('is_active')->default(0)->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('river_pages');
+        Schema::dropIfExists('river_contact_form');
     }
 };
