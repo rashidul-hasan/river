@@ -12,9 +12,14 @@
                         @csrf
                         <div class="form-group mb-3 row">
                             <label class="col-md-4">Website Name</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input type="text" class="form-control" name="name"
                                        value=" {{ river_settings('name') }}">
+                            </div>
+                            <div class="col-md-2">
+                                <button data-url="@{{river_settings('name')}}" class="btn btn-icon btn-copy">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>
+                                </button>
                             </div>
                         </div>
 
@@ -32,30 +37,55 @@
                         </div>
                         <div class="form-group row mb-3">
                             <label class="col-md-4">Address</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <textarea rows="2" class="form-control" id="example-text-input"
                                           name="address">{{ river_settings('address') }}</textarea>
                             </div>
+
+                            <div class="col-md-2">
+                                <button data-url="@{{river_settings('address')}}" class="btn btn-icon btn-copy">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>
+                                </button>
+                            </div>
+
+                            
                         </div>
                         <div class="form-group row mb-3">
                             <label class="col-md-4">Email</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input type="email" class="form-control" name="email"
                                        value="{{ river_settings('email') }}">
+                            </div>
+
+                            <div class="col-md-2">
+                                <button data-url="@{{river_settings('email')}}" class="btn btn-icon btn-copy">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>
+                                </button>
                             </div>
                         </div>
                         <div class="form-group row mb-3">
                             <label class="col-md-4">Phone</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input type="text" class="form-control" name="phone"
                                        value="{{ river_settings('phone') }}">
+                            </div>
+                            <div class="col-md-2">
+                                <button data-url="@{{river_settings('phone')}}" class="btn btn-icon btn-copy">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>
+                                </button>
                             </div>
                         </div>
                         <div class="form-group row mb-3">
                             <label class="col-md-4">iMO/Whats'up</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input type="text" class="form-control" name="imo_whatsup"
                                        value="{{ river_settings('imo_whatsup') }}">
+                            </div>
+
+                            <div class="col-md-2">
+                                <button data-url="@{{river_settings('imo_whatsup')}}" class="btn btn-icon btn-copy">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>
+                                </button>
                             </div>
                         </div>
                         <div class="form-group row mb-3">
@@ -64,33 +94,60 @@
                                 <input type="text" class="form-control" name="open_hour"
                                        value="{{ river_settings('open_hour') }}">
                             </div>
+                            <div class="col-md-2">
+                                <button data-url="@{{river_settings('open_hour')}}" class="btn btn-icon btn-copy">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>
+                                </button>
+                            </div>
                         </div>
                         <div class="form-group row mb-3">
                             <label class="col-md-4">FB Client Id</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input type="text" class="form-control" name="facebook_client_id"
                                        value="{{ river_settings('facebook_client_id') }}">
+                            </div>
+                            <div class="col-md-2">
+                                <button data-url="@{{river_settings('facebook_client_id')}}" class="btn btn-icon btn-copy">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>
+                                </button>
                             </div>
                         </div>
                         <div class="form-group row mb-3">
                             <label class="col-md-4">FB Client Secrete</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input type="text" class="form-control" name="facebook_client_secret"
                                        value="{{ river_settings('facebook_client_secret') }}">
+                            </div>
+
+                            <div class="col-md-2">
+                                <button data-url="@{{river_settings('facebook_client_secret')}}" class="btn btn-icon btn-copy">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>
+                                </button>
                             </div>
                         </div>
                         <div class="form-group row mb-3">
                             <label class="col-md-4">Google Client Id</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input type="text" class="form-control" name="google_client_id"
                                        value="{{ river_settings('google_client_id') }}">
+                            </div>
+                            <div class="col-md-2">
+                                <button data-url="@{{river_settings('google_client_id')}}" class="btn btn-icon btn-copy">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>
+                                </button>
                             </div>
                         </div>
                         <div class="form-group row mb-3">
                             <label class="col-md-4">Google Client Secrete</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input type="text" class="form-control" name="google_client_secret"
                                        value="{{ river_settings('google_client_secret') }}">
+                            </div>
+
+                            <div class="col-md-2">
+                                <button data-url="@{{river_settings('google_client_secret')}}" class="btn btn-icon btn-copy">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>
+                                </button>
                             </div>
                         </div>
                         <div class="form-group row mb-0 float-right">
@@ -214,8 +271,9 @@
                         <div class="form-group row mb-3">
                             <label class="col-md-4">Instagram</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="Instagram"
-                                       value="{{river_settings('Instagram')}}">
+                                <input type="text" class="form-control" name="Instagram" value="{{river_settings('Instagram')}}">
+
+                                
                             </div>
                         </div>
                         <div class="form-group row mb-3">

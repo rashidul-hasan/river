@@ -72,6 +72,10 @@ class AdminSidebarViewComposer
                     [
                         'label' => 'Email settings',
                         'route' => 'river.store-email-setting'
+                    ],
+                    [
+                        'label' => "Backup",
+                        'route' => 'river.site-backup'
                     ]
                 ]
             ],

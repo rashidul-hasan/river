@@ -43,6 +43,10 @@ Route::group([
 
     Route::resource('banners', 'Admin\Settings\BannersController');
 
+    Route::get('site-backup', 'Admin\Settings\SiteBackupController@index')->name('site-backup');
+
+
+
     //Newsletter Submissions
     Route::resource('newslatter-submissions', 'Admin\NewsletterSubmissionsController');
 
