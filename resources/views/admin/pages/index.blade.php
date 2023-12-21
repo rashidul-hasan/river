@@ -22,6 +22,8 @@
                             <tr>
                                 <th>Title</th>
                                 <th>Menu Title</th>
+                                <th>Slug</th>
+                                <th>Meta Description</th>
                                 <th>Content Type</th>
                                 <th>Published</th>
                                 <th class="w-1"></th>
@@ -40,7 +42,13 @@
                                 <td data-label="Title">
                                     <div>{{$item->menu_title}}</div>
                                 </td>
-                                    <td data-label="Title">
+                                <td data-label="Title">
+                                    <div>{{$item->slug}}</div>
+                                </td>
+                                <td data-label="Title">
+                                    <div>{{$item->meta_description}}</div>
+                                </td>
+                                <td data-label="Title">
                                     <div>{{$item->content_type}}</div>
                                 </td>
                                 <td class="text-muted" data-label="Role">

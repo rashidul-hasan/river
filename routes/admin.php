@@ -1,5 +1,6 @@
 <?php
 use Rashidul\River\Http\Controllers\Admin\FileUploadController;
+use Rashidul\River\Http\Controllers\Admin\MenuController;
 //auth
 Route::group([
     'prefix' => 'admin',
@@ -42,6 +43,11 @@ Route::group([
     Route::resource('sliders', 'Admin\Settings\SliderController');
 
     Route::resource('banners', 'Admin\Settings\BannersController');
+
+    Route::get('site-backup', 'Admin\Settings\SiteBackupController@index')->name('site-backup');
+    Route::get('site-backup-store', 'Admin\Settings\SiteBackupController@backup_store')->name('site-backup-store');
+
+
 
     //Newsletter Submissions
     Route::resource('newslatter-submissions', 'Admin\NewsletterSubmissionsController');
@@ -105,4 +111,9 @@ Route::group([
     Route::resource('faq', 'Admin\FaqController');
 
     Route::post('uploads', [FileUploadController::class,'file_upload'])->name('file-upload');
+
+
+    //Menu
+    Route::resource('menu', 'Admin\MenuController');
+    route::post('menu-field/{id}', [MenuController::class, 'menu_item_create'])->name('menu-field');
 });

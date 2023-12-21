@@ -13,16 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('river_pages', function (Blueprint $table) {
+        Schema::create('river_menu_item', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('menu_id');
             $table->string('title');
-            $table->string('menu_title')->nullable();
+            $table->string('url')->nullable();
+            $table->integer('sort_order')->nullable();
+            $table ->string('css_class')->nullable();
+            $table->string('css_id')->nullable();
             $table->string('slug')->nullable();
-            $table->string('meta_description')->nullable();
-            $table->boolean('is_published')->nullable();
-            $table->longText('content')->nullable();
-            $table->string('content_type')->nullable();
+            $table->foreign('menu_id')->references('id')->on('river_menu')->onDelete('cascade');
             $table->timestamps();
+
+
         });
     }
 
@@ -33,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('river_pages');
+        Schema::dropIfExists('river_contact_form');
     }
 };

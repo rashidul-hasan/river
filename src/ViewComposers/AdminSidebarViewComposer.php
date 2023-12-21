@@ -72,6 +72,10 @@ class AdminSidebarViewComposer
                     [
                         'label' => 'Email settings',
                         'route' => 'river.store-email-setting'
+                    ],
+                    [
+                        'label' => "Backup",
+                        'route' => 'river.site-backup'
                     ]
                 ]
             ],
@@ -136,6 +140,11 @@ class AdminSidebarViewComposer
                 'label' => 'FAQ',
                 'icon' => 'fas fa-comments',
                 'route' => 'river.faq.index'
+            ],
+            [
+                'label' =>' Menu',
+                'icon' => 'fas fa-bars',
+                'route' => 'river.menu.index'
             ]
         ];
         if (RolesCache::isDeveloper()) {
