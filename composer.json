@@ -20,6 +20,7 @@
         "alexusmai/laravel-file-manager": "^3.0",
         "laravel/ui": "^4.2.3",
         "tightenco/ziggy": "^0.9.4",
+        "ifsnop/mysqldump-php": "^2.12",
         "yajra/laravel-datatables-oracle": "^10.3.1"
     },
     "require-dev": {
