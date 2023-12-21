@@ -139,10 +139,17 @@ class TemplateAssetsController extends Controller
         return redirect()->back()->with('success', 'Updated');
     }
 
-    public function destroy($id)
+    public function destroy($file)
     {
-        $file = TemplateAssets::find($id);
-        $file->delete();
+
+        $publicPath = public_path();
+        $directory = 'river/assets';
+        $targetDirectory = $publicPath . '/' . $directory . '/'.$file ;
+
+
+        if (File::exists($targetDirectory)) {
+            unlink($targetDirectory);
+        }
 
         //reset cache
         Artisan::call('river:cache-views');

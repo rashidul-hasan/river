@@ -24,7 +24,11 @@
                         <tr>
                             <td>{{$file}}</td>
                             <td class="text-secondary">
-                              Delete
+                              <form method="POST" action="{{ route('river.template-assets.destroy',$file ) }}">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value=" Delete" class="btn btn-sm btn-danger" />
+                              </form>
                             </td>
                           </tr>
                         @endforeach
@@ -54,7 +58,12 @@
                         <tr>
                             <td>{{$file}}</td>
                             <td class="text-secondary">
-                              Delete
+                              <form method="POST" action="{{ route('river.template-assets.destroy',$file ) }}">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value=" Delete" class="btn btn-sm btn-danger" />
+                              </form>
+                             
                             </td>
                           </tr>
                         @endforeach
@@ -84,7 +93,11 @@
                         <tr>
                             <td > <img style="width:100px" src="/river/assets/{{ $file }}" /> {{$file}}</td>
                             <td class="text-secondary">
-                              Delete
+                              <form method="POST" action="{{ route('river.template-assets.destroy',$file ) }}">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value=" Delete" class="btn btn-sm btn-danger" />
+                              </form>
                             </td>
                           </tr>
                         @endforeach
