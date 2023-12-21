@@ -3,8 +3,12 @@
         <div class="navbar-nav flex-row order-md-last">
 
 
-            <div class=" d-xl-block ps-2">
-                <a class="btn btn-primary" href="{{ route('riversite.homepage') }}" target="_blank"> Visit Site </a>
+            <div class="nav-item d-none d-md-flex me-3">
+                <div class="btn-list">
+                    <a href="{{ route('riversite.homepage') }}" class="btn" target="_blank" rel="noreferrer">
+                        Visit site
+                    </a>
+                </div>
             </div>
 
 
@@ -15,7 +19,7 @@
                         <div>{{Auth::user() ? Auth::user()->name : ''}}</div>
                         <div class="mt-1 small text-muted">Developer</div>
                     </div>
-                   
+
                     <form id="logout-form" action="{{route('river.admin.logout')}}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
@@ -24,7 +28,7 @@
                     <a href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a>
                 </div>
             </div>
-            
+
         </div>
         <div class="collapse navbar-collapse" id="navbar-menu"></div>
     </div>

@@ -77,6 +77,7 @@ class TemplatePageController extends Controller
         $pages = TemplatePage::all();
         $file = TemplatePage::find($id);
         $data = [
+            'title' => 'Edit template: ' . $file->filename,
             'file' => $file,
             'pages' => $pages
         ];
