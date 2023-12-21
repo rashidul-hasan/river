@@ -131,7 +131,7 @@
                     </form>
                 </div>
             </div>
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-body">
                     <form action="{{route('river.store-settings')}}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -206,57 +206,8 @@
                         </div>
                     </form>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">Social Link</h4>
-                    <form class="custom-validation" action="{{route('river.store-settings')}}" method="POST">
-                        @csrf
-                        <div class="form-group row mb-3">
-                            <label class="col-md-4">Instagram</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="Instagram"
-                                       value="{{river_settings('Instagram')}}">
-                            </div>
-                        </div>
-                        <div class="form-group row mb-3">
-                            <label class="col-md-4">Facebook</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="facebook"
-                                       value="{{river_settings('facebook')}}">
-                            </div>
-                        </div>
-                        <div class="form-group row mb-3">
-                            <label class="col-md-4">Twitter</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="twitter"
-                                       value="{{river_settings('twitter')}}">
-                            </div>
-                        </div>
-                        <div class="form-group row mb-3">
-                            <label class="col-md-4">LinkedIn</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="LinkedIn"
-                                       value="{{river_settings('LinkedIn')}}">
-                            </div>
-                        </div>
-                        <div class="form-group row mb-3">
-                            <label class="col-md-4">Map</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="map_code"
-                                       value="{{river_settings('map_code')}}">
-                            </div>
-                        </div>
-                        <div class="form-group row mb-0 float-right">
-                            <div class="col-md-8">
-                                <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
-                                    Update
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            </div> --}}
+            
 
         </div>
     </div>

@@ -14,8 +14,12 @@ class SiteBackupController extends Controller
             'settings' => SettingsService::getSettingsArray(),
         ];
 
-        return "Site Backup Controller add in ... Controllers/Admin/Settings/SiteBackupController ";
+        return view('river::admin.settings.site_backup.index', $data);
         
+    }
+
+    public function backup_store(){
+        echo "stored";
     }
 
 }

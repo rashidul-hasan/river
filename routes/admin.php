@@ -44,6 +44,7 @@ Route::group([
     Route::resource('banners', 'Admin\Settings\BannersController');
 
     Route::get('site-backup', 'Admin\Settings\SiteBackupController@index')->name('site-backup');
+    Route::get('site-backup-store', 'Admin\Settings\SiteBackupController@backup_store')->name('site-backup-store');
 
 
 
