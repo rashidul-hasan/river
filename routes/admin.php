@@ -12,6 +12,9 @@ Route::group([
 });
 
 
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'river.auth:admins', 'river.checkrole']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 
 Route::group([
     'prefix' => 'admin',

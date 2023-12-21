@@ -138,7 +138,12 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Site Favicon <small class="text-warning">(size 80 x 80)</small></label>
-                                    <div class="">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text lfm-picker" data-input="favicon" data-preview="favicon">Choose file</span>
+                                        <input type="text" class="form-control" id="favicon" name="favicon">
+                                        <img class="imageThumb" id="favicon" src="{{ asset( river_settings('favicon')) }}" style="width: 80px; height: 80px">
+                                    </div>
+                                    {{--<div class="">
                                         <div class="mb-3">
                                             <input type="file" class="form-control" name="favicon" id="favicon">
                                         </div>
@@ -147,7 +152,7 @@
                                                 <img class="imageThumb" id="ImgPreview2" src="{{ asset( river_settings('favicon')) }}" style="width: 80px; height: 80px">
                                             </span>
                                         </div>
-                                    </div>
+                                    </div>--}}
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -273,5 +278,7 @@
             var url = $this.data('url');
             navigator.clipboard.writeText(url);
         });
+
+        $('.lfm-picker').filemanager('image', {prefix: window.hp_route_prefix});
     </script>
 @endpush
