@@ -45,7 +45,7 @@
                                     <div class="col-auto">
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <button type="button" class="btn btn-danger btn-delete">Delete</button>
-                                        <a class="btn btn-primary" href="{{ route('river.template-pages.index') }}"> Back</a>
+                                        <a class="btn btn-link" href="{{ route('river.template-pages.index') }}"> Cancel</a>
                                     </div>
                                 </div>
                         </div>

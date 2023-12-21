@@ -15,26 +15,6 @@ class TemplateAssetsController extends Controller
 {
     public function assets()
     {
-/*//        $it = new RecursiveDirectoryIterator(public_path());
-        $assets_dir = public_path('_site');
-        if (!file_exists($assets_dir)) {
-            mkdir($assets_dir, 0777, true);
-        }
-//        $mydir = public_path('_site');
-
-        $myfiles = array_diff(scandir($assets_dir), array('.', '..'));
-
-        dd($myfiles);*/
-
-//        dd();
-//        dd($it);
-//        foreach(new RecursiveIteratorIterator($it) as $file) {
-//            echo $file;
-
-            /*if ($file->getExtension() == 'html') {
-                echo $file;
-            }*/
-//        }
         $files = TemplatePage::all();
         $data = [
             'title' => 'Template  pages',
@@ -66,7 +46,7 @@ class TemplateAssetsController extends Controller
                 $js_file_name[] = $filename ;
             } else if($ex_name=='css'){
                 $css_file_name[] = $filename;
-            } else if ($ex_name=='jpg'|| $ex_name=='png' || $ex_name=='jpeg' ){
+            } else if ($ex_name=='jpg'|| $ex_name=='png' || $ex_name=='jpeg'|| $ex_name=='webp' ){
                 $image_file_name[] = $filename;
             }
         }
