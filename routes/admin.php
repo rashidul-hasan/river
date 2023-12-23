@@ -115,5 +115,7 @@ Route::group([
 
     //Menu
     Route::resource('menu', 'Admin\MenuController');
-    route::post('menu-field/{id}', [MenuController::class, 'menu_item_create'])->name('menu-field');
+    Route::post('menu-field/{id}', [MenuController::class, 'menu_item_create'])->name('menu-field');
+    Route::post('menu-store-field', [MenuController::class, 'storeFields'])->name('store-fields');
+    Route::put('menu-update-field', [MenuController::class, 'updateFields'])->name('menu_update-fields');
 });

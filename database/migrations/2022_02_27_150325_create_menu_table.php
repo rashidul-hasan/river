@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('river_menu', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug')->nullable();
+            $table->string('slug')->unique();
             $table->boolean('is_active')->default(0)->nullable();
             $table->timestamps();
         });
