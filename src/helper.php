@@ -3,6 +3,7 @@
 use Rashidul\River\Models\DataType;
 use Rashidul\River\Models\FieldValue;
 use Rashidul\River\Services\SettingsService;
+use Rashidul\River\Models\Faq;
 
 if (! function_exists('river_settings')) {
     function river_settings($key, $default = '')
@@ -17,6 +18,24 @@ if (! function_exists('river_settings')) {
         }
     }
 }
+
+if (! function_exists('river_get_faqs')) {
+    function river_get_faqs($type)
+    {
+        //TODO use cache
+        //for the first time, there will be no tables in the db so this function will throw exception
+        //Base table or view not found: 1146
+        try {
+            return Faq::where('is_active', 1)
+            ->where('type', $type)->orderBy('sort_order', 'ASC')->get();
+        } catch (Exception $e) {
+            
+            return [];
+        }
+    }
+}
+
+
 
 if (! function_exists('river_banner')) {
     function river_banner($slug, $default = '')
