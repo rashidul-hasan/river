@@ -39,15 +39,12 @@ if (! function_exists('river_get_faqs')) {
 if (! function_exists('river_get_menu')) {
     function river_get_menu($slug)
     {
-        //TODO use cache
-        //for the first time, there will be no tables in the db so this function will throw exception
-        //Base table or view not found: 1146
-        $data = Menu::where('is_active', 1)->where('slug', $slug)->first();
-        $field_data= $data->menuitem;
-        $sorted = $field_data->sortBy('sort_order');
-        $sorted->values()->all();
-
+       
         try {
+            $data = Menu::where('is_active', 1)->where('slug', $slug)->first();
+            $field_data= $data->menuitem;
+            $sorted = $field_data->sortBy('sort_order');
+            $sorted->values()->all();
             return  $sorted ;
         } catch (Exception $e) {
             
@@ -55,8 +52,6 @@ if (! function_exists('river_get_menu')) {
         }
     }
 }
-
-
 
 
 
