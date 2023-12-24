@@ -4,6 +4,7 @@ use Rashidul\River\Models\DataType;
 use Rashidul\River\Models\FieldValue;
 use Rashidul\River\Services\SettingsService;
 use Rashidul\River\Models\Faq;
+use Rashidul\River\Models\Menu;
 
 if (! function_exists('river_settings')) {
     function river_settings($key, $default = '')
@@ -34,6 +35,29 @@ if (! function_exists('river_get_faqs')) {
         }
     }
 }
+
+if (! function_exists('river_get_menu')) {
+    function river_get_menu($slug)
+    {
+        //TODO use cache
+        //for the first time, there will be no tables in the db so this function will throw exception
+        //Base table or view not found: 1146
+        $data = Menu::where('is_active', 1)->where('slug', $slug)->first();
+        $field_data= $data->menuitem;
+        $sorted = $field_data->sortBy('sort_order');
+        $sorted->values()->all();
+
+        try {
+            return  $sorted ;
+        } catch (Exception $e) {
+            
+            return [];
+        }
+    }
+}
+
+
+
 
 
 

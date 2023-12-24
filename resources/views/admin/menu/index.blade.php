@@ -36,11 +36,11 @@
                                                 href="{{ route('river.menu.edit',$a->id) }}"> Edit</a>
                                         </div>
                                         <div class="mx-1">
-                                            <form method="POST" action={{ route('river.menu.destroy',$a->id)}}>
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn btn-sm btn-danger"> Delete </button>
-                                            </form>
+                                            
+                                            <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.menu.destroy',$a->id) }}"
+                                                data-href="{{ route('river.menu.destroy',$a->id) }}">
+                                                 Delete
+                                             </a>
                                         </div>
                                     </div>
         
