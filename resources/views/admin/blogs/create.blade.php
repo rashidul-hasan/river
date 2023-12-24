@@ -22,57 +22,38 @@
                 <div class="card">
                     <div class="card-body row">
                        <div class="col-md-8">
-                           <form action="{{route('river.pages.store')}}" method="POST">
+                           <form action="{{route('river.blog.store')}}" method="POST">
                                @csrf
                                <div class="form-group mb-3 ">
-                                   <label class="form-label required">Title</label>
+                                   <label class="form-label required"> Title</label>
                                    <div>
-                                       <input type="text" class="form-control"  name="title">
+                                       <input type="text" class="form-control"  name="title" value="{{ old('title') }}">
                                    </div>
                                </div>
 
                                <div class="form-group mb-3 ">
-                                <label class="form-label required">Slug</label>
+                                    <label class="form-label required"> Content</label>
+                                    <div>
+                                        <textarea class="form-control" name="content"  >
+
+                                        </textarea>
+                                    
+                                    </div>
+                                </div>
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label required">Category</label>
                                 <div>
-                                    <input type="text" class="form-control"  name="slug">
+                                    <input type="text" class="form-control"  name="category_id" value="{{ old('category_id') }}">
                                 </div>
                             </div>
-                               <div class="form-group mb-3 ">
-                                   <label class="form-label required">Menu Title</label>
-                                   <div>
-                                       <input type="text" class="form-control"  name="menu_title">
-                                   </div>
-                               </div>
-                               <div class="form-group mb-3 ">
-                                <label class="form-label required">Meta Description</label>
-                                <div>
-                                    <input type="text" class="form-control"  name="meta_description">
-                                </div>
-                            </div>
-                               <div class="form-group mb-3 ">
-                                   <label class="form-label">Type</label>
-                                   <div>
-                                       <select class="form-select" name="content_type" id="contentType">
-                                           <option value="" selected disabled>Select</option>
-                                           <option value="html">html</option>
-                                           <option value="blade">Blade</option>
-                                       </select>
-                                   </div>
-                               </div>
+                               
+                               
                                <div class="form-group mb-3 ">
                                    <label class="form-check">
                                        <input class="form-check-input" type="checkbox" name="is_published" value="1">
-                                       <span class="form-check-label">Published</span>
+                                       <span class="form-check-label">Is Published</span>
                                    </label>
-                               </div>
-
-                               <div class="type-output">
-                                   <div class="form-group content" id="html">
-                                       <textarea name="page_content1" id="content_type" ></textarea>
-                                   </div>
-                                   <div class="form-group content" id="blade">
-                                       <textarea name="page_content2" id="code" cols="30" rows="30" class="form-control"></textarea>
-                                   </div>
                                </div>
 
                                <div class="form-footer">

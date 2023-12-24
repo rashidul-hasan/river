@@ -28,7 +28,7 @@ class MenuController
             // ['Download File', route('river.download.page'), 'btn btn-warning', '' /*label,link,class,id*/],
         ];
         $data = [
-            'title' => 'Menus',
+            'title' => 'Menu',
             'all' => $all,
             '_top_buttons' => $buttons
         ];

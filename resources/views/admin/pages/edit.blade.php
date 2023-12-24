@@ -32,6 +32,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group mb-3 ">
+                                    <label class="form-label required">Slug</label>
+                                    <div>
+                                        <input type="text" class="form-control"  name="slug" value="{{$riverPage->slug}}">
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3 ">
                                     <label class="form-label required">Menu Title</label>
                                     <div>
                                         <input type="text" class="form-control"  name="menu_title" value="{{$riverPage->menu_title}}">

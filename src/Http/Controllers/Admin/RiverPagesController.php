@@ -66,11 +66,12 @@ class RiverPagesController extends Controller
         
         $this->validate($request, [
             'title' => 'required',
+            'slug'  => 'required'
         ]);
 
         $page = new RiverPage();
         $page->title = $request->title;
-        $page->slug = Str::slug($request->title);
+        $page->slug = $request->slug;
         $page->menu_title = $request->menu_title;
         $page->meta_description = $request->meta_description;
         $page->content_type = $request->content_type;
@@ -113,11 +114,12 @@ class RiverPagesController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
+            'slug'  => 'required'
         ]);
 
         $page = RiverPage::findOrFail($id);
         $page->title = $request->title;
-        $page->slug = Str::slug($request->title);
+        $page->slug = $request->slug;
         $page->menu_title = $request->menu_title;
         $page->meta_description = $request->meta_description;
         $page->content_type = $request->content_type;

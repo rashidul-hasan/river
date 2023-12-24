@@ -142,9 +142,27 @@ class AdminSidebarViewComposer
                 'route' => 'river.faq.index'
             ],
             [
-                'label' =>' Menu',
+                'label' =>'Menu',
                 'icon' => 'fas fa-bars',
                 'route' => 'river.menu.index'
+            ],
+            [
+                'label' => 'Blogs',
+                'icon' => 'fas fa-th-large',
+                'children' => [
+                    [
+                        'label' => ' All blogs',
+                        'route' => 'river.blog.index',
+                    ],
+                    [
+                        'label' => 'Categories',
+                        'route' => 'river.blog-category.index',
+                    ],
+                    [
+                        'label' => 'Tag',
+                        'route' => 'river.Tag.index'
+                    ]
+                ]
             ]
         ];
         if (RolesCache::isDeveloper()) {
