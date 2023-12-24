@@ -61,10 +61,6 @@
 
 <!-- Libs JS -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
-<script src="/river/admin/assets/libs/apexcharts/dist/apexcharts.min.js" defer></script>
-<script src="/river/admin/assets/libs/jsvectormap/dist/js/jsvectormap.min.js" defer></script>
-<script src="/river/admin/assets/libs/jsvectormap/dist/maps/world.js" defer></script>
-<script src="/river/admin/assets/libs/jsvectormap/dist/maps/world-merc.js" defer></script>
 <script src="/river/admin/assets/js/toastr.min.js"></script>
 <script src="/river/admin/dynamic-form.js" defer></script>
 <script src="https://cdn.tiny.cloud/1/49zw3h254k19bwnkh8tl02reg0pb5t75ndy9nm01w6afbql3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
