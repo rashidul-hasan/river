@@ -138,11 +138,35 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Site Favicon <small class="text-warning">(size 80 x 80)</small></label>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text lfm-picker" data-input="favicon" data-preview="favicon">Choose file</span>
-                                        <input type="text" class="form-control" id="favicon" name="favicon">
-                                        <img class="imageThumb" id="favicon" src="{{ asset( river_settings('favicon')) }}" style="width: 80px; height: 80px">
+                                    <div class="input-group">
+                                       <span class="input-group-btn">
+                                         <a id="lfm" data-input="favicon" data-preview="holder" class="btn btn-primary lfm-picker">
+                                           <i class="fa fa-picture-o"></i> Choose
+                                         </a>
+                                       </span>
+                                        <input id="favicon" class="form-control" type="text" name="favicon">
                                     </div>
+                                    <span id="holder" style="margin-top:15px;max-height:100px;">
+                                        <img class="imageThumb" id="favicon" src="{{ asset( river_settings('favicon')) }}" style="width: 80px; height: 80px">
+                                    </span>
+                                    {{--<div class="input-group mb-3">
+                                        <span class="input-group-btn">
+                                         <a id="lfm" data-input="favicon" data-preview="holder" class="btn btn-primary lfm-picker">
+                                           <i class="fa fa-picture-o"></i> Choose
+                                         </a>
+                                       </span>
+                                        <input type="text" class="form-control" id="favicon" name="favicon">
+                                        <span class="imageThumb" id="favicon" style="width: 80px; height: 80px"></span>
+                                    </div>--}}
+{{--                                    <div class="input-group">--}}
+{{--   <span class="input-group-btn">--}}
+{{--     <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">--}}
+{{--       <i class="fa fa-picture-o"></i> Choose--}}
+{{--     </a>--}}
+{{--   </span>--}}
+{{--                                        <input id="thumbnail" class="form-control" type="text" name="filepath">--}}
+{{--                                    </div>--}}
+{{--                                    <img id="holder" style="margin-top:15px;max-height:100px;">--}}
                                     {{--<div class="">
                                         <div class="mb-3">
                                             <input type="file" class="form-control" name="favicon" id="favicon">

@@ -15,6 +15,24 @@ directory, run:
 
 `php artisan vendor:publish --tag=river-assets --force`
 
+Run the following command to publish laravel-filemanager config && assets: 
+
+`php artisan vendor:publish --tag=lfm_config --force`
+`php artisan vendor:publish --tag=lfm_public --force`
+
+This will generate `config/lfm.php`. Edit this file and set `use_package_routes` to `false`.
+
+Update filesystem config: Open `config/filesystem.php` & change the public disk as follows:
+
+```php
+'public' => [
+            'driver' => 'local',
+            'root' => public_path('river/assets/files'),
+            'url' => env('APP_URL').'/river/assets/files',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+```
 
 Run the project: `php artisan serve`
 
