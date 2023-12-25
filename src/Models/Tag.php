@@ -14,12 +14,7 @@ class Tag extends Model
     protected $guarded = ['id',];
 
 
-    public function scopeSlug($q, $slug)
-    {
-        return $q->where('slug', $slug);
+    public function blog(){
+        return $this->belongsToMany(blog::class, 'river_blog_tag', 'blog_id', 'tag_id');
     }
-
-    // public function menuitem(){
-    //     return $this->HasMany(MenuItem::class, 'menu_id');
-    // }
 }

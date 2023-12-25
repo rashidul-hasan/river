@@ -126,8 +126,7 @@ Route::group([
     Route::resource('blog', 'Admin\BlogController');
     //BlogCategory
     Route::resource('blog-category', 'Admin\BlogCategoryController');
-    Route::resource('Tag', 'Admin\TagController');
-
+    Route::resource('tag', 'Admin\TagController');
 });
 
 

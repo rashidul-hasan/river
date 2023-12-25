@@ -29,12 +29,12 @@
                                     <div class="d-flex justify-content-end">
                                         <div>
                                             <a class="btn btn-sm btn-primary"
-                                                href="{{ route('river.blog-category.edit',$a->id) }}"> Edit</a>
+                                                href="{{ route('river.tag.edit',$a->id) }}"> Edit</a>
                                         </div>
                                         <div class="mx-1">
                                             
-                                            <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.blog-category.destroy',$a->id) }}"
-                                                data-href="{{ route('river.blog-category.destroy',$a->id) }}">
+                                            <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.tag.destroy',$a->id) }}"
+                                                data-href="{{ route('river.tag.destroy',$a->id) }}">
                                                  Delete
                                              </a>
                                         </div>

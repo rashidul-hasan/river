@@ -6,20 +6,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Rashidul\River\Constants;
-use Rashidul\River\Models\Menu;
-use Rashidul\River\Models\MenuItem;
 use Illuminate\Support\Facades\Auth;
 
 
 use Rashidul\River\Models\Blog;
+use Rashidul\River\Models\BlogCategory;
+use Rashidul\River\Models\Tag;
+
 
 
 class BlogController
 {
     public function index()
     {
+       
 
         $all = Blog::all();
+
+        $alls= Blog::with('tag')->get();
+
 
         $buttons = [
             ['Add', route('river.blog.create'), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
@@ -38,12 +43,16 @@ class BlogController
 
     public function create()
     {
+        $all_cat = BlogCategory::all();
+        $tags = Tag::all();
         $buttons = [
             ['Back', route('river.blog.index'), 'btn btn-info', 'btn-add-new'],
         ];
         $data = [
             'title' => 'Blog Create',
             '_top_buttons' => $buttons,
+            'all_cat' => $all_cat,
+            'tags' => $tags,
         ];
         return view('river::admin.blogs.create', $data);
     }
@@ -51,6 +60,7 @@ class BlogController
     public function store(Request $request)
     {
 
+        
         $request->validate([
             'title' => 'required',
             
@@ -58,21 +68,20 @@ class BlogController
 
         $names = $request->get('title');
         $is_published = $request->get('is_published');
-        $names = explode(",", $names);
-        $file = null;
-        foreach ($names as $name) {
-            $file = Blog::create([
-                'title' => $name,
-                'content' => $request->content,
-                'category_id' => $request->category_id,
+       
+        $blog = Blog::create([
+            'title' => $names,
+            'content' => $request->content,
+            'category_id' => $request->category_id,
+            'author_id' => Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id,
+            'is_published' =>$is_published
+        ]);
 
-                'author_id' => Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id,
+        $blog->tag()->sync($request->tags);
+        
+        
 
-                'is_published' =>$is_published
-            ]);
-        }
-
-        return redirect(route('river.blog.index',[$file->id] ))
+        return redirect(route('river.blog.index',[$blog->id] ))
             ->with('success', 'Created!');
     }
 
@@ -81,9 +90,13 @@ class BlogController
         
         $file = Blog::find($id); 
 
+
+        $all_cat = BlogCategory::all();
+
         $data = [
             'title' => 'Edit Blog: ' . $file->name,
             'type' => $file,
+            'all_cat' => $all_cat
         ];
 
         return view('river::admin.blogs.edit', $data);

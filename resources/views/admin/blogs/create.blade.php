@@ -34,7 +34,7 @@
                                <div class="form-group mb-3 ">
                                     <label class="form-label required"> Content</label>
                                     <div>
-                                        <textarea class="form-control" name="content"  >
+                                        <textarea class="form-control" id="content_type" name="content"  >
 
                                         </textarea>
                                     
@@ -43,9 +43,28 @@
 
                             <div class="form-group mb-3 ">
                                 <label class="form-label required">Category</label>
-                                <div>
-                                    <input type="text" class="form-control"  name="category_id" value="{{ old('category_id') }}">
-                                </div>
+                                <select class="form-select" name="category_id" aria-label="Default select example">
+                                    <option selected value="0">select Category</option>
+                                    @foreach($all_cat as $a)
+                                    <option value="{{$a->id}}">{{ $a->name }}</option>
+                                    @endforeach    
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label required">tags</label>
+
+                                <select class="form-select" name="tags[]" multiple>
+                                    @foreach($tags as $a)
+                                    <option value="{{$a->id}}">{{ $a->name }}</option>
+                                    @endforeach
+                                </select>
+                                {{-- <select class="form-select" name="category_id" aria-label="Default select example">
+                                    <option selected value="0">select Category</option>
+                                    @foreach($all_cat as $a)
+                                    <option value="{{$a->id}}">{{ $a->name }}</option>
+                                    @endforeach    
+                                </select> --}}
                             </div>
                                
                                
@@ -77,11 +96,7 @@
     <script src="/river/admin/codemirror-5.65.2/mode/clike/clike.js"></script>
     <script src="/river/admin/codemirror-5.65.2/mode/php/php.js"></script>
     <script>
-        var code = CodeMirror.fromTextArea(document.getElementById("code"), {
-            lineNumbers: true,
-            mode: "php",
-            theme: 'monokai'
-        });
+       
         tinymce.init({
             selector: '#content_type',
         })

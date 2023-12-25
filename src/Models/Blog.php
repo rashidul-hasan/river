@@ -22,4 +22,8 @@ class Blog extends Model
     // public function menuitem(){
     //     return $this->HasMany(MenuItem::class, 'menu_id');
     // }
+
+    public function tag(){
+        return $this->belongsToMany(Tag::class, 'river_blog_tag', 'blog_id', 'tag_id');
+    }
 }

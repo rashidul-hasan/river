@@ -16,8 +16,8 @@
                                 <tr>
                                     <td>SL. </td>
                                     <td> name</td>
-                                    <td> parent_id</td>
-                                    <td> is_active</td>
+                                    <td> Parent </td>
+                                    <td> Is Active</td>
                                     <td> Action</td>
                                 </tr>
                             </thead>
@@ -26,7 +26,13 @@
                             <tr>
                                 <td>{{ ++$key }} </td>
                                 <td>{{ $a->name }} </td>
-                                <td> {{ $a->parent_id}}</td>
+                                <td>
+                                    @if($a->parent_id==0)
+                                    {{ '' }}
+                                    @else 
+                                        {{ $a->parent_id }}
+                                    @endif
+                                </td>
                                 
                                 <td>{{ ($a->is_active==1)?'Active':'Inactive' }} </td>
                                 

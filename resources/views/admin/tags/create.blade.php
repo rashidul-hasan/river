@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="card-body row">
                        <div class="col-md-8">
-                           <form action="{{route('river.blog-category.store')}}" method="POST">
+                           <form action="{{route('river.tag.store')}}" method="POST">
                                @csrf
                                <div class="form-group mb-3 ">
                                    <label class="form-label required"> Name</label>
@@ -31,28 +31,6 @@
                                    </div>
                                </div>
                                
-
-                            <div class="form-group mb-3 ">
-                                <label class="form-label required">Parent</label>
-                                <div>
-                                    <select class="form-select" name="parent_id" aria-label="Default select example">
-                                        <option selected value="0">select Parent Category</option>
-                                        @foreach($all as $a)
-                                        <option value="{{$a->id}}">{{ $a->name }}</option>
-                                        @endforeach    
-                                    </select>
-                                </div>
-                                
-                            </div>
-                               
-                               
-                               <div class="form-group mb-3 ">
-                                   <label class="form-check">
-                                       <input class="form-check-input" type="checkbox" name="is_active" value="1">
-                                       <span class="form-check-label">Is Active</span>
-                                   </label>
-                               </div>
-
                                <div class="form-footer">
                                    <button type="submit" class="btn btn-success">Save</button>
                                </div>

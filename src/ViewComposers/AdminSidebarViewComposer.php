@@ -160,7 +160,7 @@ class AdminSidebarViewComposer
                     ],
                     [
                         'label' => 'Tag',
-                        'route' => 'river.Tag.index'
+                        'route' => 'river.tag.index'
                     ]
                 ]
             ]

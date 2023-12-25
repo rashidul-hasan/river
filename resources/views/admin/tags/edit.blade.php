@@ -24,7 +24,7 @@
                 <div class="card">
                       <ul class="nav nav-tabs" data-bs-toggle="tabs" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a href="{{ route('river.blog-category.index') }}" class="btn btn-primary" >back</a>
+                            <a href="{{ route('river.tag.index') }}" class="btn btn-primary" >back</a>
                         </li>
                        
                     </ul> 
@@ -39,7 +39,7 @@
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane active show p-5" id="general" role="tabpanel">
-                                <form action="{{route('river.blog-category.update', $type->id)}}" method="POST">
+                                <form action="{{route('river.tag.update', $type->id)}}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group mb-3 ">
@@ -47,29 +47,6 @@
                                         <div>
                                             <input type="text" class="form-control"  name="name" value="{{ $type->name }}">
                                         </div>
-                                    </div>
-
-                                    <div class="form-group mb-3 ">
-                                        <label class="form-label required">Parent</label>
-                                        <div>
-                                            <div>
-                                                <select class="form-select" name="parent_id" aria-label="Default select example">
-                                                      <option  value="0">select Parent Category</option>
-                                                    @foreach($all as $a)
-                                                    <option value="{{$a->id}}" @if($type->parent_id == $a->id )selected  @endif > {{ $a->name }} </option>
-                                                    @endforeach    
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    
-
-                                    <div class="form-group mb-3 ">
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="is_active" value="1" {{$type->is_active == 1 ? 'checked' : ''}}>
-                                            <span class="form-check-label">Is Active</span>
-                                        </label>
                                     </div>
     
                                     <div class="form-footer">
