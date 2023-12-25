@@ -52,19 +52,27 @@
                                 <label class="form-label">Role</label>
                                 <div>
                                     <select class="form-select" name="role_id">
-                                        <option value="" selected disabled>Select</option>
-                                        @foreach($roles as $role)
+                                        {{-- <option value="" selected disabled>Select</option> --}}
+                                        
+                                            <option value="" selected disabled>Select</option>
+                                            <option value="1" @if($user->role_id==1) selected @endif>Developer</option>
+                                            <option value="2" @if($user->role_id==2) selected @endif >Site Admin</option>
+                                            <option value="3" @if($user->role_id==3) selected @endif >Writer</option>
+    
+                                        
+                                        {{-- @foreach($roles as $role)
                                             <option value="{{$role->id}}" {{$user->role_id == $role->id ? 'selected' : ''}}>{{$role->name}}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group mb-3 ">
+                            
+                            {{-- <div class="form-group mb-3 ">
                                 <label class="form-check">
                                     <input class="form-check-input" type="checkbox" name="is_developer" {{$user->is_developer == 1 ? 'checked' : ''}}>
                                     <span class="form-check-label">Developer</span>
                                 </label>
-                            </div>
+                            </div> --}}
                             <div class="form-footer">
                                 <button type="submit" class="btn btn-success">Update</button>
                             </div>

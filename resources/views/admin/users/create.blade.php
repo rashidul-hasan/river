@@ -38,18 +38,22 @@
                                 <div>
                                     <select class="form-select" name="role_id">
                                         <option value="" selected disabled>Select</option>
-                                        @foreach($roles as $role)
+                                        <option value="1" >Developer</option>
+                                        <option value="2" >Site Admin</option>
+                                        <option value="3" >Writer</option>
+
+                                        {{-- @foreach($roles as $role)
                                             <option value="{{$role->id}}">{{$role->name}}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group mb-3 ">
+                            {{-- <div class="form-group mb-3 ">
                                 <label class="form-check">
                                     <input class="form-check-input" type="checkbox" name="is_developer">
                                     <span class="form-check-label">Developer</span>
                                 </label>
-                            </div>
+                            </div> --}}
                             <div class="form-footer">
                                 <button type="submit" class="btn btn-success">Save</button>
                             </div>

@@ -127,6 +127,8 @@ Route::group([
     //BlogCategory
     Route::resource('blog-category', 'Admin\BlogCategoryController');
     Route::resource('tag', 'Admin\TagController');
+
+    Route::resource('testimonial', 'Admin\TestimonialController');
 });
 
 

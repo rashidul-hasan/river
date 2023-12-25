@@ -111,11 +111,11 @@ class AdminSidebarViewComposer
                 'icon' => 'fas fa-user', //feather icon-box
                 'route' => 'river.users.index',
             ],
-            [
-                'label' => 'User Role',
-                'icon' => 'fas fa-user', //feather icon-box
-                'route' => 'river.users-role.index',
-            ],
+            // [
+            //     'label' => 'User Role',
+            //     'icon' => 'fas fa-user', //feather icon-box
+            //     'route' => 'river.users-role.index',
+            // ],
             [
                 'label' => 'Pages',
                 'icon' => 'fas fa-folder',
@@ -126,11 +126,11 @@ class AdminSidebarViewComposer
                 'icon' => 'fas fa-file-contract',
                 'route' => 'river.contact-form.index',
             ],
-            [
-                'label' => 'Visit Site',
-                'icon' => 'fas fa-eye',
-                'route' => 'riversite.homepage',
-            ],
+            // [
+            //     'label' => 'Visit Site',
+            //     'icon' => 'fas fa-eye',
+            //     'route' => 'riversite.homepage',
+            // ],
             [
                 'label' => 'Newsletter Submissions',
                 'icon' =>  'fa-solid fa-envelope',
@@ -162,7 +162,12 @@ class AdminSidebarViewComposer
                         'label' => 'Tag',
                         'route' => 'river.tag.index'
                     ]
-                ]
+                            ]
+            ],
+            [
+                'label' => 'Testimonial',
+                'icon' => 'fa-solid fa-comment-dots',
+                'route' => 'river.testimonial.index'
             ]
         ];
         if (RolesCache::isDeveloper()) {
