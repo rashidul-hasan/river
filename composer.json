@@ -18,6 +18,7 @@
     "require": {
         "php": "^8.1",
         "alexusmai/laravel-file-manager": "^3.0",
+        "unisharp/laravel-filemanager": "^2.6",
         "laravel/ui": "^4.2.3",
         "tightenco/ziggy": "^0.9.4",
         "ifsnop/mysqldump-php": "^2.12",

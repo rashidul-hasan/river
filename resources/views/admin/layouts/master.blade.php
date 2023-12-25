@@ -68,7 +68,6 @@
 <script src="/river/admin/assets/js/tabler.min.js" defer></script>
 <script src="/river/admin/assets/js/demo.min.js" defer></script>
 
-@stack('scripts')
 
 <script>
     //single image preview
@@ -146,6 +145,12 @@
 
 </script>
 
+<script src="/vendor/laravel-filemanager/js/filemanager.min.js"></script>
+<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+<script>
+    window.hp_route_prefix = "/laravel-filemanager";
+{{--    {!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/lfm.js')) !!}--}}
+</script>
 <script>
     @if($errors->any())
     @foreach($errors->all() as $error)
@@ -157,5 +162,6 @@
     @endif
 </script>
 
+@stack('scripts')
 </body>
 </html>

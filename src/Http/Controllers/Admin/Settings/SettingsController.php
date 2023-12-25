@@ -14,13 +14,13 @@ class SettingsController extends Controller
     protected $settings = [
         'name', 'phone', 'email', 'address', 'header_text', 'facebook', 'twitter', 'instagram', 'about',
         'footertext','map_code','imo_whatsup','meta_title','theme_color', 'open_hour','notice','facebook_client_id','facebook_client_secret','youtube',
-        'google_client_id','google_client_secret','LinkedIn','google_map_lat','google_map_lon','gmail_name','gmail_password','newsletter_submission'
+        'google_client_id','google_client_secret','LinkedIn','google_map_lat','google_map_lon','gmail_name','gmail_password','newsletter_submission',
+        'favicon'
     ];
 
     protected $settingsImages = [
         'header_logo',
-        'footer_logo',
-        'favicon',
+        'footer_logo'
     ];
 
     protected $settingsCheck = [
