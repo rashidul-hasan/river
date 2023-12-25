@@ -20,4 +20,5 @@ class PageController extends Controller
 
         return view('_cache.page', $data);
     }
+
 }

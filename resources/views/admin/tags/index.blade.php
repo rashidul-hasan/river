@@ -15,30 +15,26 @@
                             <thead>
                                 <tr>
                                     <td>SL. </td>
-                                    <td> Name</td>
-                                    <td> Slug</td>
-                                    <td> is Active</td>
+                                    <td> name</td>
                                     <td> Action</td>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($all as $key=>$a)
+                             @foreach($all as $key=>$a) 
                             <tr>
                                 <td>{{ ++$key }} </td>
                                 <td>{{ $a->name }} </td>
-                                <td> {{ $a->slug }}</td>
-                                <td>{{ ($a->is_active==1)? 'Active':'Inactive' }} </td>
-                                
+                                 
                                 <td>
                                     <div class="d-flex justify-content-end">
                                         <div>
                                             <a class="btn btn-sm btn-primary"
-                                                href="{{ route('river.menu.edit',$a->id) }}"> Edit</a>
+                                                href="{{ route('river.tag.edit',$a->id) }}"> Edit</a>
                                         </div>
                                         <div class="mx-1">
                                             
-                                            <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.menu.destroy',$a->id) }}"
-                                                data-href="{{ route('river.menu.destroy',$a->id) }}">
+                                            <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.tag.destroy',$a->id) }}"
+                                                data-href="{{ route('river.tag.destroy',$a->id) }}">
                                                  Delete
                                              </a>
                                         </div>
@@ -46,7 +42,7 @@
         
                                 </td>
                             </tr>
-                            @endforeach
+                        @endforeach
                             </tbody>
                         </table>
                     </div>

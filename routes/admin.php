@@ -1,6 +1,9 @@
 <?php
 use Rashidul\River\Http\Controllers\Admin\FileUploadController;
 use Rashidul\River\Http\Controllers\Admin\MenuController;
+use Rashidul\River\Http\Controllers\Admin\BlogController;
+   
+use Rashidul\River\Http\Controllers\Admin\TemplatePageController;
 //auth
 Route::group([
     'prefix' => 'admin',
@@ -121,4 +124,14 @@ Route::group([
     Route::post('menu-field/{id}', [MenuController::class, 'menu_item_create'])->name('menu-field');
     Route::post('menu-store-field', [MenuController::class, 'storeFields'])->name('store-fields');
     Route::put('menu-update-field', [MenuController::class, 'updateFields'])->name('menu_update-fields');
+
+    //Blog
+    Route::resource('blog', 'Admin\BlogController');
+    //BlogCategory
+    Route::resource('blog-category', 'Admin\BlogCategoryController');
+    Route::resource('tag', 'Admin\TagController');
+
+    Route::resource('testimonial', 'Admin\TestimonialController');
 });
+
+

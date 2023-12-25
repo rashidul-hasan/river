@@ -23,7 +23,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
-                                <th>Developer</th>
+                                {{-- <th>Developer</th> --}}
                                 <th class="w-1"></th>
                             </tr>
                             </thead>
@@ -42,15 +42,21 @@
                                     <div>{{$item->email}}</div>
                                 </td>
                                 <td class="text-muted" data-label="Role">
-                                    {{$item->role ?? '-'}}
+                                    @if($item->role_id==1)
+                                      Developer
+                                    @elseif($item->role_id==2)
+                                    Site Admin
+                                    @elseif($item->role_id==3)
+                                    Writer
+                                    @endif
                                 </td>
-                                <td class="text-muted" data-label="Role">
+                                {{-- <td class="text-muted" data-label="Role">
                                     @if($item->is_developer == 1)
                                         <span class="text-success">Yes</span>
                                     @else
                                         <span class="text-danger">No</span>
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td>
                                     <div class="btn-list flex-nowrap">
                                         <a href="{{route('river.users.edit',$item->id)}}" class="btn btn-sm btn-info">

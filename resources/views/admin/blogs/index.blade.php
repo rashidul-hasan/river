@@ -15,30 +15,35 @@
                             <thead>
                                 <tr>
                                     <td>SL. </td>
-                                    <td> Name</td>
-                                    <td> Slug</td>
-                                    <td> is Active</td>
+                                    <td> Title</td>
+                                    <td> Content</td>
+                                    <td> Category</td>
+                                    <th> Author</th>
+                                    <td> Is Published</td>
                                     <td> Action</td>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($all as $key=>$a)
+                             @foreach($all as $key=>$a) 
                             <tr>
                                 <td>{{ ++$key }} </td>
-                                <td>{{ $a->name }} </td>
-                                <td> {{ $a->slug }}</td>
-                                <td>{{ ($a->is_active==1)? 'Active':'Inactive' }} </td>
+                                <td>{{ $a->title }} </td>
+                                <td>{{ $a->content }} </td>
+                                <td> {{ $a->category_id}}</td>
+                                <td> {{ $a->author_id}}</td>
+                                
+                                <td>{{ ($a->is_published==1)?'Active':'Inactive' }} </td>
                                 
                                 <td>
                                     <div class="d-flex justify-content-end">
                                         <div>
                                             <a class="btn btn-sm btn-primary"
-                                                href="{{ route('river.menu.edit',$a->id) }}"> Edit</a>
+                                                href="{{ route('river.blog.edit',$a->id) }}"> Edit</a>
                                         </div>
                                         <div class="mx-1">
                                             
-                                            <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.menu.destroy',$a->id) }}"
-                                                data-href="{{ route('river.menu.destroy',$a->id) }}">
+                                            <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.blog.destroy',$a->id) }}"
+                                                data-href="{{ route('river.blog.destroy',$a->id) }}">
                                                  Delete
                                              </a>
                                         </div>
@@ -46,7 +51,7 @@
         
                                 </td>
                             </tr>
-                            @endforeach
+                        @endforeach
                             </tbody>
                         </table>
                     </div>

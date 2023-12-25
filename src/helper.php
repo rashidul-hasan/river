@@ -4,6 +4,8 @@ use Rashidul\River\Models\DataType;
 use Rashidul\River\Models\FieldValue;
 use Rashidul\River\Services\SettingsService;
 use Rashidul\River\Models\Faq;
+use Rashidul\River\Models\Menu;
+use Rashidul\River\Models\Blog;
 
 if (! function_exists('river_settings')) {
     function river_settings($key, $default = '')
@@ -34,6 +36,39 @@ if (! function_exists('river_get_faqs')) {
         }
     }
 }
+
+if (! function_exists('river_get_menu')) {
+    function river_get_menu($slug)
+    {
+       
+        try {
+            $data = Menu::where('is_active', 1)->where('slug', $slug)->first();
+            $field_data= $data->menuitem;
+            $sorted = $field_data->sortBy('sort_order');
+            $sorted->values()->all();
+            return  $sorted ;
+        } catch (Exception $e) {
+            
+            return [];
+        }
+    }
+}
+
+if (! function_exists('river_latest_blogs')) {
+    function river_latest_blogs()
+    {
+       
+        try {
+            $data = Blog::with('tag')->latest()->take(5)->get();
+            return $data;
+
+        } catch (Exception $e) {
+            
+            return [];
+        }
+    }
+}
+
 
 
 

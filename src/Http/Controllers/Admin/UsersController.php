@@ -72,7 +72,7 @@ class UsersController extends Controller
         $user->email = $request->email;
         $user->role_id = $request->role_id;
         $user->password = Hash::make($request->password);
-        $user->is_developer = isset($request->is_developer) ? true : false;
+        //$user->is_developer = isset($request->is_developer) ? true : false;
         $user->save();
 
         return redirect()->route('river.users.index')->with('success', 'Successfully Created done!');

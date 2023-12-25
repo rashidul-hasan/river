@@ -30,6 +30,13 @@
                                        <input type="text" class="form-control"  name="title">
                                    </div>
                                </div>
+
+                               <div class="form-group mb-3 ">
+                                <label class="form-label required">Slug</label>
+                                <div>
+                                    <input type="text" class="form-control"  name="slug">
+                                </div>
+                            </div>
                                <div class="form-group mb-3 ">
                                    <label class="form-label required">Menu Title</label>
                                    <div>

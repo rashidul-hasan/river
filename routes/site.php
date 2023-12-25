@@ -1,5 +1,7 @@
 <?php
 
+
+
 //auth
 Route::group([
     'middleware' => ['web', 'river.guest:customers'],
@@ -57,3 +59,4 @@ if(config('river.enable_ecommerce')) {
         Route::get('checkout', 'Admin\DataEntryController@index')->name('checkout');
     });
 }
+

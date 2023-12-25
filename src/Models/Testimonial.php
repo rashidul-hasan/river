@@ -5,11 +5,11 @@ namespace Rashidul\River\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Faq extends Model
+class Testimonial extends Model
 {
     use HasFactory;
 
-    public $table = 'river_faq';
+    public $table = 'river_testimonial';
 
     protected $guarded = ['id',]; 
 
