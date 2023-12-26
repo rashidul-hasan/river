@@ -196,34 +196,7 @@
                                 <div class="form-group">
                                     <label>Site Favicon <small class="text-warning">(size 80 x 80)</small></label>
                                     @include('river::admin.components.image-picker', ['name' => 'favicon', 'default' => river_settings('favicon')])
-                                    {{--<div class="input-group mb-3">
-                                        <span class="input-group-btn">
-                                         <a id="lfm" data-input="favicon" data-preview="holder" class="btn btn-primary lfm-picker">
-                                           <i class="fa fa-picture-o"></i> Choose
-                                         </a>
-                                       </span>
-                                        <input type="text" class="form-control" id="favicon" name="favicon">
-                                        <span class="imageThumb" id="favicon" style="width: 80px; height: 80px"></span>
-                                    </div>--}}
-{{--                                    <div class="input-group">--}}
-{{--   <span class="input-group-btn">--}}
-{{--     <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">--}}
-{{--       <i class="fa fa-picture-o"></i> Choose--}}
-{{--     </a>--}}
-{{--   </span>--}}
-{{--                                        <input id="thumbnail" class="form-control" type="text" name="filepath">--}}
-{{--                                    </div>--}}
-{{--                                    <img id="holder" style="margin-top:15px;max-height:100px;">--}}
-                                    {{--<div class="">
-                                        <div class="mb-3">
-                                            <input type="file" class="form-control" name="favicon" id="favicon">
-                                        </div>
-                                        <div class="d-flex align-items-center flex-wrap">
-                                            <span class="pip">
-                                                <img class="imageThumb" id="ImgPreview2" src="{{ asset( river_settings('favicon')) }}" style="width: 80px; height: 80px">
-                                            </span>
-                                        </div>
-                                    </div>--}}
+
                                 </div>
                                 <div class="col-md-2 my-2">
                                     <button data-url="@{{river_settings('favicon')}}" class="btn btn-icon btn-copy">
@@ -234,17 +207,8 @@
                             <div class="col-md-3">
                                 <div class="form-group ">
                                     <label>Site Logo <small class="text-warning">( size 200px x 50px )</small></label>
-                                    <div class="">
-                                        <div class="mb-3">
-                                            <input type="file" class="form-control" name="header_logo" id="header_logo">
-                                        </div>
-                                        <div class="d-flex align-items-center flex-wrap">
-                                            <span class="pip">
-                                                <img class="imageThumb" id="ImgPreview3"
-                                                     src="{{ asset( river_settings('header_logo')) }}" style="width: 80px; height: 80px">
-                                            </span>
-                                        </div>
-                                    </div>
+                                    @include('river::admin.components.image-picker', ['name' => 'header_logo', 'default' => river_settings('header_logo')])
+
 
                                     <div class="col-md-2 my-2">
                                         <button data-url="@{{river_settings('header_logo')}}" class="btn btn-icon btn-copy">
