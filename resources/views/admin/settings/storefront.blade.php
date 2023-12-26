@@ -48,7 +48,7 @@
                                 </button>
                             </div>
 
-                            
+
                         </div>
                         <div class="form-group row mb-3">
                             <label class="col-md-4">Email</label>
@@ -195,17 +195,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Site Favicon <small class="text-warning">(size 80 x 80)</small></label>
-                                    <div class="input-group">
-                                       <span class="input-group-btn">
-                                         <a id="lfm" data-input="favicon" data-preview="holder" class="btn btn-primary lfm-picker">
-                                           <i class="fa fa-picture-o"></i> Choose
-                                         </a>
-                                       </span>
-                                        <input id="favicon" class="form-control" type="text" name="favicon">
-                                    </div>
-                                    <span id="holder" style="margin-top:15px;max-height:100px;">
-                                        <img class="imageThumb" id="favicon" src="{{ asset( river_settings('favicon')) }}" style="width: 80px; height: 80px">
-                                    </span>
+                                    @include('river::admin.components.image-picker', ['name' => 'favicon', 'default' => river_settings('favicon')])
                                     {{--<div class="input-group mb-3">
                                         <span class="input-group-btn">
                                          <a id="lfm" data-input="favicon" data-preview="holder" class="btn btn-primary lfm-picker">
@@ -315,7 +305,7 @@
                     </form>
                 </div>
             </div>
-            
+
 
         </div>
     </div>
