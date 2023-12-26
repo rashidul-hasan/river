@@ -13,44 +13,45 @@
                     <div class="card-body">
                         <table class="table">
                             <thead>
-                                <tr>
-                                    <td>SL. </td>
-                                    <td> Name</td>
-                                    <td> Image</td>
-                                    <td> Designation</td>
-                                    <td> message</td>
-                                    <td> sort_order</td>
-                                    <td> is Active</td>
-                                    <td> Action</td>
-                                </tr>
+                            <tr>
+                                <td>SL. </td>
+                                <td> Name</td>
+                                <td> Image</td>
+                                <td> Designation</td>
+                                <td> message</td>
+                                <td> sort_order</td>
+                                <td> is Active</td>
+                                <td> Action</td>
+                            </tr>
                             </thead>
                             <tbody>
                             @foreach($all as $key=>$a)
-                            <tr>
-                                <td>{{ ++$key }} </td>
-                                <td>{{ $a->name }} </td>
-                                <td> {{$a->Image  }}</td>
-                                <td> {{$a->designation  }}</td>
-                                <td> {{$a->message  }}</td>
-                                <td> {{$a->sort_order  }}</td>
-                                <td>{{ ($a->is_active==1)? 'Active':'Inactive' }} </td>
-                                <td>
-                                    <div class="d-flex justify-content-end">
-                                        <div>
-                                            <a class="btn btn-sm btn-primary"
-                                                href="{{ route('river.testimonial.edit',$a->id) }}"> Edit</a>
+                                <tr>
+                                    <td>{{ ++$key }} </td>
+                                    <td>{{ $a->name }} </td>
+                                    <td>
+                                        <img src="/river/assets/{{ $a->image }}" style="width: 150px"/>
+                                    </td>
+                                    <td> {{$a->designation  }}</td>
+                                    <td> {{$a->message  }}</td>
+                                    <td> {{$a->sort_order  }}</td>
+                                    <td>{{ ($a->is_active==1)? 'Active':'Inactive' }} </td>
+                                    <td>
+                                        <div class="d-flex justify-content-end">
+                                            <div>
+                                                <a class="btn btn-sm btn-primary"
+                                                   href="{{ route('river.testimonial.edit',$a->id) }}"> Edit</a>
+                                            </div>
+                                            <div class="mx-1">
+                                                <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.testimonial.destroy',$a->id) }}"
+                                                   data-href="{{ route('river.testimonial.destroy',$a->id) }}">
+                                                    Delete
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div class="mx-1">
-                                            <form method="POST" action={{ route('river.testimonial.destroy',$a->id)}}>
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn btn-sm btn-danger"> Delete </button>
-                                            </form>
-                                        </div>
-                                    </div>
-        
-                                </td>
-                            </tr>
+
+                                    </td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

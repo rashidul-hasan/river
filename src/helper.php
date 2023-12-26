@@ -6,6 +6,7 @@ use Rashidul\River\Services\SettingsService;
 use Rashidul\River\Models\Faq;
 use Rashidul\River\Models\Menu;
 use Rashidul\River\Models\Blog;
+use Rashidul\River\Models\Testimonial;
 
 if (! function_exists('river_settings')) {
     function river_settings($key, $default = '')
@@ -29,9 +30,24 @@ if (! function_exists('river_get_faqs')) {
         //Base table or view not found: 1146
         try {
             return Faq::where('is_active', 1)
-            ->where('type', $type)->orderBy('sort_order', 'ASC')->get();
+                ->where('type', $type)->orderBy('sort_order', 'ASC')->get();
         } catch (Exception $e) {
-            
+
+            return [];
+        }
+    }
+}
+
+if (! function_exists('river_get_testimonials')) {
+    function river_get_testimonials()
+    {
+        //TODO use cache
+        //for the first time, there will be no tables in the db so this function will throw exception
+        //Base table or view not found: 1146
+        try {
+            return $testimonial = Testimonial::where('is_active', 1)->orderBy('sort_order', 'ASC')->get();
+        } catch (Exception $e) {
+
             return [];
         }
     }
@@ -40,7 +56,7 @@ if (! function_exists('river_get_faqs')) {
 if (! function_exists('river_get_menu')) {
     function river_get_menu($slug)
     {
-       
+
         try {
             $data = Menu::where('is_active', 1)->where('slug', $slug)->first();
             $field_data= $data->menuitem;
@@ -48,7 +64,7 @@ if (! function_exists('river_get_menu')) {
             $sorted->values()->all();
             return  $sorted ;
         } catch (Exception $e) {
-            
+
             return [];
         }
     }
@@ -57,19 +73,17 @@ if (! function_exists('river_get_menu')) {
 if (! function_exists('river_latest_blogs')) {
     function river_latest_blogs()
     {
-       
+
         try {
             $data = Blog::with('tag')->latest()->take(5)->get();
             return $data;
 
         } catch (Exception $e) {
-            
+
             return [];
         }
     }
 }
-
-
 
 
 if (! function_exists('river_banner')) {
