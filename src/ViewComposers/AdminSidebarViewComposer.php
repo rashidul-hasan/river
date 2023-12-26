@@ -168,6 +168,20 @@ class AdminSidebarViewComposer
                 'label' => 'Testimonial',
                 'icon' => 'fa-solid fa-comment-dots',
                 'route' => 'river.testimonial.index'
+            ],
+            [
+                'label' => 'Service',
+                'icon' => 'fas fa-headset',
+                'children' => [
+                    [
+                        'label' => 'all Services',
+                        'route' => 'river.service.index'
+                    ],
+                    [
+                        'label' => 'Service Category',
+                        'route' => 'river.service-category.index'
+                    ]
+                ]
             ]
         ];
         if (RolesCache::isDeveloper()) {
