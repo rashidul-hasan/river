@@ -133,6 +133,10 @@ Route::group([
     Route::resource('tag', 'Admin\TagController');
 
     Route::resource('testimonial', 'Admin\TestimonialController');
+
+    //service
+    Route::resource('service', 'Admin\ServiceController');
+    Route::resource('service-category', 'Admin\ServiceCategoryController');
 });
 
 
