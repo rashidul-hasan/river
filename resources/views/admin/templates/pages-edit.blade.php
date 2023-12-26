@@ -35,6 +35,7 @@
                                     <div class="col-auto">
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <button type="button" class="btn btn-danger btn-delete">Delete</button>
+                                        <button type="button" class="btn btn-secondary btn-preview">Preview</button>
                                         <a class="btn btn-link" href="{{ route('river.template-pages.index') }}"> Cancel</a>
                                     </div>
                                 </div>
@@ -72,6 +73,8 @@
         </div>
     </div>
 
+    <iframe src="" frameborder="0" id="iframe-preview"></iframe>
+
 @stop
 
 @push('scripts')
@@ -92,7 +95,7 @@
     <script src="/river/admin/codemirror-5.65.2/addon/edit/matchtags.js"></script>
     <script src="/river/admin/codemirror-5.65.2/addon/scroll/simplescrollbars.js"></script>
     <script>
-        var code = CodeMirror.fromTextArea(document.getElementById("code"), {
+        var codeMirror = CodeMirror.fromTextArea(document.getElementById("code"), {
             lineNumbers: true,
             mode: "php",
             // theme: 'monokai',
@@ -109,6 +112,39 @@
                 .submit();
             }
         });
+
+        //show preview
+        $('.btn-preview').click(function () {
+            fetchDataAndDisplayInIframe()
+        });
+        function fetchDataAndDisplayInIframe() {
+            var code = codeMirror.getValue();
+            var postData = {
+                content: code
+            };
+
+            $.ajax({
+                url: '/admin/template-pages/preview',
+                method: 'POST',
+                dataType: 'html',
+                data: postData, // Include the data to be sent in the request
+                success: function(htmlString) {
+                    // Get the iframe element by its ID
+                    var iframe = document.getElementById('iframe-preview');
+
+                    // Access the document of the iframe
+                    var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+                    // Write the HTML string into the iframe document
+                    iframeDocument.open();
+                    iframeDocument.write(htmlString);
+                    iframeDocument.close();
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching data:', error);
+                }
+            });
+        }
     </script>
 {{--    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/loader.js"></script>--}}
 

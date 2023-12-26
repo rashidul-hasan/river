@@ -2,7 +2,7 @@
 use Rashidul\River\Http\Controllers\Admin\FileUploadController;
 use Rashidul\River\Http\Controllers\Admin\MenuController;
 use Rashidul\River\Http\Controllers\Admin\BlogController;
-   
+
 use Rashidul\River\Http\Controllers\Admin\TemplatePageController;
 //auth
 Route::group([
@@ -59,6 +59,7 @@ Route::group([
     Route::resource('newslatter-submissions', 'Admin\NewsletterSubmissionsController');
 
     //template manager
+    Route::post('template-pages/preview', 'Admin\TemplatePageController@preview');
     Route::resource('template-pages', 'Admin\TemplatePageController')->except(['create', 'show']);
     Route::get('assets', 'Admin\TemplatePageController@assets')->name('templates.assets');
     Route::get('CacheView', 'Admin\TemplatePageController@CacheView')->name('CacheView');

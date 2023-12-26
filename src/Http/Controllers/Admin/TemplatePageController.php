@@ -5,6 +5,7 @@ namespace Rashidul\River\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Blade;
 use Rashidul\River\Models\TemplatePage;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -120,4 +121,40 @@ class TemplatePageController extends Controller
         return redirect()->back()->with('success', 'Successfully');
     }
 
+    public function preview(Request $request)
+    {
+        $content = $request->get('content');
+//        $content = '<div class="mt-3 text-center">
+//                                <button type="submit">Login</button>
+//                                or <a href="{{route(\'riversite.register\')}}"> New Register </a>
+//                            </div>';
+
+        // Will write the file when needed and return the view filename
+        $filename = $this->generateViewFile($content);
+
+        // Fully render and output the content
+        return view('_cache/'.$filename)->render();
+    }
+
+    private function generateViewFile($html)
+    {
+        // Get the Laravel Views path
+        $path = config('view.paths.0');
+
+        // Here we use the date for unique filename - This is the filename for the View
+        $viewfilename = 'tmp-preview';
+
+        // Full path with filename
+        $fullfilename = $path."/_cache/".$viewfilename.".blade.php";
+        file_put_contents($fullfilename, $html);
+
+        // Write the string into a file
+        /*if (!file_exists($fullfilename))
+        {
+            file_put_contents($fullfilename, $html);
+        }*/
+
+        // Return the view filename - This could be directly used in View::make
+        return $viewfilename;
+    }
 }
