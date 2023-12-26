@@ -5,6 +5,7 @@ namespace Rashidul\River\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 use Rashidul\River\Constants;
 use Rashidul\River\Models\Faq;
 
@@ -50,11 +51,18 @@ class TestimonialController
             'name' => 'required', //TODO no space, valid blade file name
         ]);
 
-        
+        $image = $request->file('image');
+        $image_name = date('Ymdhis.').$image->getClientOriginalExtension();
+
+        $publicPath = public_path();
+        $directory = 'river/assets';
+        $targetDirectory = $publicPath . '/' . $directory;
+
+        $image->move($targetDirectory,$image_name);
 
             $file = Testimonial::create([
                 'name' => $request->name,
-                'image' => $request->image,
+                'image' => $image_name,
                 'designation' => $request->designation,
                 'message' => $request->message,
                 'sort_order' => $request->sort_order,
@@ -85,9 +93,18 @@ class TestimonialController
             
         ]);
 
+        $image = $request->file('image');
+        $image_name = date('Ymdhis.').$image->getClientOriginalExtension();
+
+        $publicPath = public_path();
+        $directory = 'river/assets';
+        $targetDirectory = $publicPath . '/' . $directory;
+
+        $image->move($targetDirectory,$image_name);
+
         $file = Testimonial::find($id);
         $file->name = $request->get('name');
-        $file->image = $request->get('image');
+        $file->image = $image_name;
         $file->designation = $request->get('designation');
         $file->message = $request->get('message');
         $file->sort_order = $request->get('sort_order');
@@ -102,6 +119,16 @@ class TestimonialController
     {
         $file = Testimonial::find($id);
         $file->delete();
+
+        
+        $publicPath = public_path();
+        $directory = 'river/assets';
+        $targetDirectory = $publicPath . '/' . $directory . '/'.$file->image ;
+
+
+        if(File::exists($targetDirectory)) {
+            unlink($targetDirectory);
+        }
 
         return redirect(route('river.testimonial.index'))
             ->with('success', 'Deleted!');

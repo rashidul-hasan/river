@@ -6,6 +6,7 @@ use Rashidul\River\Services\SettingsService;
 use Rashidul\River\Models\Faq;
 use Rashidul\River\Models\Menu;
 use Rashidul\River\Models\Blog;
+use Rashidul\River\Models\Testimonial;
 
 if (! function_exists('river_settings')) {
     function river_settings($key, $default = '')
@@ -30,6 +31,21 @@ if (! function_exists('river_get_faqs')) {
         try {
             return Faq::where('is_active', 1)
             ->where('type', $type)->orderBy('sort_order', 'ASC')->get();
+        } catch (Exception $e) {
+            
+            return [];
+        }
+    }
+}
+
+if (! function_exists('river_get_testimonials')) {
+    function river_get_testimonials()
+    {
+        //TODO use cache
+        //for the first time, there will be no tables in the db so this function will throw exception
+        //Base table or view not found: 1146
+        try {
+            return $testimonial = Testimonial::where('is_active', 1)->orderBy('sort_order', 'ASC')->get();
         } catch (Exception $e) {
             
             return [];
@@ -68,8 +84,6 @@ if (! function_exists('river_latest_blogs')) {
         }
     }
 }
-
-
 
 
 if (! function_exists('river_banner')) {
