@@ -47,22 +47,27 @@ class TestimonialController
 
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => 'required', //TODO no space, valid blade file name
         ]);
 
-        $image = $request->file('image');
-        $image_name = date('Ymdhis.').$image->getClientOriginalExtension();
+        //$image = $request->image;
+        // $image = $request->file('image');
+        //$image_name = date('Ymdhis.').$image->getClientOriginalExtension();
 
-        $publicPath = public_path();
-        $directory = 'river/assets';
-        $targetDirectory = $publicPath . '/' . $directory;
+        
+        // $image = $request->file('image');
+        // $publicPath = public_path();
+        // $directory = 'river/assets';
+        // $targetDirectory = $publicPath . '/' . $directory;
 
-        $image->move($targetDirectory,$image_name);
+        // $image_name = date('Ymdhis.').$image->getClientOriginalExtension();
+        // $image->move($targetDirectory,$image_name);
 
         $file = Testimonial::create([
             'name' => $request->name,
-            'image' => $image_name,
+            'image' => $request->image,
             'designation' => $request->designation,
             'message' => $request->message,
             'sort_order' => $request->sort_order,
@@ -104,7 +109,7 @@ class TestimonialController
 
         $file = Testimonial::find($id);
         $file->name = $request->get('name');
-        $file->image = $image_name;
+        $file->image = '$image_name';
         $file->designation = $request->get('designation');
         $file->message = $request->get('message');
         $file->sort_order = $request->get('sort_order');
