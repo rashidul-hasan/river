@@ -56,16 +56,11 @@
                                 </div>
                             </div>
 
-                            <div class="form-group mb-3 ">
-                                <label class="form-label required"> Category Id</label>
-                                <div>
-                                    <input type="text" class="form-control"  name="category_id" value="{{ old('category_id') }}">
-                                </div>
-                            </div>
+                            
 
 
                              <div class="form-group mb-3 ">
-                                        <label class="form-label required">Category</label>
+                                        <label class="form-label required"> Service Category</label>
                                         <select class="form-select" name="category_id" aria-label="Default select example">
                                             <option  value="" selected disabled > Add service Category</option>
                                             @foreach($all_cat as $a)

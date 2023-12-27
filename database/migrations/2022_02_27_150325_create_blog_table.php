@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('content')->unique();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->string('author_id')->nullable();
+            $table->string('image')->nullable();
             $table->boolean('is_published')->default(0)->nullable();
             $table->timestamps();
         });
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('river_contact_form');
+        Schema::dropIfExists('river_blog');
     }
 };

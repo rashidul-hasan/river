@@ -76,7 +76,7 @@
 
 
                                      <div class="form-group mb-3 ">
-                                        <label class="form-label required">Category</label>
+                                        <label class="form-label required">Service Category Category</label>
                                         <select class="form-select" name="category_id" aria-label="Default select example">
                                             
                                             @foreach($all_cat as $a)

@@ -19,7 +19,7 @@
                                     <td> slug </td>
                                     <td> Content</td>
                                     <td> Meta Description </td>
-                                    <td> Category Id</td>
+                                    <td> Service Category</td>
                                     <td> Author Id</td>
                                     <td> Icon </td>
                                     <td> Image</td>

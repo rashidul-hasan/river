@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Rashidul\River\Constants;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 
 use Rashidul\River\Models\Blog;
@@ -60,6 +61,16 @@ class BlogController
     public function store(Request $request)
     {
 
+
+        // $image = $request->file('image');
+        // $image_name = date('Ymdhis.').$image->getClientOriginalExtension();
+
+        // $publicPath = public_path();
+        // $directory = 'river/assets';
+        // $targetDirectory = $publicPath . '/' . $directory;
+
+        // $image->move($targetDirectory,$image_name);
+
         
         $request->validate([
             'title' => 'required',
@@ -72,6 +83,7 @@ class BlogController
         $blog = Blog::create([
             'title' => $names,
             'content' => $request->content,
+            'image' => '$image_name',
             'category_id' => $request->category_id,
             'author_id' => Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id,
             'is_published' =>$is_published
@@ -93,6 +105,7 @@ class BlogController
 
         $all_cat = BlogCategory::all();
 
+
         $data = [
             'title' => 'Edit Blog: ' . $file->name,
             'type' => $file,
@@ -105,6 +118,15 @@ class BlogController
     public function update(Request $request, $id)
     {
 
+        // $image = $request->file('image');
+        // $image_name = date('Ymdhis.').$image->getClientOriginalExtension();
+
+        // $publicPath = public_path();
+        // $directory = 'river/assets';
+        // $targetDirectory = $publicPath . '/' . $directory;
+
+        // $image->move($targetDirectory,$image_name);
+
         $request->validate([
             'title' => 'required',
         ]);
@@ -112,6 +134,7 @@ class BlogController
         $file = Blog::find($id);
         $file->title = $request->get('title');
         $file->content = $request->get('content');
+        $file->image = '$image_name';
         $file->category_id = $request->get('category_id');
         $file->author_id = Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id;
         $file->is_published = $request->get('is_published');
@@ -125,6 +148,17 @@ class BlogController
     {
         $file = Blog::find($id);
         $file->delete();
+
+
+        
+        $publicPath = public_path();
+        $directory = 'river/assets';
+        $targetDirectory = $publicPath . '/' . $directory . '/'.$file->image ;
+
+
+        // if(File::exists($targetDirectory)) {
+        //     unlink($targetDirectory);
+        // }
 
         return redirect(route('river.blog.index'))
             ->with('success', 'Deleted!');
