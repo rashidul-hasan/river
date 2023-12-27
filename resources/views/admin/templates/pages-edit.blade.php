@@ -73,7 +73,21 @@
         </div>
     </div>
 
-    <iframe src="" frameborder="0" id="iframe-preview"></iframe>
+    <div id="modal-preview" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Preview</h5>
+                </div>
+                <div class="modal-body">
+                    <iframe src="" frameborder="0" id="iframe-preview"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @stop
 
@@ -139,6 +153,7 @@
                     iframeDocument.open();
                     iframeDocument.write(htmlString);
                     iframeDocument.close();
+                    $("#modal-preview").modal('show');
                 },
                 error: function(xhr, status, error) {
                     console.error('Error fetching data:', error);

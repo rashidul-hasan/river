@@ -220,17 +220,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Footer Logo <small class="text-warning">( size 170 x 70 )</small></label>
-                                    <div class="">
-                                        <div class="mb-3">
-                                            <input type="file" class="form-control" name="footer_logo" id="footer_logo">
-                                        </div>
-                                        <div class="d-flex align-items-center flex-wrap">
-                                            <span class="pip">
-                                                <img class="imageThumb" id="ImgPreview4"
-                                                     src="{{ asset( river_settings('footer_logo')) }}" style="width: 80px; height: 80px">
-                                            </span>
-                                        </div>
-                                    </div>
+                                    @include('river::admin.components.image-picker', ['name' => 'footer_logo', 'default' => river_settings('footer_logo')])
 
                                     <div class="col-md-2 my-2">
                                         <button data-url="@{{river_settings('footer_logo')}}" class="btn btn-icon btn-copy">

@@ -52,19 +52,6 @@ class TestimonialController
             'name' => 'required', //TODO no space, valid blade file name
         ]);
 
-        //$image = $request->image;
-        // $image = $request->file('image');
-        //$image_name = date('Ymdhis.').$image->getClientOriginalExtension();
-
-        
-        // $image = $request->file('image');
-        // $publicPath = public_path();
-        // $directory = 'river/assets';
-        // $targetDirectory = $publicPath . '/' . $directory;
-
-        // $image_name = date('Ymdhis.').$image->getClientOriginalExtension();
-        // $image->move($targetDirectory,$image_name);
-
         $file = Testimonial::create([
             'name' => $request->name,
             'image' => $request->image,
@@ -98,18 +85,9 @@ class TestimonialController
 
         ]);
 
-        $image = $request->file('image');
-        $image_name = date('Ymdhis.').$image->getClientOriginalExtension();
-
-        $publicPath = public_path();
-        $directory = 'river/assets';
-        $targetDirectory = $publicPath . '/' . $directory;
-
-        $image->move($targetDirectory,$image_name);
-
         $file = Testimonial::find($id);
         $file->name = $request->get('name');
-        $file->image = '$image_name';
+        $file->image = $request->get('image');
         $file->designation = $request->get('designation');
         $file->message = $request->get('message');
         $file->sort_order = $request->get('sort_order');

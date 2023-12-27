@@ -28,7 +28,7 @@ Update filesystem config: Open `config/filesystem.php` & change the public disk 
 'public' => [
             'driver' => 'local',
             'root' => public_path('river/assets/files'),
-            'url' => env('APP_URL').'/river/assets/files',
+            'url' => '/river/assets/files',
             'visibility' => 'public',
             'throw' => false,
         ],
