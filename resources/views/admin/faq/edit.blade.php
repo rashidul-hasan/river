@@ -18,7 +18,7 @@
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group mb-3 row">
-                                        <label class="col-3 col-form-label ">Question</label>
+                                        <label class="col-3 col-form-label required">Question</label>
                                         <div class="col">
                                             <input type="text" class="form-control" name="question" value="{{ $type->question }}">
                                         </div>

@@ -49,7 +49,7 @@
                             </div>
 
                             <div class="form-group mb-3 ">
-                                <label class="form-label required"> Meta Description</label>
+                                <label class="form-label"> Meta Description</label>
 
                                 <div>
                                     <input type="text" class="form-control"  name="meta_desc" value="{{ old('meta_desc') }}">
@@ -60,7 +60,7 @@
 
 
                             <div class="form-group mb-3 ">
-                                 <label class="form-label required"> Service Category</label>
+                                 <label class="form-label"> Service Category</label>
                                     <select class="form-select" name="category_id" aria-label="Default select example">
                                         <option  value="" selected disabled > Add service Category</option>
                                         @foreach($all_cat as $a)
@@ -72,7 +72,7 @@
                             
 
                             <div class="form-group mb-3 ">
-                                <label class="form-label required"> Sort Order</label>
+                                <label class="form-label"> Sort Order</label>
                                 <div>
                                     <input type="text" class="form-control"  name="sort_order" value="{{ old('sort_order') }}">
                                 </div>
@@ -80,17 +80,11 @@
 
                             <div class="form-group mb-3 row">
                                 <div class="form-group">
-                                    <label>Icon <small class="text-warning"></small></label>
+                                    <label>Icon <small class="text-warning">( size 200px x 50px )</small></label>
                                     @include('river::admin.components.image-picker', ['name' => 'icon', 'default' => river_settings('icon')])
-
                                 </div>
-                                <div class="col-md-2 my-2">
-                                    <button data-url="@{{river_settings('icon')}}" class="btn btn-icon btn-copy">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>
-                                    </button>
-                                </div>
+                                
                             </div>
-
 
                             <div class="form-group mb-3 row">
                                 <div class="form-group">
@@ -98,16 +92,9 @@
                                     @include('river::admin.components.image-picker', ['name' => 'image', 'default' => river_settings('image')])
 
                                 </div>
-                                <div class="col-md-2 my-2">
-                                    <button data-url="@{{river_settings('image')}}" class="btn btn-icon btn-copy">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg>
-                                    </button>
-                                </div>
+                                
                             </div>
 
-
-                               
-                               
                                <div class="form-group mb-3 ">
                                    <label class="form-check">
                                        <input class="form-check-input" type="checkbox" name="is_published" value="1">

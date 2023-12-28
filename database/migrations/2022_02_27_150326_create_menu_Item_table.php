@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('menu_id');
             $table->string('title');
             $table->string('url')->nullable();
-            $table->integer('sort_order')->nullable();
+            $table->integer('sort_order')->default(1);
             $table ->string('css_class')->nullable();
             $table->string('css_id')->nullable();
             $table->string('slug')->nullable();

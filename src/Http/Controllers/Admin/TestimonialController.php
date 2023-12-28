@@ -49,8 +49,15 @@ class TestimonialController
     {
 
         $request->validate([
-            'name' => 'required', //TODO no space, valid blade file name
+            'name' => 'required',
+            'required' => 'required' //TODO no space, valid blade file name
         ]);
+
+        if ( $request->has('is_active')) {
+            $is_active = 1;
+         } else{
+            $is_active = 0;
+         }
 
         $file = Testimonial::create([
             'name' => $request->name,
@@ -58,7 +65,7 @@ class TestimonialController
             'designation' => $request->designation,
             'message' => $request->message,
             'sort_order' => $request->sort_order,
-            'is_active' => $request->is_active,
+            'is_active' => $is_active,
         ]);
 
         return redirect(route('river.testimonial.index', $file->id))
@@ -82,16 +89,23 @@ class TestimonialController
     {
         $request->validate([
             'name' => 'required',
+            'required' => 'required'
 
         ]);
+
+        if ( $request->has('is_active')) {
+            $is_active = 1;
+         } else{
+            $is_active = 0;
+         }
 
         $file = Testimonial::find($id);
         $file->name = $request->get('name');
         $file->image = $request->get('image');
         $file->designation = $request->get('designation');
-        $file->message = $request->get('message');
+        $file->message = $request->get('required');
         $file->sort_order = $request->get('sort_order');
-        $file->is_active = $request->get('is_active');
+        $file->is_active =  $is_active;
         $file->save();
 
         return redirect()->back()->with('success', 'Updated');

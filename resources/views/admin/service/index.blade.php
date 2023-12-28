@@ -17,12 +17,9 @@
                                     <td>SL. </td>
                                     <td> Title</td>
                                     <td> slug </td>
-                                    <td> Content</td>
-                                    <td> Meta Description </td>
                                     <td> Service Category</td>
                                     <td> Author Id</td>
                                     <td> Icon </td>
-                                    <td> Image</td>
                                     <td> Sort Order</td>
                                     <td> Is Published</td>
                                     <td> Action</td>
@@ -34,17 +31,13 @@
                                 <td>{{ ++$key }} </td>
                                 <td>{{ $a->title }} </td>
                                 <td> {{ $a->slug }}  </td>
-                                <td>{{ $a->content }} </td>
-                                <td> {{ $a->meta_desc }} </td>
+                                
                                 <td> {{ $a->category_id}}</td>
                                 <td> {{ $a->author_id}}</td>
                                 <td>
                                     <img src="/river/assets/{{$a->icon  }}" />
                                 </td>
                                 
-                                <td>
-                                    <img src="/river/assets/{{$a->image  }}" />
-                                </td>
                                 <td> {{ $a->sort_order}} </td>
                                 
                                 <td>{{ ($a->is_published==1)?'Active':'Inactive' }} </td>

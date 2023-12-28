@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('question');
             $table->string('answer')->nullable();
-            $table->integer('sort_order')->nullable();
+            $table->integer('sort_order')->default(1);
             $table->boolean('is_active')->default(0)->nullable();
             $table->string('type')->nullable();
             $table->timestamps();

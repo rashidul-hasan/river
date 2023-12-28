@@ -33,7 +33,7 @@
                                
 
                             <div class="form-group mb-3 ">
-                                <label class="form-label required">Parent</label>
+                                <label class="form-label">Parent</label>
                                 <div>
                                     <select class="form-select" name="parent_id" aria-label="Default select example">
                                         <option selected value="0">select Parent Category</option>
@@ -47,9 +47,9 @@
                                
                                
                             <div class="form-group mb-3 ">
-                                <label class="form-label required">  Sort Order</label>
+                                <label class="form-label ">  Sort Order</label>
                                 <div>
-                                    <input type="text" class="form-control"  name=" sort_order" value="{{ old(' sort_order') }}">
+                                    <input type="text" class="form-control"  name=" sort_order" value="{{ old('sort_order') }}">
                                 </div>
                             </div>
 

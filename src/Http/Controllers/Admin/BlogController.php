@@ -74,16 +74,23 @@ class BlogController
         
         $request->validate([
             'title' => 'required',
+            'content' => 'required'
             
         ]);
 
+        if ( $request->has('is_published')) {
+            $is_published = 1;
+         } else{
+            $is_published = 0;
+         }
+
         $names = $request->get('title');
-        $is_published = $request->get('is_published');
+        
        
         $blog = Blog::create([
             'title' => $names,
             'content' => $request->content,
-            'image' => '$image_name',
+            'image' => $request->image,
             'category_id' => $request->category_id,
             'author_id' => Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id,
             'is_published' =>$is_published
@@ -129,12 +136,13 @@ class BlogController
 
         $request->validate([
             'title' => 'required',
+            'content' => 'required'
         ]);
 
         $file = Blog::find($id);
         $file->title = $request->get('title');
         $file->content = $request->get('content');
-        $file->image = '$image_name';
+        $file->image = $request->image;
         $file->category_id = $request->get('category_id');
         $file->author_id = Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id;
         $file->is_published = $request->get('is_published');

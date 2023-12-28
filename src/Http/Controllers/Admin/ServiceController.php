@@ -75,14 +75,22 @@ class ServiceController
         // $image->move($targetDirectory,$image_name);
         // $icon->move($targetDirectory,$icon_name);
 
-        
+
         $request->validate([
             'title' => 'required',
+            'slug'  =>'required|unique:river_service',
+            'content' => 'required'
             
         ]);
 
+        if ( $request->has('is_published')) {
+            $is_published = 1;
+         } else{
+            $is_published = 0;
+         }
+
         $names = $request->get('title');
-        $is_published = $request->get('is_published');
+        
        
         $blog = Service::create([
             'title' => $names,
@@ -92,8 +100,8 @@ class ServiceController
             'category_id' => $request->category_id,
             'sort_order' => $request->sort_order,
             'author_id' => Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id,
-            'icon' => '$icon_name',
-            'image' => '$image_name',
+            'icon' => $request->icon,
+            'image' => $request->image,
             'is_published' =>$is_published
         ]);
 
@@ -138,6 +146,8 @@ class ServiceController
 
         $request->validate([
             'title' => 'required',
+            'slug'  =>'required|unique:river_service',
+            'content' => 'required'
         ]);
 
         $file = Service::find($id);
@@ -148,8 +158,8 @@ class ServiceController
         $file->category_id = $request->get('category_id');
         $file->sort_order = $request->sort_order;
         $file->author_id = Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id;
-        $file->icon = '$icon_name';
-        $file->image = '$image_name';
+        $file->icon = $request->icon;
+        $file->image = $request->image;
         $file->is_published = $request->get('is_published');
         $file->save();
 

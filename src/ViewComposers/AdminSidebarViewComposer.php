@@ -174,7 +174,7 @@ class AdminSidebarViewComposer
                 'icon' => 'fas fa-headset',
                 'children' => [
                     [
-                        'label' => 'all Services',
+                        'label' => 'All Services',
                         'route' => 'river.service.index'
                     ],
                     [

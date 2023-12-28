@@ -17,6 +17,7 @@
                                     <td>SL. </td>
                                     <td> Title</td>
                                     <td> Content</td>
+                                    <td> Image</td>
                                     <td> Category</td>
                                     <th> Author</th>
                                     <td> Is Published</td>
@@ -29,6 +30,9 @@
                                 <td>{{ ++$key }} </td>
                                 <td>{{ $a->title }} </td>
                                 <td>{{ $a->content }} </td>
+                                <td>
+                                    <img src="/river/assets/{{ $a->image }}" style="width: 150px"/>
+                                </td>
                                 <td> {{ $a->category_id}}</td>
                                 <td> {{ $a->author_id}}</td>
                                 

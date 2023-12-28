@@ -50,7 +50,7 @@
                                     </div>
 
                                     <div class="form-group mb-3 ">
-                                        <label class="form-label required">Parent</label>
+                                        <label class="form-label">Parent</label>
                                         <div>
                                             <div>
                                                 <select class="form-select" name="parent_id" aria-label="Default select example">
@@ -63,10 +63,8 @@
                                         </div>
                                     </div>
 
-                                    
-
                                     <div class="form-group mb-3 ">
-                                        <label class="form-label required">  Sort Order</label>
+                                        <label class="form-label">  Sort Order</label>
                                         <div>
                                             <input type="text" class="form-control"  name=" sort_order" value="{{ $a->ort_order }}">
                                         </div>

@@ -54,11 +54,17 @@ class MenuController
 
         $request->validate([
             'name' => 'required',
-            'slug' => 'required' //TODO no space, valid blade file name
+            'slug' => 'required|unique:river_menu' //TODO no space, valid blade file name
         ]);
 
+        if ( $request->has('is_active')) {
+            $is_active = 1;
+         } else{
+            $is_active = 0;
+         }
+
         $names = $request->get('name');
-        $is_active = $request->get('is_active');
+
         $names = explode(",", $names);
         $file = null;
         foreach ($names as $name) {
@@ -93,7 +99,7 @@ class MenuController
 
         $request->validate([
             'name' => 'required',
-            'slug' => 'required'
+            'slug' => 'required|unique:river_menu'
         ]);
 
         $file = Menu::find($id);

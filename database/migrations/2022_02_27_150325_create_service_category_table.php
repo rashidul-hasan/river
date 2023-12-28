@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('parent_id')->nullable();
-            $table->string('sort_order')->nullable();
+            $table->integer('sort_order')->default(1);
             $table->timestamps();
         });
     }

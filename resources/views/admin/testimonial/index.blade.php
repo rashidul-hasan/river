@@ -30,7 +30,7 @@
                                     <td>{{ ++$key }} </td>
                                     <td>{{ $a->name }} </td>
                                     <td>
-                                        <img src="/river/assets/{{ $a->image }}" style="width: 150px"/>
+                                        <img src="{{$a->image}}" style="width: 150px"/>
                                     </td>
                                     <td> {{$a->designation  }}</td>
                                     <td> {{$a->message  }}</td>
