@@ -62,6 +62,12 @@ class BannersController extends Controller
 
         $banner->alt_text = $request->alt_text;
         $banner->slug = Str::slug(date('Ymd') . uniqid());
+        $banner->title = $request->title;
+        $banner->Subtitle = $request->Subtitle;
+        $banner->button_one_text = $request->button_one_text;
+        $banner->button_one_url = $request->button_one_url;
+        $banner->button_two_url = $request->button_two_url;
+        $banner->button_two_text = $request->button_two_text;
 
         $banner->save();
         return redirect()->route('river.banners.index')->with('success', 'Successfully Created Done!');

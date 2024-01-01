@@ -21,6 +21,13 @@ class CreateSlidersTable extends Migration
             $table->boolean('status')->nullable();
             $table->string('open_new_tab')->nullable();
             $table->integer('orders')->nullable();
+
+            $table->string('title')->nullable();
+            $table->string('Subtitle')->nullable();
+            $table->string('button_one_text')->nullable();
+            $table->string('button_one_url')->nullable();
+            $table->string('button_two_url')->nullable();
+            $table->string('button_two_text')->nullable();
             $table->timestamps();
         });
     }

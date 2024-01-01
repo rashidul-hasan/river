@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('river_faq', function (Blueprint $table) {
             $table->id();
             $table->string('question');
-            $table->string('answer')->nullable();
+            $table->text('answer')->nullable();
             $table->integer('sort_order')->default(1);
             $table->boolean('is_active')->default(0)->nullable();
             $table->string('type')->nullable();

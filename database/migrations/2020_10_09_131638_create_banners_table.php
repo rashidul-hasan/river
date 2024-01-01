@@ -18,6 +18,12 @@ class CreateBannersTable extends Migration
             $table->string('image')->nullable();
             $table->string('alt_text')->nullable();
             $table->string('slug')->unique();
+            $table->string('title')->nullable();
+            $table->string('Subtitle')->nullable();
+            $table->string('button_one_text')->nullable();
+            $table->string('button_one_url')->nullable();
+            $table->string('button_two_url')->nullable();
+            $table->string('button_two_text')->nullable();
             $table->timestamps();
         });
     }

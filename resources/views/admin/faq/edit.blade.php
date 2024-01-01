@@ -26,8 +26,10 @@
                                     <div class="form-group mb-3 row">
                                         <label class="col-3 col-form-label ">Answer</label>
                                         <div class="col">
-                                            <input type="text" class="form-control" name="answer"
-                                                   value="{{ $type->answer }}">
+                                            <textarea class="form-control" id="answer" name="answer"  >
+                                                {{ $type->answer }}
+                                            </textarea>
+                                            
                                         </div>
                                     </div>
                                     <div class="form-group mb-3 row">

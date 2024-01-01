@@ -17,6 +17,30 @@
 
                                 </div>
                                 <div class="form-group mb-3">
+                                    <div class="form-label" for="alt_text">Title</div>
+                                    <input type="text" class="form-control" id="title" name="title" value="{{ $slider->title }}"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="form-label" for="alt_text">Subtitle</div>
+                                    <input type="text" class="form-control" id="Subtitle" name="Subtitle" value="{{ $slider->Subtitle }}"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="form-label" for="alt_text">Button One Text</div>
+                                    <input type="text" class="form-control" id="button_one_text" name="button_one_text" value="{{ $slider->button_one_text }}"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="form-label" for="alt_text">Button One Url</div>
+                                    <input type="text" class="form-control" id="button_one_url" name="button_one_url" value="{{ $slider->button_one_url }}"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="form-label" for="alt_text">Button Two Text</div>
+                                    <input type="text" class="form-control" id="button_two_text" name="button_two_text" value="{{ $slider->button_two_text }}"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="form-label" for="alt_text">Button Two Url</div>
+                                    <input type="text" class="form-control" id="button_two_url" name="button_two_url" value="{{ $slider->button_two_url }}"/>
+                                </div>
+                                <div class="form-group mb-3">
                                     <div class="form-label" for="orders">Order By</div>
                                     <input type="number" class="form-control "
                                            id="orders" name="orders" value="{{ $slider->orders ?? '' }}"/>

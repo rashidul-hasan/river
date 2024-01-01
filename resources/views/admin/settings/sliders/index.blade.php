@@ -1,4 +1,4 @@
- @extends('river::admin.layouts.master')
+@extends('river::admin.layouts.master')
 
 @section('website_setup') active pcoded-trigger @stop
 
@@ -58,10 +58,35 @@
 
                             </div>
                             <div class="form-group mb-3">
+                                <div class="form-label" for="alt_text">Title</div>
+                                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="alt_text">Subtitle</div>
+                                <input type="text" class="form-control" id="Subtitle" name="Subtitle" value="{{ old('Subtitle') }}"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="alt_text">Button One Text</div>
+                                <input type="text" class="form-control" id="button_one_text" name="button_one_text" value="{{ old('button_one_text') }}"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="alt_text">Button One Url</div>
+                                <input type="text" class="form-control" id="button_one_url" name="button_one_url" value="{{ old('button_one_url') }}"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="alt_text">Button Two Text</div>
+                                <input type="text" class="form-control" id="button_two_text" name="button_two_text" value="{{ old('button_two_text') }}"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="alt_text">Button Two Url</div>
+                                <input type="text" class="form-control" id="button_two_url" name="button_two_url" value="{{ old('button_two_url') }}"/>
+                            </div>
+                            <div class="form-group mb-3">
                                 <div class="form-label" for="orders">Order By</div>
                                 <input type="number" class="form-control "
                                        id="orders" name="orders" value="{{ old('orders') }}"/>
                             </div>
+
                             <div class="form-group mb-3">
                                 <div class="form-label" for="group">Group</div>
                                 <input type="text" class="form-control" id="group" name="group" value="{{ old('group') }}"/>

@@ -15,6 +15,30 @@
                                     <div class="form-label" for="alt_text">Alt text</div>
                                     <input type="text" class="form-control" id="alt_text" name="alt_text" value="{{ $banner->alt_text }}"/>
                                 </div>
+                                <div class="form-group mb-3">
+                                    <div class="form-label" for="alt_text">Title</div>
+                                    <input type="text" class="form-control" id="title" name="title" value="{{ $banner->title }}"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="form-label" for="alt_text">Subtitle</div>
+                                    <input type="text" class="form-control" id="Subtitle" name="Subtitle" value="{{ $banner->Subtitle }}"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="form-label" for="alt_text">Button One Text</div>
+                                    <input type="text" class="form-control" id="button_one_text" name="button_one_text" value="{{ $banner->button_one_text }}"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="form-label" for="alt_text">Button One Url</div>
+                                    <input type="text" class="form-control" id="button_one_url" name="button_one_url" value="{{ $banner->button_one_url }}"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="form-label" for="alt_text">Button Two Text</div>
+                                    <input type="text" class="form-control" id="button_two_text" name="button_two_text" value="{{ $banner->button_two_text }}"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="form-label" for="alt_text">Button Two Url</div>
+                                    <input type="text" class="form-control" id="button_two_url" name="button_two_url" value="{{ $banner->button_two_url }}"/>
+                                </div>
                                 <div class="mb-3">
                                     <div class="form-label required">Image</div>
                                     <input type="file" class="form-control" name="image" id="image" onchange="singleImagePreview(event,'ImgPreview1')">

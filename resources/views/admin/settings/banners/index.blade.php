@@ -1,4 +1,4 @@
- @extends('river::admin.layouts.master')
+@extends('river::admin.layouts.master')
 
 @section('website_setup') active pcoded-trigger @stop
 
@@ -49,6 +49,34 @@
                             <div class="form-group mb-3">
                                 <div class="form-label" for="alt_text">Alt text</div>
                                 <input type="text" class="form-control" id="alt_text" name="alt_text" value="{{ old('alt_text') }}"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="alt_text">Slug</div>
+                                <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="alt_text">Title</div>
+                                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="alt_text">Subtitle</div>
+                                <input type="text" class="form-control" id="Subtitle" name="Subtitle" value="{{ old('Subtitle') }}"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="alt_text">Button One Text</div>
+                                <input type="text" class="form-control" id="button_one_text" name="button_one_text" value="{{ old('button_one_text') }}"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="alt_text">Button One Url</div>
+                                <input type="text" class="form-control" id="button_one_url" name="button_one_url" value="{{ old('button_one_url') }}"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="alt_text">Button Two Text</div>
+                                <input type="text" class="form-control" id="button_two_text" name="button_two_text" value="{{ old('button_two_text') }}"/>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="form-label" for="alt_text">Button Two Url</div>
+                                <input type="text" class="form-control" id="button_two_url" name="button_two_url" value="{{ old('button_two_url') }}"/>
                             </div>
                             <div class="mb-3">
                                 <div class="form-label required">Image</div>
