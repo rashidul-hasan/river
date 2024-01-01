@@ -41,7 +41,7 @@
                                     <input type="text" class="form-control" id="button_two_url" name="button_two_url" value="{{ $slider->button_two_url }}"/>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <div class="form-label" for="orders">Order By</div>
+                                    <div class="form-label" for="orders">Sort order</div>
                                     <input type="number" class="form-control "
                                            id="orders" name="orders" value="{{ $slider->orders ?? '' }}"/>
                                 </div>
@@ -49,11 +49,11 @@
                                     <div class="form-label" for="group">Group</div>
                                     <input type="text" class="form-control" id="group" name="group" value="{{ $slider->group ?? '' }}"/>
                                 </div>
-                                <div class="mb-3">
-                                    <div class="form-label required">Image</div>
-                                    <input type="file" class="form-control" name="image" id="image" onchange="singleImagePreview(event,'ImgPreview1')">
+                                <div class="form-group">
+                                    <label>Image <small class="text-warning"></small></label>
+                                    @include('river::admin.components.image-picker', ['name' => 'image', 'default' => $slider->image])
                                 </div>
-                                <div class="form-group mb-3">
+                                {{-- <div class="form-group mb-3">
                                     <div class="d-flex align-items-center flex-wrap">
                                     <span class="pip">
                                         <img class="imageThumb" id="ImgPreview1" src="{{ asset($slider->image) ?? '' }}" style="height: 200px;">
@@ -62,7 +62,7 @@
                                         </span>
                                     </span>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="form-group mb-3">
                                     <label class="form-check">
                                         <input class="form-check-input" type="checkbox" name="status" {{isset($slider->status) && $slider->status === 1 ? 'checked' : '' }}>
@@ -91,6 +91,7 @@
         $(document).ready(function(){
             $('.dropify').dropify();
         });
+        $('.lfm-picker').filemanager('image', {prefix: window.hp_route_prefix});
     </script>
 
 @endpush

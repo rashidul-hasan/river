@@ -26,4 +26,8 @@ class Blog extends Model
     public function tag(){
         return $this->belongsToMany(Tag::class, 'river_blog_tag', 'blog_id', 'tag_id');
     }
+
+    public function admin(){
+        return $this->belongsTo(Admin::class, 'author_id');
+    }
 }

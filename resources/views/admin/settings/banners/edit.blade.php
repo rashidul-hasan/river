@@ -39,11 +39,11 @@
                                     <div class="form-label" for="alt_text">Button Two Url</div>
                                     <input type="text" class="form-control" id="button_two_url" name="button_two_url" value="{{ $banner->button_two_url }}"/>
                                 </div>
-                                <div class="mb-3">
-                                    <div class="form-label required">Image</div>
-                                    <input type="file" class="form-control" name="image" id="image" onchange="singleImagePreview(event,'ImgPreview1')">
+                                <div class="form-group">
+                                    <label>Image <small class="text-warning"></small></label>
+                                    @include('river::admin.components.image-picker', ['name' => 'image', 'default' => $banner->image])
                                 </div>
-                                <div class="form-group mb-3">
+                                {{-- <div class="form-group mb-3">
                                     <div class="d-flex align-items-center flex-wrap">
                                     <span class="pip">
                                         <img class="imageThumb" id="ImgPreview1" src="{{ asset($banner->image) ?? '' }}" style="height: 200px;">
@@ -52,7 +52,7 @@
                                         </span>
                                     </span>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <button type="submit" class="btn btn-success">Save</button>
                             </form>
@@ -70,6 +70,8 @@
         $(document).ready(function(){
             $('.dropify').dropify();
         });
+
+        $('.lfm-picker').filemanager('image', {prefix: window.hp_route_prefix});
     </script>
 
 @endpush

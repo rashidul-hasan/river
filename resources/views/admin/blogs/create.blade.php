@@ -37,7 +37,6 @@
                                         <textarea class="form-control" id="content_type" name="content"  >
 
                                         </textarea>
-                                    
                                     </div>
                                 </div>
 
@@ -46,7 +45,6 @@
                                     <div class="form-group">
                                         <label>Image <small class="text-warning"></small></label>
                                         @include('river::admin.components.image-picker', ['name' => 'image', 'default' => river_settings('image')])
-
                                     </div>
                                 </div>
 

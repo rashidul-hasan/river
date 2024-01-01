@@ -2,7 +2,9 @@
 
 namespace Rashidul\River\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 class Admin extends Authenticatable
 {
@@ -12,5 +14,9 @@ class Admin extends Authenticatable
         'key',
         'value'
     ];
+
+    public function blog(){
+        return $this->hasOne(Blog::class, 'author_id');
+    }
 //    public $timestamps = false;
 }

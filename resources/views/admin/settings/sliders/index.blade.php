@@ -82,7 +82,7 @@
                                 <input type="text" class="form-control" id="button_two_url" name="button_two_url" value="{{ old('button_two_url') }}"/>
                             </div>
                             <div class="form-group mb-3">
-                                <div class="form-label" for="orders">Order By</div>
+                                <div class="form-label" for="orders">Sort Order</div>
                                 <input type="number" class="form-control "
                                        id="orders" name="orders" value="{{ old('orders') }}"/>
                             </div>
@@ -92,8 +92,10 @@
                                 <input type="text" class="form-control" id="group" name="group" value="{{ old('group') }}"/>
                             </div>
                             <div class="mb-3">
-                                <div class="form-label required">Image</div>
-                                <input type="file" class="form-control" name="image" id="image" onchange="singleImagePreview(event,'ImgPreview1')">
+                                <div class="form-group">
+                                    <label>Image <small class="text-warning"></small></label>
+                                    @include('river::admin.components.image-picker', ['name' => 'image', 'default' => river_settings('image')])
+                                </div>
                             </div>
                             <div class="form-group mb-3">
                                 <div class="d-flex align-items-center flex-wrap">
@@ -158,6 +160,8 @@
                 .submit();
         }
     });
+
+    $('.lfm-picker').filemanager('image', {prefix: window.hp_route_prefix});
 
 </script>
 

@@ -7,6 +7,8 @@ use Rashidul\River\Models\Faq;
 use Rashidul\River\Models\Menu;
 use Rashidul\River\Models\Blog;
 use Rashidul\River\Models\Testimonial;
+use Rashidul\River\Models\Slider;
+use Rashidul\River\Models\Service;
 
 if (! function_exists('river_settings')) {
     function river_settings($key, $default = '')
@@ -33,6 +35,38 @@ if (! function_exists('river_get_faqs')) {
                 ->where('type', $type)->orderBy('sort_order', 'ASC')->get();
         } catch (Exception $e) {
 
+            return [];
+        }
+    }
+}
+
+if (! function_exists('river_slider')) {
+    function river_slider($group)
+    {
+        //TODO use cache
+        //for the first time, there will be no tables in the db so this function will throw exception
+        //Base table or view not found: 1146
+        try {
+            return Slider::where('status', 1)
+                ->where('group', $group)->orderBy('orders', 'ASC')->get();
+        } catch (Exception $e) {
+            
+            return [];
+        }
+    }
+}
+
+if (! function_exists('river_service')) {
+    function river_service($slug)
+    {
+        //TODO use cache
+        //for the first time, there will be no tables in the db so this function will throw exception
+        //Base table or view not found: 1146
+        try {
+            return Service::where('is_published', 1)
+                ->where('slug', $slug)->orderBy('sort_order', 'ASC')->get();
+        } catch (Exception $e) {
+            
             return [];
         }
     }
