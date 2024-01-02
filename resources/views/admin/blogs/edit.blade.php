@@ -68,7 +68,7 @@
                                     <div class="form-group mb-3 ">
                                         <label class="form-label">Category</label>
                                         <select class="form-select" name="category_id" aria-label="Default select example">
-                                            {{-- <option selected value="0">select Category</option> --}}
+                                             <option  value="0" disabled>select Category</option>
                                             @foreach($all_cat as $a)
                                             <option value="{{$a->id}}" @if($a->id==$type->category_id) selected  @endif >{{ $a->name }}</option>
                                             @endforeach    

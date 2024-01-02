@@ -4,6 +4,8 @@ namespace Rashidul\River\Http\Controllers\Admin\Settings;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Rashidul\River\Constants;
 use Illuminate\Support\Str;
 use Rashidul\River\Models\Banner;
 use Rashidul\River\Services\ImageUploadService;
@@ -56,13 +58,10 @@ class BannersController extends Controller
 
         $banner = new Banner();
 
-        if ($request->hasFile('image')){
-            $banner->image = $imageUploadService->upload($request->file('image'),Banner::BASE_PATH);
-        }
-
         $banner->alt_text = $request->alt_text;
         $banner->slug = Str::slug(date('Ymd') . uniqid());
         $banner->title = $request->title;
+        $banner->image = $request->image;
         $banner->Subtitle = $request->Subtitle;
         $banner->button_one_text = $request->button_one_text;
         $banner->button_one_url = $request->button_one_url;
@@ -70,6 +69,7 @@ class BannersController extends Controller
         $banner->button_two_text = $request->button_two_text;
 
         $banner->save();
+        Cache::forget(Constants::CACHE_KEY_BANNER);
         return redirect()->route('river.banners.index')->with('success', 'Successfully Created Done!');
     }
 
@@ -115,6 +115,7 @@ class BannersController extends Controller
         }
         $banner->alt_text = $request->alt_text;
         $banner->save();
+        Cache::forget(Constants::CACHE_KEY_BANNER);
         return redirect()->route('river.banners.index')->with('success', 'Successfully Created Done!');
     }
 
@@ -135,6 +136,7 @@ class BannersController extends Controller
             }
 
             $banner->delete();
+            Cache::forget(Constants::CACHE_KEY_BANNER);
             return redirect()->back()->with('success', 'Successfully Deleted done!');
 
         }catch (\Exception $exception){

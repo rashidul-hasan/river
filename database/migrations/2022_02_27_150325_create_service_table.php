@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('content');
+            $table->text('content');
             $table->string('meta_desc')->nullable();
             $table->string('category_id')->nullable();
             $table->string('author_id')->nullable();

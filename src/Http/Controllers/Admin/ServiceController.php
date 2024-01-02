@@ -9,11 +9,6 @@ use Rashidul\River\Constants;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 
-
-use Rashidul\River\Models\Blog;
-use Rashidul\River\Models\BlogCategory;
-use Rashidul\River\Models\Tag;
-
 use Rashidul\River\Models\Service;
 use Rashidul\River\Models\ServiceCategory;
 
@@ -24,10 +19,9 @@ class ServiceController
     public function index()
     {
        
-        $all = Service::all();
-
-
-
+        // $all = Service::all();
+        $all = Service::with('servicecategory')->get();
+        
         $buttons = [
             ['Add', route('river.service.create'), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
             // ['Export', route('river.datatypes.export'), 'btn btn-primary', '' /*label,link,class,id*/],
@@ -105,10 +99,10 @@ class ServiceController
             'is_published' =>$is_published
         ]);
 
-       // $blog->tag()->sync($request->tags);
+       
         
         
-
+       Cache::forget(Constants::CACHE_KEY_SERVICE);
         return redirect(route('river.service.index',[$blog->id] ))
             ->with('success', 'Created!');
     }
@@ -146,7 +140,7 @@ class ServiceController
 
         $request->validate([
             'title' => 'required',
-            'slug'  =>'required|unique:river_service',
+            'slug'  =>'required',
             'content' => 'required'
         ]);
 
@@ -163,6 +157,7 @@ class ServiceController
         $file->is_published = $request->get('is_published');
         $file->save();
 
+        Cache::forget(Constants::CACHE_KEY_SERVICE);
         return redirect()->back()->with('success', 'Updated');
     
     }
@@ -185,6 +180,7 @@ class ServiceController
             unlink( $targetDirectory_icon);
         }
 
+        Cache::forget(Constants::CACHE_KEY_SERVICE);
         return redirect(route('river.service.index'))
             ->with('success', 'Deleted!');
     } 

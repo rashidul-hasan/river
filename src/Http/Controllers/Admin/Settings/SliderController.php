@@ -4,6 +4,8 @@ namespace Rashidul\River\Http\Controllers\Admin\Settings;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Rashidul\River\Constants;
 use Rashidul\River\Models\Slider;
 use Rashidul\River\Services\ImageUploadService;
 
@@ -33,22 +35,19 @@ class SliderController extends Controller
      */
     public function store(Request $request, ImageUploadService $imageUploadService)
     {
+        // dd($request->all());
         $this->validate($request, [
             'image' => 'required',
+            'group' => 'required'
         ]);
 
         $slider = new Slider();
 
-        if ($request->hasFile('image')){
-            $slider->image = $imageUploadService->upload($request->file('image'),Slider::BASE_PATH);
-        }
-
-        $slider->image_url = $request->image_url;
         $slider->group = $request->group;
         $slider->orders = $request->orders;
         $slider->status = $request->has('status') ? true : false;
         $slider->open_new_tab = $request->has('open_new_tab') ? '_blank' : '';
-
+        $slider->image = $request->image;
         $slider->title = $request->title;
         $slider->Subtitle = $request->Subtitle;
         $slider->button_one_text = $request->button_one_text;
@@ -57,6 +56,8 @@ class SliderController extends Controller
         $slider->button_two_text = $request->button_two_text;
 
         $slider->save();
+
+        Cache::forget(Constants::CACHE_KEY_SLIDER);
         return redirect()->route('river.sliders.index')->with('success', 'Successfully Created done!');
     }
 
@@ -77,7 +78,7 @@ class SliderController extends Controller
             'title' => 'Slider Edit',
             '_top_buttons' => $buttons,
         ];
-
+        Cache::forget(Constants::CACHE_KEY_SLIDER);
         return view('river::admin.settings.sliders.edit', $data);
     }
 
@@ -112,7 +113,7 @@ class SliderController extends Controller
         }
 
         $slider->save();
-
+        Cache::forget(Constants::CACHE_KEY_SLIDER);
         return redirect()->route('river.sliders.index')->with('success', 'Successfully Updated done!');
     }
 
@@ -126,13 +127,14 @@ class SliderController extends Controller
     {
         $slider = Slider::find($id);
         $image = $slider->image;
-
+        
         try {
             if (file_exists(public_path($image)) && $image) {
                 unlink(public_path($image));
             }
 
             $slider->delete();
+            Cache::forget(Constants::CACHE_KEY_SLIDER);
             return redirect()->back()->with('success', 'Successfully Deleted done!');
 
         } catch (\Exception $exception) {

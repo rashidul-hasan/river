@@ -76,7 +76,7 @@ class MenuController
             ]);
         }
 
-        Cache::forget(Constants::CACHE_KEY_DATATYPES);
+        Cache::forget(Constants::CACHE_KEY_MENU);
         return redirect(route('river.menu.edit',[$file->id] ))
             ->with('success', 'Created!');
     }
@@ -108,7 +108,7 @@ class MenuController
         $file->is_active = $request->get('is_active');
         $file->save();
 
-        Cache::forget(Constants::CACHE_KEY_DATATYPES);
+        Cache::forget(Constants::CACHE_KEY_MENU);
         return redirect()->back()->with('success', 'Updated');
     
     }
@@ -184,7 +184,7 @@ class MenuController
     {
         $file = Menu::find($id);
         $file->delete();
-
+        Cache::forget(Constants::CACHE_KEY_MENU);
         return redirect(route('river.menu.index'))
             ->with('success', 'Deleted!');
     }

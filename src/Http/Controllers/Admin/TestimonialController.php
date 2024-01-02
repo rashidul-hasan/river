@@ -67,7 +67,7 @@ class TestimonialController
             'sort_order' => $request->sort_order,
             'is_active' => $is_active,
         ]);
-
+        Cache::forget(Constants::CACHE_KEY_TESTIMONIAL);
         return redirect(route('river.testimonial.index', $file->id))
             ->with('success', 'Created!');
     }
@@ -108,6 +108,7 @@ class TestimonialController
         $file->is_active =  $is_active;
         $file->save();
 
+        Cache::forget(Constants::CACHE_KEY_TESTIMONIAL);
         return redirect()->back()->with('success', 'Updated');
     }
 
@@ -127,6 +128,7 @@ class TestimonialController
             unlink($targetDirectory);
         }
 
+        Cache::forget(Constants::CACHE_KEY_TESTIMONIAL);
         return redirect(route('river.testimonial.index'))
             ->with('success', 'Deleted!');
     }

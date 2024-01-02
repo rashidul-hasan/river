@@ -27,12 +27,13 @@
                             </thead>
                             <tbody>
                              @foreach($all as $key=>$a) 
+
                             <tr>
                                 <td>{{ ++$key }} </td>
                                 <td>{{ $a->title }} </td>
                                 <td> {{ $a->slug }}  </td>
                                 
-                                <td> {{ $a->category_id}}</td>
+                                <td>  {{ $a->servicecategory->name }}</td>
                                 <td> {{ $a->author_id}}</td>
                                 <td>
                                     <img src="/river/assets/{{$a->icon  }}" />

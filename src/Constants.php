@@ -31,4 +31,15 @@ class Constants
     const FIELD_TYPE_BELONGSTO = 'belongsto'; //will hold another type's primary key as foreign key
     const FIELD_TYPE_HASMANY = 'hasmany'; // pseudo column, will pull the related types by using belongsto
 
+
+    //cache key
+    const CACHE_KEY_FAQ = 'cache_key_faq';
+    const CACHE_KEY_SLIDER = 'cache_key_slider';
+    const CACHE_KEY_SERVICE = 'cache_key_service';
+    const CACHE_KEY_BLOG = 'cache_key_blog';
+    const CACHE_KEY_TESTIMONIAL = 'cache_key_testimonials';
+    const CACHE_KEY_BANNER = 'cache_key_banner';
+    const CACHE_KEY_MENU = 'cache_key_menu';
+
+
 }

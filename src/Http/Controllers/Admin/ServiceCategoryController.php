@@ -57,6 +57,7 @@ class ServiceCategoryController
 
         $request->validate([
             'name' => 'required',
+            'sort_order' => 'required'
             
         ]);
 

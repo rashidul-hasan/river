@@ -1,5 +1,6 @@
 <?php
 
+use Rashidul\River\Constants;
 use Rashidul\River\Models\DataType;
 use Rashidul\River\Models\FieldValue;
 use Rashidul\River\Services\SettingsService;
@@ -9,6 +10,7 @@ use Rashidul\River\Models\Blog;
 use Rashidul\River\Models\Testimonial;
 use Rashidul\River\Models\Slider;
 use Rashidul\River\Models\Service;
+use Illuminate\Support\Facades\Cache;
 
 if (! function_exists('river_settings')) {
     function river_settings($key, $default = '')
@@ -27,95 +29,134 @@ if (! function_exists('river_settings')) {
 if (! function_exists('river_get_faqs')) {
     function river_get_faqs($type)
     {
-        //TODO use cache
-        //for the first time, there will be no tables in the db so this function will throw exception
-        //Base table or view not found: 1146
-        try {
+        $all = Cache::rememberForever(Constants::CACHE_KEY_FAQ, function () {
             return Faq::where('is_active', 1)
-                ->where('type', $type)->orderBy('sort_order', 'ASC')->get();
-        } catch (Exception $e) {
+                ->orderBy('sort_order', 'ASC')->get();
+        });
 
-            return [];
-        }
+        $faqs = $all->where('type', $type);
+        return $faqs;
+    
     }
 }
 
 if (! function_exists('river_slider')) {
     function river_slider($group)
     {
-        //TODO use cache
-        //for the first time, there will be no tables in the db so this function will throw exception
-        //Base table or view not found: 1146
-        try {
+        $all = Cache::rememberForever(Constants::CACHE_KEY_SLIDER, function () {
             return Slider::where('status', 1)
-                ->where('group', $group)->orderBy('orders', 'ASC')->get();
-        } catch (Exception $e) {
+                ->orderBy('orders', 'ASC')->get();
+        });
+
+        $sliders = $all->where('group', $group);
+        return $sliders;
+
+        // try {
+        //     return Slider::where('status', 1)
+        //         ->where('group', $group)->orderBy('orders', 'ASC')->get();
+        // } catch (Exception $e) {
             
-            return [];
-        }
+        //     return [];
+        // }
     }
 }
 
 if (! function_exists('river_service')) {
     function river_service($slug)
     {
-        //TODO use cache
-        //for the first time, there will be no tables in the db so this function will throw exception
-        //Base table or view not found: 1146
-        try {
-            return Service::where('is_published', 1)
-                ->where('slug', $slug)->orderBy('sort_order', 'ASC')->get();
-        } catch (Exception $e) {
+        $all = Cache::rememberForever(Constants::CACHE_KEY_SERVICE, function () {
+            return Service::with('servicecategory')->where('is_published', 1)
+                ->orderBy('sort_order', 'ASC')->get();
+        });
+
+
+        foreach($all as $a){
+
+            if($slug == $a->servicecategory->name ){
+                $services = $all->where('category_id', $a->servicecategory->id);
+                 return $services;
+            } 
             
-            return [];
         }
+
+        
+
+        // $services = $all->where('category_id', $slug);
+        // return $services;
+        // try {
+        //     return Service::where('is_published', 1)
+        //         ->where('slug', $slug)->orderBy('sort_order', 'ASC')->get();
+        // } catch (Exception $e) {
+            
+        //     return [];
+        // }
     }
 }
 
 if (! function_exists('river_get_testimonials')) {
     function river_get_testimonials()
     {
+        $testimonial = Cache::rememberForever(Constants::CACHE_KEY_TESTIMONIAL, function () {
+            return Testimonial::where('is_active', 1)->orderBy('sort_order', 'ASC')->get();
+        });
+        return $testimonial ;
         //TODO use cache
         //for the first time, there will be no tables in the db so this function will throw exception
         //Base table or view not found: 1146
-        try {
-            return $testimonial = Testimonial::where('is_active', 1)->orderBy('sort_order', 'ASC')->get();
-        } catch (Exception $e) {
+        // try {
+        //     return $testimonial = Testimonial::where('is_active', 1)->orderBy('sort_order', 'ASC')->get();
+        // } catch (Exception $e) {
 
-            return [];
-        }
+        //     return [];
+        // }
     }
 }
 
 if (! function_exists('river_get_menu')) {
     function river_get_menu($slug)
     {
+        $all = Cache::rememberForever(Constants::CACHE_KEY_MENU, function () {
+            return Menu::where('is_active', 1)->get();
+        });
 
-        try {
-            $data = Menu::where('is_active', 1)->where('slug', $slug)->first();
-            $field_data= $data->menuitem;
-            $sorted = $field_data->sortBy('sort_order');
-            $sorted->values()->all();
-            return  $sorted ;
-        } catch (Exception $e) {
+        $data= $all-> where('slug', $slug)->first();
+        $field_data= $data->menuitem;
+        $sorted = $field_data->sortBy('sort_order');
+        $sorted->values()->all();
+        return  $sorted ;
 
-            return [];
-        }
+        // try {
+        //     $data = Menu::where('is_active', 1)->where('slug', $slug)->first();
+        //     $field_data= $data->menuitem;
+        //     $sorted = $field_data->sortBy('sort_order');
+        //     $sorted->values()->all();
+        //     return  $sorted ;
+        // } catch (Exception $e) {
+
+        //     return [];
+        // }
     }
 }
 
 if (! function_exists('river_latest_blogs')) {
-    function river_latest_blogs()
+
+    function river_latest_blogs($count = 3)
     {
+        $all = Cache::rememberForever(Constants::CACHE_KEY_BLOG, function () {
+            return Blog::with('tag')->with('admin')->latest()->get();
+        });
 
-        try {
-            $data = Blog::with('tag')->latest()->take(5)->get();
-            return $data;
+        $blogs = $all->take($count);
+        return $blogs;
 
-        } catch (Exception $e) {
+        // try {
+        //     $data = Blog::with('tag')->latest()->take($count)->get();
+        //     return $data;
 
-            return [];
-        }
+        // } catch (Exception $e) {
+
+        //     return [];
+        // }
     }
 }
 
@@ -123,10 +164,20 @@ if (! function_exists('river_latest_blogs')) {
 if (! function_exists('river_banner')) {
     function river_banner($slug, $default = '')
     {
-        $banner = \Rashidul\River\Models\Banner::where('slug', $slug)->first();
-        if ($banner){
-            return $banner->image;
-        }
+
+        $banner = Cache::rememberForever(Constants::CACHE_KEY_BANNER, function () {
+             $banner = \Rashidul\River\Models\Banner::where('slug', $slug)->first();
+             if ($banner){
+                    return $banner->image;
+                 }
+        });
+
+        return $banner;
+
+        // $banner = \Rashidul\River\Models\Banner::where('slug', $slug)->first();
+        // if ($banner){
+        //     return $banner->image;
+        // }
     }
 }
 

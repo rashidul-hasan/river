@@ -78,7 +78,7 @@
                                      <div class="form-group mb-3 ">
                                         <label class="form-label">Service Category Category</label>
                                         <select class="form-select" name="category_id" aria-label="Default select example">
-                                            
+                                            <option value=""  selected >Select category</option>
                                             @foreach($all_cat as $a)
                                             <option value="{{$a->id}}" @if($a->id==$type->category_id) selected  @endif >{{ $a->name }}</option>
                                             @endforeach    

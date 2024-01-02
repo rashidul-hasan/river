@@ -95,7 +95,7 @@ class BlogController
             'author_id' => Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id,
             'is_published' =>$is_published
         ]);
-
+        Cache::forget(Constants::CACHE_KEY_BLOG);
         $blog->tag()->sync($request->tags);
         
         
@@ -108,7 +108,6 @@ class BlogController
     {
         
         $file = Blog::find($id); 
-
 
         $all_cat = BlogCategory::all();
 
@@ -148,6 +147,7 @@ class BlogController
         $file->is_published = $request->get('is_published');
         $file->save();
 
+        Cache::forget(Constants::CACHE_KEY_BLOG);
         return redirect()->back()->with('success', 'Updated');
     
     }
@@ -167,7 +167,7 @@ class BlogController
         // if(File::exists($targetDirectory)) {
         //     unlink($targetDirectory);
         // }
-
+        Cache::forget(Constants::CACHE_KEY_BLOG);
         return redirect(route('river.blog.index'))
             ->with('success', 'Deleted!');
     } 

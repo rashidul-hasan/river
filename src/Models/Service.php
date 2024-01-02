@@ -5,6 +5,7 @@ namespace Rashidul\River\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Service extends Model
 {
     use HasFactory;
@@ -25,5 +26,10 @@ class Service extends Model
 
     public function tag(){
         return $this->belongsToMany(Tag::class, 'river_blog_tag', 'blog_id', 'tag_id');
+    }
+
+
+    public function servicecategory(){
+        return $this->belongsTo(ServiceCategory::class, 'category_id');
     }
 }

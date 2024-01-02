@@ -47,7 +47,7 @@ class FaqController
             ]);
         }
 
-        Cache::forget(Constants::CACHE_KEY_DATATYPES);
+        Cache::forget(Constants::CACHE_KEY_FAQ);
         return redirect(route('river.faq.edit', $file->id))
             ->with('success', 'Created!');
     }
@@ -80,7 +80,7 @@ class FaqController
         $file->type = $request->get('type');
         $file->save();
 
-        Cache::forget(Constants::CACHE_KEY_DATATYPES);
+        Cache::forget(Constants::CACHE_KEY_FAQ);
         return redirect()->back()->with('success', 'Updated');
     }
 
@@ -89,7 +89,7 @@ class FaqController
     {
         $file = Faq::find($id);
         $file->delete();
-
+        Cache::forget(Constants::CACHE_KEY_FAQ);
         return redirect(route('river.faq.index'))
             ->with('success', 'Deleted!');
     }
