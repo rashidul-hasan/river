@@ -182,7 +182,12 @@ class AdminSidebarViewComposer
                         'route' => 'river.service-category.index'
                     ]
                 ]
-            ]
+                    ],
+            [
+                        'label' => 'Configuration',
+                        'icon' => 'fa-solid fa-comment-dots',
+                        'route' => 'river.configuration'
+            ],
         ];
         if (RolesCache::isDeveloper()) {
             $menus = array_merge($menus, $system_menus);

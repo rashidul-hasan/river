@@ -2,6 +2,8 @@
 use Rashidul\River\Http\Controllers\Admin\FileUploadController;
 use Rashidul\River\Http\Controllers\Admin\MenuController;
 use Rashidul\River\Http\Controllers\Admin\BlogController;
+use Rashidul\River\Http\Controllers\Admin\GitHubController;
+
 
 use Rashidul\River\Http\Controllers\Admin\TemplatePageController;
 //auth
@@ -35,6 +37,10 @@ Route::group([
 
     Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
     Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
+    Route::get('admin-settings', 'Admin\Auth\AdminProfileSettings@index')->name('admin-settings');
+  
+
+
 
     //    Route::get('payment-method', 'Admin\PaymentController@index')->name('payment.index');
 
@@ -137,6 +143,9 @@ Route::group([
     //service
     Route::resource('service', 'Admin\ServiceController');
     Route::resource('service-category', 'Admin\ServiceCategoryController');
+    
+    Route::view('configuration',  'river::admin.configuration')->name('configuration');
+    Route::get('update-package', [GitHubController::class, 'cloneGitHubRepo'])->name('update-package');
 });
 
 
