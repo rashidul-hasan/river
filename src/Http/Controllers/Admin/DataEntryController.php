@@ -68,26 +68,28 @@ class DataEntryController
         $f = $dataTypeService->getFields($slug);
         $d = DataType::slug($slug)->first();
 
-        $form = $formBuilder->start(route('river.data-entries.store', $slug), 'POST')
-            ->actionIsUrl()
-            ->addFields($f)
-            /*->fieldValues([
-                'email' => 'kutta@bilai.com',
-                'name' => 'kuku',
-                'published' => 1,
-                'address' => 'hghgdfhdf hgdfd',
-            ])*/
-            ->render();
+//        $form = $formBuilder->start(route('river.data-entries.store', $slug), 'POST')
+//            ->actionIsUrl()
+//            ->addFields($f)
+//            /*->fieldValues([
+//                'email' => 'kutta@bilai.com',
+//                'name' => 'kuku',
+//                'published' => 1,
+//                'address' => 'hghgdfhdf hgdfd',
+//            ])*/
+//            ->render();
 
-        $all = DataType::all();
+//        $all = DataType::all();
+
+//        dd($f);
         $buttons = [
             ['Add', route('river.data-entries.create', $slug), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
         ];
         $data = [
             'title' => 'Add ' . $d->singular ? $d->singular : $d->name,
-            'all' => $all,
+//            'all' => $all,
             '_top_buttons' => $buttons,
-            'form' => $form
+            'fields' => $f
         ];
 
         return view('river::admin.dataentries.create', $data);

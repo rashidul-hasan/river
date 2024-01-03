@@ -25,6 +25,7 @@ class DataTypeService
             $arr[$field->slug] = [
                 'type' => $field->type,
                 'label' => $field->label,
+                'is_required' => $field->is_required,
                 'metas' => $field->metas->toArray(),
             ];
         }
