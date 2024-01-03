@@ -36,8 +36,9 @@
               <div class="card-body">
                 <h2 class="mb-4">My Account</h2>
                 <h3 class="card-title">Profile Details</h3>
-                <form  method="post" action="" >
+                <form method="post" action="{{ route('river.admin-update',$data->id) }}" >
                 @csrf
+                <input type="hidden" name="password" value="{{ $data->password }}"  />
                     <div class="row align-items-center">
                         <div class="col-auto"><span class="avatar avatar-xl" style="background-image: url(/river/assets/000m.jpg)"></span>
                         </div>
@@ -55,18 +56,14 @@
                     <div class="row g-3">
                     <div class="col-md">
                     <div class="form-label">Name</div>
-                    <input type="text" class="form-control" name="" value="{{ $data->name }}">
+                    <input type="text" class="form-control" name="name" value="{{ $data->name }}">
                   </div>
                   
                   <div class="col-md">
                     <div class="form-label">Location</div>
-                    <input type="text" class="form-control" name="location" value="">
+                    <input type="text" class="form-control" name="address" value="{{ $data->address }}">
                   </div>
                 </div>
-
-                </form>
-                
-                
                 <h3 class="card-title mt-4">Email</h3>
                 <p class="card-subtitle">This contact will be shown to others publicly, so choose it carefully.</p>
                 <div>
@@ -77,17 +74,19 @@
                     
                   </div>
                 </div>
-               
-              <div class="card-footer bg-transparent mt-auto">
-                <div class="btn-list justify-content-end">
-                  <a href="#" class="btn">
-                    Cancel
-                  </a>
-                  <a href="#" class="btn btn-primary">
-                    Submit
-                  </a>
+                <div class="card-footer bg-transparent mt-auto">
+                  <div class="btn-list justify-content-end">
+                    <a href="{{ route('river.admin-settings') }}" class="btn">
+                      Cancel
+                    </a>
+                    <button type="submit" href="#" class="btn btn-primary">
+                      Submit
+                    </button>
+                  </div>
                 </div>
-              </div>
+
+                </form>
+
             </div>
           </div>
 
@@ -99,14 +98,20 @@
 
                 <div>
                   <div class="row">
-                    <form>
+                    <form method="post" action="{{ route('river.admin-password-update',$data->id) }}">
+                      @csrf
                         <div class="col-12 col-sm-6 mb-3">
                             <div class="mb-3"><b>Change Password</b></div>
                             <div class="row">
                               <div class="col">
                                 <div class="form-group">
                                   <label>Current Password</label>
-                                  <input class="form-control" name="c_password" type="password" placeholder="••••••">
+                                  <input class="form-control" name="password" type="password" placeholder="••••••">
+
+                                </div>
+                                <div>
+                                  <input type="hidden" name="name" value="{{ $data->name }}">
+                                  <input type="hidden" name="email" value="{{ $data->email }}">
                                 </div>
                               </div>
                             </div>
@@ -114,7 +119,7 @@
                               <div class="col">
                                 <div class="form-group">
                                   <label>New Password</label>
-                                  <input class="form-control" name="password" type="password" placeholder="••••••">
+                                  <input class="form-control" name="new_password" type="password" placeholder="••••••">
                                 </div>
                               </div>
                             </div>
@@ -122,11 +127,21 @@
                               <div class="col">
                                 <div class="form-group">
                                   <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                                  <input class="form-control" name="passwor" type="password" placeholder="••••••"></div>
+                                  <input class="form-control" name="confirm_password" type="password" placeholder="••••••"></div>
+                              </div>
+                            </div>
+                            <div class="card-footer bg-transparent mt-auto">
+                              <div class="btn-list justify-content-end">
+                                <a href="#" class="btn">
+                                  Cancel
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                  Submit
+                                </button>
                               </div>
                             </div>
                           </div>
-
+                          
                     </form>
                    
                   </div>
@@ -134,56 +149,14 @@
                 
             </div>
             </div>
-            <div class="card-footer bg-transparent mt-auto">
-              <div class="btn-list justify-content-end">
-                <a href="#" class="btn">
-                  Cancel
-                </a>
-                <a href="#" class="btn btn-primary">
-                  Submit
-                </a>
-              </div>
-            </div>
+            
          </div>
 
           
         </div>
       </div>
     </div>
-    <footer class="footer footer-transparent d-print-none">
-      <div class="container-xl">
-        <div class="row text-center align-items-center flex-row-reverse">
-          <div class="col-lg-auto ms-lg-auto">
-            <ul class="list-inline list-inline-dots mb-0">
-              <li class="list-inline-item"><a href="https://tabler.io/docs" target="_blank" class="link-secondary" rel="noopener">Documentation</a></li>
-              <li class="list-inline-item"><a href="./license.html" class="link-secondary">License</a></li>
-              <li class="list-inline-item"><a href="https://github.com/tabler/tabler" target="_blank" class="link-secondary" rel="noopener">Source code</a></li>
-              <li class="list-inline-item">
-                <a href="https://github.com/sponsors/codecalm" target="_blank" class="link-secondary" rel="noopener">
-                  <!-- Download SVG icon from http://tabler-icons.io/i/heart -->
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon text-pink icon-filled icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
-                  Sponsor
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-12 col-lg-auto mt-3 mt-lg-0">
-            <ul class="list-inline list-inline-dots mb-0">
-              <li class="list-inline-item">
-                Copyright &copy; 2023
-                <a href="." class="link-secondary">Tabler</a>.
-                All rights reserved.
-              </li>
-              <li class="list-inline-item">
-                <a href="./changelog.html" class="link-secondary" rel="noopener">
-                  v1.0.0-beta19
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+    
   </div>
 
   <script>
