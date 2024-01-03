@@ -2,6 +2,7 @@
 
 namespace Rashidul\River\Http\Controllers\Admin;
 
+use CzProject\GitPhp\Git;
 use Illuminate\Http\Request;
 
 class GitHubController
@@ -10,9 +11,12 @@ class GitHubController
     {
         // GitHub repository URL (replace with your repository URL)
         $repoUrl = 'https://github.com/rashidul-hasan/river.git';
+        $git = new Git;
+        $repo = $git->open(base_path('package/river'));
+        $repo->pull('origin');
 
         // Directory where the repository will be cloned (inside 'package/river')
-        $clonePath = base_path('package/river');
+        /*$clonePath = base_path('package/river');
 
         // Run 'git clone' command to clone the repository
         $command = "git clone --branch master --depth 1 {$repoUrl} {$clonePath}";
@@ -25,7 +29,10 @@ class GitHubController
             return response()->json(['message' => 'Repository cloned successfully.']);
         } else {
             return response()->json(['error' => 'Failed to clone repository.']);
-        }
+        }*/
+
+        return response()->json(['message' => 'Repository cloned successfully.']);
+
     }
 
     private function replaceFiles($sourceDir, $destinationDir)
