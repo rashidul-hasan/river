@@ -38,7 +38,8 @@ Route::group([
     Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
     Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
     Route::get('admin-settings', 'Admin\Auth\AdminProfileSettings@index')->name('admin-settings');
-
+    Route::post('admin-settings-update/{id}', 'Admin\Auth\AdminProfileSettings@update')->name('admin-update');
+    Route::post('admin-password-update/{id}', 'Admin\Auth\AdminProfileSettings@update_password')->name('admin-password-update');
 
 
 

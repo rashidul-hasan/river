@@ -7,6 +7,9 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Rashidul\River\Constants;
+use Rashidul\River\Models\Admin;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 class AdminProfileSettings extends Controller
 {
@@ -50,7 +53,77 @@ class AdminProfileSettings extends Controller
     }
 
     public function update(Request $request, $id){
+        $request->validate([
+            'name' => 'required',
+            'email' =>'required'
+        ]);
+      
+            $file= Admin::find($id);
 
+            $file->name = $request->name;
+            $file->email = $request->email;
+            $file->address = $request->address;
+            $file->email_verified_at = $request->email_verified_at;
+            $file->password = $request->password;
+            $file->image = $request->image;
+            $file->is_active = $request->is_active;
+            $file->save();
+
+
+            return redirect()->back()->with('success', 'Updated');
+    }
+
+    public function update_password(Request $request, $id) {
+
+
+        $file= Admin::find($id);
+        
+
+        $request->validate([
+            'password' => 'required',
+            'new_password' => 'required',
+            'confirm_password' => 'required'
+        ]);
+
+        $currentPasswordStatus = Hash::check($request->password, Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->password);
+        if($currentPasswordStatus){
+
+            Admin::findOrFail(Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id)->update([
+                'password' => Hash::make($request->new_password),
+              
+            ]);
+
+            return redirect()->back()->with('success','Password Updated Successfully');
+
+        }else{
+
+            return redirect()->back()->with('error','Current Password does not match with Old Password');
+        }
+
+        // if($request->password == $file->password ){
+
+        //     if($request->n_password == $request->c_password){
+
+        //       $password= $request->n_password;
+
+        //       $file->name = $request->name;
+        //       $file->email = $request->email;
+        //       $file->password = $password;
+        //       $file->save();
+
+        //        return redirect()->back()->with('success', 'Updated');
+        //     } else{
+        //         return redirect()->back()->with('warning', 'password not match');
+        //     }
+        //     // echo session()->put('warning','This is for warning.');   
+            
+        // }else{
+        //     return redirect()->back()->with('warning', 'password not match');
+        // } 
+
+
+
+           
     }
     /**
      * Show the application's login form.
