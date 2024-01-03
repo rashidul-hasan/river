@@ -190,7 +190,7 @@ class AdminSidebarViewComposer
             ],
             [
                         'label' => 'File manager',
-                        'icon' => 'fas fa-files-o',
+                        'icon' => 'fa-solid fa-file-lines',
                         'route' => 'river.file-manager'
             ],
         ];
