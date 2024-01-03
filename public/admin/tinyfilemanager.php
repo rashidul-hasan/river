@@ -151,7 +151,7 @@ if ( !defined( 'FM_SESSION_ID')) {
 }
 
 // Configuration
-$cfg = new FM_Config();
+//$cfg = new FM_Config(); //rashidul: needed to comment this to make it work with laravel
 
 // Default language
 $lang = isset($cfg->data['lang']) ? $cfg->data['lang'] : 'en';
