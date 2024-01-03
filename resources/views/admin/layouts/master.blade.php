@@ -20,6 +20,11 @@
     <link href="/river/admin/assets/css/demo.min.css" rel="stylesheet"/>
     <link href="/river/admin/assets/css/toastr.min.css" rel="stylesheet"/>
 
+    {{--for laravel-file-manager--}}
+{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">--}}
+{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">--}}
+{{--    <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">--}}
+
     @routes
 
     @yield('css')
@@ -68,7 +73,7 @@
 <script src="/river/admin/assets/js/tabler.min.js" defer></script>
 <script src="/river/admin/assets/js/demo.min.js" defer></script>
 
-
+{{--<script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>--}}
 
 <script>
     //single image preview
@@ -98,12 +103,12 @@
         "debug": false,
         "newestOnTop": false,
         "progressBar": false,
-        "positionClass": "toast-top-right",
+        "positionClass": "toast-top-center",
         "preventDuplicates": false,
         "onclick": null,
         "showDuration": 300,
-        "hideDuration": 1000,
-        "timeOut": 5000,
+        "hideDuration": 300,
+        "timeOut": 1000,
         "extendedTimeOut": 1000,
         "showEasing": "swing",
         "hideEasing": "linear",

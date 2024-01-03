@@ -182,11 +182,16 @@ class AdminSidebarViewComposer
                         'route' => 'river.service-category.index'
                     ]
                 ]
-                    ],
+            ],
             [
                         'label' => 'Configuration',
                         'icon' => 'fa-solid fa-comment-dots',
                         'route' => 'river.configuration'
+            ],
+            [
+                        'label' => 'File manager',
+                        'icon' => 'fas fa-files-o',
+                        'route' => 'river.file-manager'
             ],
         ];
         if (RolesCache::isDeveloper()) {

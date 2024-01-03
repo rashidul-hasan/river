@@ -17,6 +17,7 @@
     ],
     "require": {
         "php": "^8.1",
+        "ext-zip": "*",
         "alexusmai/laravel-file-manager": "^3.0",
         "unisharp/laravel-filemanager": "^2.6",
         "laravel/ui": "^4.2.3",

@@ -38,7 +38,7 @@ Route::group([
     Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
     Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
     Route::get('admin-settings', 'Admin\Auth\AdminProfileSettings@index')->name('admin-settings');
-  
+
 
 
 
@@ -101,11 +101,19 @@ Route::group([
     Route::get('file', 'Admin\CodeGeneratorController@index');
 
 
-    Route::view('file-manager', 'river::admin.filemanager');
-    /*Route::get('file-manager', function () {
+    Route::view('file-manager', 'river::admin.filemanager')->name('file-manager');
+    Route::get('tiny-file-manager', function () {
+        ob_start();
+        include(public_path('river/admin/tinyfilemanager.php'));
+        $output = ob_get_clean();
+
+        // Return the output as a response
+        return response($output)
+            ->header('X-Frame-Options', 'ALLOW-FROM *');
+//        return response($output);
 //      return response()->file(public_path('river/tinyfilemanager.php'));
-      require(public_path('river/tinyfilemanager.php'));
-    });*/
+//      require(public_path('river/tinyfilemanager.php'));
+    })->name('tinyfilemanager');
 
     // Route::get('contact-form', 'Admin\ContactFormController@index')->name('contact_form');
     // Route::post('contact-form/store', 'Admin\ContactFormController@store')->name('contact-form.store');
@@ -143,7 +151,7 @@ Route::group([
     //service
     Route::resource('service', 'Admin\ServiceController');
     Route::resource('service-category', 'Admin\ServiceCategoryController');
-    
+
     Route::view('configuration',  'river::admin.configuration')->name('configuration');
     Route::get('update-package', [GitHubController::class, 'cloneGitHubRepo'])->name('update-package');
 });
