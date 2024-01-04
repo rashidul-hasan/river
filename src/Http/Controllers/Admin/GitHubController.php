@@ -58,5 +58,8 @@ class GitHubController
 
     public function ClearCache(){
         Artisan::call('cache:clear');
+
+        return redirect()->back()
+            ->with('success', 'Cache cleared!');
     }
 }

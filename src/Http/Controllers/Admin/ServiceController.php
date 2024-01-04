@@ -18,10 +18,10 @@ class ServiceController
 {
     public function index()
     {
-       
+
         // $all = Service::all();
         $all = Service::with('servicecategory')->get();
-        
+
         $buttons = [
             ['Add', route('river.service.create'), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
             // ['Export', route('river.datatypes.export'), 'btn btn-primary', '' /*label,link,class,id*/],
@@ -55,7 +55,7 @@ class ServiceController
 
     public function store(Request $request)
     {
-     
+
         // $icon = $request->file('icon');
         // $icon_name = date('Ymdhis.').$icon->getClientOriginalExtension();
 
@@ -74,7 +74,7 @@ class ServiceController
             'title' => 'required',
             'slug'  =>'required|unique:river_service',
             'content' => 'required'
-            
+
         ]);
 
         if ( $request->has('is_published')) {
@@ -84,13 +84,13 @@ class ServiceController
          }
 
         $names = $request->get('title');
-        
-       
+
+
         $blog = Service::create([
             'title' => $names,
             'slug' => $request->slug,
             'meta_desc' => $request->meta_desc,
-            'content' => $request->content,
+            'content' => $request->get('content'),
             'category_id' => $request->category_id,
             'sort_order' => $request->sort_order,
             'author_id' => Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id,
@@ -99,9 +99,9 @@ class ServiceController
             'is_published' =>$is_published
         ]);
 
-       
-        
-        
+
+
+
        Cache::forget(Constants::CACHE_KEY_SERVICE);
         return redirect(route('river.service.index',[$blog->id] ))
             ->with('success', 'Created!');
@@ -109,8 +109,8 @@ class ServiceController
 
     public function edit($id)
     {
-        
-        $file = Service::find($id); 
+
+        $file = Service::find($id);
 
         $all_cat = ServiceCategory::all();
 
@@ -159,7 +159,7 @@ class ServiceController
 
         Cache::forget(Constants::CACHE_KEY_SERVICE);
         return redirect()->back()->with('success', 'Updated');
-    
+
     }
 
     public function destroy($id)
@@ -183,6 +183,6 @@ class ServiceController
         Cache::forget(Constants::CACHE_KEY_SERVICE);
         return redirect(route('river.service.index'))
             ->with('success', 'Deleted!');
-    } 
-    
+    }
+
 }
