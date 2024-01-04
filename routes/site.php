@@ -42,6 +42,7 @@ Route::group([
 ], function () {
     Route::get('/', 'Site\HomeController@index')->name('homepage');
     Route::get('/page/{slug}', 'Site\PageController@pageShow')->name('page.show');
+    Route::get('{any?}', 'Site\PageController@catchAll')->where('any', '.*');
 });
 
 

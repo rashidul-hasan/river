@@ -63,7 +63,7 @@ class RiverPagesController extends Controller
     public function store(Request $request)
     {
 
-        
+
         $this->validate($request, [
             'title' => 'required',
             'slug'  => 'required'
@@ -71,7 +71,7 @@ class RiverPagesController extends Controller
 
         $page = new RiverPage();
         $page->title = $request->title;
-        $page->slug = $request->slug;
+        $page->slug = trim($request->slug);
         $page->menu_title = $request->menu_title;
         $page->meta_description = $request->meta_description;
         $page->content_type = $request->content_type;
@@ -119,7 +119,7 @@ class RiverPagesController extends Controller
 
         $page = RiverPage::findOrFail($id);
         $page->title = $request->title;
-        $page->slug = $request->slug;
+        $page->slug = trim($request->slug);
         $page->menu_title = $request->menu_title;
         $page->meta_description = $request->meta_description;
         $page->content_type = $request->content_type;

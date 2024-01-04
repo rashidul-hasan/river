@@ -54,8 +54,10 @@
                                     <div>
                                         <select class="form-select" name="content_type" id="contentType">
                                             <option value="" selected disabled>Select</option>
-                                            <option value="html" {{$riverPage->content_type == 'html' ? 'selected' : ''}}>html</option>
-                                            <option value="blade" {{$riverPage->content_type == 'blade' ? 'selected' : ''}}>Blade</option>
+                                            <option value="{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML}}"
+                                                {{$riverPage->content_type == \Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML ? 'selected' : ''}}>HTML</option>
+                                            <option value="{{\Rashidul\River\Models\RiverPage::CONTENT_BLADE}}"
+                                                {{$riverPage->content_type == \Rashidul\River\Models\RiverPage::CONTENT_BLADE ? 'selected' : ''}}>Blade</option>
                                         </select>
                                     </div>
                                 </div>
@@ -67,16 +69,16 @@
                                 </div>
 
                                 <div class="type-output">
-                                    @if($riverPage->content_type == 'html')
-                                        <div class="form-group content" id="html">
+                                    @if($riverPage->content_type == \Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML)
+                                        <div class="form-group content" id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML}}">
                                             <textarea name="page_content1" id="content_type" >{{$riverPage->content}}</textarea>
                                         </div>
                                         <div class="form-group content" id="blade" style="display:none">
                                             <textarea name="page_content2" id="code" cols="30" rows="30" class="form-control"></textarea>
                                         </div>
                                     @endif
-                                    @if($riverPage->content_type == 'blade')
-                                        <div class="form-group content" id="blade">
+                                    @if($riverPage->content_type == \Rashidul\River\Models\RiverPage::CONTENT_BLADE)
+                                        <div class="form-group content" id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_BLADE}}">
                                             <textarea name="page_content2" id="code" cols="30" rows="30" class="form-control">{{$riverPage->content}}</textarea>
                                         </div>
                                         <div class="form-group content" id="html" style="display:none">
@@ -117,7 +119,7 @@
         $(function() {
             $('#contentType').change(function(){
                 $('.content').hide();
-                $('#' + $(this).val()).show();
+                $('#content-' + $(this).val()).show();
             });
         });
     </script>

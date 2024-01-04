@@ -11,5 +11,9 @@ class RiverPage extends Model
 
     public $table = 'river_pages';
 
+    const CONTENT_TYPE_HTML = 1;
+    const CONTENT_BLADE = 2;
+    const CONTENT_BLADE_FULL = 3;
+
     protected $guarded = ['id'];
 }

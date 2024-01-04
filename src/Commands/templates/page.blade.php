@@ -11,11 +11,11 @@
         <section id="contact" class="contact">
             <div class="container">
                 <div class="section-title">
-                    <h2>{{$pages->title}}</h2>
+                    <h2>{{$title}}</h2>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        {!! $pages->content !!}
+                        {!! $content !!}
                     </div>
                 </div>
             </div>

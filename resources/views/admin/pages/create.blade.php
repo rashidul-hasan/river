@@ -54,8 +54,8 @@
                                    <div>
                                        <select class="form-select" name="content_type" id="contentType">
                                            <option value="" selected disabled>Select</option>
-                                           <option value="html">html</option>
-                                           <option value="blade">Blade</option>
+                                           <option value="{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML}}">HTML</option>
+                                           <option value="{{\Rashidul\River\Models\RiverPage::CONTENT_BLADE}}">Blade</option>
                                        </select>
                                    </div>
                                </div>
@@ -67,10 +67,10 @@
                                </div>
 
                                <div class="type-output">
-                                   <div class="form-group content" id="html">
+                                   <div class="form-group content" id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML}}">
                                        <textarea name="page_content1" id="content_type" ></textarea>
                                    </div>
-                                   <div class="form-group content" id="blade">
+                                   <div class="form-group content" id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_BLADE}}">
                                        <textarea name="page_content2" id="code" cols="30" rows="30" class="form-control"></textarea>
                                    </div>
                                </div>
@@ -107,7 +107,7 @@
         $(function() {
             $('#contentType').change(function(){
                 $('.content').hide();
-                $('#' + $(this).val()).show();
+                $('#content-' + $(this).val()).show();
             });
         });
     </script>
