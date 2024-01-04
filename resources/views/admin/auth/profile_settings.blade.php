@@ -39,15 +39,15 @@
 
               <div class="card-body">
                 <h4 class="subheader">Business settings</h4>
-                
+
                 <div class="list-group list-group-transparent">
                   <a href="" class="list-group-item list-group-item-action d-flex align-items-center active" id="buttonA">My Account</a>
-                  <a href="" class="list-group-item list-group-item-action d-flex align-items-center " id="buttonB">change Password</a>
-                </div>  
+                  <a href="" class="list-group-item list-group-item-action d-flex align-items-center " id="buttonB">Change Password</a>
+                </div>
               </div>
 
             </div>
-            
+
             <div class="col d-flex flex-column" id="divAccount">
               <div class="card-body">
                 <h2 class="mb-4">My Account</h2>
@@ -74,17 +74,17 @@
                       </div>
                   </div>
 
-                
 
-                 
+
+
                     <div class="row g-3">
 
                       <div class="col-md">
                        <div class="form-label">Name</div>
                        <input type="text" class="form-control" name="name" value="{{ $data->name }}">
                       </div>
-                  
-                  
+
+
                     </div>
 
                 <div>
@@ -93,7 +93,7 @@
                       <div class="form-label">Email</div>
                       <input type="text" name="email" class="form-control" value=" {{ $data->email }}">
                     </div>
-                    
+
                   </div>
                 </div>
                 <div class="card-footer bg-transparent mt-auto">
@@ -130,7 +130,7 @@
                                   <input class="form-control" name="password" type="password" placeholder="••••••">
 
                                 </div>
-                                
+
                               </div>
                             </div>
                             <div class="row my-3">
@@ -159,20 +159,20 @@
                               </div>
                             </div>
                           </div>
-                          
+
                     </form>
-                   
+
                   </div>
-                <div> 
+                <div>
             </div>
           </div>
          </div>
 
-          
+
         </div>
       </div>
     </div>
-    
+
   </div>
 
   <script>
@@ -191,7 +191,7 @@
         div1.classList.add("d-flex")
         div2.classList.remove("d-flex")
         div2.classList.add("d-none")
-       
+
         // div2.classList.add("d-none")
     });
 
@@ -206,6 +206,12 @@
         div2.classList.add("d-flex")
     });
 
-    $('.lfm-picker').filemanager('image', {prefix: window.hp_route_prefix});
 </script>
 @endsection
+
+
+@push('scripts')
+<script>
+    $('.lfm-picker').filemanager('image', {prefix: window.hp_route_prefix});
+</script>
+@endpush

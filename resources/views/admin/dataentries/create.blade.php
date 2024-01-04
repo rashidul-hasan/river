@@ -23,13 +23,22 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
                                     <div class="col">
-                                        <input type="text" class="form-control" {{$options['is_required'] === 1 ? 'required' : ''}}>
+                                        <input type="text" name="{{$slug}}" class="form-control" {{$options['is_required'] === 1 ? 'required' : ''}}>
                                     </div>
                                 </div>
                             @endif
 
+                                @if($options['type'] === Constants::FIELD_TYPE_EMAIL)
+                                    <div class="mb-3 row">
+                                        <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
+                                        <div class="col">
+                                            <input type="email" name="{{$slug}}" class="form-control" {{$options['is_required'] === 1 ? 'required' : ''}}>
+                                        </div>
+                                    </div>
+                                @endif
+
                         @endforeach
-                        <div class="mb-3 row">
+                        {{--<div class="mb-3 row">
                             <label class="col-3 col-form-label required">Password</label>
                             <div class="col">
                                 <input type="password" class="form-control" placeholder="Password">
@@ -78,7 +87,7 @@
                                     <span class="form-check-label">Option 3</span>
                                 </label>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
                     <div class="card-footer text-end">
                         <button type="submit" class="btn btn-primary">Submit</button>

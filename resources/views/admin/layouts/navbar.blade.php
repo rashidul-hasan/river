@@ -16,9 +16,9 @@
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
                     <span class="avatar avatar-sm" style="background-image: url( {{Auth::user() ? Auth::user()->image : '/river/assets/000m.jpg'}})"></span>
                     <div class="d-none d-xl-block ps-2">
-                        <div>{{Auth::user() ? Auth::user()->name : ''}}</div>
-                        
-                        <div class="mt-1 small text-muted">Developer</div>
+{{--                        <div>{{Auth::user() ? Auth::user()->name : ''}}</div>--}}
+
+                        <div class="mt-1 small text-muted">{{Auth::guard(\Rashidul\River\Constants::AUTH_GUARD_ADMINS)->user()->name}}</div>
                     </div>
 
                     <form id="logout-form" action="{{route('river.admin.logout')}}" method="POST" style="display: none;">
@@ -28,7 +28,7 @@
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <a href="{{route('river.admin-settings')}}" class="dropdown-item"> Update Profile</a>
                     <a href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a>
-                    
+
                 </div>
             </div>
 
