@@ -17,6 +17,14 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <a class="btn btn-primary" href="{{ route('river.clear-cache') }}"> Clear All Cache</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

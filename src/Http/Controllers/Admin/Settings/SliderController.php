@@ -101,6 +101,14 @@ class SliderController extends Controller
         $slider->image_url = $request->image_url;
         $slider->group = $request->group;
         $slider->orders = $request->orders;
+        $slider->image = $request->image;
+        $slider->title = $request->title;
+        $slider->Subtitle = $request->Subtitle;
+        $slider->button_one_text = $request->button_one_text;
+        $slider->button_one_url = $request->button_one_url;
+        $slider->button_two_url = $request->button_two_url;
+        $slider->button_two_text = $request->button_two_text;
+        $slider->open_new_tab = $request->has('open_new_tab') ? '_blank' : '';
         if (isset($request->status)) {
             $slider->status = true;
         } else {

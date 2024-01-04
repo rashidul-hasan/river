@@ -48,12 +48,12 @@
                                     </select>
                                 </div>
                             </div>
-                            {{-- <div class="form-group mb-3 ">
+                            <div class="form-group mb-3 ">
                                 <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="is_developer">
-                                    <span class="form-check-label">Developer</span>
+                                    <input class="form-check-input" type="checkbox" name="is_active">
+                                    <span class="form-check-label">Is Active</span>
                                 </label>
-                            </div> --}}
+                            </div>
                             <div class="form-footer">
                                 <button type="submit" class="btn btn-success">Save</button>
                             </div>
