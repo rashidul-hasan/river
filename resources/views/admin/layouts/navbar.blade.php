@@ -17,6 +17,7 @@
                     <span class="avatar avatar-sm" style="background-image: url( {{Auth::user() ? Auth::user()->image : '/river/assets/000m.jpg'}})"></span>
                     <div class="d-none d-xl-block ps-2">
                         <div>{{Auth::user() ? Auth::user()->name : ''}}</div>
+                        {{-- <div> {{ Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()? Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->name : '' }}</div> --}}
                         
                         <div class="mt-1 small text-muted">Developer</div>
                     </div>
