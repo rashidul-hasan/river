@@ -63,13 +63,10 @@ class AdminProfileSettings extends Controller
             $file->name = $request->name;
             $file->email = $request->email;
             $file->address = $request->address;
-            $file->email_verified_at = $request->email_verified_at;
-            $file->password = $request->password;
             $file->image = $request->image;
-            $file->is_active = $request->is_active;
+            
             $file->save();
-
-
+            
             return redirect()->back()->with('success', 'Updated');
     }
 
@@ -100,26 +97,7 @@ class AdminProfileSettings extends Controller
             return redirect()->back()->with('error','Current Password does not match with Old Password');
         }
 
-        // if($request->password == $file->password ){
-
-        //     if($request->n_password == $request->c_password){
-
-        //       $password= $request->n_password;
-
-        //       $file->name = $request->name;
-        //       $file->email = $request->email;
-        //       $file->password = $password;
-        //       $file->save();
-
-        //        return redirect()->back()->with('success', 'Updated');
-        //     } else{
-        //         return redirect()->back()->with('warning', 'password not match');
-        //     }
-        //     // echo session()->put('warning','This is for warning.');   
-            
-        // }else{
-        //     return redirect()->back()->with('warning', 'password not match');
-        // } 
+       
 
 
 

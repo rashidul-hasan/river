@@ -58,8 +58,10 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if ($this->guard()->attempt($credentials)) {
+
             // Authentication passed...
             return redirect()->to(route('river.admin.dashboard'));
+            
         }else{
             return redirect()->back()->with('error','Credentials does not match!');
         }

@@ -4,6 +4,7 @@ namespace Rashidul\River\Http\Controllers\Admin;
 
 use CzProject\GitPhp\Git;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class GitHubController
 {
@@ -52,5 +53,10 @@ class GitHubController
                 copy($file, $filePath);
             }
         }
+    }
+
+
+    public function ClearCache(){
+        Artisan::call('cache:clear');
     }
 }

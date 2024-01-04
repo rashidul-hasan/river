@@ -24,7 +24,7 @@
                 <div class="card">
                       <ul class="nav nav-tabs" data-bs-toggle="tabs" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a href="{{ route('river.blog.index') }}" class="btn btn-primary" >back</a>
+                            <a href="{{ route('river.service.index') }}" class="btn btn-primary" >back</a>
                         </li>
                        
                     </ul> 

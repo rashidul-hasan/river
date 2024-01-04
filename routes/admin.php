@@ -36,6 +36,7 @@ Route::group([
     Route::resource('pages', 'Admin\RiverPagesController');
 
     Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
+
     Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
     Route::get('admin-settings', 'Admin\Auth\AdminProfileSettings@index')->name('admin-settings');
     Route::post('admin-settings-update/{id}', 'Admin\Auth\AdminProfileSettings@update')->name('admin-update');
@@ -155,6 +156,7 @@ Route::group([
 
     Route::view('configuration',  'river::admin.configuration')->name('configuration');
     Route::get('update-package', [GitHubController::class, 'cloneGitHubRepo'])->name('update-package');
+    Route::get('clear-cache', [GitHubController::class, 'ClearCache'])->name('clear-cache');
 });
 
 
