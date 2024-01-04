@@ -10,7 +10,7 @@
     <div class="container-xl">
         <div class="row row-cards">
            
-            <div class="col-12">
+            <div class="col-6">
                 <div class="card">
                     <div class="card-body">
                         <a class="btn btn-primary" href="{{ route('river.update-package') }}"> Update Package</a>
@@ -18,10 +18,10 @@
                 </div>
             </div>
             
-            <div class="col-12">
+            <div class="col-6">
                 <div class="card">
                     <div class="card-body">
-                        <a class="btn btn-primary" href="{{ route('river.clear-cache') }}"> Clear All Cache</a>
+                        <a class="btn btn-warning" href="{{ route('river.clear-cache') }}"> Clear All Cache</a>
                     </div>
                 </div>
             </div>

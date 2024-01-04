@@ -62,7 +62,6 @@ class AdminProfileSettings extends Controller
 
             $file->name = $request->name;
             $file->email = $request->email;
-            $file->address = $request->address;
             $file->image = $request->image;
             
             $file->save();
