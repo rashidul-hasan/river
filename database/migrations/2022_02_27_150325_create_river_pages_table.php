@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('menu_title')->nullable();
+            $table->text('header_code')->nullable();
+            $table->text('footer_code')->nullable();
             $table->string('slug')->nullable();
             $table->string('meta_description')->nullable();
             $table->boolean('is_published')->nullable();

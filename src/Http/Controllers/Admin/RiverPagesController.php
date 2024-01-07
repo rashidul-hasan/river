@@ -27,7 +27,7 @@ class RiverPagesController extends Controller
     {
         $riverPages = RiverPage::all();
         $buttons = [
-            ['Add New',route('river.pages.create'), 'btn btn-primary', 'btn-add-new'],
+            ['Add New', route('river.pages.create'), 'btn btn-primary', 'btn-add-new'],
         ];
         $data = [
             'riverPages' => $riverPages,
@@ -71,6 +71,8 @@ class RiverPagesController extends Controller
 
         $page = new RiverPage();
         $page->title = $request->title;
+        $page->header_code = $request->header_code;
+        $page->footer_code = $request->footer_code;
         $page->slug = trim($request->slug);
         $page->menu_title = $request->menu_title;
         $page->meta_description = $request->meta_description;
@@ -119,6 +121,8 @@ class RiverPagesController extends Controller
 
         $page = RiverPage::findOrFail($id);
         $page->title = $request->title;
+        $page->header_code = $request->header_code;
+        $page->footer_code = $request->footer_code;
         $page->slug = trim($request->slug);
         $page->menu_title = $request->menu_title;
         $page->meta_description = $request->meta_description;

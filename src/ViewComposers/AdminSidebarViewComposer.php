@@ -76,6 +76,10 @@ class AdminSidebarViewComposer
                     [
                         'label' => "Backup",
                         'route' => 'river.site-backup'
+                    ],
+                    [
+                        'label' => 'Code snippets',
+                        'route' => 'river.code-snippets'
                     ]
                 ]
             ],
@@ -142,7 +146,7 @@ class AdminSidebarViewComposer
                 'route' => 'river.faq.index'
             ],
             [
-                'label' =>'Menu',
+                'label' => 'Menu',
                 'icon' => 'fas fa-bars',
                 'route' => 'river.menu.index'
             ],
@@ -162,7 +166,7 @@ class AdminSidebarViewComposer
                         'label' => 'Tag',
                         'route' => 'river.tag.index'
                     ]
-                            ]
+                ]
             ],
             [
                 'label' => 'Testimonial',
@@ -184,14 +188,14 @@ class AdminSidebarViewComposer
                 ]
             ],
             [
-                        'label' => 'Configuration',
-                        'icon' => 'fa-solid fa-comment-dots',
-                        'route' => 'river.configuration'
+                'label' => 'Configuration',
+                'icon' => 'fa-solid fa-comment-dots',
+                'route' => 'river.configuration'
             ],
             [
-                        'label' => 'File manager',
-                        'icon' => 'fa-solid fa-file-lines',
-                        'route' => 'river.file-manager'
+                'label' => 'File manager',
+                'icon' => 'fa-solid fa-file-lines',
+                'route' => 'river.file-manager'
             ],
         ];
         if (RolesCache::isDeveloper()) {

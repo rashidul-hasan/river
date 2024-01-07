@@ -1,4 +1,5 @@
 <?php
+
 use Rashidul\River\Http\Controllers\Admin\FileUploadController;
 use Rashidul\River\Http\Controllers\Admin\MenuController;
 use Rashidul\River\Http\Controllers\Admin\BlogController;
@@ -60,6 +61,7 @@ Route::group([
 
     Route::get('site-backup', 'Admin\Settings\SiteBackupController@index')->name('site-backup');
     Route::get('site-backup-store', 'Admin\Settings\SiteBackupController@backup_store')->name('site-backup-store');
+    Route::get('code-snippets', 'Admin\Settings\CodeSnippetsController@index')->name('code-snippets');
 
 
 
@@ -112,9 +114,9 @@ Route::group([
         // Return the output as a response
         return response($output)
             ->header('X-Frame-Options', 'ALLOW-FROM *');
-//        return response($output);
-//      return response()->file(public_path('river/tinyfilemanager.php'));
-//      require(public_path('river/tinyfilemanager.php'));
+        //        return response($output);
+        //      return response()->file(public_path('river/tinyfilemanager.php'));
+        //      require(public_path('river/tinyfilemanager.php'));
     })->name('tinyfilemanager');
 
     // Route::get('contact-form', 'Admin\ContactFormController@index')->name('contact_form');
@@ -133,7 +135,7 @@ Route::group([
 
     Route::resource('faq', 'Admin\FaqController');
 
-    Route::post('uploads', [FileUploadController::class,'file_upload'])->name('file-upload');
+    Route::post('uploads', [FileUploadController::class, 'file_upload'])->name('file-upload');
 
 
     //Menu
@@ -158,5 +160,3 @@ Route::group([
     Route::get('update-package', [GitHubController::class, 'cloneGitHubRepo'])->name('update-package');
     Route::get('clear-cache', [GitHubController::class, 'ClearCache'])->name('clear-cache');
 });
-
-

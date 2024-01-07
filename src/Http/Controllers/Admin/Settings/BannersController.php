@@ -35,12 +35,12 @@ class BannersController extends Controller
      */
     public function create()
     {
-//        $data = [
-//            'formAction' => route('banners.store'),
-//            'title' => 'Add Banner',
-//            'banner' => '',
-//        ];
-//        return view('admin.banners.create',$data);
+        //        $data = [
+        //            'formAction' => route('banners.store'),
+        //            'title' => 'Add Banner',
+        //            'banner' => '',
+        //        ];
+        //        return view('admin.banners.create',$data);
     }
 
     /**
@@ -84,7 +84,7 @@ class BannersController extends Controller
     {
         $banner = Banner::findOrFail($id);
         $buttons = [
-            ['Back',route('river.banners.index'), 'btn btn-primary', 'btn-add-new'],
+            ['Back', route('river.banners.index'), 'btn btn-primary', 'btn-add-new'],
         ];
         $data = [
             'banner' => $banner,
@@ -102,16 +102,16 @@ class BannersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,ImageUploadService $imageUploadService, $id)
+    public function update(Request $request, ImageUploadService $imageUploadService, $id)
     {
         $this->validate($request, [
-            'slug' => 'unique:river_banners'.$id,
+            'slug' => 'unique:river_banners' . $id,
         ]);
 
         $banner = Banner::find($id);
 
-        if ($request->hasFile('image')){
-            $banner->image = $imageUploadService->upload($request->file('image'),Banner::BASE_PATH);
+        if ($request->hasFile('image')) {
+            $banner->image = $imageUploadService->upload($request->file('image'), Banner::BASE_PATH);
         }
         $banner->alt_text = $request->alt_text;
         $banner->save();
@@ -131,17 +131,15 @@ class BannersController extends Controller
         $image = $banner->image;
 
         try {
-            if (file_exists(public_path($image)) && $image ) {
+            if (file_exists(public_path($image)) && $image) {
                 unlink(public_path($image));
             }
 
             $banner->delete();
             Cache::forget(Constants::CACHE_KEY_BANNER);
             return redirect()->back()->with('success', 'Successfully Deleted done!');
-
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return redirect()->back()->with('error', 'Unable to delete this Image!');
         }
     }
-
 }

@@ -10,12 +10,12 @@ use Rashidul\River\Models\Slider;
 
 class PageController extends Controller
 {
-    public function pageShow ()
+    public function pageShow()
     {
         $pages = RiverPage::where('is_published', 1)->first();
         $data = [
-          'title' => 'Page',
-          'pages' => $pages,
+            'title' => 'Page',
+            'pages' => $pages,
         ];
 
         return view('_cache.page', $data);
@@ -40,4 +40,9 @@ class PageController extends Controller
         abort(404);
     }
 
+
+    public function blogs()
+    {
+        // return view('_cache.all-blogs');
+    }
 }
