@@ -6,43 +6,43 @@
 @stop
 
 @section('content')
-    <div class="container-xl">
-        <div class="row row-cards">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <td>SL. </td>
-                                    <td> Title</td>
-                                    <td> slug </td>
-                                    <td> Service Category</td>
-                                    <td> Author Id</td>
-                                    <td> Icon </td>
-                                    <td> Sort Order</td>
-                                    <td> Is Published</td>
-                                    <td> Action</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                             @foreach($all as $key=>$a) 
+<div class="container-xl">
+    <div class="row row-cards">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>SL. </td>
+                                <td> Title</td>
+                                <td> slug </td>
+                                <td> Service Category</td>
+                                <td> Author Id</td>
+                                <td> Icon </td>
+                                <td> Sort Order</td>
+                                <td> Is Published</td>
+                                <td> Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($all as $key=>$a)
 
                             <tr>
                                 <td>{{ ++$key }} </td>
                                 <td>{{ $a->title }} </td>
-                                <td> {{ $a->slug }}  </td>
-                                
-                                <td>  {{ $a->servicecategory->name }}</td>
+                                <td> {{ $a->slug }} </td>
+
+                                <td> {{ $a->servicecategory->name }}</td>
                                 <td> {{ $a->author_id}}</td>
                                 <td>
                                     <img src="/river/assets/{{$a->icon  }}" />
                                 </td>
-                                
+
                                 <td> {{ $a->sort_order}} </td>
-                                
+
                                 <td>{{ ($a->is_published==1)?'Active':'Inactive' }} </td>
-                                
+
                                 <td>
                                     <div class="d-flex justify-content-end">
                                         <div>
@@ -50,29 +50,30 @@
                                                 href="{{ route('river.service.edit',$a->id) }}"> Edit</a>
                                         </div>
                                         <div class="mx-1">
-                                            
-                                            <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.service.destroy',$a->id) }}"
+
+                                            <a class="btn btn-sm btn-danger confirm-delete"
+                                                href="{{ route('river.service.destroy',$a->id) }}"
                                                 data-href="{{ route('river.service.destroy',$a->id) }}">
-                                                 Delete
-                                             </a>
+                                                Delete
+                                            </a>
                                         </div>
                                     </div>
-        
+
                                 </td>
                             </tr>
-                        @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @stop
 
 @push('scripts')
-    <script>
-        // $('#btn-add-new').click(function (e) {
+<script>
+    // $('#btn-add-new').click(function (e) {
         //     e.preventDefault();
         //     var filename = window.prompt('Enter name');
 
@@ -93,5 +94,5 @@
                     .submit();
             }
         });
-    </script>
+</script>
 @endpush

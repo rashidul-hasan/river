@@ -14,8 +14,8 @@ class ServiceController extends Controller
 
     public function service($slug)
     {
-        $service = Service::where('slug', $slug)->get();
-        return view('_cache.single-service', compact('service'));
+        $services = Service::where('slug', $slug)->get();
+        return view('_cache.single-service', compact('services'));
     }
 
     // public function single_blog($slug)
