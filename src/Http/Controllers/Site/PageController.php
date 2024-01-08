@@ -39,10 +39,4 @@ class PageController extends Controller
 
         abort(404);
     }
-
-
-    public function blogs()
-    {
-        // return view('_cache.all-blogs');
-    }
 }

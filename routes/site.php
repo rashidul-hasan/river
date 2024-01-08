@@ -41,7 +41,9 @@ Route::group([
     Route::get('/', 'Site\HomeController@index')->name('homepage');
     Route::get('/page/{slug}', 'Site\PageController@pageShow')->name('page.show');
     Route::get('{any?}', 'Site\PageController@catchAll')->where('any', '.*');
-    Route::get('/blogs' . 'Site\PageController@catchAll')->where('any', '.*');
+    Route::get('/all-blogs' . 'Site\BlogController@index')->name('all-blogs');
+    Route::get('/single-blog/{slug}' . 'Site\BlogController@SingleBlog')->name('single-blog');
+    Route::get('/service/{slug}' . 'Site\ServiceController@service')->name('service');
 });
 
 

@@ -13,6 +13,7 @@ class CodeSnippetsController extends Controller
 {
     public function index()
     {
+
         $data = [
             'settings' => SettingsService::getSettingsArray(),
         ];
