@@ -33,7 +33,7 @@
                                 <td>{{ $a->title }} </td>
                                 <td> {{ $a->slug }} </td>
 
-                                <td> {{ $a->servicecategory->name }}</td>
+                                <td> {{ $a->servicecategory ? $a->servicecategory->name : '' }}</td>
                                 <td> {{ $a->author_id}}</td>
                                 <td>
                                     <img src="/river/assets/{{$a->icon  }}" />

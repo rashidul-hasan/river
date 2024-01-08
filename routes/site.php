@@ -38,13 +38,12 @@ Route::group([
     'namespace' => 'Rashidul\River\Http\Controllers',
     'as' => 'riversite.'
 ], function () {
-    Route::get('/test', 'Site\HomeController@index')->name('homepage');
+    Route::get('/', 'Site\HomeController@index')->name('homepage');
     Route::get('/page/{slug}', 'Site\PageController@pageShow')->name('page.show');
-    Route::get('/all-blogs', 'Site\BlogController@index')->name('all-blogs');
+    Route::get('/blogs', 'Site\BlogController@index')->name('all-blogs');
     Route::get('/single-blog/{slug}', 'Site\BlogController@single_blog')->name('single-blog');
     Route::get('/services/{slug}', 'Site\ServiceController@service')->name('service');
-
-    // Route::get('{any?}', 'Site\PageController@catchAll')->where('any', '.*');
+    Route::get('{any?}', 'Site\PageController@catchAll')->where('any', '.*');
 });
 
 
