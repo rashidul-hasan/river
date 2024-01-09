@@ -20,11 +20,11 @@ class BlogController
 {
     public function index()
     {
-       
+
 
         $all = Blog::all();
 
-        $alls= Blog::with('tag')->get();
+        $alls = Blog::with('tag')->get();
 
 
         $buttons = [
@@ -71,43 +71,44 @@ class BlogController
 
         // $image->move($targetDirectory,$image_name);
 
-        
+
         $request->validate([
             'title' => 'required',
             'content' => 'required'
-            
+
         ]);
 
-        if ( $request->has('is_published')) {
+        if ($request->has('is_published')) {
             $is_published = 1;
-         } else{
+        } else {
             $is_published = 0;
-         }
+        }
 
         $names = $request->get('title');
-        
-       
+
+
         $blog = Blog::create([
             'title' => $names,
             'content' => $request->content,
+            'slug' => $request->slug,
             'image' => $request->image,
             'category_id' => $request->category_id,
             'author_id' => Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id,
-            'is_published' =>$is_published
+            'is_published' => $is_published
         ]);
         Cache::forget(Constants::CACHE_KEY_BLOG);
         $blog->tag()->sync($request->tags);
-        
-        
 
-        return redirect(route('river.blog.index',[$blog->id] ))
+
+
+        return redirect(route('river.blog.index', [$blog->id]))
             ->with('success', 'Created!');
     }
 
     public function edit($id)
     {
-        
-        $file = Blog::find($id); 
+
+        $file = Blog::find($id);
 
         $all_cat = BlogCategory::all();
 
@@ -141,6 +142,7 @@ class BlogController
         $file = Blog::find($id);
         $file->title = $request->get('title');
         $file->content = $request->get('content');
+        $file->slug = $request->slug;
         $file->image = $request->image;
         $file->category_id = $request->get('category_id');
         $file->author_id = Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id;
@@ -149,7 +151,6 @@ class BlogController
 
         Cache::forget(Constants::CACHE_KEY_BLOG);
         return redirect()->back()->with('success', 'Updated');
-    
     }
 
     public function destroy($id)
@@ -158,10 +159,10 @@ class BlogController
         $file->delete();
 
 
-        
+
         $publicPath = public_path();
         $directory = 'river/assets';
-        $targetDirectory = $publicPath . '/' . $directory . '/'.$file->image ;
+        $targetDirectory = $publicPath . '/' . $directory . '/' . $file->image;
 
 
         // if(File::exists($targetDirectory)) {
@@ -170,6 +171,5 @@ class BlogController
         Cache::forget(Constants::CACHE_KEY_BLOG);
         return redirect(route('river.blog.index'))
             ->with('success', 'Deleted!');
-    } 
-    
+    }
 }
