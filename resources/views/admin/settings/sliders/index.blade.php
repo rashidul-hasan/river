@@ -13,8 +13,8 @@
                                 <thead>
                                 <tr>
                                     <th>Image</th>
+                                    <th>Group</th>
                                     <th>Order</th>
-                                    
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -23,6 +23,7 @@
                                 @foreach($sliders as $slider)
                                     <tr>
                                         <td><img src="{{asset($slider->image)}}" width="50px" height="50px"></td>
+                                        td>{{$slider->group}}</td>
                                         <td>{{$slider->orders}}</td>
                                         <td>
                                             <input type="checkbox" class="js-switch" id="statusChange" data-id="{{$slider->id}}" {{$slider->status === 1 ? 'checked' : ''}}/>

@@ -83,6 +83,14 @@ class ServiceController
             $is_published = 0;
          }
 
+         if ( $request->has('sort_order')){
+            
+            $sort_order=$request->sort_order;
+           
+        } else{
+            $sort_order= 1;
+        }
+
         $names = $request->get('title');
 
 
@@ -92,7 +100,7 @@ class ServiceController
             'meta_desc' => $request->meta_desc,
             'content' => $request->get('content'),
             'category_id' => $request->category_id,
-            'sort_order' => $request->sort_order,
+            'sort_order' =>  $sort_order,
             'author_id' => Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id,
             'icon' => $request->icon,
             'image' => $request->image,
@@ -141,8 +149,15 @@ class ServiceController
         $request->validate([
             'title' => 'required',
             'slug'  =>'required',
-            'content' => 'required'
+            'content' => 'required',
+
         ]);
+        if ( !$request->has('sort_order')){
+            $sort_order= 1;
+        } else{
+            $sort_order=$request->sort_order;
+        }
+
 
         $file = Service::find($id);
         $file->title = $request->get('title');
@@ -150,7 +165,7 @@ class ServiceController
         $file->content = $request->get('content');
         $file->meta_desc = $request->meta_desc;
         $file->category_id = $request->get('category_id');
-        $file->sort_order = $request->sort_order;
+        $file->sort_order =  $sort_order;
         $file->author_id = Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id;
         $file->icon = $request->icon;
         $file->image = $request->image;

@@ -28,39 +28,39 @@
                             <div class="form-group mb-3 ">
                                 <label class="form-label required">Title</label>
                                 <div>
-                                    <input type="text" class="form-control" name="title">
+                                    <input type="text" class="form-control" name="title" value="{{ old('title') }}">
                                 </div>
                             </div>
 
                             <div class="form-group mb-3 ">
                                 <label class="form-label required">Slug</label>
                                 <div>
-                                    <input type="text" class="form-control" name="slug">
+                                    <input type="text" class="form-control" name="slug" value="{{ old('slug') }}">
                                 </div>
                             </div>
                             <div class="form-group mb-3 ">
                                 <label class="form-label required">Menu Title</label>
                                 <div>
-                                    <input type="text" class="form-control" name="menu_title">
+                                    <input type="text" class="form-control" name="menu_title" value="{{ old('menu_title') }}">
                                 </div>
                             </div>
                             <div class="form-group mb-3 ">
                                 <label class="form-label required">Meta Description</label>
                                 <div>
-                                    <input type="text" class="form-control" name="meta_description">
+                                    <input type="text" class="form-control" name="meta_description" value="{{ old('meta_description') }}">
                                 </div>
                             </div>
 
                             <div class="form-group mb-3">
                                 <label class="form-label required"> Header Code</label>
                                 <div>
-                                    <textarea class="form-control" name="header_code" id="floatingTextarea"></textarea>
+                                    <textarea class="form-control" name="header_code" id="floatingTextarea">{{ old('header_code') }}</textarea>
                                 </div>
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-label required"> Footer Code</label>
                                 <div>
-                                    <textarea class="form-control" name="footer_code" id="floatingTextarea"></textarea>
+                                    <textarea class="form-control" name="footer_code" id="floatingTextarea">{{ old('footer_code') }}</textarea>
                                 </div>
                             </div>
 

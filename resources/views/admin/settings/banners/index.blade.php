@@ -14,6 +14,7 @@
                                 <tr>
                                     <th>Image</th>
                                     <th>Alt Text</th>
+                                    <th> Slug</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -22,6 +23,7 @@
                                     <tr>
                                         <td><img src="{{asset($data->image)}}" width="100px" height="50px"></td>
                                         <td>{{$data->alt_text}}</td>
+                                        <td> {{ $data->slug }}</td>
                                         <td class="">
                                             <div class="btn-list flex-nowrap">
                                                 <a class="mr-3 btn btn-sm btn-warning" href="{{ route('river.banners.edit', $data->id) }}">

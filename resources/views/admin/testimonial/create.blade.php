@@ -20,7 +20,7 @@
                                     <div class="form-group mb-3 row">
                                         <label class="col-3 col-form-label required">Name</label>
                                         <div class="col">
-                                            <input type="text" class="form-control" name="name">
+                                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                                         </div>
                                     </div>
                                     {{-- <div class="form-group mb-3 row">
@@ -34,14 +34,14 @@
                                     <div class="form-group mb-3 row">
                                         <label class="col-3 col-form-label ">Designation</label>
                                         <div class="col">
-                                            <input type="text" class="form-control" name="designation" >
+                                            <input type="text" class="form-control" name="designation" value="{{ old('designation') }}" >
                                         </div>
                                     </div>
 
                                     <div class="form-group mb-3 row">
                                         <label class="col-3 col-form-label required">Message</label>
                                         <div class="col">
-                                            <input type="text" class="form-control" name="message">
+                                            <input type="text" class="form-control" name="message" value="{{ old('message') }}">
                                         </div>
                                     </div>
 
@@ -49,7 +49,7 @@
                                         <label class="col-3 col-form-label ">Sort Order</label>
                                         <div class="col">
                                             <input type="text" class="form-control" name="sort_order"
-                                                   value="">
+                                            value="{{ old('sort_order') }}">
                                         </div>
                                     </div>
 

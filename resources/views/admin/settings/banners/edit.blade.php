@@ -16,6 +16,10 @@
                                     <input type="text" class="form-control" id="alt_text" name="alt_text" value="{{ $banner->alt_text }}"/>
                                 </div>
                                 <div class="form-group mb-3">
+                                    <div class="form-label" for="alt_text">Slug</div>
+                                    <input type="text" class="form-control" id="slug" name="slug" value="{{ $banner->slug }}"/>
+                                </div>
+                                <div class="form-group mb-3">
                                     <div class="form-label" for="alt_text">Title</div>
                                     <input type="text" class="form-control" id="title" name="title" value="{{ $banner->title }}"/>
                                 </div>

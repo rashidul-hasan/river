@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('author_id')->nullable();
             $table->string('icon')->nullable();
             $table->string('image')->nullable();
-            $table->integer('sort_order')->default(1);
+            $table->integer('sort_order')->default(1)->nullable();
             $table->boolean('is_published')->default(0)->nullable();
             $table->timestamps();
         });

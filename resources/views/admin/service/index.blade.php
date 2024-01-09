@@ -14,12 +14,9 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <td>SL. </td>
                                 <td> Title</td>
                                 <td> slug </td>
                                 <td> Service Category</td>
-                                <td> Author Id</td>
-                                <td> Icon </td>
                                 <td> Sort Order</td>
                                 <td> Is Published</td>
                                 <td> Action</td>
@@ -29,19 +26,20 @@
                             @foreach($all as $key=>$a)
 
                             <tr>
-                                <td>{{ ++$key }} </td>
                                 <td>{{ $a->title }} </td>
                                 <td> {{ $a->slug }} </td>
 
                                 <td> {{ $a->servicecategory ? $a->servicecategory->name : '' }}</td>
-                                <td> {{ $a->author_id}}</td>
-                                <td>
-                                    <img src="/river/assets/{{$a->icon  }}" />
-                                </td>
-
+                        
                                 <td> {{ $a->sort_order}} </td>
 
-                                <td>{{ ($a->is_published==1)?'Active':'Inactive' }} </td>
+                                <td>
+                                    @if($a->is_published==1)
+                                    <button class="btn btn-primary"> Yes</button>
+                                    @else
+                                    <button class="btn btn-danger"> No</button>
+                                    @endif
+                                 </td>
 
                                 <td>
                                     <div class="d-flex justify-content-end">
