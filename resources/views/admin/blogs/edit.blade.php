@@ -22,26 +22,27 @@
 <div class="container-xl">
     <div class="row row-cards">
         <div class="col-md-12">
-            <div class="card">
+            <div class="">
                 <ul class="nav nav-tabs" data-bs-toggle="tabs" role="tablist">
                     <li class="nav-item" role="presentation">
                         <a href="{{ route('river.blog.index') }}" class="btn btn-primary">back</a>
                     </li>
 
                 </ul>
-                {{-- <ul class="nav nav-tabs" data-bs-toggle="tabs" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <a href="#general" class="nav-link active" data-bs-toggle="tab" aria-selected="true" role="tab"
-                            tabindex="-1">General</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a href="#fields" class="nav-link" data-bs-toggle="tab" aria-selected="false"
-                            role="tab">Fields</a>
-                    </li>
-                </ul> --}}
-                <div class="card-body">
-                    <div class="tab-content">
-                        <div class="tab-pane active show p-5" id="general" role="tabpanel">
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-xl pt-3">
+    <div class="row row-cards">
+        <div class="col-md-12">
+            <div class="">
+                <div class="card-body row">
+                    <div class=" card col-md-8">
+                        <div class="card-body">
                             <form action="{{route('river.blog.update', $type->id)}}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -51,58 +52,84 @@
                                         <input type="text" class="form-control" name="title" value="{{ $type->title }}">
                                     </div>
                                 </div>
-
+    
                                 <div class="form-group mb-3 ">
                                     <label class="form-label required"> Slug</label>
                                     <div>
                                         <input type="text" class="form-control" name="slug" value="{{ $type->slug }}">
                                     </div>
                                 </div>
-
+    
                                 <div class="form-group mb-3 ">
                                     <label class="form-label required"> Content</label>
                                     <div>
                                         <textarea class="form-control" id="content_type" name="content">
                                                 {{ $type->content }}
                                             </textarea>
-
+    
+                                    </div>
+                                </div>
+    
+                                <div class="form-group mb-3 ">
+                                    <label class="form-label "> Sort Description</label>
+    
+                                    <div>
+                                        <input type="text" class="form-control"  name="short_desc" value="{{ $type->short_desc }}">
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <div class="col">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="form-group mb-3 ">
+                            <div class="card">
+                                <div class="card-header">
+                                    <label class="form-label">Category</label>
+                                </div>
+                                <div class="card-body">
+                                    <select class="form-select" name="category_id" aria-label="Default select example">
+                                    <option value="0" disabled>Select Category</option>
+                                    @foreach($all_cat as $a)
+                                    <option value="{{$a->id}}" @if($a->id==$type->category_id) selected @endif >{{
+                                        $a->name }}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-group">
                                         @include('river::admin.components.image-picker', ['name' => 'image', 'default'
                                         => $type->image ])
                                     </div>
-                                </div>
 
-                                <div class="form-group mb-3 ">
-                                    <label class="form-label">Category</label>
-                                    <select class="form-select" name="category_id" aria-label="Default select example">
-                                        <option value="0" disabled>select Category</option>
-                                        @foreach($all_cat as $a)
-                                        <option value="{{$a->id}}" @if($a->id==$type->category_id) selected @endif >{{
-                                            $a->name }}</option>
-                                        @endforeach
-                                    </select>
                                 </div>
-
-                                <div class="form-group mb-3 ">
-                                    <label class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="is_published" value="1"
-                                            {{$type->is_published == 1 ? 'checked' : ''}}>
-                                        <span class="form-check-label">Is Published</span>
-                                    </label>
-                                </div>
-
-                                <div class="form-footer">
-                                    <button type="submit" class="btn btn-success">Save</button>
-                                </div>
-                            </form>
-
+                            </div>
+                            
                         </div>
 
+                        <div class="form-group mb-3 ">
+                            <label class="form-check">
+                                <input class="form-check-input" type="checkbox" name="is_published" value="1"
+                                    {{$type->is_published == 1 ? 'checked' : ''}}>
+                                <span class="form-check-label">Is Published</span>
+                            </label>
+                        </div>
+
+                        <div class="form-footer">
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
                     </div>
+
+                </form>
+                    
                 </div>
             </div>
         </div>

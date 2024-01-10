@@ -98,6 +98,7 @@ class ServiceController
             'title' => $names,
             'slug' => $request->slug,
             'meta_desc' => $request->meta_desc,
+            'short_desc' => $request->short_desc,
             'content' => $request->get('content'),
             'category_id' => $request->category_id,
             'sort_order' =>  $sort_order,
@@ -164,6 +165,7 @@ class ServiceController
         $file->slug = $request->slug;
         $file->content = $request->get('content');
         $file->meta_desc = $request->meta_desc;
+        $file->short_desc = $request->short_desc;
         $file->category_id = $request->get('category_id');
         $file->sort_order =  $sort_order;
         $file->author_id = Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id;

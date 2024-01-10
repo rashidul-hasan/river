@@ -47,7 +47,6 @@ Route::group([
 });
 
 
-
 //dd(config('river.enable_ecommerce')p);
 // E-commerce related routes
 if (config('river.enable_ecommerce')) {

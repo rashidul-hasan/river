@@ -20,7 +20,7 @@ class BlogController extends Controller
 
     public function single_blog($slug)
     {
-        $single_blog = Blog::where('slug', $slug)->get();
+        $single_blog = Blog::where('slug', $slug)->first();
 
         return view('_cache.single-blog', compact('single_blog'));
     }

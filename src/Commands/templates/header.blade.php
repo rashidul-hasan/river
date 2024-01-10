@@ -1,63 +1,28 @@
-<!-- ======= Top Bar ======= -->
-<section id="topbar" class="d-flex align-items-center">
-    <div class="container d-flex justify-content-center justify-content-md-between">
-        <div class="contact-info d-flex align-items-center">
-            <i class="bi bi-envelope-fill"></i><a href="mailto:{{river_settings('email')}}">{{river_settings('email')}}</a>
-            <i class="bi bi-phone-fill phone-icon"></i> {{river_settings('phone')}}
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Carousel</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
         </div>
-        <div class="social-links d-none d-md-block">
-            <a href="{{river_settings('twitter')}}" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="{{river_settings('facebook')}}" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="{{river_settings('Instagram')}}" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="{{river_settings('LinkedIn')}}" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-        </div>
-    </div>
-</section>
-
-<header id="header" class="d-flex align-items-center">
-    <div class="container d-flex align-items-center">
-
-        <h1 class="logo me-auto"><a href="{{url('/')}}">
-                <img src="{{river_settings('header_logo')}}" alt="">
-            </a>
-        </h1>
-
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li><a class="nav-link scrollto " href="{{url('/')}}">Home</a></li>
-                @php
-                    $pages = \Rashidul\River\Models\RiverPage::where('is_published', 1)->get();
-                @endphp
-                @foreach($pages as $item)
-                    <li><a class="nav-link scrollto" href="{{route('riversite.page.show', $item->slug)}}">{{$item->menu_title }}</a></li>
-                @endforeach
-                <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                            <ul>
-                                <li><a href="#">Deep Drop Down 1</a></li>
-                                <li><a href="#">Deep Drop Down 2</a></li>
-                                <li><a href="#">Deep Drop Down 3</a></li>
-                                <li><a href="#">Deep Drop Down 4</a></li>
-                                <li><a href="#">Deep Drop Down 5</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Drop Down 2</a></li>
-                        <li><a href="#">Drop Down 3</a></li>
-                        <li><a href="#">Drop Down 4</a></li>
-                    </ul>
-                </li>
-
-
-                @guest('customers')
-                    <li><a class="getstarted scrollto" href="{{route('riversite.login')}}">Login/Register</a></li>
-                @else
-                    <li><a class="getstarted scrollto" href="{{route('riversite.customer.dashboard')}}">Dashboard</a></li>
-                @endguest
-            </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav>
-    </div>
-</header>
+      </div>
+    </nav>
+  </header>
 

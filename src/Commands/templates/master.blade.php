@@ -16,15 +16,36 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+
     <!-- Vendor CSS Files -->
-    <link href="/river/site/vendor/animate.css/animate.min.css" rel="stylesheet">
+    {{-- <link href="/river/site/vendor/animate.css/animate.min.css" rel="stylesheet"> --}}
     <link href="/river/site/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/river/site/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    {{-- <link href="/river/site/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="/river/site/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="/river/site/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="/river/site/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="/river/site/css/style.css" rel="stylesheet">
-</head>
+    
+</head> --}}
+<link href="/river/site/css/carousel.css" rel="stylesheet">
+<style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+
 
 <body>
 
@@ -40,9 +61,9 @@
 
 <!-- Vendor JS Files -->
 <script src="/river/site/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/river/site/vendor/glightbox/js/glightbox.min.js"></script>
+{{-- <script src="/river/site/vendor/glightbox/js/glightbox.min.js"></script>
 <script src="/river/site/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="/river/site/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/river/site/vendor/swiper/swiper-bundle.min.js"></script> --}}
 {{--<script src="/river/site/vendor/php-email-form/validate.js"></script>--}}
 
 <!-- Template Main JS File -->

@@ -91,6 +91,7 @@ class BlogController
             'title' => $names,
             'content' => $request->content,
             'slug' => $request->slug,
+            'slug' => $request->short_desc,
             'image' => $request->image,
             'category_id' => $request->category_id,
             'author_id' => Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id,
@@ -116,7 +117,7 @@ class BlogController
         $data = [
             'title' => 'Edit Blog: ' . $file->name,
             'type' => $file,
-            'all_cat' => $all_cat
+            'all_cat' => $all_cat,
         ];
 
         return view('river::admin.blogs.edit', $data);
@@ -142,6 +143,7 @@ class BlogController
         $file = Blog::find($id);
         $file->title = $request->get('title');
         $file->content = $request->get('content');
+        $file->short_desc = $request->get('short_desc');
         $file->slug = $request->slug;
         $file->image = $request->image;
         $file->category_id = $request->get('category_id');

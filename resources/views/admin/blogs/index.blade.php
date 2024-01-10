@@ -15,11 +15,11 @@
                             <thead>
                                 <tr>
                                     <td>SL. </td>
-                                    <td> Title</td>
-                                    <td> Content</td>
+                                    <td> Slug</td>
+                                    
                                     <td> Image</td>
                                     <td> Category</td>
-                                    <th> Author</th>
+                                    <td> Author</td>
                                     <td> Is Published</td>
                                     <td> Action</td>
                                 </tr>
@@ -28,8 +28,8 @@
                              @foreach($all as $key=>$a) 
                             <tr>
                                 <td>{{ ++$key }} </td>
-                                <td>{{ $a->title }} </td>
-                                <td>{{ $a->content }} </td>
+                                <td>{{ $a->slug }} </td>
+                                
                                 <td>
                                     <img src="/river/assets/{{ $a->image }}" style="width: 150px"/>
                                 </td>
