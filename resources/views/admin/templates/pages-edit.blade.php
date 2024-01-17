@@ -4,10 +4,8 @@
 
 @section('css')
     <link rel="stylesheet" href="/river/admin/codemirror-5.65.2/lib/codemirror.css" />
-    /*<link rel="stylesheet" href="/river/admin/codemirror-5.65.2/theme/monokai.css" />*/
     <link rel="stylesheet" href="/river/admin/codemirror-5.65.2/addon/scroll/simplescrollbars.css" />
     <link rel="stylesheet" href="/river/admin/codemirror-5.65.2/addon/fold/foldgutter.css" />
-    /*<link rel="stylesheet" href="https://unpkg.com/monaco-editor@0.27.0/min/vs/editor/editor.main.css" />*/
 
     <style>
         .CodeMirror {
@@ -41,18 +39,37 @@
                                 </div>
                         </div>
 
-                        <div class="col-md-6">
-
-                            <div class="dropdown">
-                                <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown">Select page</a>
-                                <div class="dropdown-menu">
-                                    @foreach($pages as $f)
-                                        <a class="dropdown-item @if($file->id == $f->id) active @endif"
-                                           href="{{route('river.template-pages.edit', $f->id)}}">{{$f->filename}}
-                                        </a>
-                                    @endforeach
+                        <div class="col-md-6" >
+                            <div class="row">
+                                <div class="col-md-4 dropdown">
+                                    <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown">Select page</a>
+                                    <div class="dropdown-menu">
+                                        @foreach($pages as $f)
+                                            <a class="dropdown-item @if($file->id == $f->id) active @endif"
+                                               href="{{route('river.template-pages.edit', $f->id)}}">{{$f->filename}}
+                                            </a>
+                                        @endforeach
+                                    </div>
                                 </div>
+                                <div class="col-md-4 dropdown">
+                                    <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown">Versions</a>
+                                    <div class="dropdown-menu">
+                                        @php
+                                        use Carbon\Carbon;
+                                        @endphp
+                                        @foreach($versions as $f)
+                                            <a class="dropdown-item"
+                                               href="">
+                                               {{Carbon::parse($f->datetime)->format('j M, Y g:ia')}}
+
+                                            </a>
+                                        @endforeach
+                                    </div>
+                                </div>
+
                             </div>
+
+
                         </div>
                     </div>
 

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Blade;
 use Rashidul\River\Models\TemplatePage;
+use Rashidul\River\Models\TemplatePageVersion;
+use Carbon\Carbon;
+
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
@@ -46,6 +49,8 @@ class TemplatePageController extends Controller
     public function index()
     {
         $files = TemplatePage::all();
+        $version = TemplatePageVersion::all();
+
         $buttons = [
             ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
             ['Cache View',route('river.CacheView'), 'btn btn-info', '' /*label,link,class,id*/],
@@ -53,7 +58,8 @@ class TemplatePageController extends Controller
         $data = [
             'title' => 'Template pages (location: resources/views/_cache)',
             'pages' => $files,
-            '_top_buttons' => $buttons
+            '_top_buttons' => $buttons,
+            'version' => $version
         ];
 
         return view('river::admin.templates.pages', $data);
@@ -77,10 +83,14 @@ class TemplatePageController extends Controller
     {
         $pages = TemplatePage::all();
         $file = TemplatePage::find($id);
+        $versions = TemplatePageVersion::where('filename',$file->filename)->get();
+
+
         $data = [
             'title' => 'Edit template: ' . $file->filename,
             'file' => $file,
-            'pages' => $pages
+            'pages' => $pages,
+            'versions'=> $versions,
         ];
 
         return view('river::admin.templates.pages-edit', $data);
@@ -88,15 +98,25 @@ class TemplatePageController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $request->validate([
             'code' => 'required',
             'filename' => 'required', //TODO no space, valid blade file name
         ]);
 
         $file = TemplatePage::find($id);
+
+
+        $data = TemplatePageVersion::create([
+            'filename' => $file->filename,
+            'code' => $file->code
+        ]);
+
+
         $file->filename = $request->get('filename');
         $file->code = $request->get('code');
-        $file->save();
+        $file->update();
+        $file->touch();
 
         //reset cache
         Artisan::call('river:cache-views');

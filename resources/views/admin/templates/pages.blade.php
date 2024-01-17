@@ -10,11 +10,17 @@
     <div class="container-xl">
         <div class="row row-cards">
             <div class="col-md-5">
-                <div class="list-group">
-                    
+                <div class="list-group ">
+                    @php
+                    use Carbon\Carbon;
+                    @endphp
                     @foreach($pages as $file)
-                        <a class="list-group-item" href="{{route('river.template-pages.edit', $file->id)}}">{{$file->filename}}</a>
+                    <div class="d-flex  justify-content-between list-group-item" >
+                        <a class="" href="{{route('river.template-pages.edit', $file->id)}}">{{$file->filename}}</a>
+                        <p class=""> Last Update: {{Carbon::parse($file->updated_at)->format('j M, Y g:ia')}}</p>
+                    </div>
                     @endforeach
+
                 </div>
             </div>
         </div>
