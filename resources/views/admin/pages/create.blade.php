@@ -28,14 +28,14 @@
                             <div class="form-group mb-3 ">
                                 <label class="form-label required">Title</label>
                                 <div>
-                                    <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                                    <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}" oninput="generateSlug()">
                                 </div>
                             </div>
 
                             <div class="form-group mb-3 ">
                                 <label class="form-label required">Slug</label>
                                 <div>
-                                    <input type="text" class="form-control" name="slug" value="{{ old('slug') }}">
+                                    <input type="text" id="slug" class="form-control" name="slug" value="{{ old('slug') }}">
                                 </div>
                             </div>
                             <div class="form-group mb-3 ">
@@ -132,5 +132,18 @@
                 $('#content-' + $(this).val()).show();
             });
         });
+</script>
+
+<script>
+    function generateSlug() {
+        // Get the value from the title input
+        const title = document.getElementById('title').value.trim().toLowerCase();
+
+        // Replace spaces with dashes and remove special characters
+        const slug = title.replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+        // Update the slug input field
+        document.getElementById('slug').value = slug;
+    }
 </script>
 @endpush
