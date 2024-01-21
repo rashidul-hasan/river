@@ -41,6 +41,19 @@ Open admin panel: `localhost:8000/admin/login`
 email: admin@gmail.com
 password: 1234
 
+### Package update route
+
+Add the following route to the root project's `web.php` route file. This is used for during development to pull latest
+code inside a shared hosting env.
+
+```php
+Route::get('/upd', function () {
+    $git = new CzProject\GitPhp\Git;
+    \File::deleteDirectory(base_path('vendor/rashidul/river'));
+    $repo = $git->cloneRepository('https://github.com/rashidul-hasan/river.git', base_path('vendor/rashidul/river'));
+    die('Done!');
+});
+```
 
 ### Errors
 
