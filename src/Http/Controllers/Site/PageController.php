@@ -3,22 +3,35 @@
 namespace Rashidul\River\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Route;
-use Rashidul\River\Models\Banner;
+use Illuminate\Support\Facades\Blade;
 use Rashidul\River\Models\RiverPage;
-use Rashidul\River\Models\Slider;
 
 class PageController extends Controller
 {
-    public function pageShow()
+    public function pageShow($slug)
     {
-        $pages = RiverPage::where('is_published', 1)->first();
-        $data = [
-            'title' => 'Page',
-            'pages' => $pages,
-        ];
+        $page = RiverPage::where('slug', trim($slug))
+            ->where('is_published', true)
+            ->first();
 
-        return view('_cache.page', $data);
+        if ($page) {
+            if ($page->content_type === RiverPage::CONTENT_TYPE_HTML) {
+                return view('_cache.page', [
+                    'content' => $page->content,
+                    'title' => $page->title
+                ]);
+            }
+
+            if ($page->content_type === RiverPage::CONTENT_TYPE_BLADE) {
+                $renderedHtml = Blade::compileString($page->content);
+                return view('_cache.page', [
+                    'content' => $renderedHtml,
+                    'title' => $page->title
+                ]);
+            }
+        }
+
+        abort(404);
     }
 
     public function catchAll($any)

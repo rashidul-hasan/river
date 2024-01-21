@@ -71,7 +71,7 @@
                                         <option value="" selected disabled>Select</option>
                                         <option value="{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML}}">HTML
                                         </option>
-                                        <option value="{{\Rashidul\River\Models\RiverPage::CONTENT_BLADE}}">Blade
+                                        <option value="{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_BLADE}}">Blade
                                         </option>
                                     </select>
                                 </div>
@@ -91,7 +91,7 @@
                                     <textarea name="page_content1" id="content_type"></textarea>
                                 </div>
                                 <div class="form-group content"
-                                    id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_BLADE}}">
+                                    id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_BLADE}}">
                                     <textarea name="page_content2" id="code" cols="30" rows="30"
                                         class="form-control"></textarea>
                                 </div>
@@ -123,9 +123,9 @@
             mode: "php",
             theme: 'monokai'
         });
-        tinymce.init({
-            selector: '#content_type',
-        })
+        $(document).ready(function() {
+            $('#content_type').summernote();
+        });
         $(function() {
             $('#contentType').change(function(){
                 $('.content').hide();

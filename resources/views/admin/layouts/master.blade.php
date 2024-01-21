@@ -17,6 +17,7 @@
     <link href="/river/admin/assets/css/tabler-payments.min.css" rel="stylesheet"/>
     <link href="/river/admin/assets/css/tabler-vendors.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="/river/admin/assets/css/toastr.min.css">
+    <link href="/river/admin/summernote-0.8.18-dist/summernote-bs5.min.css" rel="stylesheet">
     <link href="/river/admin/assets/css/demo.min.css" rel="stylesheet"/>
     <link href="/river/admin/assets/css/toastr.min.css" rel="stylesheet"/>
 
@@ -67,8 +68,9 @@
 <!-- Libs JS -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
 <script src="/river/admin/assets/js/toastr.min.js"></script>
+<script src="/river/admin/summernote-0.8.18-dist/summernote-bs5.min.js"></script>
 <script src="/river/admin/dynamic-form.js" defer></script>
-<script src="https://cdn.tiny.cloud/1/49zw3h254k19bwnkh8tl02reg0pb5t75ndy9nm01w6afbql3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+{{--<script src="https://cdn.tiny.cloud/1/49zw3h254k19bwnkh8tl02reg0pb5t75ndy9nm01w6afbql3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>--}}
 <!-- Tabler Core -->
 <script src="/river/admin/assets/js/tabler.min.js" defer></script>
 <script src="/river/admin/assets/js/demo.min.js" defer></script>

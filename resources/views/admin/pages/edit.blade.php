@@ -75,9 +75,9 @@
                                             {{$riverPage->content_type ==
                                             \Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML ? 'selected' : ''}}>HTML
                                         </option>
-                                        <option value="{{\Rashidul\River\Models\RiverPage::CONTENT_BLADE}}"
+                                        <option value="{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_BLADE}}"
                                             {{$riverPage->content_type ==
-                                            \Rashidul\River\Models\RiverPage::CONTENT_BLADE ? 'selected' : ''}}>Blade
+                                            \Rashidul\River\Models\RiverPage::CONTENT_TYPE_BLADE ? 'selected' : ''}}>Blade
                                         </option>
                                     </select>
                                 </div>
@@ -101,9 +101,9 @@
                                         class="form-control"></textarea>
                                 </div>
                                 @endif
-                                @if($riverPage->content_type == \Rashidul\River\Models\RiverPage::CONTENT_BLADE)
+                                @if($riverPage->content_type == \Rashidul\River\Models\RiverPage::CONTENT_TYPE_BLADE)
                                 <div class="form-group content"
-                                    id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_BLADE}}">
+                                    id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_BLADE}}">
                                     <textarea name="page_content2" id="code" cols="30" rows="30"
                                         class="form-control">{{$riverPage->content}}</textarea>
                                 </div>
@@ -139,9 +139,9 @@
             mode: "php",
             theme: 'monokai'
         });
-        tinymce.init({
-            selector: '#content_type',
-        })
+        $(document).ready(function() {
+            $('#content_type').summernote();
+        });
         $(function() {
             $('#contentType').change(function(){
                 $('.content').hide();
