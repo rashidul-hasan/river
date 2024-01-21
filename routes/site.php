@@ -43,7 +43,7 @@ Route::group([
     Route::get('/blogs', 'Site\BlogController@index')->name('all-blogs');
     Route::get('/single-blog/{slug}', 'Site\BlogController@single_blog')->name('single-blog');
     Route::get('/services/{slug}', 'Site\ServiceController@service')->name('service');
-    Route::get('{any?}', 'Site\PageController@catchAll')->where('any', '.*');
+    Route::get('{any?}', 'Site\PageController@catchAll')->where('any', '^((?!upd|super).)*$'); //ignore /upd & /super path
 });
 
 
