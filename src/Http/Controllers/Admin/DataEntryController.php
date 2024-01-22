@@ -17,7 +17,6 @@ class DataEntryController
 {
     public function index(FormBuilder $formBuilder, DataTypeService $dataTypeService, $slug)
     {
-        dd(river_find('cars', ['brand' => 'toyota', 'sort_order' => '22']));
         if (!RolesCache::hasPermission(
             $slug . '.index',
             RolePermission::TYPE_CUSTOMTYPE
