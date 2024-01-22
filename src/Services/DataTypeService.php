@@ -47,7 +47,7 @@ class DataTypeService
         foreach ($d->fields as $field) {
             if ($field->show_on_list) {
                 $arr[$field->slug] = [
-                    'type' => $this->getTypeText($field->type),
+                    'type' => $field->type,
                     'label' => $field->label,
                 ];
             }
@@ -72,14 +72,4 @@ class DataTypeService
         }
     }
 
-    private function getTypeText($typeInt)
-    {
-        if ($typeInt == 1) return 'text';
-        if ($typeInt == 2) return 'email';
-        if ($typeInt == 3) return 'password';
-        if ($typeInt == 4) return 'image';
-        if ($typeInt == 5) return 'checkbox';
-
-        return '';
-    }
 }

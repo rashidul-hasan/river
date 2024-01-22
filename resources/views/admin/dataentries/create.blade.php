@@ -10,7 +10,8 @@
     <div class="container-xl">
         <div class="row row-cards">
             <div class="col-md-12">
-                <form class="card">
+                <form class="card" action="{{route('river.data-entries.store', $type->slug)}}" method="POST">
+                    @csrf
                     {{--<div class="card-header">
                         <h3 class="card-title">Horizontal form</h3>
                     </div>--}}
@@ -28,6 +29,15 @@
                                 </div>
                             @endif
 
+                            @if($options['type'] === Constants::FIELD_TYPE_NUMBER)
+                                <div class="mb-3 row">
+                                    <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
+                                    <div class="col">
+                                        <input type="number" name="{{$slug}}" class="form-control" {{$options['is_required'] === 1 ? 'required' : ''}}>
+                                    </div>
+                                </div>
+                            @endif
+
                             @if($options['type'] === Constants::FIELD_TYPE_EMAIL)
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
@@ -37,7 +47,7 @@
                                 </div>
                             @endif
 
-                            
+
                             @if($options['type'] === Constants::FIELD_TYPE_PHONE)
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
@@ -61,7 +71,7 @@
                                     <div class="form-group">
                                         <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
                                         <div class="col">
-                                            @include('river::admin.components.image-picker', ['name' => 'image', 'default' => river_settings('image')])
+                                            @include('river::admin.components.image-picker', ['name' => $slug, 'default' => river_settings('image')])
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +116,7 @@
                             @endif
 
 
-                            
+
                             @if($options['type'] === Constants::FIELD_TYPE_CHECKBOX)
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
@@ -131,7 +141,7 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
                                     <div class="col">
-                                        
+
                                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                             Dropdown link
                                         </a>
@@ -171,7 +181,7 @@
                             </div>
                         @endif
 
-                            
+
 
 
                         @endforeach
@@ -238,17 +248,17 @@
 @push('scripts')
 <script>
 
-    tinymce.init({
+    /*tinymce.init({
             selector: '#content_type',
-        })
+        })*/
         $(function() {
-            $('#contentType').change(function(){
+            /*$('#contentType').change(function(){
                 $('.{{$slug}}').hide();
                 $('#' + $(this).val()).show();
-            });
+            });*/
+            $('.lfm-picker').filemanager('image', {prefix: window.hp_route_prefix})
         });
 
-$('.lfm-picker').filemanager('image', {prefix: window.hp_route_prefix})
 </script>
 
 
