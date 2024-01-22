@@ -29,7 +29,7 @@
                                         </td>
                                     @else
                                         <td>
-                                            {{$row[$slug]}}
+                                            {{array_key_exists($slug, $row) ? $row[$slug] : ''}}
                                         </td>
                                     @endif
                                 @endforeach

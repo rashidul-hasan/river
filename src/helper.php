@@ -36,7 +36,7 @@ if (! function_exists('river_get_faqs')) {
 
         $faqs = $all->where('type', $type);
         return $faqs;
-    
+
     }
 }
 
@@ -55,7 +55,7 @@ if (! function_exists('river_slider')) {
         //     return Slider::where('status', 1)
         //         ->where('group', $group)->orderBy('orders', 'ASC')->get();
         // } catch (Exception $e) {
-            
+
         //     return [];
         // }
     }
@@ -75,11 +75,11 @@ if (! function_exists('river_service')) {
             if($slug == $a->servicecategory->name ){
                 $services = $all->where('category_id', $a->servicecategory->id);
                  return $services;
-            } 
-            
+            }
+
         }
 
-        
+
 
         // $services = $all->where('category_id', $slug);
         // return $services;
@@ -87,7 +87,7 @@ if (! function_exists('river_service')) {
         //     return Service::where('is_published', 1)
         //         ->where('slug', $slug)->orderBy('sort_order', 'ASC')->get();
         // } catch (Exception $e) {
-            
+
         //     return [];
         // }
     }
@@ -194,11 +194,18 @@ if (! function_exists('river_find')) {
 
         $all_data = [];
         foreach ($fields as $id => $item) {
+            $single = [];
             $single['id'] = $id;
             foreach ($item as $field_val) {
                 $single[$field_val->data_field_slug] = $field_val->value;
             }
             $all_data[] = $single;
+        }
+
+        if ($filter) {
+            foreach ($filter as $key => $value) {
+                $all_data = collect($all_data)->where($key, $value)->values()->toArray();
+            }
         }
 
         return $all_data;

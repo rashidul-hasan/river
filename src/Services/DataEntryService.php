@@ -78,33 +78,43 @@ class DataEntryService
             ->first(); //TODO load from cache
         foreach ($d->fields as $field) {
             if (array_key_exists($field->slug, $inputArr)) {
-                FieldValue::where([
+                $check = FieldValue::where([
                     'data_entry_id' => $data_entry_id,
                     'data_field_slug' => $field->slug
-                ])->update([
-                    'value' => $inputArr[$field->slug]
-            ]);
+                ])->first();
+                //TODO imoplement udpate or create
+
+                if ($check) {
+                    FieldValue::where([
+                        'data_entry_id' => $data_entry_id,
+                        'data_field_slug' => $field->slug
+                    ])->update([
+                        'value' => $inputArr[$field->slug]
+                    ]);
+                } else {
+                    FieldValue::create([
+                        'data_type_id' => $d->id,
+                        'data_entry_id' => $data_entry_id,
+                        'data_field_id' => $field->id,
+                        'data_field_slug' => $field->slug,
+                        'value' => $inputArr[$field->slug]
+                    ]);
+                }
             }
         }
 
+        /*FieldValue::updateOrCreate(
+            [
+                'data_entry_id' => $data_entry_id,
+                'data_field_slug' => $field->slug,
+                'data_type_id' => $d->id,
+//                        'data_field_id' => $field->id,
+            ],
+            [
+                'value' => $inputArr[$field->slug]
+            ]
+        );*/
         /*return $arr;*/
-    }
-
-    public function insertMeta($request, $type_slug, $entry_id)
-    {
-        $d = DataType::slug($type_slug)
-            ->with('fields')
-            ->first(); //TODO load from cache
-        foreach ($d->fields as $field) {
-            DB::table('field_values')
-                ->insert([
-                    'data_type_id' => $d->id,
-                    'data_entry_id' => $entry_id,
-                    'data_field_id' => $field->id,
-                    'data_field_slug' => $field->slug,
-                    'value' => $request->get($field->slug),
-                ]);
-        }
     }
 
     private function getTypeText($typeInt)

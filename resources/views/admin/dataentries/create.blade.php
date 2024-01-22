@@ -10,7 +10,8 @@
     <div class="container-xl">
         <div class="row row-cards">
             <div class="col-md-12">
-                <form class="card" action="{{route('river.data-entries.store', $type->slug)}}" method="POST">
+                <form class="card" action="{{$action}}" method="POST">
+                    @method($method)
                     @csrf
                     {{--<div class="card-header">
                         <h3 class="card-title">Horizontal form</h3>
@@ -20,11 +21,16 @@
                     @endphp
                     <div class="card-body">
                         @foreach($fields as $slug => $options)
+                            @php
+                                $value = array_key_exists($slug, $data) ? $data[$slug] : ''
+                            @endphp
                             @if($options['type'] === Constants::FIELD_TYPE_TEXT)
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
                                     <div class="col">
-                                        <input type="text" name="{{$slug}}" class="form-control" {{$options['is_required'] === 1 ? 'required' : ''}}>
+                                        <input type="text" name="{{$slug}}"
+                                               value="{{$value}}"
+                                               class="form-control" {{$options['is_required'] === 1 ? 'required' : ''}}>
                                     </div>
                                 </div>
                             @endif
@@ -33,7 +39,9 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
                                     <div class="col">
-                                        <input type="number" name="{{$slug}}" class="form-control" {{$options['is_required'] === 1 ? 'required' : ''}}>
+                                        <input type="number" name="{{$slug}}"
+                                               value="{{$value}}"
+                                               class="form-control" {{$options['is_required'] === 1 ? 'required' : ''}}>
                                     </div>
                                 </div>
                             @endif
@@ -42,7 +50,9 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
                                     <div class="col">
-                                        <input type="email" name="{{$slug}}" class="form-control" {{$options['is_required'] === 1 ? 'required' : ''}}>
+                                        <input type="email" name="{{$slug}}"
+                                               value="{{$value}}"
+                                               class="form-control" {{$options['is_required'] === 1 ? 'required' : ''}}>
                                     </div>
                                 </div>
                             @endif
@@ -52,7 +62,9 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
                                     <div class="col">
-                                        <input type="number" name="{{$slug}}" class="form-control" {{$options['is_required'] === 1 ? 'required' : ''}}>
+                                        <input type="number" name="{{$slug}}"
+                                               value="{{$value}}"
+                                               class="form-control" {{$options['is_required'] === 1 ? 'required' : ''}}>
                                     </div>
                                 </div>
                             @endif
@@ -71,7 +83,7 @@
                                     <div class="form-group">
                                         <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
                                         <div class="col">
-                                            @include('river::admin.components.image-picker', ['name' => $slug, 'default' => river_settings('image')])
+                                            @include('river::admin.components.image-picker', ['name' => $slug, 'default' => $value])
                                         </div>
                                     </div>
                                 </div>
@@ -108,9 +120,7 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
                                     <div class="col">
-                                        <textarea name="{{$slug}}" class="form-control" {{$options['is_required'] === 1 ? 'required' : ''}}>
-
-                                        </textarea>
+                                        <textarea name="{{$slug}}" class="form-control" {{$options['is_required'] === 1 ? 'required' : ''}}>{{$value}}</textarea>
                                     </div>
                                 </div>
                             @endif
@@ -121,7 +131,9 @@
                                 <div class="mb-3 row">
                                     <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
                                     <div class="col">
-                                        <input type="checkbox"  name="{{$slug}}"  {{$options['is_required'] === 1 ? 'required' : ''}}>
+                                        <input type="checkbox"  name="{{$slug}}"
+                                               checked="{{$value === 'yes' ? 'checked' : ''}}"
+                                            {{$options['is_required'] === 1 ? 'required' : ''}}>
                                     </div>
                                 </div>
                             @endif
@@ -174,67 +186,12 @@
                             <div class="mb-3 row">
                                 <label class="col-3 col-form-label {{$options['is_required'] === 1 ? 'required' : ''}}">{{$options['label']}}</label>
                                 <div>
-                                    <textarea class="form-control" id="content_type" name="{{$slug}}"  >
-
-                                    </textarea>
+                                    <textarea class="form-control" id="content_type" name="{{$slug}}">{{$value}}</textarea>
                                 </div>
                             </div>
                         @endif
 
-
-
-
                         @endforeach
-                        {{--<div class="mb-3 row">
-                            <label class="col-3 col-form-label required">Password</label>
-                            <div class="col">
-                                <input type="password" class="form-control" placeholder="Password">
-                                <small class="form-hint">
-                                    Your password must be 8-20 characters long, contain letters and numbers, and must not contain
-                                    spaces, special characters, or emoji.
-                                </small>
-                                <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-3 col-form-label">Select</label>
-                            <div class="col">
-                                <select class="form-select">
-                                    <option>Option 1</option>
-                                    <optgroup label="Optgroup 1">
-                                        <option>Option 1</option>
-                                        <option>Option 2</option>
-                                    </optgroup>
-                                    <option>Option 2</option>
-                                    <optgroup label="Optgroup 2">
-                                        <option>Option 1</option>
-                                        <option>Option 2</option>
-                                    </optgroup>
-                                    <optgroup label="Optgroup 3">
-                                        <option>Option 1</option>
-                                        <option>Option 2</option>
-                                    </optgroup>
-                                    <option>Option 3</option>
-                                    <option>Option 4</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-3 col-form-label pt-0">Checkboxes</label>
-                            <div class="col">
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" checked="">
-                                    <span class="form-check-label">Option 1</span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox">
-                                    <span class="form-check-label">Option 2</span>
-                                </label>
-                                <label class="form-check">
-                                    <input class="form-check-input" type="checkbox" disabled="">
-                                    <span class="form-check-label">Option 3</span>
-                                </label>
-                            </div>
-                        </div>--}}
                     </div>
                     <div class="card-footer text-end">
                         <button type="submit" class="btn btn-primary">Submit</button>

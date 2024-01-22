@@ -17,6 +17,7 @@ class DataEntryController
 {
     public function index(FormBuilder $formBuilder, DataTypeService $dataTypeService, $slug)
     {
+        dd(river_find('cars', ['brand' => 'toyota', 'sort_order' => '22']));
         if (!RolesCache::hasPermission(
             $slug . '.index',
             RolePermission::TYPE_CUSTOMTYPE
@@ -33,6 +34,7 @@ class DataEntryController
 
         $all_data = [];
         foreach ($fields as $id => $item) {
+            $single = [];
             $single['id'] = $id;
             foreach ($item as $field_val) {
                 $single[$field_val->data_field_slug] = $field_val->value;
@@ -75,6 +77,9 @@ class DataEntryController
             'title' => 'Add ' . $d->singular ? $d->singular : $d->name,
             '_top_buttons' => $buttons,
             'fields' => $f,
+            'action' => route('river.data-entries.store', $d->slug),
+            'method' => 'POST',
+            'data' => [],
             'type' => $d,
         ];
 
@@ -104,23 +109,21 @@ class DataEntryController
         $f = $dataTypeService->getFields($slug);
         $d = DataType::slug($slug)->first();
 
-        $form = $formBuilder->start(route('river.data-entries.update', ['slug' => $slug, 'id' => $id]), 'PUT')
-            ->actionIsUrl()
-            ->addFields($f)
-            ->fieldValues($entryAsArray)
-            ->render();
-
         $buttons = [
             ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
         ];
+
         $data = [
             'title' => 'Edit ' . ($d->singular ? $d->singular : $d->name),
             '_top_buttons' => $buttons,
-            'form' => $form,
+            'type' => $d,
+            'fields' => $f,
+            'action' => route('river.data-entries.update', ['slug' => $slug, 'id' => $id]),
+            'method' => 'PUT',
             'data' => $entryAsArray
         ];
 
-        return view('river::admin.dataentries.edit', $data);
+        return view('river::admin.dataentries.create', $data);
     }
 
     public function store(Request $request, $slug, DataTypeService $dataTypeService)
@@ -160,6 +163,8 @@ class DataEntryController
 
         //TODO handle validation
         $input = $request->except(['_token', '_method']);
+
+//        dd($input);
         $dataEntryService->update($slug, $id, $input);
 
         return redirect(route('river.data-entries.index', $slug))
