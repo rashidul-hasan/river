@@ -39,7 +39,7 @@
                                     <div class="form-group mb-3 ">
                                         <label class="form-label required">name</label>
                                         <div>
-                                            <input type="text" class="form-control"  name="name" value="{{$type->name}}">
+                                            <input type="text" class="form-control generate-slug" data-slug-field="slug"  name="name" value="{{$type->name}}">
                                         </div>
                                     </div>
 

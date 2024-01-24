@@ -74,6 +74,9 @@ Route::group([
     Route::get('assets', 'Admin\TemplatePageController@assets')->name('templates.assets');
     Route::get('CacheView', 'Admin\TemplatePageController@CacheView')->name('CacheView');
 
+
+    Route::delete('template-pages-version-delete/{filename}','Admin\TemplatePageController@allVersionDelete')->name('template-pages-version-delete');
+
     //template Assets
     Route::resource('template-assets', 'Admin\TemplateAssetsController')->except(['show']);
     Route::get('assets-CacheView', 'Admin\TemplateAssetsController@CacheView')->name('assets-cache-view');

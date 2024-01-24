@@ -32,7 +32,7 @@
                                 <div class="form-group mb-3 ">
                                     <label class="form-label required"> Title</label>
                                     <div>
-                                        <input type="text" class="form-control"  name="title" value="{{ $type->title }}">
+                                        <input type="text" class="form-control generate-slug" data-slug-field="slug"  name="title" value="{{ $type->title }}">
                                     </div>
                                 </div>
     

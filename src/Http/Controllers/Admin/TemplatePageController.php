@@ -106,12 +106,12 @@ class TemplatePageController extends Controller
 
         $file = TemplatePage::find($id);
 
-
-        $data = TemplatePageVersion::create([
-            'filename' => $file->filename,
-            'code' => $file->code
-        ]);
-
+        if($request->save_version == 'Save'){
+            $data = TemplatePageVersion::create([
+                'filename' => $file->filename,
+                'code' => $file->code
+            ]);
+        }
 
         $file->filename = $request->get('filename');
         $file->code = $request->get('code');
@@ -176,5 +176,20 @@ class TemplatePageController extends Controller
 
         // Return the view filename - This could be directly used in View::make
         return $viewfilename;
+    }
+
+
+    public function allVersionDelete($filename){
+
+
+ 
+        $data = TemplatePageVersion::where('filename', $filename)->delete();
+
+
+        
+        //  $data->delete();
+        return redirect()->back()
+            ->with('success', 'Deleted!');
+        
     }
 }

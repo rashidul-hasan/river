@@ -50,7 +50,7 @@
                             @csrf
                             <div class="form-group mb-3">
                                 <div class="form-label" for="alt_text">Alt text</div>
-                                <input type="text" class="form-control" id="alt_text" name="alt_text" value="{{ old('alt_text') }}"/>
+                                <input type="text" class="form-control generate-slug" data-slug-field="slug" id="alt_text" name="alt_text" value="{{ old('alt_text') }}"/>
                             </div>
                             <div class="form-group mb-3">
                                 <div class="form-label" for="alt_text">Slug</div>

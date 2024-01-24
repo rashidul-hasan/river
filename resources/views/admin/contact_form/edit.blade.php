@@ -28,7 +28,7 @@
                                     <div class="form-group mb-3 row">
                                         <label class="col-3 col-form-label ">Name</label>
                                         <div class="col">
-                                            <input type="text" class="form-control" name="name" value="{{ $type->name }}">
+                                            <input type="text" class="form-control generate-slug" data-slug-field="slug" name="name" value="{{ $type->name }}">
                                         </div>
                                     </div>
                                     <div class="form-group mb-3 row">

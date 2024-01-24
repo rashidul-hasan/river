@@ -21,17 +21,35 @@
             <form action="{{route('river.template-pages.update', $file->id)}}" method="POST" id="form-code">
                 <div class="row">
 
-                        <div class="col-md-3">
+                        {{-- <div class="col-md-3">
                                 <div class="input-icon">
                                     <input type="text" class="form-control" name="filename" value="{{$file->filename}}">
                                 </div>
 
+                        </div> --}}
+
+                        <div class="col-md-3">
+                            <div class="mb-3"> 
+                                <div class="input-group">
+                                  <input type="text" class="form-control" name="filename" value="{{$file->filename}}">
+                                  {{-- <button type="button" class="btn">Save</button> --}}
+                                  <input type="submit" class="btn" name="save_version" value="Save" />
+                                  <button data-bs-toggle="dropdown" type="button" class="btn dropdown-toggle dropdown-toggle-split" aria-expanded="false"></button>
+                                  <div class="dropdown-menu dropdown-menu-end" style="">
+                                    {{-- <a class="dropdown-item" href="#">
+                                       Save Without Version
+                                    </a> --}}
+                                    <input type="submit" class="btn dropdown-item" name="save_version" value="Save Without Version" />
+                                    
+                                  </div>
+                                </div>
+                              </div>
                         </div>
 
                         <div class="col-md-3">
                                 <div class="row align-items-center">
                                     <div class="col-auto">
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        {{-- <button type="submit" class="btn btn-primary">Save</button> --}}
                                         <button type="button" class="btn btn-danger btn-delete">Delete</button>
                                         <button type="button" class="btn btn-secondary btn-preview">Preview</button>
                                         <a class="btn btn-link" href="{{ route('river.template-pages.index') }}"> Cancel</a>
@@ -51,7 +69,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="col-md-4 dropdown">
+                                <div class="col-md-5 dropdown">
                                     <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown">Versions</a>
                                     <div class="dropdown-menu">
                                         @php
@@ -65,10 +83,35 @@
                                             </a>
                                         @endforeach
                                     </div>
+
+                                    {{-- <form action="{{route('river.template-pages-version-delete')}}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="submit" class="btn" value="Delete All Versions" >
+
+                                    </form> --}}
+
+                                    <button type="button" class="btn delete-all-version">Delete All Version</button>
+
+                                    
+
                                 </div>
 
-                            </div>
+                                {{-- <div class="col-md-4 dropdown">
+                                    <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown">Delete Versions</a>
+                                    <div class="dropdown-menu">
+                                        
+                                        @foreach($versions as $f)
+                                            <a class="dropdown-item"
+                                               href="">
+                                               Carbon::parse($f->datetime)->format('j M, Y g:ia')
 
+                                            </a>
+                                        @endforeach 
+                                    </div>
+                                </div> --}}
+
+                            </div>
 
                         </div>
                     </div>
@@ -139,6 +182,14 @@
         $('.btn-delete').click(function () {
             if(window.confirm('Delete this file?')) {
                 DynamicForm.create(route('river.template-pages.destroy', "{{$file->id}}"), 'DELETE')
+                .addCsrf()
+                .submit();
+            }
+        });
+
+        $('.delete-all-version').click(function () {
+            if(window.confirm('Delete this file?')) {
+                DynamicForm.create(route('river.template-pages-version-delete', "{{$file->filename}}"), 'DELETE')
                 .addCsrf()
                 .submit();
             }

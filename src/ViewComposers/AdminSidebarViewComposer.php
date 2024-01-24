@@ -97,6 +97,14 @@ class AdminSidebarViewComposer
                     [
                         'label' => 'Assets',
                         'route' => 'river.template-assets.index',
+                    ],
+                    [
+                        'label' => 'Global Css',
+                        'route' => 'river.template-assets.index',
+                    ],
+                    [
+                        'label' => 'Global Js',
+                        'route' => 'river.template-assets.index',
                     ]
                 ]
             ],
