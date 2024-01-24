@@ -52,6 +52,9 @@ Route::group([
     Route::get('storefront', 'Admin\Settings\AppearanceController@storeFront')->name('store.front');
     Route::get('store-social-links', 'Admin\Settings\AppearanceController@storeSocialLinks')->name('store-social-links');
 
+    Route::get('store-global-css', 'Admin\Settings\AppearanceController@storeGlobalCss')->name('store-global-css');
+    Route::get('store-global-js', 'Admin\Settings\AppearanceController@storeGlobalJs')->name('store-global-js');
+
     Route::get('store-email-setting', 'Admin\Settings\AppearanceController@storeEmailSettings')->name('store-email-setting');
 
     Route::post('update/settings', 'Admin\Settings\SettingsController@updateSettings')->name('store-settings');
@@ -76,6 +79,8 @@ Route::group([
 
 
     Route::delete('template-pages-version-delete/{filename}','Admin\TemplatePageController@allVersionDelete')->name('template-pages-version-delete');
+    Route::delete('template-pages-delete-version/{id}','Admin\TemplatePageController@VersionDelete')->name('template-pages-delete-version');
+    // Route::post('template-pages-edit','Admin\TemplatePageController');
 
     //template Assets
     Route::resource('template-assets', 'Admin\TemplateAssetsController')->except(['show']);

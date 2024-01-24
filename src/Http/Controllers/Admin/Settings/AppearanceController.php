@@ -23,6 +23,19 @@ class AppearanceController extends Controller
         return view('river::admin.settings.store-social-links', $data);
     }
 
+    public function storeGlobalCss(){
+        $data = [
+            'settings' => SettingsService::getSettingsArray(),
+        ];
+        return view('river::admin.settings.store-global-css', $data);
+    }
+    public function storeGlobaljs(){
+        $data = [
+            'settings' => SettingsService::getSettingsArray(),
+        ];
+        return view('river::admin.settings.store-global-js', $data);
+    }
+
     public function storeEmailSettings(){
         $data = [
             'settings' => SettingsService::getSettingsArray(),

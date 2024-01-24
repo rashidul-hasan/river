@@ -80,6 +80,14 @@ class AdminSidebarViewComposer
                     [
                         'label' => 'Code snippets',
                         'route' => 'river.code-snippets'
+                    ],
+                    [
+                        'label' => 'Global Css',
+                        'route' => 'river.store-global-css',
+                    ],
+                    [
+                        'label' => 'Global Js',
+                        'route' => 'river.store-global-js',
                     ]
                 ]
             ],
@@ -98,14 +106,7 @@ class AdminSidebarViewComposer
                         'label' => 'Assets',
                         'route' => 'river.template-assets.index',
                     ],
-                    [
-                        'label' => 'Global Css',
-                        'route' => 'river.template-assets.index',
-                    ],
-                    [
-                        'label' => 'Global Js',
-                        'route' => 'river.template-assets.index',
-                    ]
+                  
                 ]
             ],
             [

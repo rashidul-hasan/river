@@ -16,8 +16,11 @@
 @endsection
 
 @section('content')
+
     <div class="container-xl">
         <div class="row row-cards">
+            @isset($active_version)
+            @endisset
             <form action="{{route('river.template-pages.update', $file->id)}}" method="POST" id="form-code">
                 <div class="row">
 
@@ -76,11 +79,15 @@
                                         use Carbon\Carbon;
                                         @endphp
                                         @foreach($versions as $f)
+                                          <div class="d-flex">
                                             <a class="dropdown-item"
-                                               href="">
+                                               href="{{route('river.template-pages.edit', $file->id)}}?version={{$f->id}}">
                                                {{Carbon::parse($f->datetime)->format('j M, Y g:ia')}}
 
                                             </a>
+
+                                          </div>
+                                            
                                         @endforeach
                                     </div>
 
@@ -90,10 +97,11 @@
                                         <input type="submit" class="btn" value="Delete All Versions" >
 
                                     </form> --}}
-
-                                    <button type="button" class="btn delete-all-version">Delete All Version</button>
-
-                                    
+                                    @if(count($versions) > 0)
+                                        <button type="button" class="btn delete-all-version">Delete All Version</button>
+                                    @endif
+                                        
+   
 
                                 </div>
 
@@ -115,7 +123,17 @@
 
                         </div>
                     </div>
-
+                    @isset($active_version)
+                    <div class="row d-flex">
+                        <div class="col-2">
+                            {{Carbon::parse($active_version->datetime)->format('j M, Y g:ia')}}
+                           
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="btn delete-version">Delete Version</button>
+                        </div>
+                    </div>
+                    @endisset
                 </div>
 
 
@@ -123,10 +141,18 @@
                     <div class="col-md-12 my-3">
                         @csrf
                         @method('PUT')
+
+                        @isset($active_version)
+                        <div class="form-group">
+                            <textarea name="code" id="code" cols="30" rows="50" class="form-control">{{$active_version->code}}</textarea>
+{{--                            <div id="editor" style="height: 500px;"></div>--}}
+                        </div>
+                        @endisset
                         <div class="form-group">
                             <textarea name="code" id="code" cols="30" rows="50" class="form-control">{{$file->code}}</textarea>
 {{--                            <div id="editor" style="height: 500px;"></div>--}}
                         </div>
+                        
                     </div>
                 </div>
             </form>
@@ -194,6 +220,20 @@
                 .submit();
             }
         });
+
+        @isset($active_version)
+                    
+                $('.delete-version').click(function () {
+                    if(window.confirm('Delete this file?')) {
+                        DynamicForm.create(route('river.template-pages-delete-version', "{{$active_version->id}}"), 'DELETE')
+                        .addCsrf()
+                        .submit();
+                    }
+                });
+        @endisset
+
+
+       
 
         //show preview
         $('.btn-preview').click(function () {

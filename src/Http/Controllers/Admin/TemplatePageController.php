@@ -79,12 +79,11 @@ class TemplatePageController extends Controller
             ->with('success', 'Created new file!');
     }
 
-    public function edit($id)
+    public function edit(Request $request , $id)
     {
         $pages = TemplatePage::all();
         $file = TemplatePage::find($id);
         $versions = TemplatePageVersion::where('filename',$file->filename)->get();
-
 
         $data = [
             'title' => 'Edit template: ' . $file->filename,
@@ -92,6 +91,12 @@ class TemplatePageController extends Controller
             'pages' => $pages,
             'versions'=> $versions,
         ];
+
+        if ($request->has('version')) {
+            $version_id = $request->input('version');
+            $active_version = TemplatePageVersion::where('id', $version_id)->first();
+            $data['active_version'] = $active_version;
+        }
 
         return view('river::admin.templates.pages-edit', $data);
     }
@@ -181,13 +186,16 @@ class TemplatePageController extends Controller
 
     public function allVersionDelete($filename){
 
-
- 
         $data = TemplatePageVersion::where('filename', $filename)->delete();
-
-
+        return redirect()->back()
+            ->with('success', 'Deleted!');
         
-        //  $data->delete();
+    }
+
+    public function VersionDelete($id){
+
+        $data = TemplatePageVersion::find($id);
+        $data->delete();
         return redirect()->back()
             ->with('success', 'Deleted!');
         
