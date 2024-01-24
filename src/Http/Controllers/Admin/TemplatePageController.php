@@ -126,7 +126,7 @@ class TemplatePageController extends Controller
         //reset cache
         Artisan::call('river:cache-views');
 
-        return redirect()->back()->with('success', 'Updated');
+        return redirect(route('river.template-pages.edit', $file->id))->with('success', 'Updated');
     }
 
     public function destroy($id)
@@ -189,7 +189,7 @@ class TemplatePageController extends Controller
         $data = TemplatePageVersion::where('filename', $filename)->delete();
         return redirect()->back()
             ->with('success', 'Deleted!');
-        
+
     }
 
     public function VersionDelete($id){
@@ -198,6 +198,6 @@ class TemplatePageController extends Controller
         $data->delete();
         return redirect()->back()
             ->with('success', 'Deleted!');
-        
+
     }
 }

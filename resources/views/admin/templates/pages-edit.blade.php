@@ -32,7 +32,7 @@
                         </div> --}}
 
                         <div class="col-md-3">
-                            <div class="mb-3"> 
+                            <div class="mb-3">
                                 <div class="input-group">
                                   <input type="text" class="form-control" name="filename" value="{{$file->filename}}">
                                   {{-- <button type="button" class="btn">Save</button> --}}
@@ -43,7 +43,7 @@
                                        Save Without Version
                                     </a> --}}
                                     <input type="submit" class="btn dropdown-item" name="save_version" value="Save Without Version" />
-                                    
+
                                   </div>
                                 </div>
                               </div>
@@ -87,7 +87,7 @@
                                             </a>
 
                                           </div>
-                                            
+
                                         @endforeach
                                     </div>
 
@@ -100,22 +100,22 @@
                                     @if(count($versions) > 0)
                                         <button type="button" class="btn delete-all-version">Delete All Version</button>
                                     @endif
-                                        
-   
+
+
 
                                 </div>
 
                                 {{-- <div class="col-md-4 dropdown">
                                     <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown">Delete Versions</a>
                                     <div class="dropdown-menu">
-                                        
+
                                         @foreach($versions as $f)
                                             <a class="dropdown-item"
                                                href="">
                                                Carbon::parse($f->datetime)->format('j M, Y g:ia')
 
                                             </a>
-                                        @endforeach 
+                                        @endforeach
                                     </div>
                                 </div> --}}
 
@@ -127,7 +127,7 @@
                     <div class="row d-flex">
                         <div class="col-2">
                             {{Carbon::parse($active_version->datetime)->format('j M, Y g:ia')}}
-                           
+
                         </div>
                         <div class="col-2">
                             <button type="button" class="btn delete-version">Delete Version</button>
@@ -142,17 +142,16 @@
                         @csrf
                         @method('PUT')
 
-                        @isset($active_version)
+                        @if(isset($active_version))
                         <div class="form-group">
                             <textarea name="code" id="code" cols="30" rows="50" class="form-control">{{$active_version->code}}</textarea>
-{{--                            <div id="editor" style="height: 500px;"></div>--}}
                         </div>
-                        @endisset
+                        @else
                         <div class="form-group">
                             <textarea name="code" id="code" cols="30" rows="50" class="form-control">{{$file->code}}</textarea>
-{{--                            <div id="editor" style="height: 500px;"></div>--}}
                         </div>
-                        
+                        @endif
+
                     </div>
                 </div>
             </form>
@@ -222,7 +221,7 @@
         });
 
         @isset($active_version)
-                    
+
                 $('.delete-version').click(function () {
                     if(window.confirm('Delete this file?')) {
                         DynamicForm.create(route('river.template-pages-delete-version', "{{$active_version->id}}"), 'DELETE')
@@ -233,7 +232,7 @@
         @endisset
 
 
-       
+
 
         //show preview
         $('.btn-preview').click(function () {
@@ -269,48 +268,5 @@
             });
         }
     </script>
-{{--    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/loader.js"></script>--}}
 
-    <script>
-
-        $(document).ready(function () {
-            /*var code = atob("{{ base64_encode($file->code) }}");
-            var editor;
-
-            require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.27.0/min/vs' }});
-            window.MonacoEnvironment = {
-                getWorkerUrl: function(workerId, label) {
-                    return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
-        self.MonacoEnvironment = {
-          baseUrl: 'https://cdn.jsdelivr.net/npm/monaco-editor/min/'
-        };
-        importScripts('https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/base/worker/workerMain.js');`)}`;
-                }
-            };
-
-            require(['vs/editor/editor.main'], function() {
-                editor = monaco.editor.create(document.getElementById('editor'), {
-                    value: code,
-                    language: 'html',
-                    theme: 'vs-dark',
-                    automaticLayout: true,
-                    wordWrap: 'on',
-                    minimap: {
-                        enabled: true
-                    }
-                });
-            });*/
-
-            /*$('#form-code').submit(function (e) {
-                console.log('   jsjjs');
-                var c = editor.getValue();
-                $("<input />").attr("type", "hidden")
-                    .attr("name", "code")
-                    .attr("value", c)
-                    .appendTo(this);
-                return true;
-            });*/
-        });
-
-    </script>
 @endpush
