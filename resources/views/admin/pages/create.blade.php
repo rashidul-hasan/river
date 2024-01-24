@@ -28,7 +28,9 @@
                             <div class="form-group mb-3 ">
                                 <label class="form-label required">Title</label>
                                 <div>
-                                    <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}" oninput="generateSlug()">
+                                    <input type="text" class="form-control generate-slug"
+                                           data-slug-field="slug"
+                                           name="title" id="title" value="{{ old('title') }}">
                                 </div>
                             </div>
 

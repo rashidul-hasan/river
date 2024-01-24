@@ -170,6 +170,18 @@
     @endif
 </script>
 
+<script>
+    $(document).ready(function () {
+       $('.generate-slug').on('input', function (e) {
+           var $this = $(this);
+           var title = $this.val();
+           var slug = title.replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+           var name_slug = $this.data('slug-field');
+           $('input[name="'+name_slug+'"]').val(slug)
+       })
+    });
+</script>
+
 @stack('scripts')
 </body>
 </html>
