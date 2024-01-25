@@ -58,11 +58,11 @@
 <script src="/river/admin/codemirror-5.65.2/mode/clike/clike.js"></script>
 <script src="/river/admin/codemirror-5.65.2/mode/php/php.js"></script>
 <script>
-    // var code = CodeMirror.fromTextArea(document.getElementById("code"), {
-    //         lineNumbers: true,
-    //         mode: "php",
-    //         theme: 'monokai'
-    //     });
+    var code = CodeMirror.fromTextArea(document.getElementById("content_type"), {
+            lineNumbers: true,
+            mode: "php",
+            theme: 'monokai'
+        });
         $(document).ready(function() {
             $('#content_type').summernote();
         });
