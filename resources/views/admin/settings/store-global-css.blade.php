@@ -2,16 +2,20 @@
 
 @section('website_setup') active pcoded-trigger @stop
 
-@section('css')
-<link rel="stylesheet" href="/river/admin/codemirror-5.65.2/lib/codemirror.css" />
-<link rel="stylesheet" href="/river/admin/codemirror-5.65.2/theme/monokai.css" />
-<style>
-    .CodeMirror {
-        height: 400px;
-    }
 
-    
-</style>
+
+@section('css')
+    <link rel="stylesheet" href="/river/admin/codemirror-5.65.2/lib/codemirror.css" />
+    <link rel="stylesheet" href="/river/admin/codemirror-5.65.2/addon/scroll/simplescrollbars.css" />
+    <link rel="stylesheet" href="/river/admin/codemirror-5.65.2/addon/fold/foldgutter.css" />
+
+    <style>
+        .CodeMirror {
+            height: 600px;
+            overflow-y: scroll;
+        }
+    </style>
+@endsection
 
 @section('content')
     <div class="row">
@@ -22,9 +26,14 @@
                     <form class="custom-validation" action="{{route('river.store-settings')}}" method="POST">
                         @csrf
 
-                        <div class="form-group content"  id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML}}">
+                        {{-- <div class="form-group content"  id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML}}">
                                     <textarea name="global_css" id="content_type" >{{ river_settings('global_css') }}</textarea>
-                        </div>    
+                        </div>   --}}
+                        
+                        <div class="form-group">
+                            <textarea name="global_css" id="code" cols="30" rows="50" class="form-control">{{ river_settings('global_css') }}</textarea>
+{{--                            <div id="editor" style="height: 500px;"></div>--}}
+                        </div>
                     
                
 
@@ -50,22 +59,53 @@
 
 
 
-<script src="/river/admin/codemirror-5.65.2/lib/codemirror.js"></script>
+{{-- <script src="/river/admin/codemirror-5.65.2/lib/codemirror.js"></script>
 <script src="/river/admin/codemirror-5.65.2/mode/htmlmixed/htmlmixed.js"></script>
 <script src="/river/admin/codemirror-5.65.2/mode/xml/xml.js"></script>
 <script src="/river/admin/codemirror-5.65.2/mode/javascript/javascript.js"></script>
 <script src="/river/admin/codemirror-5.65.2/mode/css/css.js"></script>
 <script src="/river/admin/codemirror-5.65.2/mode/clike/clike.js"></script>
-<script src="/river/admin/codemirror-5.65.2/mode/php/php.js"></script>
-<script>
-    var code = CodeMirror.fromTextArea(document.getElementById("content_type"), {
+<script src="/river/admin/codemirror-5.65.2/mode/php/php.js"></script> --}}
+
+<script src="/river/admin/codemirror-5.65.2/lib/codemirror.js"></script>
+    <script src="/river/admin/codemirror-5.65.2/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="/river/admin/codemirror-5.65.2/mode/xml/xml.js"></script>
+    <script src="/river/admin/codemirror-5.65.2/mode/javascript/javascript.js"></script>
+    <script src="/river/admin/codemirror-5.65.2/mode/css/css.js"></script>
+    <script src="/river/admin/codemirror-5.65.2/mode/clike/clike.js"></script>
+    <script src="/river/admin/codemirror-5.65.2/mode/php/php.js"></script>
+    <script src="/river/admin/codemirror-5.65.2/mode/php/php.js"></script>
+    <script src="/river/admin/codemirror-5.65.2/addon/fold/foldcode.js"></script>
+    <script src="/river/admin/codemirror-5.65.2/addon/fold/xml-fold.js"></script>
+    <script src="/river/admin/codemirror-5.65.2/addon/fold/foldgutter.js"></script>
+{{--    <script src="/river/admin/codemirror-5.65.2/addon/fold/brace-fold.js"></script>--}}
+    <script src="/river/admin/codemirror-5.65.2/addon/edit/matchbrackets.js"></script>
+    <script src="/river/admin/codemirror-5.65.2/addon/edit/matchtags.js"></script>
+    <script src="/river/admin/codemirror-5.65.2/addon/scroll/simplescrollbars.js"></script>
+
+    <script>
+        var codeMirror = CodeMirror.fromTextArea(document.getElementById("code"), {
             lineNumbers: true,
             mode: "php",
-            theme: 'monokai'
+            // theme: 'monokai',
+            foldGutter: true,
+            matchTags: {bothTags: true},
+            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+            extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
         });
-        $(document).ready(function() {
-            $('#content_type').summernote();
-        });
+
+    </script>
+
+
+<script>
+    // var code = CodeMirror.fromTextArea(document.getElementById("content_type"), {
+    //         lineNumbers: true,
+    //         mode: "php",
+    //         theme: 'monokai'
+    //     });
+    //     $(document).ready(function() {
+    //         $('#content_type').summernote();
+    //     });
         // $(function() {
         //     $('#contentType').change(function(){
         //         $('.content').hide();
