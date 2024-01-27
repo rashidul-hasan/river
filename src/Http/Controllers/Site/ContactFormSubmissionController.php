@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace Rashidul\River\Http\Controllers\Site;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -13,11 +13,13 @@ use Rashidul\River\Models\ContactForm;
 
 use Rashidul\River\Models\ContactFormSubmission;
 
-class ContactFormFieldController
+class ContactFormSubmissionController
 {
     public function index()
     {
         $value = ContactFormField::with('contactform')->get();
+
+
 
         $data = [
             'title' => 'ContactFormField',
@@ -26,21 +28,28 @@ class ContactFormFieldController
         return view('river::admin.dashboard.contact_form_field', $data, compact('value'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
 
-        $validator = $request->validate([
-            'name' => 'string|required',
-        ]);
+       $data = ContactFormField::where('slug', $slug)->first();
 
-
-        ContactFormField::create([
+        ContactFormSubmission::create([
             'name' => $request->name,
-            'contactform_id'=> 1,
+            'email' => $request->email,
+            'contactform_id'=> $data->id,
             'slug' => Str::slug($request->name, '_'),
             'type' => "Text",
             'is_required' => $request->is_required
         ]);
+
+
+        // ContactFormField::create([
+        //     'name' => $request->name,
+        //     'contactform_id'=> 1,
+        //     'slug' => Str::slug($request->name, '_'),
+        //     'type' => "Text",
+        //     'is_required' => $request->is_required
+        // ]);
 
         return redirect()->back()->with('success', 'Added!');
     }
