@@ -89,10 +89,10 @@ class ContactFormController
 
     public function storeFields(Request $request)
     {
-        dd( $request->all());
-        $request->validate([
-            'name' => 'required',
-        ]);
+        // dd( $request->all());
+        // $request->validate([
+        //     'name' => 'required',
+        // ]);
         $names = $request->get('name');
         $id = $request->get('type_id');
         $names = explode(",", $names);
@@ -100,9 +100,9 @@ class ContactFormController
             ContactFormField::create([
                 'name' => $name,
                 'slug' => Str::plural(Str::slug($name)),
-                //'label' => ucwords(str_replace('_', ' ', $name)),
-                'type' => $this->deductFieldTypeFromName($name),
-                'is_required' => $request->get('is_required'),
+                'label' => ucwords(str_replace('_', ' ', $name)),
+                // 'type' => $this->deductFieldTypeFromName($name),
+                // 'is_required' => $request->get('is_required'),
                 'contactform_id' => $request->get('type_id'),
             ]);
         }

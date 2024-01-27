@@ -1,5 +1,9 @@
 <?php
 
+use Rashidul\River\Http\Controllers\Site\ContactFormSubmissionController;
+
+
+
 
 
 //auth
@@ -44,6 +48,8 @@ Route::group([
     Route::get('/single-blog/{slug}', 'Site\BlogController@single_blog')->name('single-blog');
     Route::get('/services/{slug}', 'Site\ServiceController@service')->name('service');
     Route::get('{any?}', 'Site\PageController@catchAll')->where('any', '^((?!upd|super).)*$'); //ignore /upd & /super path
+
+    Route::post('/contact-form-submission/{slug}', [ContactFormSubmissionController::class , 'store'])->name('contact-form-submission');
 });
 
 
