@@ -46,7 +46,7 @@ class TemplateAssetsController extends Controller
                 $js_file_name[] = $filename ;
             } else if($ex_name=='css'){
                 $css_file_name[] = $filename;
-            } else if ($ex_name=='jpg'|| $ex_name=='png' || $ex_name=='jpeg'|| $ex_name=='webp' ){
+            } else if ($ex_name=='jpg'|| $ex_name=='png' || $ex_name=='jpeg'|| $ex_name=='webp'|| $ex_name=='svg' ){
                 $image_file_name[] = $filename;
             }
         }

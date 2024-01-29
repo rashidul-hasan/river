@@ -29,13 +29,13 @@
                         {{-- <div class="form-group content"  id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML}}">
                                     <textarea name="global_css" id="content_type" >{{ river_settings('global_css') }}</textarea>
                         </div>   --}}
-                        
+
                         <div class="form-group">
                             <textarea name="global_css" id="code" cols="30" rows="50" class="form-control">{{ river_settings('global_css') }}</textarea>
 {{--                            <div id="editor" style="height: 500px;"></div>--}}
                         </div>
-                    
-               
+
+
 
                     <div class="form-group row mb-0 float-right">
                         <div class="col-md-8 mt-4">
@@ -47,11 +47,11 @@
                 </div>
             </div>
         </form>
-           
-           
 
-        
-       
+
+
+
+
     </div>
 @stop
 
@@ -86,7 +86,7 @@
     <script>
         var codeMirror = CodeMirror.fromTextArea(document.getElementById("code"), {
             lineNumbers: true,
-            mode: "php",
+            mode: "css",
             // theme: 'monokai',
             foldGutter: true,
             matchTags: {bothTags: true},
