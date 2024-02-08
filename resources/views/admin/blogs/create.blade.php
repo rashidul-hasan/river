@@ -33,26 +33,26 @@
                                         <input type="text" class="form-control generate-slug" name="title" data-slug-field="slug" value="{{ old('title') }}">
                                     </div>
                                 </div>
-    
+
                                 <div class="form-group mb-3 ">
                                     <label class="form-label required"> Slug</label>
                                     <div>
                                         <input type="text" class="form-control" name="slug" value="{{ old('slug') }}">
                                     </div>
                                 </div>
-    
+
                                 <div class="form-group mb-3 ">
                                     <label class="form-label required"> Content</label>
                                     <div>
-                                        <textarea class="form-control" id="content_type" name="content">
-    
+                                        <textarea class="form-control article-editor" id="content_type" name="content">
+
                                             </textarea>
                                     </div>
                                 </div>
-    
+
                                 <div class="form-group mb-3 ">
                                     <label class="form-label "> Sort Description</label>
-    
+
                                     <div>
                                         <input type="text" class="form-control"  name="short_desc" value="{{ old('short_desc') }}">
                                     </div>
@@ -75,7 +75,7 @@
                             </select>
 
                             </div>
-                            
+
                         </div>
 
                         <div class="form-group mb-3 ">
@@ -93,8 +93,8 @@
 
                                 </div>
                             </div>
-                            
-                            
+
+
                         </div>
 
                         <div class="form-group mb-3 row">
@@ -104,14 +104,14 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        
+
                                         @include('river::admin.components.image-picker', ['name' => 'image', 'default' =>
                                         river_settings('image')])
                                     </div>
 
                                 </div>
                             </div>
-                            
+
                         </div>
 
                         <div class="form-group mb-3 ">
@@ -127,9 +127,9 @@
                     </div>
 
                 </form>
-                    
+
                 </div>
-            
+
         </div>
     </div>
 </div>
@@ -196,7 +196,7 @@
                                     <option value="{{$a->id}}">{{ $a->name }}</option>
                                     @endforeach
                                 </select>
-                                
+
                             </div>
 
 
@@ -228,15 +228,24 @@
 <script src="/river/admin/codemirror-5.65.2/mode/clike/clike.js"></script>
 <script src="/river/admin/codemirror-5.65.2/mode/php/php.js"></script>
 <script>
-    tinymce.init({
-            selector: '#content_type',
-        })
-        $(function() {
-            $('#contentType').change(function(){
-                $('.content').hide();
-                $('#' + $(this).val()).show();
-            });
-        });
+
+    $('.article-editor').ckeditor({
+        height: 400,
+        filebrowserImageBrowseUrl: window.hp_route_prefix + '?type=Images',
+        filebrowserImageUploadUrl: window.hp_route_prefix + '/upload?type=Images&_token={{csrf_token()}}',
+        filebrowserBrowseUrl: window.hp_route_prefix + '?type=Files',
+        filebrowserUploadUrl: window.hp_route_prefix + '/upload?type=Files&_token={{csrf_token()}}',
+    });
+
+    // tinymce.init({
+    //         selector: '#content_type',
+    //     })
+    //     $(function() {
+    //         $('#contentType').change(function(){
+    //             $('.content').hide();
+    //             $('#' + $(this).val()).show();
+    //         });
+    //     });
 
         $('.lfm-picker').filemanager('image', {prefix: window.hp_route_prefix});
 </script>

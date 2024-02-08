@@ -21,6 +21,7 @@
     <link href="/river/admin/assets/css/demo.min.css" rel="stylesheet"/>
     <link href="/river/admin/assets/css/toastr.min.css" rel="stylesheet"/>
 
+
     {{--for laravel-file-manager--}}
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">--}}
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">--}}
@@ -75,6 +76,8 @@
 <script src="/river/admin/assets/js/tabler.min.js" defer></script>
 <script src="/river/admin/assets/js/demo.min.js" defer></script>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.11/ckeditor.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.11/adapters/jquery.js"></script>
 {{--<script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>--}}
 
 <script>
