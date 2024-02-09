@@ -2,6 +2,7 @@
 
 namespace Rashidul\River\ViewComposers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 use Rashidul\River\Constants;
@@ -52,6 +53,7 @@ class AdminSidebarViewComposer
             [
                 'label' => 'Website Settings',
                 'icon' => 'fas fa-tv',
+                'role' => [Constants::ROLE_SITE_ADMIN, Constants::ROLE_WRITER],
                 'children' => [
                     [
                         'label' => 'Sliders',
@@ -106,7 +108,7 @@ class AdminSidebarViewComposer
                         'label' => 'Assets',
                         'route' => 'river.template-assets.index',
                     ],
-                  
+
                 ]
             ],
             [
@@ -207,11 +209,15 @@ class AdminSidebarViewComposer
                 'route' => 'river.file-manager'
             ],
         ];
-        if (RolesCache::isDeveloper()) {
-            $menus = array_merge($menus, $system_menus);
-        }
+        $menus = array_merge($menus, $system_menus);
 
-        $view->with('menus', $menus);
+        /*if (RolesCache::isDeveloper()) {
+            $menus = array_merge($menus, $system_menus);
+        }*/
+        $user = Auth::guard('admins')->user();
+
+        $view->with('menus', $menus)
+            ->with('user_role', $user->role_id);
     }
 
     private function getDataTypeMenus()

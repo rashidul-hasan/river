@@ -25,7 +25,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'river.
 
 Route::group([
     'prefix' => 'admin',
-    'middleware' => ['web', 'river.auth:admins', 'river.checkrole'],
+    'middleware' => ['web', 'river.auth:admins', /*'river.checkrole'*/],
     'namespace' => 'Rashidul\River\Http\Controllers',
     'as' => 'river.'
 ], function () {

@@ -5,7 +5,7 @@
         </button>
         <h1 class="navbar-brand navbar-brand-autodark">
             <a href="{{ route('river.admin.dashboard') }}">
-                <img src="{{river_settings('header_logo')}}" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+                <img src="{{river_settings('header_logo')}}" width="110" height="32" alt="{{river_settings('name')}}" class="navbar-brand-image">
             </a>
         </h1>
 

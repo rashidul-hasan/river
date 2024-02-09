@@ -22,6 +22,8 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id')->nullable();
             $table->string('author_id')->nullable();
             $table->string('image')->nullable();
+            $table->string('meta_desc')->nullable();
+            $table->string('meta_keywords')->nullable();
             $table->boolean('is_published')->default(0)->nullable();
             $table->timestamps();
         });

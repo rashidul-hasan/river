@@ -15,10 +15,12 @@ class PageController extends Controller
             ->first();
 
         if ($page) {
+            $meta_desc = $page->meta_description;
             if ($page->content_type === RiverPage::CONTENT_TYPE_HTML) {
                 return view('_cache.page', [
                     'content' => $page->content,
-                    'title' => $page->title
+                    'title' => $page->title,
+                    'meta_desc' => $meta_desc,
                 ]);
             }
 
@@ -26,7 +28,8 @@ class PageController extends Controller
                 $renderedHtml = Blade::compileString($page->content);
                 return view('_cache.page', [
                     'content' => $renderedHtml,
-                    'title' => $page->title
+                    'title' => $page->title,
+                    'meta_desc' => $meta_desc,
                 ]);
             }
         }

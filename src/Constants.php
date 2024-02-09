@@ -8,6 +8,9 @@ class Constants
     const AUTH_GUARD_ADMINS = 'admins';
     const AUTH_GUARD_CUSTOMERS = 'customers';
 
+    const ROLE_DEVELOPER = '1';
+    const ROLE_SITE_ADMIN = '2';
+    const ROLE_WRITER = '3';
 
     const CACHE_KEY_DATATYPES = '_river_datatypes';
 
