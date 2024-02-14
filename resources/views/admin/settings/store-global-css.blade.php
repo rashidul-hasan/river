@@ -128,11 +128,6 @@
 </script>
 
 
-
-
-
-
-
     <script>
         $(document).ready(function () {
             $('.dropify').dropify();

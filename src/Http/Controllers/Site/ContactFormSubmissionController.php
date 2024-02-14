@@ -19,8 +19,6 @@ class ContactFormSubmissionController
     {
         $value = ContactFormField::with('contactform')->get();
 
-
-
         $data = [
             'title' => 'ContactFormField',
         ];
