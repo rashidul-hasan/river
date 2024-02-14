@@ -18,15 +18,9 @@ class PageController extends Controller
             $meta_desc = $page->meta_description;
             $content = $page->content;
             if ($page->content_type === RiverPage::CONTENT_TYPE_BLADE) {
-                $renderedHtml = Blade::compileString($page->content);
-                // Create a function with the Blade template and data
-                $renderTemplate = function ($template, $data) {
-                    extract($data);
-                    eval(' ?>' . $template . '<?php ');
-                };
-                ob_start();
-                $renderTemplate($renderedHtml, []);
-                $content = ob_get_clean();
+                //if type is blade, there should be a file generated
+                //TODO create the file here is not present
+                $content = view('_cache.pages.'.$page->slug)->render();
             }
 
             return view('_cache.page', [

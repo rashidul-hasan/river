@@ -15,6 +15,9 @@ class Constants
     const CACHE_KEY_DATATYPES = '_river_datatypes';
 
 
+    // store contents of RiverPage model, with content type blade
+    const PAGES_VIEW_DIR = 'resources/views/_cache/pages';
+
     //field types
     const FIELD_TYPE_TEXT = 'text';
     const FIELD_TYPE_TEXTAREA = 'textarea';

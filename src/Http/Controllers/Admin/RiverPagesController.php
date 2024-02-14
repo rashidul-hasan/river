@@ -3,18 +3,10 @@
 namespace Rashidul\River\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
-use Rashidul\River\Models\DataType;
+use Rashidul\River\Constants;
 use Rashidul\River\Models\RiverPage;
-use Rashidul\River\Models\Role;
-use Rashidul\River\Models\RolePermission;
-use Rashidul\River\Utility\RolesCache;
 use Session;
-use Termwind\Components\Dd;
 
 class RiverPagesController extends Controller
 {
@@ -81,6 +73,18 @@ class RiverPagesController extends Controller
         $page->is_published = isset($request->is_published) ? true : false;
         $page->save();
 
+        //if the page is a blade type, create a blade file inside
+        // the resources/views/_cache/pages
+        // directory
+        if ($page->content_type === RiverPage::CONTENT_TYPE_BLADE) {
+            $dir = base_path(Constants::PAGES_VIEW_DIR);
+            if (!file_exists($dir)) {
+                mkdir($dir, 0777, true); //TODO refcator to proper permissions
+            }
+            $filename = Constants::PAGES_VIEW_DIR . "/$page->slug.blade.php";
+            file_put_contents(base_path($filename), $page->content);
+        }
+
         return redirect()->route('river.pages.index')->with('success', 'Create Successfully!');
     }
 
@@ -130,6 +134,18 @@ class RiverPagesController extends Controller
         $page->content = isset($request->page_content1) ? $request->page_content1 : $request->page_content2;
         $page->is_published = isset($request->is_published) ? true : false;
         $page->save();
+
+        //if the page is a blade type, create a blade file inside
+        // the resources/views/_cache/pages
+        // directory
+        if ($page->content_type == RiverPage::CONTENT_TYPE_BLADE) {
+            $dir = base_path(Constants::PAGES_VIEW_DIR);
+            if (!file_exists($dir)) {
+                mkdir($dir, 0777, true); //TODO refcator to proper permissions
+            }
+            $filename = Constants::PAGES_VIEW_DIR . "/$page->slug.blade.php";
+            file_put_contents(base_path($filename), $page->content);
+        }
 
         return redirect()->route('river.pages.index')->with('success', 'Create Successfully!');
     }
