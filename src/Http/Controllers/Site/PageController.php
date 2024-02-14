@@ -15,20 +15,28 @@ class PageController extends Controller
             ->first();
 
         if ($page) {
-            if ($page->content_type === RiverPage::CONTENT_TYPE_HTML) {
-                return view('_cache.page', [
-                    'content' => $page->content,
-                    'title' => $page->title
-                ]);
-            }
-
+            $meta_desc = $page->meta_description;
+            $content = $page->content;
             if ($page->content_type === RiverPage::CONTENT_TYPE_BLADE) {
                 $renderedHtml = Blade::compileString($page->content);
-                return view('_cache.page', [
-                    'content' => $renderedHtml,
-                    'title' => $page->title
-                ]);
+                // Create a function with the Blade template and data
+                $renderTemplate = function ($template, $data) {
+                    extract($data);
+                    eval(' ?>' . $template . '<?php ');
+                };
+                ob_start();
+                $renderTemplate($renderedHtml, []);
+                $content = ob_get_clean();
             }
+
+            return view('_cache.page', [
+                'content' => $content,
+                'title' => $page->title,
+                'meta_desc' => $meta_desc,
+                'header_code' => $page->header_code,
+                'footer_code' => $page->footer_code,
+                'header_image' => $page->header_image
+            ]);
         }
 
         abort(404);
