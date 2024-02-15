@@ -112,6 +112,10 @@ class DataEntryController
             ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
         ];
 
+        $default_value = DataEntry::find($id);
+
+        
+
         $data = [
             'title' => 'Edit ' . ($d->singular ? $d->singular : $d->name),
             '_top_buttons' => $buttons,
@@ -119,7 +123,8 @@ class DataEntryController
             'fields' => $f,
             'action' => route('river.data-entries.update', ['slug' => $slug, 'id' => $id]),
             'method' => 'PUT',
-            'data' => $entryAsArray
+            'data' => $entryAsArray,
+            'default_value' => $default_value
         ];
 
         return view('river::admin.dataentries.create', $data);
@@ -127,6 +132,8 @@ class DataEntryController
 
     public function store(Request $request, $slug, DataTypeService $dataTypeService)
     {
+
+
         if (!RolesCache::hasPermission(
             $slug . '.create',
             RolePermission::TYPE_CUSTOMTYPE
@@ -140,6 +147,10 @@ class DataEntryController
         $entry = DataEntry::create([
             'data_type_id' => $d->id,
             'data_type_slug' => $slug,
+            'title' => $request->title,
+            'slug' => $request->slug,
+            'content' => $request->content,
+            'order' => $request->order,
         ]);
 
         $dataTypeService->insertMeta($request, $slug, $entry->id);
