@@ -26,8 +26,8 @@
                         <li class="nav-item" role="presentation">
                             <a href="{{ route('river.blog-category.index') }}" class="btn btn-primary" >back</a>
                         </li>
-                       
-                    </ul> 
+
+                    </ul>
                     {{-- <ul class="nav nav-tabs" data-bs-toggle="tabs" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a href="#general" class="nav-link active" data-bs-toggle="tab" aria-selected="true" role="tab" tabindex="-1">General</a>
@@ -53,17 +53,17 @@
                                         <label class="form-label required">Parent</label>
                                         <div>
                                             <div>
-                                                <select class="form-select" name="parent_id" aria-label="Default select example">
+                                                <select class="form-select js-example-basic-single" name="parent_id" aria-label="Default select example">
                                                       <option  value="0">select Parent Category</option>
                                                     @foreach($all as $a)
                                                     <option value="{{$a->id}}" @if($type->parent_id == $a->id )selected  @endif > {{ $a->name }} </option>
-                                                    @endforeach    
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
 
-                                    
+
 
                                     <div class="form-group mb-3 ">
                                         <label class="form-check">
@@ -71,14 +71,14 @@
                                             <span class="form-check-label">Is Active</span>
                                         </label>
                                     </div>
-    
+
                                     <div class="form-footer">
                                         <button type="submit" class="btn btn-success">Save</button>
                                     </div>
                                 </form>
 
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -98,6 +98,10 @@
     <script src="/river/admin/codemirror-5.65.2/mode/clike/clike.js"></script>
     <script src="/river/admin/codemirror-5.65.2/mode/php/php.js"></script>
     <script>
+         $(document).ready(function() {
+                $('.js-example-basic-single').select2();
+            });
+            
         var code = CodeMirror.fromTextArea(document.getElementById("code"), {
             lineNumbers: true,
             mode: "php",

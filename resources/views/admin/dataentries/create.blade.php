@@ -11,7 +11,7 @@
         <div class="row row-cards">
             <div class=" row ">
                 <div class="col-md-8 ">
-                    <div class="card">
+                    <div class="card mb-2">
                         <div class="card-body ">
                             <form class="" action="{{$action}}" method="POST">
                                 @method($method)
@@ -42,41 +42,106 @@
                         </div>
                     </div>
 
+
+
+                        <div class="card">
+                          <div class="card-header">
+                          </div>
+                          <div class="card-body">
+                            <div class="form-group mb-3 ">
+                                <label class="form-label "> Meta Title</label>
+                                <div>
+                                    <input type="text" class="form-control" name="meta_title" value="{{ $default_value? $default_value->meta_title : ''  }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3 ">
+                                <label class="form-label "> Meta Description</label>
+                                <div>
+                                    <input type="text" class="form-control" name="meta_description" value="{{ $default_value? $default_value->meta_description : ''  }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="form-label ">Meta  Image <small class="text-warning"></small></label>
+                                @include('river::admin.components.image-picker', ['name' => 'meta_image', 'default' => $default_value? $default_value->meta_image : river_settings('image') ])
+                            </div>
+
+
+                          </div>
+                        </div>
+
+
                 </div>
 
-                <div class="col-md-4 ">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="form-group mb-3 row">
-                                <div class=" m-2">
-                                    <div class="card-header">
-                                        <label class="form-label ">Image <small class="text-warning"></small></label>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-group">
 
-                                            @include('river::admin.components.image-picker', ['name' => 'image', 'default' => $default_value? $default_value->image : river_settings('image') ])
+
+                <div class="col-md-4 ">
+
+                    <div class="row mb-2">
+
+                        <div class="card">
+                            <div class="card-header">
+                                <label class="form-label ">Publish <small class="text-warning"></small></label>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-check">
+                                    <input type="checkbox" name="is_published" value="1"  class="form-check-input" id="flexCheckDefault"
+                                    @if($default_value)
+
+                                        @if($default_value->is_published==1)
+                                         checked
+                                        @endif
+
+                                    @endif
+                                    />
+                                    <label class="form-check-label" for="flexCheckDefault"> Is published</label>
+                                  </div>
+                            </div>
+                            <div class="card-footer text-end">
+                                <button type="submit" class="btn btn-primary"> Publish </button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="card">
+                            <div class="">
+                                <div class="form-group mb-3 row">
+                                    <div class=" m-2">
+                                        <div class="card-header">
+                                            <label class="form-label ">Image <small class="text-warning"></small></label>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+
+                                                @include('river::admin.components.image-picker', ['name' => 'image', 'default' => $default_value? $default_value->image : river_settings('image') ])
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3 row ">
+                                    <div class="m-2">
+                                        <label class="form-label "> Sort Order</label>
+
+                                        <div>
+                                            <input type="number" class="form-control"  name="order" value="{{ $default_value? $default_value->order : '' }}">
                                         </div>
 
                                     </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group mb-3 row ">
-                                <div class="m-2">
-                                    <label class="form-label "> Sort Order</label>
-
-                                    <div>
-                                        <input type="number" class="form-control"  name="order" value="{{ $default_value? $default_value->order : '' }}">
-                                    </div>
 
                                 </div>
 
                             </div>
-
                         </div>
+
                     </div>
+
 
                 </div>
 
@@ -266,9 +331,9 @@
 
                                 @endforeach
                             </div>
-                            <div class="card-footer text-end">
+                            {{-- <div class="card-footer text-end">
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
+                            </div> --}}
                         </form>
                     </div>
 

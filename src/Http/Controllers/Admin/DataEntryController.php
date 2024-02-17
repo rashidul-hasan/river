@@ -135,12 +135,17 @@ class DataEntryController
     public function store(Request $request, $slug, DataTypeService $dataTypeService)
     {
 
-
         if (!RolesCache::hasPermission(
             $slug . '.create',
             RolePermission::TYPE_CUSTOMTYPE
         )) {
             abort(503);
+        }
+
+        if($request->has('is_published')){
+            $is_published = 1;
+        } else{
+            $is_published = 0;
         }
 
         //TODO validation
@@ -151,7 +156,11 @@ class DataEntryController
             'data_type_slug' => $slug,
             'title' => $request->title,
             'slug' => $request->slug,
+            'meta_title' => $request->meta_title,
+            'meta_description' => $request->meta_description,
+            'meta_image' => $request->meta_image,
             'image' => $request->image,
+            'is_published' => $is_published,
             'content' => $request->content,
             'order' => $request->order,
         ]);
@@ -167,11 +176,18 @@ class DataEntryController
         $slug,
         $id
     ) {
+
         if (!RolesCache::hasPermission(
             $slug . '.update',
             RolePermission::TYPE_CUSTOMTYPE
         )) {
             abort(503);
+        }
+
+        if($request->has('is_published')){
+            $is_published = 1;
+        } else{
+            $is_published = 0;
         }
 
         //TODO handle validation
@@ -180,8 +196,12 @@ class DataEntryController
         $data_type = DataEntry::find($id);
         $data_type->title = $request->title;
         $data_type->content = $request->content;
+        $data_type->is_published = $is_published;
+        $data_type->meta_title = $request->meta_title;
         $data_type->slug = $request->slug;
+        $data_type->meta_description =$request->meta_description;
         $data_type->image = $request->image;
+        $data_type->meta_image = $request->meta_image;
         $data_type->order = $request->order;
         $data_type->save();
 
