@@ -68,6 +68,7 @@ class DataEntryController
 
         $f = $dataTypeService->getFields($slug);
         $d = DataType::slug($slug)->first();
+        $default_value = '';
 
         $buttons = [
             ['Add', route('river.data-entries.create', $slug), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
@@ -80,6 +81,7 @@ class DataEntryController
             'method' => 'POST',
             'data' => [],
             'type' => $d,
+            'default_value' => $default_value
         ];
 
         return view('river::admin.dataentries.create', $data);
@@ -114,7 +116,7 @@ class DataEntryController
 
         $default_value = DataEntry::find($id);
 
-        
+
 
         $data = [
             'title' => 'Edit ' . ($d->singular ? $d->singular : $d->name),
@@ -149,6 +151,7 @@ class DataEntryController
             'data_type_slug' => $slug,
             'title' => $request->title,
             'slug' => $request->slug,
+            'image' => $request->image,
             'content' => $request->content,
             'order' => $request->order,
         ]);
@@ -173,6 +176,16 @@ class DataEntryController
 
         //TODO handle validation
         $input = $request->except(['_token', '_method']);
+
+        $data_type = DataEntry::find($id);
+        $data_type->title = $request->title;
+        $data_type->content = $request->content;
+        $data_type->slug = $request->slug;
+        $data_type->image = $request->image;
+        $data_type->order = $request->order;
+        $data_type->save();
+
+
 
 //        dd($input);
         $dataEntryService->update($slug, $id, $input);

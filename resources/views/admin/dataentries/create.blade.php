@@ -20,14 +20,14 @@
                                 <div class="form-group mb-3 ">
                                     <label class="form-label "> Title</label>
                                     <div>
-                                        <input type="text" class="form-control generate-slug" name="title" data-slug-field="slug" value="{{ old('title') }}">
+                                        <input type="text" class="form-control generate-slug" name="title" data-slug-field="slug" value="{{ $default_value?$default_value->title : '' }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group mb-3 ">
                                     <label class="form-label "> Slug</label>
                                     <div>
-                                        <input type="text" class="form-control" name="slug" value="{{ old('slug') }}">
+                                        <input type="text" class="form-control" name="slug" value="{{ $default_value? $default_value->slug : ''  }}">
                                     </div>
                                 </div>
 
@@ -35,8 +35,8 @@
                                     <label class="form-label "> Content</label>
                                     <div>
                                         <textarea class="form-control" id="content_type" name="content">
-
-                                            </textarea>
+                                            {{ $default_value? $default_value->content : ''  }}
+                                        </textarea>
                                     </div>
                                 </div>
                         </div>
@@ -55,8 +55,7 @@
                                     <div class="card-body">
                                         <div class="form-group">
 
-                                            @include('river::admin.components.image-picker', ['name' => 'image', 'default' =>
-                                            river_settings('image')])
+                                            @include('river::admin.components.image-picker', ['name' => 'image', 'default' => $default_value? $default_value->image : river_settings('image') ])
                                         </div>
 
                                     </div>
@@ -69,7 +68,7 @@
                                     <label class="form-label "> Sort Order</label>
 
                                     <div>
-                                        <input type="number" class="form-control"  name="order" value="{{ old('order') }}">
+                                        <input type="number" class="form-control"  name="order" value="{{ $default_value? $default_value->order : '' }}">
                                     </div>
 
                                 </div>
