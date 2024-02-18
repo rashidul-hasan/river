@@ -30,22 +30,22 @@
                                        <input type="text" class="form-control"  name="name" value="{{ old('name') }}">
                                    </div>
                                </div>
-                               
+
 
                             <div class="form-group mb-3 ">
                                 <label class="form-label required">Parent</label>
                                 <div>
-                                    <select class="form-select" name="parent_id" aria-label="Default select example">
+                                    <select class="form-select js-example-basic-single" name="parent_id" aria-label="Default select example">
                                         <option selected value="0">select Parent Category</option>
                                         @foreach($all as $a)
                                         <option value="{{$a->id}}">{{ $a->name }}</option>
-                                        @endforeach    
+                                        @endforeach
                                     </select>
                                 </div>
-                                
+
                             </div>
-                               
-                               
+
+
                                <div class="form-group mb-3 ">
                                    <label class="form-check">
                                        <input class="form-check-input" type="checkbox" name="is_active" value="1">
@@ -74,6 +74,10 @@
     <script src="/river/admin/codemirror-5.65.2/mode/clike/clike.js"></script>
     <script src="/river/admin/codemirror-5.65.2/mode/php/php.js"></script>
     <script>
+         $(document).ready(function() {
+                $('.js-example-basic-single').select2();
+            });
+            
         var code = CodeMirror.fromTextArea(document.getElementById("code"), {
             lineNumbers: true,
             mode: "php",

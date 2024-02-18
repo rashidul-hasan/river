@@ -17,12 +17,16 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('data_type_id');
             $table->string('data_type_slug');
+
             $table->string('title')->nullable();
-            $table->string('name')->nullable();
-            $table->text('description')->nullable();
+            $table->string('slug')->nullable();
             $table->text('content')->nullable();
-            $table->string('image')->nullable();
-            $table->integer('order')->nullable(); // default field, this will be used to order when fetching
+            $table->string('featured_image')->nullable();
+            $table->boolean('is_published')->default(0);
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->string('meta_image')->nullable();
+            $table->integer('order')->default(1); // default field, this will be used to order when fetching
             $table->timestamps();
         });
     }

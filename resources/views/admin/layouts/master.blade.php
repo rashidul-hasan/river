@@ -21,6 +21,8 @@
     <link href="/river/admin/assets/css/demo.min.css" rel="stylesheet"/>
     <link href="/river/admin/assets/css/toastr.min.css" rel="stylesheet"/>
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 
     {{--for laravel-file-manager--}}
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">--}}
@@ -72,6 +74,8 @@
 <script src="/river/admin/summernote-0.8.18-dist/summernote-bs5.min.js"></script>
 <script src="/river/admin/dynamic-form.js" defer></script>
 <script src="https://cdn.tiny.cloud/1/49zw3h254k19bwnkh8tl02reg0pb5t75ndy9nm01w6afbql3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <!-- Tabler Core -->
 <script src="/river/admin/assets/js/tabler.min.js" defer></script>
 <script src="/river/admin/assets/js/demo.min.js" defer></script>

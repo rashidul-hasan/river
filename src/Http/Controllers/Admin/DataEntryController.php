@@ -68,6 +68,7 @@ class DataEntryController
 
         $f = $dataTypeService->getFields($slug);
         $d = DataType::slug($slug)->first();
+        $default_value = '';
 
         $buttons = [
             ['Add', route('river.data-entries.create', $slug), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
@@ -80,6 +81,7 @@ class DataEntryController
             'method' => 'POST',
             'data' => [],
             'type' => $d,
+            'default_value' => $default_value
         ];
 
         return view('river::admin.dataentries.create', $data);
@@ -112,6 +114,10 @@ class DataEntryController
             ['Add', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
         ];
 
+        $default_value = DataEntry::find($id);
+
+
+
         $data = [
             'title' => 'Edit ' . ($d->singular ? $d->singular : $d->name),
             '_top_buttons' => $buttons,
@@ -119,7 +125,8 @@ class DataEntryController
             'fields' => $f,
             'action' => route('river.data-entries.update', ['slug' => $slug, 'id' => $id]),
             'method' => 'PUT',
-            'data' => $entryAsArray
+            'data' => $entryAsArray,
+            'default_value' => $default_value
         ];
 
         return view('river::admin.dataentries.create', $data);
@@ -127,11 +134,18 @@ class DataEntryController
 
     public function store(Request $request, $slug, DataTypeService $dataTypeService)
     {
+
         if (!RolesCache::hasPermission(
             $slug . '.create',
             RolePermission::TYPE_CUSTOMTYPE
         )) {
             abort(503);
+        }
+
+        if($request->has('is_published')){
+            $is_published = 1;
+        } else{
+            $is_published = 0;
         }
 
         //TODO validation
@@ -140,6 +154,15 @@ class DataEntryController
         $entry = DataEntry::create([
             'data_type_id' => $d->id,
             'data_type_slug' => $slug,
+            'title' => $request->title,
+            'slug' => $request->slug,
+            'meta_title' => $request->meta_title,
+            'meta_description' => $request->meta_description,
+            'meta_image' => $request->meta_image,
+            'featured_image' => $request->featured_image,
+            'is_published' => $is_published,
+            'content' => $request->content,
+            'order' => $request->order,
         ]);
 
         $dataTypeService->insertMeta($request, $slug, $entry->id);
@@ -153,6 +176,7 @@ class DataEntryController
         $slug,
         $id
     ) {
+
         if (!RolesCache::hasPermission(
             $slug . '.update',
             RolePermission::TYPE_CUSTOMTYPE
@@ -160,8 +184,28 @@ class DataEntryController
             abort(503);
         }
 
+        if($request->has('is_published')){
+            $is_published = 1;
+        } else{
+            $is_published = 0;
+        }
+
         //TODO handle validation
         $input = $request->except(['_token', '_method']);
+
+        $data_type = DataEntry::find($id);
+        $data_type->title = $request->title;
+        $data_type->content = $request->content;
+        $data_type->is_published = $is_published;
+        $data_type->meta_title = $request->meta_title;
+        $data_type->slug = $request->slug;
+        $data_type->meta_description =$request->meta_description;
+        $data_type->featured_image = $request->featured_image;
+        $data_type->meta_image = $request->meta_image;
+        $data_type->order = $request->order;
+        $data_type->save();
+
+
 
 //        dd($input);
         $dataEntryService->update($slug, $id, $input);

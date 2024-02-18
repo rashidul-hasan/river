@@ -67,7 +67,7 @@
                                 <label class="form-label">Category</label>
                             </div>
                             <div class="card-body">
-                                <select class="form-select" name="category_id" aria-label="Default select example">
+                                <select class="form-select js-example-basic-single" name="category_id" aria-label="Default select example">
                                 <option selected value="0">Select Category</option>
                                 @foreach($all_cat as $a)
                                 <option value="{{$a->id}}">{{ $a->name }}</option>
@@ -85,7 +85,7 @@
 
                                 </div>
                                 <div class="card-body">
-                                    <select class="form-select" name="tags[]" multiple>
+                                    <select class="form-select js-example-basic-multiple" name="tags[]" multiple>
                                         @foreach($tags as $a)
                                         <option value="{{$a->id}}">{{ $a->name }}</option>
                                         @endforeach
@@ -236,6 +236,24 @@
         filebrowserBrowseUrl: window.hp_route_prefix + '?type=Files',
         filebrowserUploadUrl: window.hp_route_prefix + '/upload?type=Files&_token={{csrf_token()}}',
     });
+
+    // tinymce.init({
+    //         selector: '#content_type',
+    //     })
+    //     $(function() {
+    //         $('#contentType').change(function(){
+    //             $('.content').hide();
+    //             $('#' + $(this).val()).show();
+    //         });
+    //     });
+        // select2
+            $(document).ready(function() {
+                $('.js-example-basic-single').select2();
+            });
+
+            $(document).ready(function() {
+                $('.js-example-basic-multiple').select2();
+            });
 
     // tinymce.init({
     //         selector: '#content_type',

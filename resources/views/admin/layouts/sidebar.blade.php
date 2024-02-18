@@ -31,7 +31,7 @@
             <ul class="navbar-nav pt-lg-3">
 
                 @foreach($menus as $menu)
-                    <li class="nav-item {{array_key_exists('children', $menu) ? 'dropdown' : ''}}">
+                    <li @class(["nav-item","dropdown active"=>$menu['is_active'] ?? false]) >
                         <a class="nav-link {{array_key_exists('children', $menu) ? ' dropdown-toggle' : ''}}"
                            href="{{array_key_exists('route', $menu) ? route($menu['route']) : 'javascript:void(0)'}}"
                            data-bs-toggle="{{array_key_exists('children', $menu) ? 'dropdown' : ''}}"
@@ -42,11 +42,11 @@
                             <span class="nav-link-title">{{$menu['label']}}</span>
                         </a>
                         @if(array_key_exists('children', $menu))
-                            <div class="dropdown-menu">
+                            <div  @class(["dropdown-menu","show"=>$menu['is_active'] ?? false])>
                                 <div class="dropdown-menu-columns">
                                     <div class="dropdown-menu-column">
                                         @foreach($menu['children'] as $child)
-                                            <a class="dropdown-item" href="{{ array_key_exists('route', $child) ? route($child['route']) : $child['url'] }}">{{$child['label']}}</a>
+                                            <a  @class(["dropdown-item","active"=>$child['is_active'] ?? false]) href="{{ array_key_exists('route', $child) ? route($child['route']) : $child['url'] }}">{{$child['label']}}</a>
                                         @endforeach
                                     </div>
                                 </div>
