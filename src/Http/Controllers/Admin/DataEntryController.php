@@ -159,7 +159,7 @@ class DataEntryController
             'meta_title' => $request->meta_title,
             'meta_description' => $request->meta_description,
             'meta_image' => $request->meta_image,
-            'image' => $request->image,
+            'featured_image' => $request->featured_image,
             'is_published' => $is_published,
             'content' => $request->content,
             'order' => $request->order,
@@ -200,7 +200,7 @@ class DataEntryController
         $data_type->meta_title = $request->meta_title;
         $data_type->slug = $request->slug;
         $data_type->meta_description =$request->meta_description;
-        $data_type->image = $request->image;
+        $data_type->featured_image = $request->featured_image;
         $data_type->meta_image = $request->meta_image;
         $data_type->order = $request->order;
         $data_type->save();

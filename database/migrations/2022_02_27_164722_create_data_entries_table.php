@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
             $table->text('content')->nullable();
-            $table->string('image')->nullable();
+            $table->string('featured_image')->nullable();
             $table->boolean('is_published')->default(0);
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();

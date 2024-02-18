@@ -46,6 +46,7 @@
 
                         <div class="card">
                           <div class="card-header">
+                            <h3> SEO</h3>
                           </div>
                           <div class="card-body">
                             <div class="form-group mb-3 ">
@@ -100,7 +101,7 @@
                                   </div>
                             </div>
                             <div class="card-footer text-end">
-                                <button type="submit" class="btn btn-primary"> Publish </button>
+                                <button type="submit" class="btn btn-primary"> Save </button>
                             </div>
                         </div>
 
@@ -109,7 +110,7 @@
 
                     <div class="row">
                         <div class="card">
-                            <div class="">
+                            <div class="card-body">
                                 <div class="form-group mb-3 row">
                                     <div class=" m-2">
                                         <div class="card-header">
@@ -118,7 +119,7 @@
                                         <div class="card-body">
                                             <div class="form-group">
 
-                                                @include('river::admin.components.image-picker', ['name' => 'image', 'default' => $default_value? $default_value->image : river_settings('image') ])
+                                                @include('river::admin.components.image-picker', ['name' => 'featured_image', 'default' => $default_value? $default_value->featured_image : river_settings('image') ])
                                             </div>
 
                                         </div>
