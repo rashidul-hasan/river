@@ -46,7 +46,7 @@
                                 <div class="form-group mb-3 ">
                                     <label class="form-label required"> Content</label>
                                     <div>
-                                        <textarea class="form-control" id="content_type" name="content"  >
+                                        <textarea class="form-control ckeditor" id="content_type" name="content"  >
                                         {{ $type->content }}
                                         </textarea>
 
@@ -78,7 +78,7 @@
                                     <label class="form-label">Service Category Category</label>
                                 </div>
                                 <div class="card-body">
-                                    <select class="form-select js-example-basic-single" name="category_id" aria-label="Default select example">
+                                    <select class="form-select select2" name="category_id" aria-label="Default select example">
                                         <option value=""  selected >Select category</option>
                                         @foreach($all_cat as $a)
                                         <option value="{{$a->id}}" @if($a->id==$type->category_id) selected  @endif >{{ $a->name }}</option>
@@ -168,9 +168,9 @@
     <script src="/river/admin/codemirror-5.65.2/mode/clike/clike.js"></script>
     <script src="/river/admin/codemirror-5.65.2/mode/php/php.js"></script>
     <script>
-         $(document).ready(function() {
-                $('.js-example-basic-single').select2();
-            });
+        //  $(document).ready(function() {
+        //         $('.js-example-basic-single').select2();
+        //     });
 
         tinymce.init({
             selector: '#content_type',

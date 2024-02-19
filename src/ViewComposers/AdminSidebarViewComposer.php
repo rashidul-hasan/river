@@ -53,70 +53,62 @@ class AdminSidebarViewComposer
             [
                 'label' => 'Website Settings',
                 'icon' => 'fas fa-tv',
+                'is_active' =>
+                    request()->routeIs('river.sliders.*') ||
+                    request()->routeIs('river.banners.*')||
+                    request()->routeIs('river.store.front')||
+                    request()->routeIs('river.store-social-links')||
+                    request()->routeIs('river.store-email-setting')||
+                    request()->routeIs('river.site-backup')||
+                    request()->routeIs('river.code-snippets')||
+                    request()->routeIs('river.store-global-css')||
+                    request()->routeIs('river.store-global-js'),
                 'role' => [Constants::ROLE_SITE_ADMIN, Constants::ROLE_WRITER],
                 'children' => [
                     [
                         'label' => 'Sliders',
                         'route' => 'river.sliders.index',
-
-                        'is_active' =>
-                        request()->routeIs('river.sliders.*'),
+                        'is_active' => request()->routeIs('river.sliders.*'),
                     ],
                     [
                         'label' => 'Banners',
                         'route' => 'river.banners.index',
-
-                        'is_active' =>
-                        request()->routeIs('river.banners.*'),
+                        'is_active' => request()->routeIs('river.banners.*'),
                     ],
                     [
                         'label' => 'Appearance',
                         'route' => 'river.store.front',
-
-                        'is_active' =>
-                        request()->routeIs('river.store.front'),
+                        'is_active' => request()->routeIs('river.store.front'),
                     ],
                     [
                         'label' => 'Social Links',
                         'route' => 'river.store-social-links',
-
-                        'is_active' =>
-                        request()->routeIs('river.store-social-links'),
+                        'is_active' => request()->routeIs('river.store-social-links'),
                     ],
                     [
                         'label' => 'Email settings',
                         'route' => 'river.store-email-setting',
-
-                        'is_active' =>
-                        request()->routeIs('river.store-email-setting'),
+                        'is_active' => request()->routeIs('river.store-email-setting'),
                     ],
                     [
                         'label' => "Backup",
                         'route' => 'river.site-backup',
-
-                        'is_active' =>
-                        request()->routeIs('river.site-backup'),
+                        'is_active' => request()->routeIs('river.site-backup'),
                     ],
                     [
                         'label' => 'Code snippets',
                         'route' => 'river.code-snippets',
-
-                        'is_active' =>
-                        request()->routeIs('river.code-snippets'),
+                        'is_active' => request()->routeIs('river.code-snippets'),
                     ],
                     [
                         'label' => 'Global Css',
                         'route' => 'river.store-global-css',
-
-                        'is_active' =>
-                        request()->routeIs('river.store-global-css'),
+                        'is_active' => request()->routeIs('river.store-global-css'),
                     ],
                     [
                         'label' => 'Global Js',
                         'route' => 'river.store-global-js',
-
-                        'is_active' =>
-                        request()->routeIs('river.store-global-js'),
+                        'is_active' => request()->routeIs('river.store-global-js'),
                     ]
                 ]
             ],
@@ -133,16 +125,12 @@ class AdminSidebarViewComposer
                     [
                         'label' => 'Pages',
                         'route' => 'river.template-pages.index',
-
-                        'is_active' =>
-                        request()->routeIs('river.template-pages.*'),
+                        'is_active' => request()->routeIs('river.template-pages.*'),
                     ],
                     [
                         'label' => 'Assets',
                         'route' => 'river.template-assets.index',
-
-                        'is_active' =>
-                        request()->routeIs('river.template-assets.*'),
+                        'is_active' => request()->routeIs('river.template-assets.*'),
                     ],
 
                 ]
@@ -150,24 +138,19 @@ class AdminSidebarViewComposer
             [
                 'label' => 'Data Types',
                 'icon' => 'fas fa-tv', //feather icon-box
-                'is_active' =>
-                    request()->routeIs('river.datatypes.*'),
+                'is_active' => request()->routeIs('river.datatypes.*'),
                 'children' => [
                     [
                         'label' => 'All types',
                         'route' => 'river.datatypes.index',
-
-                        'is_active' =>
-                        request()->routeIs('river.datatypes.*'),
+                        'is_active' => request()->routeIs('river.datatypes.*'),
                     ]
                 ]
             ],
             [
                 'label' => 'Users',
                 'icon' => 'fas fa-user', //feather icon-box
-                'is_active' =>
-                    request()->routeIs('river.users.*'),
-
+                'is_active' => request()->routeIs('river.users.*'),
                 'route' => 'river.users.index',
             ],
             // [
@@ -178,15 +161,13 @@ class AdminSidebarViewComposer
             [
                 'label' => 'Pages',
                 'icon' => 'fas fa-folder',
-                'is_active' =>
-                    request()->routeIs('rriver.pages.*'),
+                'is_active' => request()->routeIs('river.pages.*'),
                 'route' => 'river.pages.index',
             ],
             [
                 'label' => 'Contact Form',
                 'icon' => 'fas fa-file-contract',
-                'is_active' =>
-                    request()->routeIs('river.river.contact-form.*'),
+                'is_active' => request()->routeIs('river.river.contact-form.*'),
                 'route' => 'river.contact-form.index',
             ],
             // [
@@ -197,22 +178,19 @@ class AdminSidebarViewComposer
             [
                 'label' => 'Newsletter Submissions',
                 'icon' =>  'fa-solid fa-envelope',
-                'is_active' =>
-                    request()->routeIs('river.newslatter-submissions.*'),
+                'is_active' => request()->routeIs('river.newslatter-submissions.*'),
                 'route' => 'river.newslatter-submissions.index'
             ],
             [
                 'label' => 'FAQ',
                 'icon' => 'fas fa-comments',
-                'is_active' =>
-                    request()->routeIs('river.faq.*'),
+                'is_active' => request()->routeIs('river.faq.*'),
                 'route' => 'river.faq.index'
             ],
             [
                 'label' => 'Menu',
                 'icon' => 'fas fa-bars',
-                'is_active' =>
-                    request()->routeIs('river.menu.*'),
+                'is_active' => request()->routeIs('river.menu.*'),
                 'route' => 'river.menu.index'
             ],
             [
@@ -226,32 +204,25 @@ class AdminSidebarViewComposer
                     [
                         'label' => ' All blogs',
                         'route' => 'river.blog.index',
-
-                        'is_active' =>
-                        request()->routeIs('river.blog.*'),
+                        'is_active' => request()->routeIs('river.blog.*'),
                     ],
                     [
                         'label' => 'Categories',
                         'route' => 'river.blog-category.index',
-
-                        'is_active' =>
-                        request()->routeIs('river.blog-category.*'),
+                        'is_active' => request()->routeIs('river.blog-category.*'),
 
                     ],
                     [
                         'label' => 'Tag',
                         'route' => 'river.tag.index',
-
-                        'is_active' =>
-                        request()->routeIs('river.tag.*'),
+                        'is_active' => request()->routeIs('river.tag.*'),
                     ]
                 ]
             ],
             [
                 'label' => 'Testimonial',
                 'icon' => 'fa-solid fa-comment-dots',
-                'is_active' =>
-                    request()->routeIs('river.testimonial.*'),
+                'is_active' => request()->routeIs('river.testimonial.*'),
                 'route' => 'river.testimonial.index'
             ],
             [
@@ -264,29 +235,25 @@ class AdminSidebarViewComposer
                     [
                         'label' => 'All Services',
                         'route' => 'river.service.index',
-                        'is_active' =>
-                        request()->routeIs('river.service.*'),
+                        'is_active' => request()->routeIs('river.service.*'),
                     ],
                     [
                         'label' => 'Service Category',
                         'route' => 'river.service-category.index',
-                        'is_active' =>
-                        request()->routeIs('river.service-category.*'),
+                        'is_active' => request()->routeIs('river.service-category.*'),
                     ]
                 ]
             ],
             [
                 'label' => 'Configuration',
                 'icon' => 'fa-solid fa-comment-dots',
-                'is_active' =>
-                    request()->routeIs('river.configuration'),
+                'is_active' => request()->routeIs('river.configuration'),
                 'route' => 'river.configuration'
             ],
             [
                 'label' => 'File manager',
                 'icon' => 'fa-solid fa-file-lines',
-                'is_active' =>
-                    request()->routeIs('river.file-manager'),
+                'is_active' => request()->routeIs('river.file-manager'),
                 'route' => 'river.file-manager'
             ],
         ];

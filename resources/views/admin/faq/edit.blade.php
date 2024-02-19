@@ -26,10 +26,10 @@
                                     <div class="form-group mb-3 row">
                                         <label class="col-3 col-form-label ">Answer</label>
                                         <div class="col">
-                                            <textarea class="form-control" id="answer" name="answer"  >
+                                            <textarea class="form-control ckeditor" id="answer" name="answer"  >
                                                 {{ $type->answer }}
                                             </textarea>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="form-group mb-3 row">
@@ -51,7 +51,7 @@
                                     <div class="form-group mb-3 row">
                                         <label class="col-3 col-form-label ">Is Active</label>
                                         <div class="col d-flex ">
-                                           
+
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" value="1" name="is_active" @if($type->is_active==1)  checked  @endif >
                                                 <label class="form-check-label" for="flexRadioDefault1">
@@ -66,7 +66,7 @@
                                               </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-footer">
                                         <button type="submit" class="btn btn-primary">Update</button>
                                     </div>

@@ -105,6 +105,25 @@
         $("#" + ImgPreview).attr("src", "");
         $('#' + ImgPreview).closest('.pip').addClass('d-none');
     }
+
+    // article-editor
+    $('.ckeditor').ckeditor({
+        height: 400,
+        filebrowserImageBrowseUrl: window.hp_route_prefix + '?type=Images',
+        filebrowserImageUploadUrl: window.hp_route_prefix + '/upload?type=Images&_token={{csrf_token()}}',
+        filebrowserBrowseUrl: window.hp_route_prefix + '?type=Files',
+        filebrowserUploadUrl: window.hp_route_prefix + '/upload?type=Files&_token={{csrf_token()}}',
+    });
+
+    // select2
+    $(document).ready(function() {
+            $('.select2').select2();
+    });
+
+    $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+    });
+
 </script>
 <script>
     toastr.options = {
