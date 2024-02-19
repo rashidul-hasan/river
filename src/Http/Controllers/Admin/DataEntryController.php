@@ -35,6 +35,14 @@ class DataEntryController
         foreach ($fields as $id => $item) {
             $single = [];
             $single['id'] = $id;
+            $entry = DataEntry::find($id);
+            if ($entry) {
+                $single['title'] = $entry->title;
+//                $single['slug'] = $entry->slug;
+//                $single['content'] = $entry->content;
+//                $single['featured_image'] = $entry->featured_image;
+//                $single['order'] = $entry->order;
+            }
             foreach ($item as $field_val) {
                 $single[$field_val->data_field_slug] = $field_val->value;
             }
@@ -45,6 +53,12 @@ class DataEntryController
             ['Add', route('river.data-entries.create', $slug), 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
         ];
         $headers = $dataTypeService->getIndexFields($slug);
+        $headers = array_merge([
+            'title' => [
+                'type' => 'text',
+                'label' => 'Title',
+            ]
+        ], $headers);
         $data = [
             'title' => $d->plural ? $d->plural : $d->name,
             'data' => $all_data,
