@@ -196,6 +196,14 @@ if (! function_exists('river_find')) {
         foreach ($fields as $id => $item) {
             $single = [];
             $single['id'] = $id;
+            $entry = \Rashidul\River\Models\DataEntry::find($id);
+            if ($entry) {
+                $single['title'] = $entry->title;
+                $single['slug'] = $entry->slug;
+                $single['content'] = $entry->content;
+                $single['featured_image'] = $entry->featured_image;
+                $single['order'] = $entry->order;
+            }
             foreach ($item as $field_val) {
                 $single[$field_val->data_field_slug] = $field_val->value;
             }
