@@ -15,27 +15,29 @@
                             <thead>
                                 <tr>
                                     <td>SL. </td>
-                                    <td> name</td>
+                                    <td> Name</td>
+                                    <td>Slug</td>
                                     <td> Parent </td>
                                     <td> Is Active</td>
                                     <td> Action</td>
                                 </tr>
                             </thead>
                             <tbody>
-                             @foreach($all as $key=>$a) 
+                             @foreach($all as $key=>$a)
                             <tr>
                                 <td>{{ ++$key }} </td>
                                 <td>{{ $a->name }} </td>
+                                <td>{{ $a->slug }} </td>
                                 <td>
                                     @if($a->parent_id==0)
                                     {{ '' }}
-                                    @else 
+                                    @else
                                         {{ $a->parent_id }}
                                     @endif
                                 </td>
-                                
+
                                 <td>{{ ($a->is_active==1)?'Active':'Inactive' }} </td>
-                                
+
                                 <td>
                                     <div class="d-flex justify-content-end">
                                         <div>
@@ -43,14 +45,14 @@
                                                 href="{{ route('river.blog-category.edit',$a->id) }}"> Edit</a>
                                         </div>
                                         <div class="mx-1">
-                                            
+
                                             <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.blog-category.destroy',$a->id) }}"
                                                 data-href="{{ route('river.blog-category.destroy',$a->id) }}">
                                                  Delete
                                              </a>
                                         </div>
                                     </div>
-        
+
                                 </td>
                             </tr>
                         @endforeach

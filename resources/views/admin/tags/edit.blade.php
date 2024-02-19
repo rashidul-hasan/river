@@ -26,8 +26,8 @@
                         <li class="nav-item" role="presentation">
                             <a href="{{ route('river.tag.index') }}" class="btn btn-primary" >back</a>
                         </li>
-                       
-                    </ul> 
+
+                    </ul>
                     {{-- <ul class="nav nav-tabs" data-bs-toggle="tabs" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a href="#general" class="nav-link active" data-bs-toggle="tab" aria-selected="true" role="tab" tabindex="-1">General</a>
@@ -45,17 +45,24 @@
                                     <div class="form-group mb-3 ">
                                         <label class="form-label required"> Name</label>
                                         <div>
-                                            <input type="text" class="form-control"  name="name" value="{{ $type->name }}">
+                                            <input type="text" class="form-control generate-slug"  data-slug-field="slug"  name="name" value="{{ $type->name }}" required>
                                         </div>
                                     </div>
-    
+
+                                    <div class="form-group mb-3 ">
+                                        <label class="form-label required"> Slug</label>
+                                        <div>
+                                            <input type="text" class="form-control"  name="slug" value="{{ $type->slug }}" required>
+                                        </div>
+                                    </div>
+
                                     <div class="form-footer">
                                         <button type="submit" class="btn btn-success">Save</button>
                                     </div>
                                 </form>
 
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

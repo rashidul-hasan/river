@@ -58,16 +58,17 @@ class TagController
 
         $request->validate([
             'name' => 'required',
-            
+
         ]);
 
         $names = $request->get('name');
-        
+
             $file = Tag::create([
                 'name' => $names,
-                
+                'slug' =>  $request->get('slug')
+
             ]);
-        
+
 
         return redirect(route('river.tag.index',[$file->id] ))
             ->with('success', 'Created!');
@@ -75,13 +76,13 @@ class TagController
 
     public function edit($id)
     {
-        
-        $file = Tag::find($id); 
+
+        $file = Tag::find($id);
 
         $data = [
             'title' => 'Edit Tag: ' . $file->name,
             'type' => $file,
-            
+
         ];
 
         return view('river::admin.tags.edit', $data);
@@ -97,11 +98,12 @@ class TagController
         $file = Tag::find($id);
 
         $file->name = $request->get('name');
+        $file->slug = $request->get('slug');
 
         $file->save();
 
         return redirect()->back()->with('success', 'Updated');
-    
+
     }
 
     public function destroy($id)
@@ -111,6 +113,6 @@ class TagController
 
         return redirect(route('river.tag.index'))
             ->with('success', 'Deleted!');
-    } 
-    
+    }
+
 }

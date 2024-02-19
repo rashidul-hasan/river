@@ -15,16 +15,18 @@
                             <thead>
                                 <tr>
                                     <td>SL. </td>
-                                    <td> name</td>
+                                    <td> Name</td>
+                                    <td> Slug</td>
                                     <td> Action</td>
                                 </tr>
                             </thead>
                             <tbody>
-                             @foreach($all as $key=>$a) 
+                             @foreach($all as $key=>$a)
                             <tr>
                                 <td>{{ ++$key }} </td>
                                 <td>{{ $a->name }} </td>
-                                 
+                                <td>{{ $a->slug }} </td>
+
                                 <td>
                                     <div class="d-flex justify-content-end">
                                         <div>
@@ -32,14 +34,14 @@
                                                 href="{{ route('river.tag.edit',$a->id) }}"> Edit</a>
                                         </div>
                                         <div class="mx-1">
-                                            
+
                                             <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.tag.destroy',$a->id) }}"
                                                 data-href="{{ route('river.tag.destroy',$a->id) }}">
                                                  Delete
                                              </a>
                                         </div>
                                     </div>
-        
+
                                 </td>
                             </tr>
                         @endforeach

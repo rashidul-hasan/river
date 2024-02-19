@@ -46,6 +46,12 @@ Route::group([
     Route::get('/page/{slug}', 'Site\PageController@pageShow')->name('page.show');
     Route::get('/blogs', 'Site\BlogController@index')->name('all-blogs');
     Route::get('/single-blog/{slug}', 'Site\BlogController@single_blog')->name('single-blog');
+
+    Route::get('/blogs/category/{slug}', 'Site\BlogController@category_blog')->name('category-blog');
+    Route::get('/blogs/tag/{slug}', 'Site\BlogController@tags_blog')->name('tags-blog');
+
+    Route::get('/blog-search', 'Site\BlogController@blog_search')->name('blog-search');
+
     Route::get('/services/{slug}', 'Site\ServiceController@service')->name('service');
     Route::get('{any?}', 'Site\PageController@catchAll')->where('any', '^((?!upd|super).)*$'); //ignore /upd & /super path
 
