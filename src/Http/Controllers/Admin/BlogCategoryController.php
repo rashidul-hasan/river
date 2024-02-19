@@ -57,19 +57,20 @@ class BlogCategoryController
 
         $request->validate([
             'name' => 'required',
-            
+
         ]);
 
         $names = $request->get('name');
         $is_active = $request->get('is_active');
-      
-        
+
+
             $file = BlogCategory::create([
                 'name' => $names,
                 'parent_id' => $request->parent_id,
+                'slug' => $request->slug,
                 'is_active' =>$is_active
             ]);
-        
+
 
         return redirect(route('river.blog-category.index',[$file->id] ))
             ->with('success', 'Created!');
@@ -78,8 +79,8 @@ class BlogCategoryController
     public function edit($id)
     {
         $all = BlogCategory::all();
-        
-        $file = BlogCategory::find($id); 
+
+        $file = BlogCategory::find($id);
 
         $data = [
             'title' => 'Edit Blog Category: ' . $file->name,
@@ -100,12 +101,13 @@ class BlogCategoryController
         $file = BlogCategory::find($id);
 
         $file->name = $request->get('name');
+        $file->slug = $request->get('slug');
         $file->parent_id = $request->get('parent_id');
         $file->is_active = $request->get('is_active');
         $file->save();
 
         return redirect()->back()->with('success', 'Updated');
-    
+
     }
 
     public function destroy($id)
@@ -115,6 +117,6 @@ class BlogCategoryController
 
         return redirect(route('river.blog-category.index'))
             ->with('success', 'Deleted!');
-    } 
-    
+    }
+
 }

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('river_blog_category', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->boolean('is_active')->default(0)->nullable();
             $table->timestamps();

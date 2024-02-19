@@ -45,7 +45,14 @@
                                     <div class="form-group mb-3 ">
                                         <label class="form-label required"> Name</label>
                                         <div>
-                                            <input type="text" class="form-control"  name="name" value="{{ $type->name }}">
+                                            <input type="text" class="form-control generate-slug"  data-slug-field="slug" name="name" value="{{ $type->name }}" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-3 ">
+                                        <label class="form-label required"> Slug</label>
+                                        <div>
+                                            <input type="text" class="form-control"  name="slug" value="{{ $type->slug }}" required>
                                         </div>
                                     </div>
 
@@ -101,7 +108,7 @@
          $(document).ready(function() {
                 $('.js-example-basic-single').select2();
             });
-            
+
         var code = CodeMirror.fromTextArea(document.getElementById("code"), {
             lineNumbers: true,
             mode: "php",

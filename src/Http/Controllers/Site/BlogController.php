@@ -1,13 +1,15 @@
 <?php
 
 namespace Rashidul\River\Http\Controllers\Site;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use Rashidul\River\Models\Banner;
 use Rashidul\River\Models\RiverPage;
 use Rashidul\River\Models\Slider;
 use Rashidul\River\Models\Blog;
+use Rashidul\River\Models\BlogCategory;
+use Rashidul\River\Models\Tag;
 
 class BlogController extends Controller
 {
@@ -28,8 +30,31 @@ class BlogController extends Controller
         return view('_cache.single-blog', compact('single_blog', 'meta_desc', 'meta_keywords'));
     }
 
+    public function category_blog($slug){
+
+            $category = BlogCategory::where('slug',$slug)->first();
+
+            $blogs = Blog::where('category_id', $category->id)->get();
+
+            return view('_cache.all-blogs', compact('blogs'));
+    }
 
 
+    public function tags_blog($slug){
+
+        $tag = Tag::where('slug',$slug)->with('blog')->first();
+        $blogs = $tag->blog;
+        return view('_cache.all-blogs', compact('blogs'));
+}
+
+    public function blog_search(Request $request){
+
+        $search = $request->input('query');
+
+        $blogs = Blog::where('title', 'like', "%$search%")->orWhere('content', 'like', "%$search%")->get();
+
+        return view('_cache.all-blogs', compact('blogs'));
+    }
 
     public function blogs()
     {

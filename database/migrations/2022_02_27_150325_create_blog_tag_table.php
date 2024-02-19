@@ -15,14 +15,12 @@ return new class extends Migration
     {
         Schema::create('river_blog_tag', function (Blueprint $table) {
             $table->id();
+
             // $table->foreign('blog_id')->constraiend();
             // $table->foreign('tag_id')->constraiend();
             $table->unsignedBigInteger('blog_id')->nullable();
             $table->unsignedBigInteger('tag_id')->nullable();
             $table->timestamps();
-
-
-            
         });
     }
 
