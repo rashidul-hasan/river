@@ -95,6 +95,10 @@ class BlogController
             'image' => $request->image,
             'category_id' => $request->category_id,
             'author_id' => Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id,
+            'meta_title' => $request->meta_title,
+            'meta_keywords' => $request->meta_keywords,
+            'meta_description' => $request->meta_description,
+            'meta_image' => $request->meta_image,
             'is_published' => $is_published
         ]);
         Cache::forget(Constants::CACHE_KEY_BLOG);
@@ -147,6 +151,10 @@ class BlogController
         $file->slug = $request->slug;
         $file->image = $request->image;
         $file->category_id = $request->get('category_id');
+        $file->meta_title = $request->get('meta_title');
+        $file->meta_keywords = $request->get('meta_keywords');
+        $file->meta_description = $request->get('meta_description');
+        $file->meta_image = $request->get('meta_image');
         $file->author_id = Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id;
         $file->is_published = $request->get('is_published');
         $file->save();
