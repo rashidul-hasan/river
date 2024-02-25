@@ -2,6 +2,7 @@
 
 namespace Rashidul\River;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Rashidul\River\Commands\CacheViewFilesCommand;
@@ -37,6 +38,9 @@ class RiverServiceProvider extends ServiceProvider
 
         //viewcomposers
         View::composer('river::admin.layouts.sidebar', AdminSidebarViewComposer::class);
+
+        //blade components
+        Blade::component('river::header', 'header');
 
         $this->configureCommands();
     }

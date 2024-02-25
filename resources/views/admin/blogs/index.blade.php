@@ -1,8 +1,28 @@
 @extends('river::admin.layouts.master')
 
-@section('website_setup') active pcoded-trigger @stop
+@section('page-header')
+    <x:river::header>
+        <x-slot:title>
+            Blogs
+        </x-slot>
 
-@section('css')
+        <x-slot:breads>
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Blogs</a></li>
+        </x-slot:breads>
+
+        <x-slot:buttons>
+            <a href="{{route('river.blog.create')}}" class="btn btn-primary d-none d-sm-inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+                Add new
+            </a>
+        </x-slot:buttons>
+
+    </x:river::header>
 @stop
 
 @section('content')
@@ -16,7 +36,7 @@
                                 <tr>
                                     <td>SL. </td>
                                     <td> Slug</td>
-                                    
+
                                     <td> Image</td>
                                     <td> Category</td>
                                     <td> Author</td>
@@ -25,19 +45,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                             @foreach($all as $key=>$a) 
+                             @foreach($all as $key=>$a)
                             <tr>
                                 <td>{{ ++$key }} </td>
                                 <td>{{ $a->slug }} </td>
-                                
+
                                 <td>
                                     <img src="/river/assets/{{ $a->image }}" style="width: 150px"/>
                                 </td>
                                 <td> {{ $a->category_id}}</td>
                                 <td> {{ $a->author_id}}</td>
-                                
+
                                 <td>{{ ($a->is_published==1)?'Active':'Inactive' }} </td>
-                                
+
                                 <td>
                                     <div class="d-flex justify-content-end">
                                         <div>
@@ -45,14 +65,14 @@
                                                 href="{{ route('river.blog.edit',$a->id) }}"> Edit</a>
                                         </div>
                                         <div class="mx-1">
-                                            
+
                                             <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.blog.destroy',$a->id) }}"
                                                 data-href="{{ route('river.blog.destroy',$a->id) }}">
                                                  Delete
                                              </a>
                                         </div>
                                     </div>
-        
+
                                 </td>
                             </tr>
                         @endforeach

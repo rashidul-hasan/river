@@ -43,22 +43,7 @@
 
     <div class="page-wrapper">
         <div class="container-xl">
-            <div class="page-header d-print-none">
-                <div class="row g-2 align-items-center">
-                    <div class="col">
-                        <h2 class="page-title">
-                            {{ $title ?? '' }}
-                        </h2>
-                        @isset($_top_buttons)
-                            @foreach($_top_buttons as $button)
-                                <a href="{{$button[1]}}"
-                                   class="{{$button[2] ?? 'btn btn-primary'}} mt-2"
-                                   id="{{$button[3] ?? ''}}" id>{{$button[0]}}</a>
-                            @endforeach
-                        @endisset
-                    </div>
-                </div>
-            </div>
+            @yield('page-header')
         </div>
         <div class="page-body">
             @yield('content')
