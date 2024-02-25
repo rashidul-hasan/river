@@ -7,7 +7,7 @@
         </x-slot>
 
         <x-slot:breads>
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{route('river.admin.dashboard')}}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page"><a href="#">Blogs</a></li>
         </x-slot:breads>
 
