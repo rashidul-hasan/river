@@ -23,41 +23,81 @@
         <div class="col-md-12">
             <div class="">
                 <div class="card-body row">
-                    <div class="col-md-8 card">
-                        <div class="card-body">
-                            <form action="{{route('river.blog.store')}}" method="POST" enctype="multipart/form-data">
-                                @csrf
+                    <div class="col-md-8 ">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="{{route('river.blog.store')}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group mb-3 ">
+                                        <label class="form-label required"> Title</label>
+                                        <div>
+                                            <input type="text" class="form-control generate-slug" name="title" data-slug-field="slug" value="{{ old('title') }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-3 ">
+                                        <label class="form-label required"> Slug </label>
+                                        <div>
+                                            <input type="text" class="form-control" name="slug" value="{{ old('slug') }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-3 ">
+                                        <label class="form-label required"> Content</label>
+                                        <div>
+                                            <textarea class="form-control article-editor" id="content_type" name="content">
+
+                                                </textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-3 ">
+                                        <label class="form-label "> Sort Description</label>
+
+                                        <div>
+                                            <input type="text" class="form-control"  name="short_desc" value="{{ old('short_desc') }}">
+                                        </div>
+                                    </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col card mt-4">
+                            <div class="card-header">
+                              <h3> SEO</h3>
+                            </div>
+                            <div class="card-body">
                                 <div class="form-group mb-3 ">
-                                    <label class="form-label required"> Title</label>
+                                  <label class="form-label "> Meta Title</label>
+                                  <div>
+                                      <input type="text" class="form-control" name="meta_title" value="{{ old('meta_title')  }}">
+                                  </div>
+                                </div>
+
+                                <div class="form-group mb-3 ">
+                                    <label class="form-label "> Meta Keywords</label>
                                     <div>
-                                        <input type="text" class="form-control generate-slug" name="title" data-slug-field="slug" value="{{ old('title') }}">
+                                        <input type="text" class="form-control" name="meta_keywords" value="{{ old('meta_keywords')  }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group mb-3 ">
-                                    <label class="form-label required"> Slug </label>
-                                    <div>
-                                        <input type="text" class="form-control" name="slug" value="{{ old('slug') }}">
-                                    </div>
+                                  <label class="form-label "> Meta Description</label>
+                                  <div>
+                                      <input type="text" class="form-control" name="meta_description" value="{{ old('meta_description')  }}">
+                                  </div>
                                 </div>
 
-                                <div class="form-group mb-3 ">
-                                    <label class="form-label required"> Content</label>
-                                    <div>
-                                        <textarea class="form-control ckeditor" id="content_type" name="content">
+                                <div class="form-group">
 
-                                            </textarea>
-                                    </div>
+                                  <label class="form-label ">Meta  Image <small class="text-warning"></small></label>
+                                  @include('river::admin.components.image-picker', ['name' => 'meta_image', 'default' => river_settings('image') ])
                                 </div>
 
-                                <div class="form-group mb-3 ">
-                                    <label class="form-label "> Sort Description</label>
 
-                                    <div>
-                                        <input type="text" class="form-control"  name="short_desc" value="{{ old('short_desc') }}">
-                                    </div>
-                                </div>
-
+                            </div>
                         </div>
                     </div>
 
@@ -67,7 +107,7 @@
                                 <label class="form-label">Category</label>
                             </div>
                             <div class="card-body">
-                                <select class="form-select select2" name="category_id" aria-label="Default select example">
+                                <select class="form-select js-example-basic-single" name="category_id" aria-label="Default select example">
                                 <option selected value="0">Select Category</option>
                                 @foreach($all_cat as $a)
                                 <option value="{{$a->id}}">{{ $a->name }}</option>
@@ -229,7 +269,13 @@
 <script src="/river/admin/codemirror-5.65.2/mode/php/php.js"></script>
 <script>
 
-
+    $('.article-editor').ckeditor({
+        height: 400,
+        filebrowserImageBrowseUrl: window.hp_route_prefix + '?type=Images',
+        filebrowserImageUploadUrl: window.hp_route_prefix + '/upload?type=Images&_token={{csrf_token()}}',
+        filebrowserBrowseUrl: window.hp_route_prefix + '?type=Files',
+        filebrowserUploadUrl: window.hp_route_prefix + '/upload?type=Files&_token={{csrf_token()}}',
+    });
 
     // tinymce.init({
     //         selector: '#content_type',
@@ -240,7 +286,14 @@
     //             $('#' + $(this).val()).show();
     //         });
     //     });
+        // select2
+            $(document).ready(function() {
+                $('.js-example-basic-single').select2();
+            });
 
+            $(document).ready(function() {
+                $('.js-example-basic-multiple').select2();
+            });
 
     // tinymce.init({
     //         selector: '#content_type',
