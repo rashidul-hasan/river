@@ -1,3 +1,4 @@
+
 <a href="#" class="btn btn-primary btn-add-fields mb-2">Add Fields</a>
 
 <form class="custom-validation" action="{{route('river.datatypes.update-fields')}}" method="POST">
