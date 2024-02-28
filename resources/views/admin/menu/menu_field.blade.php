@@ -21,6 +21,28 @@
     </div>
 @endsection --}}
 
+@section('page-header')
+    <x:river::header>
+            <x-slot:title>
+            Add Menu Fileds
+            </x-slot>
+
+            <x-slot:breads>
+                <li class="breadcrumb-item"><a href="{{route('river.admin.dashboard')}}">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page"><a href="{{route('river.menu.index')}}">Menus</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="">Add Fildes</a></li>
+            </x-slot:breads>
+
+            <x-slot:buttons>
+                <a href="{{route('river.menu.index')}}" class="btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0"/><path d="M5 12l6 6"/><path d="M5 12l6 -6"/></svg>
+                    Back
+                </a>
+            </x-slot:buttons>
+
+    </x:river::header>
+@stop
+
 
 <a href="#" class="btn btn-primary btn-add-fields mb-2">Add Fields</a>
 
@@ -28,7 +50,7 @@
     <input type="hidden" name="type_id" value="{{$type->id}}">
     @csrf
     @method('PUT')
-    
+
     <table class="table">
         <thead>
         <tr>
@@ -40,12 +62,12 @@
             <th scope="col" style="width: 5%">CSS Id</th>
         </tr>
         </thead>
-        
+
 
 
         <tbody>
            @foreach ($type->menuitem as $field)
-           
+
            <tr>
             <td>
                 <input type="checkbox" class="form-check-input"
@@ -72,19 +94,19 @@
                 <input type="text" class="form-control" value="{{$field->css_id}}"
                 name="field[{{$field->id}}][css_id]">
             </td>
-            
+
         </tr>
-        
+
            @endforeach
 
-           
-            
+
+
 
         </tbody>
 
 
         {{-- <tbody>
-        
+
             <tr>
                 <td>
                     <input type="checkbox" class="form-check-input"
@@ -98,7 +120,7 @@
                     <input type="text" class="form-control" value="{{$field->slug}}"
                            name="field[{{$field->id}}][slug]">
                 </td>
-                
+
                 <td>
                     <input type="checkbox" class="form-check-input"
                            @if($field->is_required == '1') checked @endif
@@ -108,10 +130,10 @@
                     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#field_meta_{{$field->id}}">
                         <i class="fa fa-eye"></i>
                     </button>
-                     @include('river::admin.contact_form.field_meta_modal',['field' => $field]) 
-                </td> 
+                     @include('river::admin.contact_form.field_meta_modal',['field' => $field])
+                </td>
             </tr>
-        
+
         </tbody> --}}
     </table>
 

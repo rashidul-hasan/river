@@ -2,6 +2,31 @@
 
 @section('website_setup') active pcoded-trigger @stop
 
+@section('page-header')
+    <x:river::header>
+        <x-slot:title>
+            Menus
+        </x-slot>
+
+        <x-slot:breads>
+            <li class="breadcrumb-item"><a href="{{route('river.admin.dashboard')}}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Menus</a></li>
+        </x-slot:breads>
+
+        <x-slot:buttons>
+            <a href="{{route('river.menu.create')}}" class="btn btn-primary d-none d-sm-inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+                Add new
+            </a>
+        </x-slot:buttons>
+
+    </x:river::header>
+@stop
+
 @section('css')
 @stop
 
@@ -28,7 +53,7 @@
                                 <td>{{ $a->name }} </td>
                                 <td> {{ $a->slug }}</td>
                                 <td>{{ ($a->is_active==1)? 'Active':'Inactive' }} </td>
-                                
+
                                 <td>
                                     <div class="d-flex justify-content-end">
                                         <div>
@@ -36,14 +61,14 @@
                                                 href="{{ route('river.menu.edit',$a->id) }}"> Edit</a>
                                         </div>
                                         <div class="mx-1">
-                                            
+
                                             <a class="btn btn-sm btn-danger confirm-delete" href="{{ route('river.menu.destroy',$a->id) }}"
                                                 data-href="{{ route('river.menu.destroy',$a->id) }}">
                                                  Delete
                                              </a>
                                         </div>
                                     </div>
-        
+
                                 </td>
                             </tr>
                             @endforeach

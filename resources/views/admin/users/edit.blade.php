@@ -2,6 +2,28 @@
 
 @section('website_setup') active pcoded-trigger @stop
 
+@section('page-header')
+    <x:river::header>
+            <x-slot:title>
+            Edit User
+            </x-slot>
+
+            <x-slot:breads>
+                <li class="breadcrumb-item"><a href="{{route('river.admin.dashboard')}}">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page"><a href="{{route('river.users.index')}}">Users</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="">Edit User</a></li>
+            </x-slot:breads>
+
+            <x-slot:buttons>
+                <a href="{{route('river.users.index')}}" class="btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0"/><path d="M5 12l6 6"/><path d="M5 12l6 -6"/></svg>
+                    Back
+                </a>
+            </x-slot:buttons>
+
+    </x:river::header>
+@stop
+
 @section('css')
 
 @endsection
@@ -53,20 +75,20 @@
                                 <div>
                                     <select class="form-select" name="role_id">
                                         {{-- <option value="" selected disabled>Select</option> --}}
-                                        
+
                                             <option value="" selected disabled>Select</option>
                                             <option value="1" @if($user->role_id==1) selected @endif>Developer</option>
                                             <option value="2" @if($user->role_id==2) selected @endif >Site Admin</option>
                                             <option value="3" @if($user->role_id==3) selected @endif >Writer</option>
-    
-                                        
+
+
                                         {{-- @foreach($roles as $role)
                                             <option value="{{$role->id}}" {{$user->role_id == $role->id ? 'selected' : ''}}>{{$role->name}}</option>
                                         @endforeach --}}
                                     </select>
                                 </div>
                             </div>
-                            
+
                             {{-- <div class="form-group mb-3 ">
                                 <label class="form-check">
                                     <input class="form-check-input" type="checkbox" name="is_developer" {{$user->is_developer == 1 ? 'checked' : ''}}>
