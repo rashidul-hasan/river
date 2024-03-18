@@ -26,6 +26,13 @@ class ContactFormSubmissionController
         return view('river::admin.dashboard.contact_form_field', $data, compact('value'));
     }
 
+    public function ContactFormData()
+    {
+        $data = ContactFormSubmission::paginate(20);
+
+        return view('river::admin.ContactFormSubmission.index', compact('data'));
+    }
+
     public function store(Request $request, $slug)
     {
 
@@ -50,6 +57,36 @@ class ContactFormSubmissionController
         // ]);
 
         return redirect()->back()->with('success', 'Added!');
+    }
+
+
+    public function store_data(Request $request)
+    {
+
+        /*
+        [
+            [1,2,9],[3,4]
+        ]
+        */
+
+        ContactFormSubmission::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message,
+            'subject' => $request->subject,
+            'phone_number' => $request->phone_number,
+        ]);
+
+
+        // ContactFormField::create([
+        //     'name' => $request->name,
+        //     'contactform_id'=> 1,
+        //     'slug' => Str::slug($request->name, '_'),
+        //     'type' => "Text",
+        //     'is_required' => $request->is_required
+        // ]);
+
+        return redirect()->back()->with('success', 'Submitted!');
     }
 
     public function edit($id)
@@ -106,7 +143,11 @@ class ContactFormSubmissionController
 
     public function destroy($id)
     {
-        //
+        $model = ContactFormSubmission::findOrFail($id);
+        $model->delete();
+
+        return redirect()->back()
+            ->with('success', 'Deleted!');
     }
 
     public function download()
