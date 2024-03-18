@@ -39,6 +39,7 @@ Route::group([
 });
 
 Route::group([
+    'middleware' => ['web'],
     'namespace' => 'Rashidul\River\Http\Controllers',
     'as' => 'riversite.'
 ], function () {
