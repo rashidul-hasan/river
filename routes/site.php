@@ -3,9 +3,6 @@
 use Rashidul\River\Http\Controllers\Site\ContactFormSubmissionController;
 
 
-
-
-
 //auth
 Route::group([
     'middleware' => ['web', 'river.guest:customers'],

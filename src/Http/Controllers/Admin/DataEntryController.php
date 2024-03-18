@@ -268,6 +268,13 @@ class DataEntryController
             ->with('success', 'Updated');
     }
 
+    public function show($slug){
+
+        $data = DataEntry::where('slug', $slug)->first();
+
+        return view('_cache.single-data', compact('data'));
+    }
+
     public function destroy($slug, $id)
     {
         if (!RolesCache::hasPermission(
