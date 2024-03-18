@@ -4,6 +4,7 @@ use Rashidul\River\Http\Controllers\Admin\FileUploadController;
 use Rashidul\River\Http\Controllers\Admin\MenuController;
 use Rashidul\River\Http\Controllers\Admin\BlogController;
 use Rashidul\River\Http\Controllers\Admin\GitHubController;
+use Rashidul\River\Http\Controllers\Site\ContactFormSubmissionController;
 
 
 use Rashidul\River\Http\Controllers\Admin\TemplatePageController;
@@ -140,6 +141,12 @@ Route::group([
     Route::post('contact-form/store-fields', 'Admin\ContactFormController@storeFields')->name('contact-form.store-fields');
     Route::put('contact-form/update-fields', 'Admin\ContactFormController@updateFields')->name('contact-form.update-fields');
     Route::post('contact-form/field-meta', 'Admin\ContactFormController@fieldMeta')->name('contact-form.field-meta');
+
+    Route::get('Contact', [ContactFormSubmissionController::class, 'ContactFormData'])->name('Contact-form');
+    Route::DELETE('Contact-delete/{id}', [ContactFormSubmissionController::class, 'destroy'])->name('contact-delete');
+    // Route::delete('contact-form/destroy/{id}', 'Admin\ContactFormController@destroy')->name('contact-form.destroy');
+
+
 
     Route::resource('faq', 'Admin\FaqController');
 

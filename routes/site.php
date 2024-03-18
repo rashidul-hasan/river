@@ -56,6 +56,7 @@ Route::group([
     Route::get('{any?}', 'Site\PageController@catchAll')->where('any', '^((?!upd|super).)*$'); //ignore /upd & /super path
 
     Route::post('/contact-form-submission/{slug}', [ContactFormSubmissionController::class , 'store'])->name('contact-form-submission');
+    Route::post('/contact-form-store', [ContactFormSubmissionController::class, 'store_data' ])->name('contact-form.store');
 });
 
 

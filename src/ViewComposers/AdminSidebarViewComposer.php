@@ -182,6 +182,12 @@ class AdminSidebarViewComposer
                 'route' => 'river.newslatter-submissions.index'
             ],
             [
+                'label' => 'Contact Form Submission',
+                'icon' =>  'fa-solid fa-envelope',
+                'is_active' => request()->routeIs('river.Contact-form.*'),
+                'route' => 'river.Contact-form'
+            ],
+            [
                 'label' => 'FAQ',
                 'icon' => 'fas fa-comments',
                 'is_active' => request()->routeIs('river.faq.*'),

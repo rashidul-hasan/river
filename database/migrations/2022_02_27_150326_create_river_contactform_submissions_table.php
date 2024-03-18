@@ -15,16 +15,20 @@ return new class extends Migration
     {
         Schema::create('river_contactform_submissions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('contactform_id');
+            // $table->unsignedBigInteger('contactform_id');
             $table->string('name');
-            $table->string('slug');
-            $table->string('type')->nullable();
-            $table->boolean('is_required')->nullable()->default(0);
-            
+            $table->string('email')->nullable();
+            $table->string('message')->nullable();
+            $table->string('subject')->nullable();
+            $table->integer('phone_number')->nullable();
+            // $table->string('slug');
+            // $table->string('type')->nullable();
+            // $table->boolean('is_required')->nullable()->default(0);
+
             $table->timestamps();
 
 
-            $table->foreign('contactform_id')->references('id')->on('river_contact_form')->onDelete('cascade');
+            // $table->foreign('contactform_id')->references('id')->on('river_contact_form')->onDelete('cascade');
         });
     }
 
