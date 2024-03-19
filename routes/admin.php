@@ -105,10 +105,12 @@ Route::group([
     Route::get('data-entries/{slug}', 'Admin\DataEntryController@index')->name('data-entries.index');
     Route::get('data-entries/{slug}/create', 'Admin\DataEntryController@create')->name('data-entries.create');
     Route::post('data-entries/{slug}', 'Admin\DataEntryController@store')->name('data-entries.store');
-    Route::get('data-entries/{slug}/show/{id}', 'Admin\DataEntryController@show')->name('data-entries.show');
+    // Route::get('data-entries/{slug}/show/{id}', 'Admin\DataEntryController@show')->name('data-entries.show');
     Route::get('data-entries/{slug}/edit/{id}', 'Admin\DataEntryController@edit')->name('data-entries.edit');
     Route::get('data-entries/{slug}/destroy/{id}', 'Admin\DataEntryController@destroy')->name('data-entries.destroy');
     Route::put('data-entries/{slug}/update/{id}', 'Admin\DataEntryController@update')->name('data-entries.update');
+
+    // Route::get('data-entries/show/{slug}', 'Admin\DataEntryController@show')->name('data-entries.show');
 
 
     Route::get('file', 'Admin\CodeGeneratorController@index');

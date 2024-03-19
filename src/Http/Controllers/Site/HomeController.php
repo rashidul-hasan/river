@@ -9,6 +9,7 @@ use Rashidul\River\Constants;
 use Rashidul\River\Models\Banner;
 use Rashidul\River\Models\Slider;
 use Rashidul\River\Models\ContactFormField;
+use Rashidul\River\Models\DataEntry;
 
 class HomeController extends Controller
 {
@@ -17,7 +18,7 @@ class HomeController extends Controller
       $form_filed = ContactFormField::get();
 
       $banners = Cache::rememberForever(Constants::CACHE_KEY_BANNER, function () {
-        return  Banner::all('slug')->toArray(); 
+        return  Banner::all('slug')->toArray();
    });
 
    $sliders = Cache::rememberForever(Constants::CACHE_KEY_SLIDER, function () {
@@ -36,4 +37,13 @@ class HomeController extends Controller
 
         return view('_cache.home', $data);
     }
+
+    public function single_entries_show($slug){
+        
+
+        $data = DataEntry::where('slug', $slug)->first();
+
+        return view('_cache.single-data', compact('data'));
+    }
+
 }

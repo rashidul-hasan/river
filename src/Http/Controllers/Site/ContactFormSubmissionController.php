@@ -78,14 +78,6 @@ class ContactFormSubmissionController
         ]);
 
 
-        // ContactFormField::create([
-        //     'name' => $request->name,
-        //     'contactform_id'=> 1,
-        //     'slug' => Str::slug($request->name, '_'),
-        //     'type' => "Text",
-        //     'is_required' => $request->is_required
-        // ]);
-
         return redirect()->back()->with('success', 'Submitted!');
     }
 

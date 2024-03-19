@@ -69,6 +69,19 @@
                                     </div>
 
                                     <div class="form-group mb-3 row">
+                                        <label class="col-3 col-form-label ">Show Page</label>
+                                        <div class="col">
+                                            <select class="form-select" name="show_page" aria-label="Default select example">
+                                                <option value="0" selected disabled>--Select--</option>
+                                                @foreach($pages as $f)
+
+                                                    <option value="{{$f->filename}}" @if($f->filename ==$type->show_page ) selected @endif>{{$f->filename}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-3 row">
                                         <label class="col-3 col-form-label ">Icon</label>
                                         <div class="col">
                                             <input type="text" class="form-control" name="icon"

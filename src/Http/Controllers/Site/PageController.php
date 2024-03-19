@@ -5,6 +5,8 @@ namespace Rashidul\River\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Blade;
 use Rashidul\River\Models\RiverPage;
+use Rashidul\River\Models\DataEntry;
+use Rashidul\River\Models\DataType;
 
 class PageController extends Controller
 {
@@ -50,6 +52,20 @@ class PageController extends Controller
                     'title' => $page->title
                 ]);
             }
+        }
+
+        $data = DataEntry::where('slug',trim($any))->with('values')->first();
+
+        $data_type = DataType::find($data->data_type_id);
+
+        $file_parts = explode('.', $data_type->show_page);
+        $file_path = $file_parts[0];
+
+       if($data){
+           $data= [
+               'data' => $data,
+           ];
+           return view('_cache.' . $file_path ,$data);
         }
 
         abort(404);
