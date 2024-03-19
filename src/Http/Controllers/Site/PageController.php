@@ -56,12 +56,13 @@ class PageController extends Controller
 
         $data = DataEntry::where('slug',trim($any))->with('values')->first();
 
+       if($data){
+
         $data_type = DataType::find($data->data_type_id);
 
         $file_parts = explode('.', $data_type->show_page);
         $file_path = $file_parts[0];
 
-       if($data){
            $data= [
                'data' => $data,
            ];
