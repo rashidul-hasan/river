@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Rashidul\River\Constants;
 use Rashidul\River\Models\DataFields;
 use Rashidul\River\Models\DataType;
+use Rashidul\River\Models\TemplatePage;
 
 class DataTypeController
 {
@@ -53,10 +54,12 @@ class DataTypeController
 
     public function edit($id)
     {
+        $pages = TemplatePage::all();
         $file = DataType::find($id);
         $data = [
             'title' => 'Edit DataType: ' . $file->singular,
-            'type' => $file
+            'type' => $file,
+            'pages' => $pages
         ];
 
         return view('river::admin.datatypes.edit', $data);
@@ -73,6 +76,7 @@ class DataTypeController
         $file->singular = $request->get('singular');
         $file->plural = $request->get('plural');
         $file->slug = $request->get('slug');
+        $file->show_page = $request->get('show_page');
         $file->icon = $request->get('icon');
         $file->show_on_menu = $request->has('show_on_menu') ? 1 : 0;
         $file->save();

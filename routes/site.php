@@ -54,6 +54,8 @@ Route::group([
 
     Route::post('/contact-form-submission/{slug}', [ContactFormSubmissionController::class , 'store'])->name('contact-form-submission');
     Route::post('/contact-form-store', [ContactFormSubmissionController::class, 'store_data' ])->name('contact-form.store');
+
+    Route::get('single-data-entries/show/{slug}', 'Site\HomeController@single_entries_show')->name('data-entries-show');
 });
 
 

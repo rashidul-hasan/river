@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('singular')->nullable();
             $table->string('plural')->nullable();
+            $table->string('show_page')->nullable();
             $table->string('icon')->nullable();
             $table->boolean('show_on_menu')->default(0);
             $table->timestamps();

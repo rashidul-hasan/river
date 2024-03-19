@@ -110,7 +110,7 @@ Route::group([
     Route::get('data-entries/{slug}/destroy/{id}', 'Admin\DataEntryController@destroy')->name('data-entries.destroy');
     Route::put('data-entries/{slug}/update/{id}', 'Admin\DataEntryController@update')->name('data-entries.update');
 
-    Route::get('data-entries/show/{slug}', 'Admin\DataEntryController@show')->name('data-entries.show');
+    // Route::get('data-entries/show/{slug}', 'Admin\DataEntryController@show')->name('data-entries.show');
 
 
     Route::get('file', 'Admin\CodeGeneratorController@index');
