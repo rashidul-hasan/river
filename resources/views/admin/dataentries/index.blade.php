@@ -25,7 +25,7 @@
                                 @foreach($headers as $slug => $meta)
                                     @if($meta['type'] == \Rashidul\River\Constants::FIELD_TYPE_IMAGE)
                                         <td>
-                                            <img src="{{$row[$slug]}}" alt="" width="100">
+                                            <img src="{{array_key_exists($slug, $row) ? $row[$slug] : ''}}" alt="" width="100">
                                         </td>
                                     @else
                                         <td>

@@ -175,8 +175,10 @@ class DataEntryController
             'meta_image' => $request->meta_image,
             'featured_image' => $request->featured_image,
             'is_published' => $is_published,
-            'content' => $request->content,
-            'order' => $request->order,
+            'content' => $request->input('content'),
+            'order' => $request->filled('order')
+                ? $request->input('order')
+            : 1,
         ]);
 
         $dataTypeService->insertMeta($request, $slug, $entry->id);
@@ -209,14 +211,16 @@ class DataEntryController
 
         $data_type = DataEntry::find($id);
         $data_type->title = $request->title;
-        $data_type->content = $request->content;
+        $data_type->content = $request->input('content');
         $data_type->is_published = $is_published;
         $data_type->meta_title = $request->meta_title;
         $data_type->slug = $request->slug;
         $data_type->meta_description =$request->meta_description;
         $data_type->featured_image = $request->featured_image;
         $data_type->meta_image = $request->meta_image;
-        $data_type->order = $request->order;
+        $data_type->order = $request->filled('order')
+            ? $request->input('order')
+            : 1;
         $data_type->save();
 
 
