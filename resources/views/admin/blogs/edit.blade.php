@@ -87,7 +87,7 @@
                                     <div class="form-group mb-3 ">
                                         <label class="form-label required"> Content</label>
                                         <div>
-                                            <textarea class="form-control" id="content_type" name="content">
+                                            <textarea class="form-control article-editor" id="content_type" name="content">
                                                     {{ $type->content }}
                                                 </textarea>
 
@@ -219,11 +219,16 @@
 
             $(document).ready(function() {
                 $('.js-example-basic-multiple').select2();
+                $('.article-editor').ckeditor({
+                    height: 400,
+                    filebrowserImageBrowseUrl: window.hp_route_prefix + '?type=Images',
+                    filebrowserImageUploadUrl: window.hp_route_prefix + '/upload?type=Images&_token={{csrf_token()}}',
+                    filebrowserBrowseUrl: window.hp_route_prefix + '?type=Files',
+                    filebrowserUploadUrl: window.hp_route_prefix + '/upload?type=Files&_token={{csrf_token()}}',
+                });
             });
 
-    tinymce.init({
-            selector: '#content_type',
-        })
+
         $(function() {
             $('#contentType').change(function(){
                 $('.content').hide();
