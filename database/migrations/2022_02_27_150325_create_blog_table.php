@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('river_blog', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('content')->unique();
+            $table->text('content')->nullable();
             $table->text('short_desc')->nullable();
             $table->string('slug')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();

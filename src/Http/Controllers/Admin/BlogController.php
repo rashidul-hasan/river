@@ -91,7 +91,7 @@ class BlogController
             'title' => $names,
             'content' => $request->content,
             'slug' => $request->slug,
-            'slug' => $request->short_desc,
+            'short_desc' => $request->short_desc,
             'image' => $request->image,
             'category_id' => $request->category_id,
             'author_id' => Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id,
