@@ -106,7 +106,7 @@ class BlogController
 
 
 
-        return redirect(route('river.blog.index', [$blog->id]))
+        return redirect(route('river.blog.index'))
             ->with('success', 'Created!');
     }
 
