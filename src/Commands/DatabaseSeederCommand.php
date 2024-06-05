@@ -1,11 +1,11 @@
 <?php
 
-namespace Rashidul\River\Commands;
+namespace BitPixel\SpringCms\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Rashidul\River\Models\TemplatePage;
+use BitPixel\SpringCms\Models\TemplatePage;
 
 class DatabaseSeederCommand extends Command
 {

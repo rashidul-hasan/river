@@ -1,14 +1,14 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
-use Rashidul\River\Models\TemplatePage;
+use BitPixel\SpringCms\Models\TemplatePage;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
-use Rashidul\River\Models\TemplateAssets;
+use BitPixel\SpringCms\Models\TemplateAssets;
 use Illuminate\Support\Facades\File;
 
 class TemplateAssetsController extends Controller

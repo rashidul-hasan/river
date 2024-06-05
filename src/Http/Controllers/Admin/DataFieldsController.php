@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 

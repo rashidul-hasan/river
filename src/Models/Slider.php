@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River\Models;
+namespace BitPixel\SpringCms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

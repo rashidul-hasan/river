@@ -1,12 +1,12 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Site;
+namespace BitPixel\SpringCms\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Blade;
-use Rashidul\River\Models\RiverPage;
-use Rashidul\River\Models\DataEntry;
-use Rashidul\River\Models\DataType;
+use BitPixel\SpringCms\Models\RiverPage;
+use BitPixel\SpringCms\Models\DataEntry;
+use BitPixel\SpringCms\Models\DataType;
 
 class PageController extends Controller
 {

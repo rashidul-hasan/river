@@ -1,5 +1,5 @@
 {
-    "name": "rashidul/river",
+    "name": "bitpixel/springcms",
     "description": "Application framework",
     "keywords": [
         "rashidul",
@@ -36,8 +36,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Rashidul\\River\\": "src",
-            "Rashidul\\River\\Database\\Factories\\": "database/factories"
+            "BitPixel\\SpringCms\\": "src",
+            "BitPixel\\SpringCms\\Database\\Factories\\": "database/factories"
         },
         "files": [
             "src/helper.php"
@@ -45,7 +45,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Rashidul\\River\\Tests\\": "tests"
+            "BitPixel\\SpringCms\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -62,10 +62,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Rashidul\\River\\RiverServiceProvider"
+                "BitPixel\\SpringCms\\SpringCmsServiceProvider"
             ],
             "aliases": {
-                "River": "Rashidul\\River\\Facades\\River"
+                "SpringCms": "BitPixel\\SpringCms\\Facades\\SpringCms"
             }
         }
     },

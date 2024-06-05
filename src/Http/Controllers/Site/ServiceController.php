@@ -1,13 +1,13 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Site;
+namespace BitPixel\SpringCms\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
-use Rashidul\River\Models\Banner;
-use Rashidul\River\Models\RiverPage;
-use Rashidul\River\Models\Slider;
-use Rashidul\River\Models\Service;
+use BitPixel\SpringCms\Models\Banner;
+use BitPixel\SpringCms\Models\RiverPage;
+use BitPixel\SpringCms\Models\Slider;
+use BitPixel\SpringCms\Models\Service;
 
 class ServiceController extends Controller
 {

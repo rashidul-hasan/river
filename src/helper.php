@@ -1,15 +1,15 @@
 <?php
 
-use Rashidul\River\Constants;
-use Rashidul\River\Models\DataType;
-use Rashidul\River\Models\FieldValue;
-use Rashidul\River\Services\SettingsService;
-use Rashidul\River\Models\Faq;
-use Rashidul\River\Models\Menu;
-use Rashidul\River\Models\Blog;
-use Rashidul\River\Models\Testimonial;
-use Rashidul\River\Models\Slider;
-use Rashidul\River\Models\Service;
+use BitPixel\SpringCms\Constants;
+use BitPixel\SpringCms\Models\DataType;
+use BitPixel\SpringCms\Models\FieldValue;
+use BitPixel\SpringCms\Services\SettingsService;
+use BitPixel\SpringCms\Models\Faq;
+use BitPixel\SpringCms\Models\Menu;
+use BitPixel\SpringCms\Models\Blog;
+use BitPixel\SpringCms\Models\Testimonial;
+use BitPixel\SpringCms\Models\Slider;
+use BitPixel\SpringCms\Models\Service;
 use Illuminate\Support\Facades\Cache;
 
 if (! function_exists('river_settings')) {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Rashidul\River\Commands\Generators;
+namespace BitPixel\SpringCms\Commands\Generators;
 
 use Illuminate\Console\GeneratorCommand;
-use Rashidul\River\Services\DataTypeService;
+use BitPixel\SpringCms\Services\DataTypeService;
 
 class MakeMigrationCommand extends GeneratorCommand
 {
@@ -35,14 +35,14 @@ class MakeMigrationCommand extends GeneratorCommand
      * @var array
      */
     protected $typeLookup = [
-        \Rashidul\River\Constants::FIELD_TYPE_TEXT => 'string',
-        \Rashidul\River\Constants::FIELD_TYPE_CHECKBOX => 'boolean',
-        \Rashidul\River\Constants::FIELD_TYPE_DATE => 'date',
-        \Rashidul\River\Constants::FIELD_TYPE_EMAIL => 'string',
-        \Rashidul\River\Constants::FIELD_TYPE_PHONE => 'string',
-        \Rashidul\River\Constants::FIELD_TYPE_IMAGE => 'string',
-        \Rashidul\River\Constants::FIELD_TYPE_TEXTAREA => 'text',
-        \Rashidul\River\Constants::FIELD_TYPE_PASSWORD => 'string',
+        \BitPixel\SpringCms\Constants::FIELD_TYPE_TEXT => 'string',
+        \BitPixel\SpringCms\Constants::FIELD_TYPE_CHECKBOX => 'boolean',
+        \BitPixel\SpringCms\Constants::FIELD_TYPE_DATE => 'date',
+        \BitPixel\SpringCms\Constants::FIELD_TYPE_EMAIL => 'string',
+        \BitPixel\SpringCms\Constants::FIELD_TYPE_PHONE => 'string',
+        \BitPixel\SpringCms\Constants::FIELD_TYPE_IMAGE => 'string',
+        \BitPixel\SpringCms\Constants::FIELD_TYPE_TEXTAREA => 'text',
+        \BitPixel\SpringCms\Constants::FIELD_TYPE_PASSWORD => 'string',
         /*'datetime' => 'dateTime',
         'time' => 'time',
         'text' => 'string',

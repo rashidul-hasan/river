@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Customer\Auth;
+namespace BitPixel\SpringCms\Http\Controllers\Customer\Auth;
 
 use App\Customer;
 use App\Http\Controllers\Controller;

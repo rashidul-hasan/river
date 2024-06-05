@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River\Utility;
+namespace BitPixel\SpringCms\Utility;
 
 class HtmlUtility
 {

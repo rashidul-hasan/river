@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;

@@ -1,12 +1,12 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-use Rashidul\River\Models\NewsletterSubmissions;
+use BitPixel\SpringCms\Models\NewsletterSubmissions;
 
 class NewsletterSubmissionsController extends Controller
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Rashidul\River\Commands\Generators;
+namespace BitPixel\SpringCms\Commands\Generators;
 
 use File;
 use Illuminate\Console\Command;
-use Rashidul\River\Models\DataType;
-use Rashidul\River\Services\DataTypeService;
+use BitPixel\SpringCms\Models\DataType;
+use BitPixel\SpringCms\Services\DataTypeService;
 
 class ScaffoldCommand extends Command
 {

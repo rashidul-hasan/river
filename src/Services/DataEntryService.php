@@ -1,13 +1,13 @@
 <?php
 
-namespace Rashidul\River\Services;
+namespace BitPixel\SpringCms\Services;
 
 use Illuminate\Support\Facades\DB;
-use Rashidul\River\Models\DataEntry;
-use Rashidul\River\Models\DataType;
-use Rashidul\River\Models\FieldValue;
-use Rashidul\River\Utility\Field;
-use Rashidul\River\Utility\FieldCollection;
+use BitPixel\SpringCms\Models\DataEntry;
+use BitPixel\SpringCms\Models\DataType;
+use BitPixel\SpringCms\Models\FieldValue;
+use BitPixel\SpringCms\Utility\Field;
+use BitPixel\SpringCms\Utility\FieldCollection;
 
 class DataEntryService
 {

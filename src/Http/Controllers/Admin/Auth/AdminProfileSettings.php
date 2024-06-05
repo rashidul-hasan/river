@@ -1,13 +1,13 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin\Auth;
+namespace BitPixel\SpringCms\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Rashidul\River\Constants;
-use Rashidul\River\Models\Admin;
+use BitPixel\SpringCms\Constants;
+use BitPixel\SpringCms\Models\Admin;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 
@@ -47,9 +47,9 @@ class AdminProfileSettings extends Controller
     public function index(){
 
         $data = Auth::guard(Constants::AUTH_GUARD_ADMINS)->user();
-        
+
         return view('river::admin\auth\profile_settings', compact('data'));
-        
+
     }
 
     public function update(Request $request, $id){
@@ -57,15 +57,15 @@ class AdminProfileSettings extends Controller
             'name' => 'required',
             'email' =>'required'
         ]);
-      
+
             $file= Admin::find($id);
 
             $file->name = $request->name;
             $file->email = $request->email;
             $file->image = $request->image;
-            
+
             $file->save();
-            
+
             return redirect()->back()->with('success', 'Updated');
     }
 
@@ -73,7 +73,7 @@ class AdminProfileSettings extends Controller
 
 
         $file= Admin::find($id);
-        
+
 
         $request->validate([
             'password' => 'required',
@@ -86,7 +86,7 @@ class AdminProfileSettings extends Controller
 
             Admin::findOrFail(Auth::guard(Constants::AUTH_GUARD_ADMINS)->user()->id)->update([
                 'password' => Hash::make($request->new_password),
-              
+
             ]);
 
             return redirect()->back()->with('success','Password Updated Successfully');
@@ -96,11 +96,11 @@ class AdminProfileSettings extends Controller
             return redirect()->back()->with('error','Current Password does not match with Old Password');
         }
 
-       
 
 
 
-           
+
+
     }
     /**
      * Show the application's login form.

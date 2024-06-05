@@ -1,11 +1,11 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Customer\Auth;
+namespace BitPixel\SpringCms\Http\Controllers\Customer\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Rashidul\River\Models\Customer;
+use BitPixel\SpringCms\Models\Customer;
 use Socialite;
 
 class GoogleController extends Controller

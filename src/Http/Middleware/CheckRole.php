@@ -1,14 +1,14 @@
 <?php
 
-namespace Rashidul\River\Http\Middleware;
+namespace BitPixel\SpringCms\Http\Middleware;
 
 use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use Rashidul\River\Models\Role;
-use Rashidul\River\Models\RolePermission;
-use Rashidul\River\Utility\RolesCache;
+use BitPixel\SpringCms\Models\Role;
+use BitPixel\SpringCms\Models\RolePermission;
+use BitPixel\SpringCms\Utility\RolesCache;
 
 class CheckRole
 {

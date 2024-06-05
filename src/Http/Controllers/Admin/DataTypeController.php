@@ -1,14 +1,14 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
-use Rashidul\River\Constants;
-use Rashidul\River\Models\DataFields;
-use Rashidul\River\Models\DataType;
-use Rashidul\River\Models\TemplatePage;
+use BitPixel\SpringCms\Constants;
+use BitPixel\SpringCms\Models\DataFields;
+use BitPixel\SpringCms\Models\DataType;
+use BitPixel\SpringCms\Models\TemplatePage;
 
 class DataTypeController
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Rashidul\River\Commands\Generators;
+namespace BitPixel\SpringCms\Commands\Generators;
 
 use Illuminate\Console\Command;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Facades\File;
-use Rashidul\River\Services\DataTypeService;
-use Rashidul\River\Utility\FormBuilder;
+use BitPixel\SpringCms\Services\DataTypeService;
+use BitPixel\SpringCms\Utility\FormBuilder;
 
 class MakeViewFilesCommand extends Command
 {

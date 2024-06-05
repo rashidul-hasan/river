@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River\Auth;
+namespace BitPixel\SpringCms\Auth;
 
 use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Contracts\Auth\Authenticatable;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Customer\Auth;
+namespace BitPixel\SpringCms\Http\Controllers\Customer\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Rashidul\River\Constants;
-use Rashidul\River\Models\Customer;
+use BitPixel\SpringCms\Constants;
+use BitPixel\SpringCms\Models\Customer;
 
 class RegisterController extends Controller
 {

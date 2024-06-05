@@ -61,3 +61,24 @@ Syntax error or access violation: 1071 Specified key was too long; max key lengt
 
 Base table or view already exists: 105 ==> run `php artisan migrate:fresh`
 
+
+
+### Development
+
+1. Add the following param in root composer.json after "require" param
+```js
+"repositories": [
+    {
+    "type": "path",
+    "url": "./package/river",
+    "options": {
+        "symlink": true
+    }
+    }
+], 
+
+```
+
+Error: ` curl error 60 while downloading https://repo.packagist.org/p2/bitpixel/springcms.json: SSL certificate problem: unable to get local issuer certificate`
+
+to fix this run: `composer config -g -- disable-tls false`

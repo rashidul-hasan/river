@@ -1,17 +1,17 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
-use Rashidul\River\Constants;
-use Rashidul\River\Models\DataFields;
-use Rashidul\River\Models\ContactFormField;
-use Rashidul\River\Models\ContactForm;
+use BitPixel\SpringCms\Constants;
+use BitPixel\SpringCms\Models\DataFields;
+use BitPixel\SpringCms\Models\ContactFormField;
+use BitPixel\SpringCms\Models\ContactForm;
 
-use Rashidul\River\Models\ContactFormSubmission;
+use BitPixel\SpringCms\Models\ContactFormSubmission;
 
 class ContactFormFieldController
 {

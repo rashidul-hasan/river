@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River\Commands\Generators;
+namespace BitPixel\SpringCms\Commands\Generators;
 
 use Illuminate\Console\GeneratorCommand;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River\Services;
+namespace BitPixel\SpringCms\Services;
 
 class ImageUploadService
 {

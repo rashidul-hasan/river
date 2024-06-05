@@ -1,12 +1,12 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin\Auth;
+namespace BitPixel\SpringCms\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Rashidul\River\Constants;
+use BitPixel\SpringCms\Constants;
 
 class LoginController extends Controller
 {

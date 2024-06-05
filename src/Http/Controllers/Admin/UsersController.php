@@ -1,15 +1,15 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Rashidul\River\Constants;
-use Rashidul\River\Models\Admin;
-use Rashidul\River\Models\Role;
+use BitPixel\SpringCms\Constants;
+use BitPixel\SpringCms\Models\Admin;
+use BitPixel\SpringCms\Models\Role;
 
 class UsersController extends Controller
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Rashidul\River\Constants;
-use Rashidul\River\Models\RiverPage;
+use BitPixel\SpringCms\Constants;
+use BitPixel\SpringCms\Models\RiverPage;
 use Session;
 
 class RiverPagesController extends Controller

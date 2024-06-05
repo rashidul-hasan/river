@@ -1,9 +1,9 @@
 <?php
 
-namespace Rashidul\River\Services;
+namespace BitPixel\SpringCms\Services;
 
-use Rashidul\River\Models\DataType;
-use Rashidul\River\Models\FieldValue;
+use BitPixel\SpringCms\Models\DataType;
+use BitPixel\SpringCms\Models\FieldValue;
 
 class DataTypeService
 {

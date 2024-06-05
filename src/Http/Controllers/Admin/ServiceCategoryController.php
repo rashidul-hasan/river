@@ -1,16 +1,16 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
-use Rashidul\River\Constants;
+use BitPixel\SpringCms\Constants;
 use Illuminate\Support\Facades\Auth;
-use Rashidul\River\Models\Blog;
-use Rashidul\River\Models\BlogCategory;
+use BitPixel\SpringCms\Models\Blog;
+use BitPixel\SpringCms\Models\BlogCategory;
 
-use Rashidul\River\Models\ServiceCategory;
+use BitPixel\SpringCms\Models\ServiceCategory;
 
 
 class ServiceCategoryController
@@ -58,18 +58,18 @@ class ServiceCategoryController
         $request->validate([
             'name' => 'required',
             'sort_order' => 'required'
-            
+
         ]);
 
         $names = $request->get('name');
-      
-        
+
+
             $file = ServiceCategory::create([
                 'name' => $names,
                 'parent_id' => $request->parent_id,
                 'sort_order' =>$request->sort_order
             ]);
-        
+
 
         return redirect(route('river.service-category.index',[$file->id] ))
             ->with('success', 'Created!');
@@ -78,8 +78,8 @@ class ServiceCategoryController
     public function edit($id)
     {
         $all = ServiceCategory::all();
-        
-        $file = ServiceCategory::find($id); 
+
+        $file = ServiceCategory::find($id);
 
         $data = [
             'title' => 'Edit Service Category: ' . $file->name,
@@ -105,7 +105,7 @@ class ServiceCategoryController
         $file->save();
 
         return redirect()->back()->with('success', 'Updated');
-    
+
     }
 
     public function destroy($id)
@@ -115,6 +115,6 @@ class ServiceCategoryController
 
         return redirect(route('river.service-category.index'))
             ->with('success', 'Deleted!');
-    } 
-    
+    }
+
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Rashidul\River\Services\Generators;
+namespace BitPixel\SpringCms\Services\Generators;
 
-use Rashidul\River\Constants;
-use Rashidul\River\Models\DataType;
+use BitPixel\SpringCms\Constants;
+use BitPixel\SpringCms\Models\DataType;
 
 class MigrationGeneratorService
 {

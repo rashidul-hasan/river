@@ -1,13 +1,13 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Blade;
-use Rashidul\River\Models\TemplatePage;
-use Rashidul\River\Models\TemplatePageVersion;
+use BitPixel\SpringCms\Models\TemplatePage;
+use BitPixel\SpringCms\Models\TemplatePageVersion;
 use Carbon\Carbon;
 
 use RecursiveDirectoryIterator;

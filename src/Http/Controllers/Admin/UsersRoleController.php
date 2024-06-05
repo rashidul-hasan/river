@@ -1,16 +1,16 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-use Rashidul\River\Models\DataType;
-use Rashidul\River\Models\Role;
-use Rashidul\River\Models\RolePermission;
-use Rashidul\River\Utility\RolesCache;
+use BitPixel\SpringCms\Models\DataType;
+use BitPixel\SpringCms\Models\Role;
+use BitPixel\SpringCms\Models\RolePermission;
+use BitPixel\SpringCms\Utility\RolesCache;
 use Session;
 
 class UsersRoleController extends Controller

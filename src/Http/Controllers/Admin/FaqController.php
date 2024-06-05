@@ -1,16 +1,16 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
-use Rashidul\River\Constants;
+use BitPixel\SpringCms\Constants;
 
-use Rashidul\River\Models\ContactForm;
-use Rashidul\River\Models\ContactFormField;
+use BitPixel\SpringCms\Models\ContactForm;
+use BitPixel\SpringCms\Models\ContactFormField;
 
-use Rashidul\River\Models\Faq;
+use BitPixel\SpringCms\Models\Faq;
 
 
 class FaqController
@@ -21,7 +21,7 @@ class FaqController
 
         $buttons = [
             ['Add New Question', '', 'btn btn-primary', 'btn-add-new' /*label,link,class,id*/],
-            
+
         ];
         $data = [
             'title' => 'FAQ',
@@ -69,7 +69,7 @@ class FaqController
     {
         $request->validate([
             'question' => 'required',
-            
+
         ]);
 
         $file = Faq::find($id);

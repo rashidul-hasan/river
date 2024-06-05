@@ -1,13 +1,13 @@
 <?php
 
-namespace Rashidul\River\ViewComposers;
+namespace BitPixel\SpringCms\ViewComposers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
-use Rashidul\River\Constants;
-use Rashidul\River\Models\DataType;
-use Rashidul\River\Utility\RolesCache;
+use BitPixel\SpringCms\Constants;
+use BitPixel\SpringCms\Models\DataType;
+use BitPixel\SpringCms\Utility\RolesCache;
 
 class AdminSidebarViewComposer
 {

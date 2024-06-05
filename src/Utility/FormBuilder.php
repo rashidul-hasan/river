@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River\Utility;
+namespace BitPixel\SpringCms\Utility;
 
 use Illuminate\Support\Str;
 

@@ -1,17 +1,17 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
-use Rashidul\River\Constants;
-use Rashidul\River\Models\ContactForm;
-use Rashidul\River\Models\ContactFormField;
+use BitPixel\SpringCms\Constants;
+use BitPixel\SpringCms\Models\ContactForm;
+use BitPixel\SpringCms\Models\ContactFormField;
 
 
-use Rashidul\River\Models\Menu;
-use Rashidul\River\Models\MenuItem;
+use BitPixel\SpringCms\Models\Menu;
+use BitPixel\SpringCms\Models\MenuItem;
 
 
 
@@ -83,8 +83,8 @@ class MenuController
 
     public function edit($id)
     {
-        
-        $file = Menu::find($id); 
+
+        $file = Menu::find($id);
 
         $data = [
             'title' => 'Edit Menu: ' . $file->name,
@@ -110,7 +110,7 @@ class MenuController
 
         Cache::forget(Constants::CACHE_KEY_MENU);
         return redirect()->back()->with('success', 'Updated');
-    
+
     }
 
     public function menu_item_create($id){
@@ -135,7 +135,7 @@ class MenuController
         $names = $request->get('title');
         $id = $request->get('type_id');
 
-        
+
         $names = explode(",", $names);
         foreach ($names as $name) {
             MenuItem::create([
@@ -151,7 +151,7 @@ class MenuController
 
     public function updateFields(Request $request)
     {
-        
+
         $id = $request->get('type_id');
         $fields = $request->get('field');
         foreach ($fields as $fieldid => $values) {
@@ -164,13 +164,13 @@ class MenuController
             }
 
             $f->fill([
-                
+
                 'title' => $values['title'],
                 'url' => $values['url'],
                 'sort_order' => $values['sort_order'],
                 'css_class' => $values['css_class'],
                 'css_id' => $values['css_id'],
-                
+
             ]);
             $f->save();
         }
@@ -189,14 +189,14 @@ class MenuController
             ->with('success', 'Deleted!');
     }
 
-   
 
-   
 
-   
 
-   
 
-    
-    
+
+
+
+
+
+
 }

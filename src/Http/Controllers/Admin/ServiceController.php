@@ -1,16 +1,16 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
-use Rashidul\River\Constants;
+use BitPixel\SpringCms\Constants;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 
-use Rashidul\River\Models\Service;
-use Rashidul\River\Models\ServiceCategory;
+use BitPixel\SpringCms\Models\Service;
+use BitPixel\SpringCms\Models\ServiceCategory;
 
 
 
@@ -84,9 +84,9 @@ class ServiceController
          }
 
          if ( $request->has('sort_order')){
-            
+
             $sort_order=$request->sort_order;
-           
+
         } else{
             $sort_order= 1;
         }

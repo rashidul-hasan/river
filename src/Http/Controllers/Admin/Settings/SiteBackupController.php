@@ -1,12 +1,12 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin\Settings;
+namespace BitPixel\SpringCms\Http\Controllers\Admin\Settings;
 
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use File;
 use Ifsnop\Mysqldump\Mysqldump;
-use Rashidul\River\Services\SettingsService;
+use BitPixel\SpringCms\Services\SettingsService;
 use ZipArchive;
 
 class SiteBackupController extends Controller

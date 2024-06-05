@@ -1,16 +1,16 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
-use Rashidul\River\Constants;
+use BitPixel\SpringCms\Constants;
 use Illuminate\Support\Facades\Auth;
-use Rashidul\River\Models\BlogCategory;
+use BitPixel\SpringCms\Models\BlogCategory;
 
 
-use Rashidul\River\Models\Tag;
+use BitPixel\SpringCms\Models\Tag;
 
 
 class TagController

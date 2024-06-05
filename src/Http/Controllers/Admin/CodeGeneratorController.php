@@ -1,11 +1,11 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
-use Rashidul\River\Services\Generators\ControllerGeneratorService;
-use Rashidul\River\Services\Generators\MigrationGeneratorService;
+use BitPixel\SpringCms\Services\Generators\ControllerGeneratorService;
+use BitPixel\SpringCms\Services\Generators\MigrationGeneratorService;
 
 class CodeGeneratorController extends Controller
 {

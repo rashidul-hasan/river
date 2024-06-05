@@ -1,16 +1,16 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
-use Rashidul\River\Constants;
-use Rashidul\River\Models\DataFields;
-use Rashidul\River\Models\DataType;
+use BitPixel\SpringCms\Constants;
+use BitPixel\SpringCms\Models\DataFields;
+use BitPixel\SpringCms\Models\DataType;
 
-use Rashidul\River\Models\ContactForm;
-use Rashidul\River\Models\ContactFormField;
+use BitPixel\SpringCms\Models\ContactForm;
+use BitPixel\SpringCms\Models\ContactFormField;
 
 class ContactFormController
 {
@@ -129,7 +129,7 @@ class ContactFormController
             }
 
             $f->fill([
-                
+
                 'slug' => $values['slug'],
                 'label' => $values['label'],
                 'type' => $values['type'],

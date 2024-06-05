@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River;
+namespace BitPixel\SpringCms;
 
 class Constants
 {

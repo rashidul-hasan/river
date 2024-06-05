@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Rashidul\River\Crud;
+namespace BitPixel\SpringCms\Crud;
 
 use Rashidul\RainDrops\Model\ModelHelper;
 use Rashidul\RainDrops\Table\Helper;

@@ -1,8 +1,8 @@
 <?php
-namespace Rashidul\River\Services;
+namespace BitPixel\SpringCms\Services;
 
 use Illuminate\Support\Facades\Cache;
-use Rashidul\River\Models\Settings;
+use BitPixel\SpringCms\Models\Settings;
 
 class SettingsService
 {

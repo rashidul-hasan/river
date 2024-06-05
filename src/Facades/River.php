@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River\Facades;
+namespace BitPixel\SpringCms\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

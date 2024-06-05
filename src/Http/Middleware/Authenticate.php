@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River\Http\Middleware;
+namespace BitPixel\SpringCms\Http\Middleware;
 
 use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;

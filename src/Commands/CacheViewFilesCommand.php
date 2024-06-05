@@ -1,9 +1,9 @@
 <?php
 
-namespace Rashidul\River\Commands;
+namespace BitPixel\SpringCms\Commands;
 
 use Illuminate\Console\Command;
-use Rashidul\River\Models\TemplatePage;
+use BitPixel\SpringCms\Models\TemplatePage;
 
 class CacheViewFilesCommand extends Command
 {

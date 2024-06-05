@@ -1,12 +1,12 @@
 <?php
 
-namespace Rashidul\River\Http\Middleware;
+namespace BitPixel\SpringCms\Http\Middleware;
 
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Rashidul\River\Constants;
+use BitPixel\SpringCms\Constants;
 
 class RedirectIfAuthenticated
 {

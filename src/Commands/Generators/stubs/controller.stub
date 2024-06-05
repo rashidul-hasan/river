@@ -3,7 +3,7 @@
 namespace DummyNamespace;
 
 use App\Models\{{modelName}};
-use Rashidul\River\Crud\BaseCrudController;
+use BitPixel\SpringCms\Crud\BaseCrudController;
 
 class DummyClass extends BaseCrudController
 {

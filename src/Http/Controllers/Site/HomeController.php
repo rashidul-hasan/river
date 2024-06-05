@@ -1,15 +1,15 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Site;
+namespace BitPixel\SpringCms\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Cache;
-use Rashidul\River\Constants;
-use Rashidul\River\Models\Banner;
-use Rashidul\River\Models\Slider;
-use Rashidul\River\Models\ContactFormField;
-use Rashidul\River\Models\DataEntry;
+use BitPixel\SpringCms\Constants;
+use BitPixel\SpringCms\Models\Banner;
+use BitPixel\SpringCms\Models\Slider;
+use BitPixel\SpringCms\Models\ContactFormField;
+use BitPixel\SpringCms\Models\DataEntry;
 
 class HomeController extends Controller
 {
@@ -39,7 +39,7 @@ class HomeController extends Controller
     }
 
     public function single_entries_show($slug){
-        
+
 
         $data = DataEntry::where('slug', $slug)->first();
 

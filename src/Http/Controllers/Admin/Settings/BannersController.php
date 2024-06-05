@@ -1,14 +1,14 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin\Settings;
+namespace BitPixel\SpringCms\Http\Controllers\Admin\Settings;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Rashidul\River\Constants;
+use BitPixel\SpringCms\Constants;
 use Illuminate\Support\Str;
-use Rashidul\River\Models\Banner;
-use Rashidul\River\Services\ImageUploadService;
+use BitPixel\SpringCms\Models\Banner;
+use BitPixel\SpringCms\Services\ImageUploadService;
 
 class BannersController extends Controller
 {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
-use Rashidul\River\Constants;
-use Rashidul\River\Models\Faq;
+use BitPixel\SpringCms\Constants;
+use BitPixel\SpringCms\Models\Faq;
 
-use Rashidul\River\Models\Testimonial;
+use BitPixel\SpringCms\Models\Testimonial;
 
 
 class TestimonialController

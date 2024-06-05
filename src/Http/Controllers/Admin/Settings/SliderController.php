@@ -1,13 +1,13 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin\Settings;
+namespace BitPixel\SpringCms\Http\Controllers\Admin\Settings;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Rashidul\River\Constants;
-use Rashidul\River\Models\Slider;
-use Rashidul\River\Services\ImageUploadService;
+use BitPixel\SpringCms\Constants;
+use BitPixel\SpringCms\Models\Slider;
+use BitPixel\SpringCms\Services\ImageUploadService;
 
 class SliderController extends Controller
 {
@@ -135,7 +135,7 @@ class SliderController extends Controller
     {
         $slider = Slider::find($id);
         $image = $slider->image;
-        
+
         try {
             if (file_exists(public_path($image)) && $image) {
                 unlink(public_path($image));

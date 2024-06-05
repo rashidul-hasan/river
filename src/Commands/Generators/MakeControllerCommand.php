@@ -1,9 +1,9 @@
 <?php
 
-namespace Rashidul\River\Commands\Generators;
+namespace BitPixel\SpringCms\Commands\Generators;
 
 use Illuminate\Console\GeneratorCommand;
-use Rashidul\River\Models\DataType;
+use BitPixel\SpringCms\Models\DataType;
 
 class MakeControllerCommand extends GeneratorCommand
 {

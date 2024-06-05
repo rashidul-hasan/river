@@ -1,6 +1,6 @@
 <?php
 
-namespace Rashidul\River\Crud;
+namespace BitPixel\SpringCms\Crud;
 
 
 

@@ -1,25 +1,25 @@
 <?php
 
-namespace Rashidul\River;
+namespace BitPixel\SpringCms;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Rashidul\River\Commands\CacheViewFilesCommand;
-use Rashidul\River\Commands\DatabaseSeederCommand;
-use Rashidul\River\Commands\Generators\MakeControllerCommand;
-use Rashidul\River\Commands\Generators\MakeMigrationCommand;
-use Rashidul\River\Commands\Generators\MakeModelCommand;
-use Rashidul\River\Commands\Generators\MakeViewFilesCommand;
-use Rashidul\River\Commands\Generators\ScaffoldCommand;
-use Rashidul\River\Http\Middleware\Authenticate;
-use Rashidul\River\Http\Middleware\CheckRole;
-use Rashidul\River\Http\Middleware\RedirectIfAuthenticated;
-use Rashidul\River\Models\Admin;
-use Rashidul\River\Models\Customer;
-use Rashidul\River\ViewComposers\AdminSidebarViewComposer;
+use BitPixel\SpringCms\Commands\CacheViewFilesCommand;
+use BitPixel\SpringCms\Commands\DatabaseSeederCommand;
+use BitPixel\SpringCms\Commands\Generators\MakeControllerCommand;
+use BitPixel\SpringCms\Commands\Generators\MakeMigrationCommand;
+use BitPixel\SpringCms\Commands\Generators\MakeModelCommand;
+use BitPixel\SpringCms\Commands\Generators\MakeViewFilesCommand;
+use BitPixel\SpringCms\Commands\Generators\ScaffoldCommand;
+use BitPixel\SpringCms\Http\Middleware\Authenticate;
+use BitPixel\SpringCms\Http\Middleware\CheckRole;
+use BitPixel\SpringCms\Http\Middleware\RedirectIfAuthenticated;
+use BitPixel\SpringCms\Models\Admin;
+use BitPixel\SpringCms\Models\Customer;
+use BitPixel\SpringCms\ViewComposers\AdminSidebarViewComposer;
 
-class RiverServiceProvider extends ServiceProvider
+class SpringCmsServiceProvider extends ServiceProvider
 {
     public function boot()
     {

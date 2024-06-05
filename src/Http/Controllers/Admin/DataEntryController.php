@@ -1,17 +1,17 @@
 <?php
 
-namespace Rashidul\River\Http\Controllers\Admin;
+namespace BitPixel\SpringCms\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Rashidul\River\Models\DataEntry;
-use Rashidul\River\Models\DataFields;
-use Rashidul\River\Models\DataType;
-use Rashidul\River\Models\FieldValue;
-use Rashidul\River\Models\RolePermission;
-use Rashidul\River\Services\DataEntryService;
-use Rashidul\River\Services\DataTypeService;
-use Rashidul\River\Utility\FormBuilder;
-use Rashidul\River\Utility\RolesCache;
+use BitPixel\SpringCms\Models\DataEntry;
+use BitPixel\SpringCms\Models\DataFields;
+use BitPixel\SpringCms\Models\DataType;
+use BitPixel\SpringCms\Models\FieldValue;
+use BitPixel\SpringCms\Models\RolePermission;
+use BitPixel\SpringCms\Services\DataEntryService;
+use BitPixel\SpringCms\Services\DataTypeService;
+use BitPixel\SpringCms\Utility\FormBuilder;
+use BitPixel\SpringCms\Utility\RolesCache;
 
 class DataEntryController
 {

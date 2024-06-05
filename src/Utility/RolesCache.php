@@ -1,10 +1,10 @@
 <?php
 
-namespace Rashidul\River\Utility;
+namespace BitPixel\SpringCms\Utility;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use Rashidul\River\Models\Role;
+use BitPixel\SpringCms\Models\Role;
 
 class RolesCache
 {
