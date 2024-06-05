@@ -33,7 +33,7 @@
                 @endif
                 <div class="mb-3">
                     <label class="form-label">Email address</label>
-                    <input type="email" class="form-control" placeholder="Enter email" autocomplete="off" name="email" value="{{old('email')}}" required>
+                    <input type="email" class="form-control" placeholder="Enter email" autocomplete="off" name="email" value="{{old('email')}}" required autofocus>
                 </div>
                 <div class="mb-2">
                     <label class="form-label">

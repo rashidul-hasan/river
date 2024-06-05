@@ -61,9 +61,9 @@ class LoginController extends Controller
 
             // Authentication passed...
             return redirect()->to(route('river.admin.dashboard'));
-            
+
         }else{
-            return redirect()->back()->with('error','Credentials does not match!');
+            return redirect()->back()->withInput()->with('error','Credentials does not match!');
         }
 
     }
