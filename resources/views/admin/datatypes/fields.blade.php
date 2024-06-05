@@ -36,68 +36,68 @@
                 </td>
                 <td>
                     <select name="field[{{$field->id}}][type]" class="form-control">
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_TEXT}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_TEXT) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_TEXT}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_TEXT) selected @endif>
                             Text
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_TEXTAREA}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_TEXTAREA) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_TEXTAREA}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_TEXTAREA) selected @endif>
                             Textarea
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_EMAIL}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_EMAIL) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_EMAIL}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_EMAIL) selected @endif>
                             Email
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_PHONE}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_PHONE) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_PHONE}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_PHONE) selected @endif>
                             Phone
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_PASSWORD}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_PASSWORD) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_PASSWORD}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_PASSWORD) selected @endif>
                             Password
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_IMAGE}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_IMAGE) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_IMAGE}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_IMAGE) selected @endif>
                             Image
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_CHECKBOX}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_CHECKBOX) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_CHECKBOX}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_CHECKBOX) selected @endif>
                             Checkbox
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_SELECT}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_SELECT) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_SELECT}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_SELECT) selected @endif>
                             Select
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_RADIO}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_RADIO) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_RADIO}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_RADIO) selected @endif>
                             Radio
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_DROPDOWN}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_DROPDOWN) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_DROPDOWN}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_DROPDOWN) selected @endif>
                             Dropdown
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_TEXT}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_TEXT) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_TEXT}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_TEXT) selected @endif>
                             Text
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_NUMBER}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_NUMBER) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_NUMBER}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_NUMBER) selected @endif>
                             Number
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_DATE}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_DATE) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_DATE}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_DATE) selected @endif>
                             Date
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_DATETIME}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_DATETIME) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_DATETIME}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_DATETIME) selected @endif>
                             Date time
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_RICHTEXT}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_RICHTEXT) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_RICHTEXT}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_RICHTEXT) selected @endif>
                             Richtext
                         </option>
-                        <option value="{{\Rashidul\River\Constants::FIELD_TYPE_BELONGSTO}}"
-                                @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_BELONGSTO) selected @endif>
+                        <option value="{{\BitPixel\SpringCms\Constants::FIELD_TYPE_BELONGSTO}}"
+                                @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_BELONGSTO) selected @endif>
                             Belongs To
                         </option>
                     </select>

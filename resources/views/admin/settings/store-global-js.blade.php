@@ -24,7 +24,7 @@
                     <form class="custom-validation" action="{{route('river.store-settings')}}" method="POST">
                         @csrf
 
-                        {{-- <div class="form-group content"  id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML}}">
+                        {{-- <div class="form-group content"  id="content-{{\BitPixel\SpringCms\Models\RiverPage::CONTENT_TYPE_HTML}}">
                                     <textarea name="global_js" id="content_type" >{{ river_settings('global_js') }}</textarea>
                         </div>     --}}
 
@@ -33,8 +33,8 @@
                             <textarea name="global_js" id="code" cols="30" rows="50" class="form-control">{{ river_settings('global_js') }}</textarea>
 {{--                            <div id="editor" style="height: 500px;"></div>--}}
                         </div>
-                    
-               
+
+
 
                     <div class="form-group row mb-0 float-right">
                         <div class="col-md-8 mt-4">
@@ -46,11 +46,11 @@
                 </div>
             </div>
         </form>
-           
-           
 
-        
-       
+
+
+
+
     </div>
 @stop
 

@@ -18,7 +18,7 @@
                             <h3 class="card-title">Horizontal form</h3>
                         </div>--}}
                         @php
-                            use \Rashidul\River\Constants;
+                            use \BitPixel\SpringCms\Constants;
                         @endphp
                         <div class="card-body">
                             @foreach($fields as $slug => $options)

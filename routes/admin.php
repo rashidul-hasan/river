@@ -1,18 +1,19 @@
 <?php
 
-use Rashidul\River\Http\Controllers\Admin\FileUploadController;
-use Rashidul\River\Http\Controllers\Admin\MenuController;
-use Rashidul\River\Http\Controllers\Admin\BlogController;
-use Rashidul\River\Http\Controllers\Admin\GitHubController;
-use Rashidul\River\Http\Controllers\Site\ContactFormSubmissionController;
+use BitPixel\SpringCms\Http\Controllers\Admin\FileUploadController;
+use BitPixel\SpringCms\Http\Controllers\Admin\MenuController;
+use BitPixel\SpringCms\Http\Controllers\Admin\BlogController;
+use BitPixel\SpringCms\Http\Controllers\Admin\GitHubController;
+use BitPixel\SpringCms\Http\Controllers\Site\ContactFormSubmissionController;
 
 
-use Rashidul\River\Http\Controllers\Admin\TemplatePageController;
+use BitPixel\SpringCms\Http\Controllers\Admin\TemplatePageController;
+
 //auth
 Route::group([
     'prefix' => 'admin',
     'middleware' => ['web', 'river.guest:admins'],
-    'namespace' => 'Rashidul\River\Http\Controllers',
+    'namespace' => 'BitPixel\SpringCms\Http\Controllers',
     'as' => 'river.'
 ], function () {
     Route::get('login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
@@ -27,7 +28,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'river.
 Route::group([
     'prefix' => 'admin',
     'middleware' => ['web', 'river.auth:admins', /*'river.checkrole'*/],
-    'namespace' => 'Rashidul\River\Http\Controllers',
+    'namespace' => 'BitPixel\SpringCms\Http\Controllers',
     'as' => 'river.'
 ], function () {
 

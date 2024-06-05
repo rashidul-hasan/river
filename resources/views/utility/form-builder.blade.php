@@ -20,7 +20,7 @@
             </div>
         @endif
 
-        @if($field['type'] == \Rashidul\River\Constants::FIELD_TYPE_PHONE)
+        @if($field['type'] == \BitPixel\SpringCms\Constants::FIELD_TYPE_PHONE)
             {{--TODO add formatting option for phn number--}}
             <div class="form-group row">
                 <label class="col-md-4">{{$field['label']}}</label>
@@ -33,7 +33,7 @@
             </div>
         @endif
 
-        @if($field['type'] == \Rashidul\River\Constants::FIELD_TYPE_DATE)
+        @if($field['type'] == \BitPixel\SpringCms\Constants::FIELD_TYPE_DATE)
             {{--TODO add a good date picker--}}
             <div class="form-group row">
                 <label class="col-md-4">{{$field['label']}}</label>
@@ -71,17 +71,17 @@
             </div>
         @endif
 
-        @if($field['type'] == \Rashidul\River\Constants::FIELD_TYPE_BELONGSTO)
+        @if($field['type'] == \BitPixel\SpringCms\Constants::FIELD_TYPE_BELONGSTO)
             <div class="form-group row">
                 <label class="col-md-4">{{$field['label']}}</label>
                 @php
                 $metas = $field['metas'];
 
                 $type = collect($metas)->first(function ($item) {
-                    return $item['name'] == \Rashidul\River\Models\DataFieldMeta::NAME_RELATED_TYPE;
+                    return $item['name'] == \BitPixel\SpringCms\Models\DataFieldMeta::NAME_RELATED_TYPE;
                 });
                    $column = collect($metas)->first(function ($item) {
-                    return $item['name'] == \Rashidul\River\Models\DataFieldMeta::NAME_RELATED_TYPE_LABEL_COLUMN;
+                    return $item['name'] == \BitPixel\SpringCms\Models\DataFieldMeta::NAME_RELATED_TYPE_LABEL_COLUMN;
                 });
 
                 $data = river_find($type['value']);

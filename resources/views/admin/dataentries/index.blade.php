@@ -23,7 +23,7 @@
                         @foreach($data as $row)
                             <tr>
                                 @foreach($headers as $slug => $meta)
-                                    @if($meta['type'] == \Rashidul\River\Constants::FIELD_TYPE_IMAGE)
+                                    @if($meta['type'] == \BitPixel\SpringCms\Constants::FIELD_TYPE_IMAGE)
                                         <td>
                                             <img src="{{array_key_exists($slug, $row) ? $row[$slug] : ''}}" alt="" width="100">
                                         </td>

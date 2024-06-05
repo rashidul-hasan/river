@@ -7,7 +7,7 @@
             <form action="{{route('river.datatypes.field-meta')}}" method="post">
                 @csrf
                 <div class="modal-body">
-                    @if($field->type == \Rashidul\River\Constants::FIELD_TYPE_SELECT)
+                    @if($field->type == \BitPixel\SpringCms\Constants::FIELD_TYPE_SELECT)
                         <div class="mb-3">
                             <label class="form-label">Option</label>
                             <input type="text" class="form-control" name="options" value="">

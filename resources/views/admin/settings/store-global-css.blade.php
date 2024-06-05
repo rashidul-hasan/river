@@ -26,7 +26,7 @@
                     <form class="custom-validation" action="{{route('river.store-settings')}}" method="POST">
                         @csrf
 
-                        {{-- <div class="form-group content"  id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML}}">
+                        {{-- <div class="form-group content"  id="content-{{\BitPixel\SpringCms\Models\RiverPage::CONTENT_TYPE_HTML}}">
                                     <textarea name="global_css" id="content_type" >{{ river_settings('global_css') }}</textarea>
                         </div>   --}}
 

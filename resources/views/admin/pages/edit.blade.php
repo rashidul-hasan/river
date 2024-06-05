@@ -93,13 +93,13 @@
                                 <div>
                                     <select class="form-select" name="content_type" id="contentType">
                                         <option value="" selected disabled>Select</option>
-                                        <option value="{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML}}"
+                                        <option value="{{\BitPixel\SpringCms\Models\RiverPage::CONTENT_TYPE_HTML}}"
                                             {{$riverPage->content_type ==
-                                            \Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML ? 'selected' : ''}}>HTML
+                                            \BitPixel\SpringCms\Models\RiverPage::CONTENT_TYPE_HTML ? 'selected' : ''}}>HTML
                                         </option>
-                                        <option value="{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_BLADE}}"
+                                        <option value="{{\BitPixel\SpringCms\Models\RiverPage::CONTENT_TYPE_BLADE}}"
                                             {{$riverPage->content_type ==
-                                            \Rashidul\River\Models\RiverPage::CONTENT_TYPE_BLADE ? 'selected' : ''}}>Blade
+                                            \BitPixel\SpringCms\Models\RiverPage::CONTENT_TYPE_BLADE ? 'selected' : ''}}>Blade
                                         </option>
                                     </select>
                                 </div>
@@ -113,9 +113,9 @@
                             </div>
 
                             <div class="type-output">
-                                @if($riverPage->content_type == \Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML)
+                                @if($riverPage->content_type == \BitPixel\SpringCms\Models\RiverPage::CONTENT_TYPE_HTML)
                                 <div class="form-group content"
-                                    id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML}}">
+                                    id="content-{{\BitPixel\SpringCms\Models\RiverPage::CONTENT_TYPE_HTML}}">
                                     <textarea name="page_content1" id="content_type">{{$riverPage->content}}</textarea>
                                 </div>
                                 <div class="form-group content" id="blade" style="display:none">
@@ -123,9 +123,9 @@
                                         class="form-control"></textarea>
                                 </div>
                                 @endif
-                                @if($riverPage->content_type == \Rashidul\River\Models\RiverPage::CONTENT_TYPE_BLADE)
+                                @if($riverPage->content_type == \BitPixel\SpringCms\Models\RiverPage::CONTENT_TYPE_BLADE)
                                 <div class="form-group content"
-                                    id="content-{{\Rashidul\River\Models\RiverPage::CONTENT_TYPE_BLADE}}">
+                                    id="content-{{\BitPixel\SpringCms\Models\RiverPage::CONTENT_TYPE_BLADE}}">
                                     <textarea name="page_content2" id="code" cols="30" rows="30"
                                         class="form-control">{{$riverPage->content}}</textarea>
                                 </div>
