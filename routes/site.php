@@ -1,12 +1,12 @@
 <?php
 
-use Rashidul\River\Http\Controllers\Site\ContactFormSubmissionController;
+use BitPixel\SpringCms\Http\Controllers\Site\ContactFormSubmissionController;
 
 
 //auth
 Route::group([
     'middleware' => ['web', 'river.guest:customers'],
-    'namespace' => 'Rashidul\River\Http\Controllers',
+    'namespace' => 'BitPixel\SpringCms\Http\Controllers',
     'as' => 'riversite.'
 ], function () {
     Route::get('login', 'Customer\Auth\LoginController@showLoginForm')->name('login');
@@ -25,7 +25,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ['web', 'river.auth:customers'], 'namespace' => 'Rashidul\River\Http\Controllers', 'as' => 'riversite.'
+    'middleware' => ['web', 'river.auth:customers'], 'namespace' => 'BitPixel\SpringCms\Http\Controllers', 'as' => 'riversite.'
 ], function () {
     Route::get('user-dashboard', 'Customer\UserDashboardController@showDashboard')->name('customer.dashboard');
     Route::get('edit-profile', 'Customer\UserDashboardController@editProfile')->name('customer.editProfile');
@@ -37,7 +37,7 @@ Route::group([
 
 Route::group([
     'middleware' => ['web'],
-    'namespace' => 'Rashidul\River\Http\Controllers',
+    'namespace' => 'BitPixel\SpringCms\Http\Controllers',
     'as' => 'riversite.'
 ], function () {
     Route::get('/', 'Site\HomeController@index')->name('homepage');
@@ -66,7 +66,7 @@ if (config('river.enable_ecommerce')) {
     Route::group([
         'prefix' => '',
         /*'middleware' => ['web', 'river.auth:admins'],*/
-        'namespace' => 'Rashidul\River\Http\Controllers',
+        'namespace' => 'BitPixel\SpringCms\Http\Controllers',
         'as' => 'river.site.'
     ], function () {
         Route::get('shop', 'Admin\DataEntryController@index')->name('shop');
