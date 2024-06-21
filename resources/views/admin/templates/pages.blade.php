@@ -58,10 +58,12 @@
             e.preventDefault();
             var filename = window.prompt('Enter file name');
 
-            DynamicForm.create(route('river.template-pages.store'), "POST")
-                .addField("filename", filename)
-                .addCsrf()
-                .submit();
+            if(filename && filename.length) {
+                DynamicForm.create(route('river.template-pages.store'), "POST")
+                    .addField("filename", filename)
+                    .addCsrf()
+                    .submit();
+            }
         })
     </script>
 @endpush

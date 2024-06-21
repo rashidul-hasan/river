@@ -142,6 +142,7 @@ class DataTypeController
         $file = DataType::find($id);
         $file->delete();
 
+        Cache::forget(Constants::CACHE_KEY_DATATYPES);
         return redirect(route('river.datatypes.index'))
             ->with('success', 'Deleted!');
     }
