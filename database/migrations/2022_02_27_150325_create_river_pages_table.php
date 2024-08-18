@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('meta_description')->nullable();
             $table->boolean('is_published')->nullable();
             $table->longText('content')->nullable();
-            $table->integer('content_type')->default(\Rashidul\River\Models\RiverPage::CONTENT_TYPE_HTML);
+            $table->integer('content_type')->default(BitPixel\SpringCms\Models\RiverPage::CONTENT_TYPE_HTML);
             $table->timestamps();
         });
     }

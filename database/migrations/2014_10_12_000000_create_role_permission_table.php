@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('river_role_permission', function (Blueprint $table) {
             $table->id();
             $table->integer('role_id');
-            $table->integer('type')->default(\Rashidul\River\Models\RolePermission::TYPE_ROUTE);
+            $table->integer('type')->default(\BitPixel\SpringCms\Models\RolePermission::TYPE_ROUTE);
             $table->string('permission');
             // permission cooumn will hold a route name, means the role_id
             //has access to that route name, single row for each role id &
